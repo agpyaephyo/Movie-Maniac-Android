@@ -1,9 +1,11 @@
 package net.aung.moviemaniac.data.vos;
 
+import io.realm.RealmObject;
+
 /**
  * Created by aung on 12/17/15.
  */
-public class UserVO {
+public class UserVO extends RealmObject {
 
     public static final String JK_ID = "id";
     public static final String JK_NAME = "name";

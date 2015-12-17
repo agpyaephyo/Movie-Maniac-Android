@@ -24,10 +24,12 @@ import com.facebook.login.widget.LoginButton;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.data.model.UserModel;
 import net.aung.moviemaniac.data.vos.UserVO;
+import net.aung.moviemaniac.events.UserEvent;
 import net.aung.moviemaniac.utils.FacebookUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by aung on 12/17/15.
@@ -36,6 +38,9 @@ public class ViewPodUserInfo extends FrameLayout {
 
     @Bind(R.id.iv_profile)
     ImageView ivProfile;
+
+    @Bind(R.id.iv_profile_dummy)
+    ImageView ivProfileDummy;
 
     @Bind(R.id.iv_cover)
     ImageView ivCover;
@@ -46,8 +51,8 @@ public class ViewPodUserInfo extends FrameLayout {
     @Bind(R.id.ll_container_not_login)
     LinearLayout llContainerNotLogin;
 
-    @Bind(R.id.ll_container_login_user_info)
-    LinearLayout llContainerLoginUserInfo;
+    @Bind(R.id.ll_container_login)
+    LinearLayout llContainerLogin;
 
     @Bind(R.id.tv_username)
     TextView tvUsername;
@@ -68,6 +73,26 @@ public class ViewPodUserInfo extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         ButterKnife.bind(this, this);
+
+        Glide.with(ivProfileDummy.getContext()).load(R.drawable.dummy_profile).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfileDummy) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(ivProfile.getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                ivProfileDummy.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+
+        EventBus eventBus = EventBus.getDefault();
+        if (!eventBus.isRegistered(this)) {
+            eventBus.register(this);
+        }
+
+        if (UserModel.getInstance().isUserLogin()) {
+            UserVO loginUser = UserModel.getInstance().getLoginUser();
+            displayLoginUserInfo(loginUser);
+        }
     }
 
     public void setUpFacebookLoginButton(Fragment hostFragment, CallbackManager callbackManager) {
@@ -91,6 +116,16 @@ public class ViewPodUserInfo extends FrameLayout {
         });
     }
 
+    public void onEventMainThread(UserEvent.LogoutEvent event) {
+        llContainerNotLogin.setVisibility(View.VISIBLE);
+        llContainerLogin.setVisibility(View.GONE);
+
+        Glide.with(getContext())
+                .load(R.drawable.awesome)
+                .centerCrop()
+                .into(ivCover);
+    }
+
     private void processFacebookLoginResult(LoginResult loginResult) {
         final AccessToken accessToken = loginResult.getAccessToken();
         FacebookUtils.getInstance().requestFacebookLoginUser(accessToken, new FacebookUtils.FacebookGetLoginUserCallback() {
@@ -104,11 +139,7 @@ public class ViewPodUserInfo extends FrameLayout {
             @Override
             public void onSuccess() {
                 String coverUrl = UserModel.getInstance().getLoginUser().getCoverUrl();
-
-                Glide.with(getContext())
-                        .load(coverUrl)
-                        .centerCrop()
-                        .into(ivCover);
+                displayCoverImage(coverUrl);
             }
         });
 
@@ -116,24 +147,40 @@ public class ViewPodUserInfo extends FrameLayout {
             @Override
             public void onSuccess() {
                 String profileUrl = UserModel.getInstance().getLoginUser().getProfileUrl();
-
-                Glide.with(ivProfile.getContext()).load(profileUrl).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable =
-                                RoundedBitmapDrawableFactory.create(ivProfile.getResources(), resource);
-                        circularBitmapDrawable.setCircular(true);
-                        ivProfile.setImageDrawable(circularBitmapDrawable);
-                    }
-                });
+                displayProfilePhoto(profileUrl);
             }
         });
     }
 
     private void displayLoginUserInfo(UserVO loginUser) {
         llContainerNotLogin.setVisibility(View.GONE);
-        llContainerLoginUserInfo.setVisibility(View.VISIBLE);
+        llContainerLogin.setVisibility(View.VISIBLE);
 
         tvUsername.setText(loginUser.getName());
+        displayCoverImage(loginUser.getCoverUrl());
+        displayProfilePhoto(loginUser.getProfileUrl());
+    }
+
+    private void displayCoverImage(String coverUrl) {
+        if (coverUrl != null) {
+            Glide.with(getContext())
+                    .load(coverUrl)
+                    .centerCrop()
+                    .into(ivCover);
+        }
+    }
+
+    private void displayProfilePhoto(String profileUrl) {
+        if (profileUrl != null) {
+            Glide.with(ivProfile.getContext()).load(profileUrl).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(ivProfile.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    ivProfile.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+        }
     }
 }

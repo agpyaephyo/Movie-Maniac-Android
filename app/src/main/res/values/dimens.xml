@@ -45,10 +45,10 @@
 
     <dimen name="elevation_card">2dp</dimen>
 
-    <dimen name="width_left_menu">300dp</dimen>
-    <dimen name="user_info_height">240dp</dimen>
+    <dimen name="width_left_menu">340dp</dimen>
+    <dimen name="user_info_height">280dp</dimen>
     <dimen name="button_border_stroke">1dp</dimen>
 
     <dimen name="profile_dimen">100dp</dimen>
-    <dimen name="login_button_padding_left">60dp</dimen>
+    <dimen name="padding_login">50dp</dimen>
 </resources>
