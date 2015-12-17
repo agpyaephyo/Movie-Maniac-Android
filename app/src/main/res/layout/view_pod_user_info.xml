@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/iv_bg"
+        android:id="@+id/iv_cover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -24,6 +24,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/ll_container_not_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -62,20 +63,11 @@
                 android:layout_marginTop="@dimen/margin_medium_2"
                 />
 
-            <TextView
-                android:id="@+id/tv_login_with_facebook"
-                android:layout_width="match_parent"
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/btn_login_with_facebook"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_login_with_facebook"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/text_regular_2x"
-                android:fontFamily="sans-serif-condensed"
-                android:background="@drawable/login_with_facebook"
-                android:paddingLeft="@dimen/login_button_padding_left"
-                android:paddingRight="@dimen/margin_medium_2"
-                android:paddingTop="@dimen/margin_medium_2"
-                android:paddingBottom="@dimen/margin_medium_2"
-                android:gravity="center_vertical"
+                android:layout_gravity="right"
                 android:layout_marginLeft="@dimen/margin_medium_2"
                 android:layout_marginRight="@dimen/margin_medium_2"
                 android:layout_marginTop="@dimen/margin_medium_2"
@@ -84,7 +76,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/fl_container_user_info"
+            android:id="@+id/ll_container_login_user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -106,7 +98,6 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:text="Aung Pyae Phyo"
                 android:textSize="@dimen/text_regular_2x"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/text_white"

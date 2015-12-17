@@ -2,7 +2,7 @@ package net.aung.moviemaniac.utils;
 
 import android.content.Context;
 
-import net.aung.moviemaniac.PopularMoviesApplication;
+import net.aung.moviemaniac.MovieManiacApp;
 
 import org.json.JSONException;
 
@@ -29,7 +29,7 @@ public class JsonUtils {
     }
 
     private JsonUtils() {
-        context = PopularMoviesApplication.getContext();
+        context = MovieManiacApp.getContext();
     }
 
     /**

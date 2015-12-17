@@ -1,5 +1,6 @@
 package net.aung.moviemaniac.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
 
 import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.fragments.MovieListFragment;
@@ -22,6 +26,7 @@ public class MovieListActivity extends BaseActivity
         implements MovieItemController {
 
     private LeftMenuFragment mLeftMenu;
+    private CallbackManager mCallbackManager;
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -29,6 +34,9 @@ public class MovieListActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        mCallbackManager = CallbackManager.Factory.create();
+
         setContentView(R.layout.activity_movie_list);
         ButterKnife.bind(this, this);
 
@@ -50,7 +58,7 @@ public class MovieListActivity extends BaseActivity
         });
 
         mLeftMenu = (LeftMenuFragment) getSupportFragmentManager().findFragmentById(R.id.left_meu);
-        mLeftMenu.setUp(R.id.left_meu, mDrawerLayout);
+        mLeftMenu.setUp(R.id.left_meu, mDrawerLayout, mCallbackManager);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +72,7 @@ public class MovieListActivity extends BaseActivity
                     .replace(R.id.fl_container, MovieListFragment.newInstance())
                     .commit();
         }
+
     }
 
     @Override

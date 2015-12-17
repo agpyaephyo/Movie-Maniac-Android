@@ -8,9 +8,9 @@ import android.util.SparseArray;
 /**
  * Created by aung on 12/9/15.
  */
-public class PopularMoviesApplication extends Application {
+public class MovieManiacApp extends Application {
 
-    public static final String TAG = PopularMoviesApplication.class.getSimpleName();
+    public static final String TAG = MovieManiacApp.class.getSimpleName();
     public static SparseArray<Bitmap> sPosterCache = new SparseArray<Bitmap>(1);
 
     private static Context context;

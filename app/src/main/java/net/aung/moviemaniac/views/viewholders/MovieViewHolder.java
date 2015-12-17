@@ -14,7 +14,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import net.aung.moviemaniac.controllers.MovieItemController;
-import net.aung.moviemaniac.PopularMoviesApplication;
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
@@ -99,7 +99,7 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
     @Override
     public void onClick(View view) {
         BitmapDrawable bitmapDrawable = (BitmapDrawable) ivPoster.getDrawable();
-        PopularMoviesApplication.sPosterCache.put(0, bitmapDrawable.getBitmap());
+        MovieManiacApp.sPosterCache.put(0, bitmapDrawable.getBitmap());
 
         controller.onNavigateToDetail(binding.getMovie());
     }

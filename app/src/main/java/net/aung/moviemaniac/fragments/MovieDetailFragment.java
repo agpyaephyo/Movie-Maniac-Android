@@ -19,7 +19,7 @@ import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
 import net.aung.moviemaniac.mvp.views.MovieDetailView;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
-import net.aung.moviemaniac.PopularMoviesApplication;
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.TrailerItemController;
 import net.aung.moviemaniac.data.vos.MovieVO;
@@ -86,7 +86,7 @@ public class MovieDetailFragment extends BaseFragment
         presenter = new MovieDetailPresenter(this, movieId);
         presenter.onCreate();
 
-        poster = PopularMoviesApplication.sPosterCache.get(0);
+        poster = MovieManiacApp.sPosterCache.get(0);
         Palette.from(poster).generate(this);
 
         trailerAdapter = TrailerListAdapter.newInstance(controller);

@@ -8,7 +8,7 @@ import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.restapi.MovieDataSource;
 import net.aung.moviemaniac.restapi.responses.MovieDiscoverResponse;
-import net.aung.moviemaniac.PopularMoviesApplication;
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.restapi.MovieDataSourceImpl;
@@ -62,14 +62,14 @@ public class MovieModel {
 
     //Async
     public void loadMovieListByPage(int pageNumber, boolean isForce) {
-        Log.d(PopularMoviesApplication.TAG, "loading new movie list for page " + pageNumber);
+        Log.d(MovieManiacApp.TAG, "loading new movie list for page " + pageNumber);
         movieDataSource.discoverMovieList(pageNumber, RestApiConstants.DEFAULT_SORT_BY, isForce);
     }
 
     public MovieVO loadMovieDetailByMovieId(int movieId) {
         MovieVO movie = movieArrayMap.get(movieId);
         if(!movie.isDetailLoaded()){
-            Log.d(PopularMoviesApplication.TAG, "loadMovieDetailByMovieId " + movieId);
+            Log.d(MovieManiacApp.TAG, "loadMovieDetailByMovieId " + movieId);
             movieDataSource.getMovieDetail(movieId);
         }
 
@@ -81,7 +81,7 @@ public class MovieModel {
         List<TrailerVO> trailerList = movie.getTrailerList();
 
         if (trailerList == null) {
-            Log.d(PopularMoviesApplication.TAG, "loading trailer list for movieId " + movieId);
+            Log.d(MovieManiacApp.TAG, "loading trailer list for movieId " + movieId);
             movieDataSource.getMovieTrailers(movieId);
         }
 
