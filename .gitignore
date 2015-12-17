@@ -28,3 +28,6 @@ proguard/
 
 # The Facebook Hash
 facebook.properties
+
+# The Movie Api Key
+the_movie_api.properties
