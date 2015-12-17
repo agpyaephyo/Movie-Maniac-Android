@@ -1,0 +1,54 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Generic with ratio -->
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
+    <dimen name="margin_medium_2">16dp</dimen>
+    <dimen name="margin_medium_3">18dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_xlarge">32dp</dimen>
+
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_regular">14sp</dimen>
+    <dimen name="text_regular_2x">16sp</dimen>
+    <dimen name="text_regular_3x">20sp</dimen>
+    <dimen name="text_heading_1x">24sp</dimen>
+    <dimen name="text_heading_2x">32sp</dimen>
+    <dimen name="text_big">40sp</dimen>
+    <dimen name="text_big_2x">60sp</dimen>
+    <dimen name="text_big_3x">80sp</dimen>
+
+    <dimen name="icon_medium">60dp</dimen>
+
+    <dimen name="corner_radius_small">4dp</dimen>
+
+    <!-- Specific -->
+    <dimen name="item_movie_width">196dp</dimen>
+    <dimen name="item_movie_height">248dp</dimen>
+
+    <dimen name="trailer_container_height">212dp</dimen>
+    <dimen name="trailer_container_width">264dp</dimen>
+
+    <dimen name="movie_detal_backdrop_height">334dp</dimen>
+
+    <dimen name="movie_title_min_height">60dp</dimen>
+    <dimen name="loader_dimen">55dp</dimen>
+    <dimen name="poster_elevation">2dp</dimen>
+    <dimen name="tag_line_elevation">4dp</dimen>
+
+    <dimen name="runtime_border_stroke">2dp</dimen>
+    <dimen name="detail_padding_bottom_navigation">40dp</dimen>
+
+    <dimen name="elevation_card">2dp</dimen>
+
+    <dimen name="width_left_menu">300dp</dimen>
+    <dimen name="user_info_height">240dp</dimen>
+    <dimen name="button_border_stroke">1dp</dimen>
+
+    <dimen name="profile_dimen">100dp</dimen>
+    <dimen name="login_button_padding_left">60dp</dimen>
+</resources>

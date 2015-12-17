@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.aung.moviemaniac.views.pods.ViewPodUserActions
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_transparent_overlay"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:id="@+id/ll_like"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="@dimen/margin_medium"
+        android:background="@drawable/selector_action_bg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_thumb_up_white_18dp"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/lbl_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_small"
+            android:text="@string/lbl_like"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_medium"
+            tools:text="Like" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="@dimen/margin_medium"
+        android:background="@drawable/selector_action_bg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_save_white_18dp"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/lbl_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_small"
+            android:text="@string/lbl_save"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_medium"
+            tools:text="Comment" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_share"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="@dimen/margin_medium"
+        android:background="@drawable/selector_action_bg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share_white_18dp"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/lbl_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_small"
+            android:text="@string/lbl_share"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/margin_medium"
+            tools:text="Save" />
+
+    </LinearLayout>
+
+</net.aung.moviemaniac.views.pods.ViewPodUserActions>

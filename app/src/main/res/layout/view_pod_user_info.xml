@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.aung.moviemaniac.views.pods.ViewPodUserInfo
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/awesome"
+        />
+
+    <View
+        android:id="@+id/v_bg_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_transparent_overlay"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/margin_medium_2">
+
+            <TextView
+                android:id="@+id/lbl_login_cta"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Login to the App and \nsave your favourite movie info for later"
+                android:textSize="@dimen/text_regular"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/text_white"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                />
+
+            <TextView
+                android:id="@+id/tv_login_with_google"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_login_with_google"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/text_regular_2x"
+                android:fontFamily="sans-serif-condensed"
+                android:background="@drawable/login_with_google"
+                android:paddingLeft="@dimen/login_button_padding_left"
+                android:paddingRight="@dimen/margin_medium_2"
+                android:paddingTop="@dimen/margin_medium_2"
+                android:paddingBottom="@dimen/margin_medium_2"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                />
+
+            <TextView
+                android:id="@+id/tv_login_with_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_login_with_facebook"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/text_regular_2x"
+                android:fontFamily="sans-serif-condensed"
+                android:background="@drawable/login_with_facebook"
+                android:paddingLeft="@dimen/login_button_padding_left"
+                android:paddingRight="@dimen/margin_medium_2"
+                android:paddingTop="@dimen/margin_medium_2"
+                android:paddingBottom="@dimen/margin_medium_2"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fl_container_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:padding="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="@dimen/profile_dimen"
+                android:layout_height="@dimen/profile_dimen"
+                android:layout_gravity="bottom"
+                />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="Aung Pyae Phyo"
+                android:textSize="@dimen/text_regular_2x"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/text_white"
+                />
+
+            <TextView
+                android:id="@+id/tv_activities"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Liked 87 movies and saved 197 movies."
+                android:textSize="@dimen/text_regular"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/text_white"
+                />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</net.aung.moviemaniac.views.pods.ViewPodUserInfo>

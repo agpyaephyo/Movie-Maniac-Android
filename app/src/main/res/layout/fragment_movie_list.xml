@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.aung.moviemaniac.fragments.MovieListFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView
+            android:id="@+id/rv_movies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="@dimen/item_movie_width"
+            android:clipToPadding="false"
+            android:padding="@dimen/margin_small"
+            />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</FrameLayout>

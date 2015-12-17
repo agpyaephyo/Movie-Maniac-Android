@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:id="@+id/vp_user_info"
+        layout="@layout/view_pod_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_info_height" />
+
+    <ListView
+        android:id="@+id/lv_left_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/vp_user_info"
+        android:layout_marginTop="@dimen/margin_large"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
+
+    <TextView
+        android:id="@+id/tv_app_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:background="@drawable/app_version_bg"
+        android:gravity="right"
+        android:paddingBottom="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_large"
+        android:paddingTop="@dimen/margin_medium"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular_2x"
+        tools:text="ရုပ်ရှင် v0.1" />
+
+    <TextView
+        android:id="@+id/tv_whats_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_app_version"
+        android:layout_marginBottom="@dimen/margin_medium_2"
+        android:background="@drawable/app_version_bg"
+        android:gravity="right"
+        android:paddingBottom="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_large"
+        android:paddingTop="@dimen/margin_medium"
+        android:text="Q &amp; A"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular_2x" />
+
+</RelativeLayout>
+
+
+

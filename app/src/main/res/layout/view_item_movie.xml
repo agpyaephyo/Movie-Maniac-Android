@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="movie"
+            type="net.aung.moviemaniac.data.vos.MovieVO" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="@dimen/elevation_card"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_root_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/selector_action_bg"
+            android:background="@color/primary"
+            >
+
+            <ImageView
+                android:id="@+id/iv_poster"
+                android:layout_width="@dimen/item_movie_width"
+                android:layout_height="@dimen/item_movie_height"
+                tools:src="@drawable/movie_poster"
+                android:padding="@dimen/margin_medium"
+                />
+
+            <RelativeLayout
+                android:id="@+id/ll_container_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/margin_medium"
+                android:layout_toRightOf="@id/iv_poster"
+                android:layout_alignTop="@id/iv_poster"
+                android:layout_marginTop="@dimen/margin_medium">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{movie.title}"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="2"
+                    tools:text="Terminator Genisys" />
+
+                <net.aung.moviemaniac.views.pods.ViewPodMoviePopularity
+                    android:id="@+id/vp_movie_popularity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/tv_title"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_genre_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_small"
+                    android:layout_below="@id/vp_movie_popularity"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:lineSpacingExtra="1.2dp"
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/margin_small"
+                >
+
+                <TextView
+                    android:id="@+id/tv_user_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    android:layout_gravity="right"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_small"
+                    android:fontFamily="sans-serif-light"
+                    android:maxLines="2"
+                    android:text="3 Likes 7 Shares"
+                    />
+
+                <include
+                    android:id="@+id/rl_container_user_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    layout="@layout/view_pod_user_actions"
+                    />
+
+            </LinearLayout>
+
+            <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
+                android:id="@+id/tv_rating"
+                style="@style/MoviePopularity"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="@dimen/margin_small"
+                android:text="@{movie.voteAverage}"
+                android:textColor="@color/primary_text"
+                tools:text="6.2" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

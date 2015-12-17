@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath "com.android.tools.build:gradle:1.5.0-alpha1"
+        classpath "com.android.databinding:dataBinder:1.0-rc1"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+def theMovieApiProperties = loadTheMovieApiProperties()
+
+ext {
+    theMovieApiKey = theMovieApiProperties.getProperty('THE_MOVIE_API_KEY')
+}
+
+def loadTheMovieApiProperties() {
+    Properties localProperties = new Properties();
+    localProperties.load(project.rootProject.file('the_movie_api.properties').newDataInputStream())
+    return localProperties
+}

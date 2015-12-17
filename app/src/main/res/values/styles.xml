@@ -1,0 +1,34 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MovieTitle">
+        <item name="android:background">@color/black_transparent_overlay</item>
+        <item name="android:minHeight">@dimen/movie_title_min_height</item>
+        <item name="android:padding">@dimen/margin_medium</item>
+    </style>
+
+    <style name="MoviePopularity">
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textSize">@dimen/text_regular_2x</item>
+        <item name="android:background">@drawable/movie_rating_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:elevation">2dp</item>
+    </style>
+
+</resources>
