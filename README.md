@@ -1,5 +1,17 @@
 # Movie-Maniac-Android
-Android App for Movie-Maniac Project
+
+This project is to showcase the various implementation concepts from Android Development Stack.
+
+The following are the implementation concepts / components that I have used in this Movie-Maniac project so far.
+
+- DataBinding with MVvM for binding data to the view
+- MVP Framework for separating Android Framework from business logic
+- GreenRobot as event bus for communication inside the App
+- Retrofit 2.0 for network & rest layer
+- ButterKnife for binding views from xml into java implementation
+- RecyclerView, CardView
+- Palette for generating dynamic colors
+- Facebook Sdk for facebook login & share
 
 ![screenshot_20151217-141137](https://cloud.githubusercontent.com/assets/2491168/11892272/7dadf27c-a5a1-11e5-82b8-03a1c3b66d3c.png)
 ![screenshot_20151217-141152](https://cloud.githubusercontent.com/assets/2491168/11892274/7db25a2e-a5a1-11e5-8cca-e4b009ce26d8.png)
