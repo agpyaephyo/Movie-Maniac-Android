@@ -1,8 +1,6 @@
 # Movie-Maniac-Android
 
-This project is to showcase the various implementation concepts from Android Development Stack.
-
-The following are the implementation concepts / components that I have used in this Movie-Maniac project so far.
+This project is to showcase the various implementation concepts from Android Development Stack. The following are the implementation concepts / components that I have used in this Movie-Maniac project so far.
 
 - DataBinding with MVvM for binding data to the view
 - MVP Framework for separating Android Framework from business logic
