@@ -1,7 +1,7 @@
 # Movie-Maniac-Android
 Android App for Movie-Maniac Project
 
-![screenshot_20151217-141137](https://cloud.githubusercontent.com/assets/2491168/11892089/d7b0fa82-a59f-11e5-92ea-a2c8203bd860.png)
-![screenshot_20151217-141152](https://cloud.githubusercontent.com/assets/2491168/11892091/d7ba2486-a59f-11e5-996c-271c57d8b040.png)
-![screenshot_20151218-025714](https://cloud.githubusercontent.com/assets/2491168/11892092/d7c4b1b2-a59f-11e5-9f07-5f0ef3dc6e15.png)
-![screenshot_20151218-025734](https://cloud.githubusercontent.com/assets/2491168/11892090/d7b94c0a-a59f-11e5-8875-7f30e97761dc.png)
+![screenshot_20151217-141137](https://cloud.githubusercontent.com/assets/2491168/11892236/107248fc-a5a1-11e5-9443-043d8392b246.png)
+![screenshot_20151217-141152](https://cloud.githubusercontent.com/assets/2491168/11892237/1072a220-a5a1-11e5-83db-ed0a2b2ff91d.png)
+![screenshot_20151218-025714](https://cloud.githubusercontent.com/assets/2491168/11892238/10759160-a5a1-11e5-9a92-d1e417e75744.png)
+![screenshot_20151218-025734](https://cloud.githubusercontent.com/assets/2491168/11892239/107ae9da-a5a1-11e5-9216-afff4b6e9f83.png)
