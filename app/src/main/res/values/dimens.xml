@@ -51,4 +51,6 @@
 
     <dimen name="profile_dimen">100dp</dimen>
     <dimen name="padding_login">50dp</dimen>
+
+    <dimen name="pager_padding">0dp</dimen>
 </resources>
