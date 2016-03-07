@@ -14,7 +14,7 @@ public class AutofitRecyclerView extends RecyclerView {
     private GridLayoutManager layoutManager;
     private int columnWidth = -1;
 
-    private static final int DEFAULT_COLUMN_SPAN_COUNT = 1;
+    private static final int DEFAULT_COLUMN_SPAN_COUNT = 2;
 
     public AutofitRecyclerView(Context context) {
         super(context);

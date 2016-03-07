@@ -41,9 +41,6 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
     @Bind(R.id.iv_poster)
     ImageView ivPoster;
 
-    @Bind(R.id.tv_title)
-    TextView tvTitle;
-
     @Bind(R.id.tv_genre_list)
     TextView tvGenreList;
 
@@ -134,9 +131,11 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
         }
     }
 
+    /*
     private void setPaletteforTitle(Palette.Swatch colorDarkVaient, Palette.Swatch colorLightVarient) {
         if (colorDarkVaient != null && colorLightVarient != null) {
             tvTitle.setTextColor(colorDarkVaient.getRgb());
         }
     }
+    */
 }
