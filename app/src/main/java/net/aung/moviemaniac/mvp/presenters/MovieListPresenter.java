@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import net.aung.moviemaniac.data.model.MovieModel;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.mvp.views.MovieListView;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 
 /**
  * Created by aung on 12/12/15.
@@ -12,16 +13,20 @@ import net.aung.moviemaniac.mvp.views.MovieListView;
 public class MovieListPresenter extends BasePresenter {
 
     private MovieListView movieListView;
-    private int currentPageNumber = MovieModel.INITIAL_PAGE_NUMBER;
+    private int movieCategory;
 
-    public MovieListPresenter(@NonNull MovieListView movieListView) {
+    private int pageNumber;
+
+    public MovieListPresenter(@NonNull MovieListView movieListView, int movieCategory) {
         this.movieListView = movieListView;
+        this.movieCategory = movieCategory;
+        pageNumber = MovieModel.INITIAL_PAGE_NUMBER;
     }
 
     @Override
     public void onStart() {
         if (movieListView.isMovieListEmpty()) {
-            loadNewMovieList();
+            loadNewMovieList(false);
         }
     }
 
@@ -30,27 +35,40 @@ public class MovieListPresenter extends BasePresenter {
 
     }
 
-    public void onEventMainThread(DataEvent.ShowMovieListEvent event) {
-        currentPageNumber = event.getPageNumber() + 1;
-        movieListView.displayMovieList(event.getMovieList(), !event.isForce());
+    public void onEventMainThread(DataEvent.ShowMostPopularMovieListEvent event) {
+        if (movieCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
+            pageNumber = event.getPageNumber() + 1;
+            movieListView.displayMovieList(event.getMovieList(), !event.isForce());
+        }
+    }
+
+    public void onEventMainThread(DataEvent.ShowTopRatedMovieListEvent event) {
+        if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
+            pageNumber = event.getPageNumber() + 1;
+            movieListView.displayMovieList(event.getMovieList(), !event.isForce());
+        }
     }
 
     public void onEventMainThread(DataEvent.FailedToLoadDataEvent event) {
         movieListView.displayFailToLoadData(event.getMessage());
     }
 
-    private void loadNewMovieList() {
-       MovieModel.getInstance().loadMovieListByPage(currentPageNumber, false);
+    private void loadNewMovieList(boolean isForce) {
+        if (movieCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
+            MovieModel.getInstance().loadMostPopularMovieList(pageNumber, isForce);
+        } else if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
+            MovieModel.getInstance().loadTopRatedMovieList(pageNumber, isForce);
+        }
     }
 
     public void forceRefresh() {
-        currentPageNumber = MovieModel.INITIAL_PAGE_NUMBER;
-        MovieModel.getInstance().loadMovieListByPage(currentPageNumber, true);
+        pageNumber = MovieModel.INITIAL_PAGE_NUMBER;
+        loadNewMovieList(true);
     }
 
     public void loadMoreData() {
-        if (currentPageNumber != MovieModel.INITIAL_PAGE_NUMBER) {
-            loadNewMovieList();
+        if (pageNumber != MovieModel.INITIAL_PAGE_NUMBER) {
+            loadNewMovieList(false);
         }
     }
 }

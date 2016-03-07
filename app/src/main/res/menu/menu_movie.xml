@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="net.aung.moviemaniac.activities.MovieListActivity">
 
+    <!--
     <item
         android:id="@+id/action_help"
         android:orderInCategory="100"
@@ -14,4 +15,5 @@
         android:orderInCategory="100"
         android:title="@string/action_about"
         app:showAsAction="never" />
+        -->
 </menu>

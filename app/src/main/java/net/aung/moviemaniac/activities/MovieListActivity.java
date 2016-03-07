@@ -1,24 +1,21 @@
 package net.aung.moviemaniac.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
-
 import net.aung.moviemaniac.R;
+import net.aung.moviemaniac.adapters.MoviePagerAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.fragments.MovieListFragment;
 import net.aung.moviemaniac.menus.LeftMenuFragment;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,6 +27,14 @@ public class MovieListActivity extends BaseActivity
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+
+    @Bind(R.id.pager_movies)
+    ViewPager pagerMovies;
+
+    @Bind(R.id.tl_movies)
+    TabLayout tlMovies;
+
+    private MoviePagerAdapter mMoviePagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +50,16 @@ public class MovieListActivity extends BaseActivity
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Filter the type of movies you like most", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                SortMovieDialog dialog = new SortMovieDialog(MovieListActivity.this);
+                dialog.show();
             }
         });
+        */
 
         mLeftMenu = (LeftMenuFragment) getSupportFragmentManager().findFragmentById(R.id.left_meu);
         mLeftMenu.setUp(R.id.left_meu, mDrawerLayout, mCallbackManager);
@@ -64,12 +71,12 @@ public class MovieListActivity extends BaseActivity
             }
         });
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_container, MovieListFragment.newInstance())
-                    .commit();
-        }
+        mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager());
+        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES), getString(R.string.most_popular_movies));
+        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES), getString(R.string.top_rated_movies));
 
+        pagerMovies.setAdapter(mMoviePagerAdapter);
+        tlMovies.setupWithViewPager(pagerMovies);
     }
 
     @Override
@@ -87,9 +94,11 @@ public class MovieListActivity extends BaseActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        /*
         if (id == R.id.action_about) {
             return true;
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }

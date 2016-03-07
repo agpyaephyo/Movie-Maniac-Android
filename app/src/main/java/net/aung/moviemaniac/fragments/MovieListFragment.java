@@ -33,6 +33,8 @@ public class MovieListFragment extends BaseFragment
         SwipeRefreshLayout.OnRefreshListener,
         SmartScrollListener.ControllerSmartScroll {
 
+    private static final String BARG_CATEGORY = "BARG_CATEGORY";
+
     @Bind(R.id.rv_movies)
     RecyclerView rvMovies;
 
@@ -46,8 +48,13 @@ public class MovieListFragment extends BaseFragment
     private SmartScrollListener smartScrollListener;
     private MovieItemController controller;
 
-    public static MovieListFragment newInstance() {
+    private int mCategory;
+
+    public static MovieListFragment newInstance(int category) {
         MovieListFragment fragment = new MovieListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(BARG_CATEGORY, category);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -66,12 +73,20 @@ public class MovieListFragment extends BaseFragment
         super.onCreate(savedInstanceState);
         movieListAdapter = MovieListAdapter.newInstance(controller);
 
-        movieListPresenter = new MovieListPresenter(this);
+        movieListPresenter = new MovieListPresenter(this, mCategory);
         movieListPresenter.onCreate();
 
         smartScrollListener = new SmartScrollListener(this);
 
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
+    }
+
+    @Override
+    protected void readArguments(Bundle bundle) {
+        super.readArguments(bundle);
+        if(bundle != null) {
+            mCategory = bundle.getInt(BARG_CATEGORY);
+        }
     }
 
     @Override
@@ -92,6 +107,7 @@ public class MovieListFragment extends BaseFragment
         return rootView;
     }
 
+    /*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_movie_list, menu);
@@ -108,6 +124,7 @@ public class MovieListFragment extends BaseFragment
 
         return super.onOptionsItemSelected(item);
     }
+    */
 
     @Override
     public void onStart() {
@@ -159,6 +176,8 @@ public class MovieListFragment extends BaseFragment
 
     @Override
     public void onListEndReached() {
+        Snackbar.make(rootView, getString(R.string.loading_more_movies), Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
         movieListPresenter.loadMoreData();
     }
 }

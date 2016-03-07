@@ -28,20 +28,36 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
-            android:id="@+id/fl_container"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_movies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager_movies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                />
+
+        </LinearLayout>
+
+        <!--
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_filter_list_white_24dp" />
+            android:src="@drawable/ic_sort_white_24dp" />
+            -->
 
     </android.support.design.widget.CoordinatorLayout>
 

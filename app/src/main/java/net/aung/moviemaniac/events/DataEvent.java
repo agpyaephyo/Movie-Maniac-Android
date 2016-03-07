@@ -1,9 +1,9 @@
 package net.aung.moviemaniac.events;
 
 import net.aung.moviemaniac.data.vos.MovieVO;
-import net.aung.moviemaniac.restapi.responses.MovieDiscoverResponse;
-import net.aung.moviemaniac.restapi.responses.MovieTrailerResponse;
 import net.aung.moviemaniac.restapi.responses.GenreListResponse;
+import net.aung.moviemaniac.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.restapi.responses.MovieTrailerResponse;
 
 import java.util.ArrayList;
 
@@ -12,21 +12,35 @@ import java.util.ArrayList;
  */
 public class DataEvent {
 
-    public static class LoadedMovieDiscoverEvent {
-        private MovieDiscoverResponse response;
+    public static class LoadedMovieListEvent {
+        private MovieListResponse response;
         private boolean isForce;
 
-        public LoadedMovieDiscoverEvent(MovieDiscoverResponse response, boolean isForce) {
+        public LoadedMovieListEvent(MovieListResponse response, boolean isForce) {
             this.response = response;
             this.isForce = isForce;
         }
 
-        public MovieDiscoverResponse getResponse() {
+        public MovieListResponse getResponse() {
             return response;
         }
 
         public boolean isForce() {
             return isForce;
+        }
+    }
+
+    public static class LoadedMostPopularMovieListEvent extends LoadedMovieListEvent {
+
+        public LoadedMostPopularMovieListEvent(MovieListResponse response, boolean isForce) {
+            super(response, isForce);
+        }
+    }
+
+    public static class LoadedTopRatedMovieListEvent extends LoadedMovieListEvent {
+
+        public LoadedTopRatedMovieListEvent(MovieListResponse response, boolean isForce) {
+            super(response, isForce);
         }
     }
 
@@ -51,6 +65,20 @@ public class DataEvent {
 
         public int getPageNumber() {
             return pageNumber;
+        }
+    }
+
+    public static class ShowMostPopularMovieListEvent extends ShowMovieListEvent {
+
+        public ShowMostPopularMovieListEvent(ArrayList<MovieVO> movieList, boolean isForce, int pageNumber) {
+            super(movieList, isForce, pageNumber);
+        }
+    }
+
+    public static class ShowTopRatedMovieListEvent extends ShowMovieListEvent {
+
+        public ShowTopRatedMovieListEvent(ArrayList<MovieVO> movieList, boolean isForce, int pageNumber) {
+            super(movieList, isForce, pageNumber);
         }
     }
 

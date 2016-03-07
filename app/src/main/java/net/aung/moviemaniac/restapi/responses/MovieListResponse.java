@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * To contain the response from Movie/Discover api.
  * Created by aung on 12/12/15.
  */
-public class MovieDiscoverResponse {
+public class MovieListResponse {
 
     private int page;
     private ArrayList<MovieVO> results;

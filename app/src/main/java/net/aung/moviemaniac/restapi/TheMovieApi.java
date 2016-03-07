@@ -1,7 +1,7 @@
 package net.aung.moviemaniac.restapi;
 
 import net.aung.moviemaniac.data.vos.MovieVO;
-import net.aung.moviemaniac.restapi.responses.MovieDiscoverResponse;
+import net.aung.moviemaniac.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.restapi.responses.MovieTrailerResponse;
 import net.aung.moviemaniac.restapi.responses.GenreListResponse;
 
@@ -16,10 +16,22 @@ import retrofit.http.Query;
 public interface TheMovieApi {
 
     @GET("discover/movie")
-    Call<MovieDiscoverResponse> discoverMovieList(
+    Call<MovieListResponse> discoverMovieList(
             @Query("api_key") String apiKey,
             @Query("page") int pageNumber,
             @Query("sort_by") String sortBy
+    );
+
+    @GET("movie/popular")
+    Call<MovieListResponse> getPopularMovies(
+            @Query("api_key") String apiKey,
+            @Query("page") int pageNumber
+    );
+
+    @GET("movie/top_rated")
+    Call<MovieListResponse> getTopRatedMovies(
+            @Query("api_key") String apiKey,
+            @Query("page") int pageNumber
     );
 
     @GET("movie/{movieId}/videos")

@@ -3,7 +3,7 @@ package net.aung.moviemaniac.restapi;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.restapi.responses.GenreListResponse;
-import net.aung.moviemaniac.restapi.responses.MovieDiscoverResponse;
+import net.aung.moviemaniac.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.restapi.responses.MovieTrailerResponse;
 import net.aung.moviemaniac.utils.CommonInstances;
 import net.aung.moviemaniac.BuildConfig;
@@ -40,20 +40,60 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void discoverMovieList(int pageNumber, String sortBy, final boolean isForce) {
-        Call<MovieDiscoverResponse> movieDiscoverResponseCall = theMovieApi.discoverMovieList(
+    public void loadDiscoverMovieList(int pageNumber, String sortBy, final boolean isForce) {
+        Call<MovieListResponse> movieDiscoverResponseCall = theMovieApi.discoverMovieList(
                 BuildConfig.THE_MOVIE_API_KEY,
                 pageNumber,
                 sortBy
         );
 
-        movieDiscoverResponseCall.enqueue(new MovieApiCallback<MovieDiscoverResponse>() {
+        movieDiscoverResponseCall.enqueue(new MovieApiCallback<MovieListResponse>() {
             @Override
-            public void onResponse(Response<MovieDiscoverResponse> response, Retrofit retrofit) {
+            public void onResponse(Response<MovieListResponse> response, Retrofit retrofit) {
                 super.onResponse(response, retrofit);
-                MovieDiscoverResponse movieDiscoverResponse = response.body();
-                if (movieDiscoverResponse != null) {
-                    DataEvent.LoadedMovieDiscoverEvent event = new DataEvent.LoadedMovieDiscoverEvent(movieDiscoverResponse, isForce);
+                MovieListResponse movieListResponse = response.body();
+                if (movieListResponse != null) {
+                    DataEvent.LoadedMovieListEvent event = new DataEvent.LoadedMovieListEvent(movieListResponse, isForce);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadPopularMovies(int pageNumber, final boolean isForce) {
+        Call<MovieListResponse> popularMovieResponseCall = theMovieApi.getPopularMovies(
+                BuildConfig.THE_MOVIE_API_KEY,
+                pageNumber
+        );
+
+        popularMovieResponseCall.enqueue(new MovieApiCallback<MovieListResponse>() {
+            @Override
+            public void onResponse(Response<MovieListResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                MovieListResponse movieListResponse = response.body();
+                if (movieListResponse != null) {
+                    DataEvent.LoadedMostPopularMovieListEvent event = new DataEvent.LoadedMostPopularMovieListEvent(movieListResponse, isForce);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadTopRatedMovies(int pageNumber, final boolean isForce) {
+        Call<MovieListResponse> popularMovieResponseCall = theMovieApi.getTopRatedMovies(
+                BuildConfig.THE_MOVIE_API_KEY,
+                pageNumber
+        );
+
+        popularMovieResponseCall.enqueue(new MovieApiCallback<MovieListResponse>() {
+            @Override
+            public void onResponse(Response<MovieListResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                MovieListResponse movieListResponse = response.body();
+                if (movieListResponse != null) {
+                    DataEvent.LoadedTopRatedMovieListEvent event = new DataEvent.LoadedTopRatedMovieListEvent(movieListResponse, isForce);
                     EventBus.getDefault().post(event);
                 }
             }
