@@ -11,7 +11,7 @@ This project is to showcase the various implementation concepts from Android Dev
 - Palette for generating dynamic colors
 - Facebook Sdk for facebook login & share
 
-![screenshot_20151217-141137](https://cloud.githubusercontent.com/assets/2491168/11892272/7dadf27c-a5a1-11e5-82b8-03a1c3b66d3c.png)
+![screenshot_20160308-034012](https://cloud.githubusercontent.com/assets/2491168/13583425/a8b22664-e4df-11e5-913b-eb7356d15ecc.png)
 
 ![screenshot_20151217-141152](https://cloud.githubusercontent.com/assets/2491168/11892274/7db25a2e-a5a1-11e5-8cca-e4b009ce26d8.png)
 
