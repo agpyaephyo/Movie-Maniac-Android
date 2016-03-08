@@ -1,4 +1,4 @@
-package net.aung.moviemaniac.restapi;
+package net.aung.moviemaniac.data.restapi;
 
 /**
  * Created by aung on 12/15/15.

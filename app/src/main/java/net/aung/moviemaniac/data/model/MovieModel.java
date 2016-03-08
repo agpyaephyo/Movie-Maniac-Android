@@ -8,10 +8,10 @@ import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.events.DataEvent;
-import net.aung.moviemaniac.restapi.MovieDataSource;
-import net.aung.moviemaniac.restapi.MovieDataSourceImpl;
-import net.aung.moviemaniac.restapi.RestApiConstants;
-import net.aung.moviemaniac.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.data.restapi.MovieDataSource;
+import net.aung.moviemaniac.data.restapi.MovieDataSourceImpl;
+import net.aung.moviemaniac.data.restapi.RestApiConstants;
+import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package net.aung.moviemaniac.restapi.responses;
+package net.aung.moviemaniac.data.restapi.responses;
 
 import com.google.gson.annotations.SerializedName;
 

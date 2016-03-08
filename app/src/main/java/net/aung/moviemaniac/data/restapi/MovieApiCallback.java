@@ -1,4 +1,4 @@
-package net.aung.moviemaniac.restapi;
+package net.aung.moviemaniac.data.restapi;
 
 import net.aung.moviemaniac.events.DataEvent;
 
