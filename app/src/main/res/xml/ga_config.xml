@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="ga_trackingId">UA-74829198-1</string>
+    <bool name="ga_autoActivityTracking">true</bool>
+    <integer name="ga_sessionTimeout">300</integer>
+    <screenName name="net.aung.moviemaniac.activities.MovieListActivity">Movie List</screenName>
+    <screenName name="net.aung.moviemaniac.activities.MovieDetailActivity">Movie Detail</screenName>
+</resources>

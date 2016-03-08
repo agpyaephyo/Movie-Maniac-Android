@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MoviePagerAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
@@ -41,6 +42,8 @@ public class MovieListActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
         ButterKnife.bind(this, this);
+
+        ((MovieManiacApp)getApplication()).startTracking();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.title_yote_shin));

@@ -13,6 +13,7 @@ android {
         versionName "1.0"
 
         buildConfigField 'String', 'THE_MOVIE_API_KEY', "\"${theMovieApiKey}\""
+
     }
     buildTypes {
         release {
@@ -46,5 +47,5 @@ dependencies {
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
 
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
-    
+    compile 'com.google.android.gms:play-services:8.4.0'
 }
