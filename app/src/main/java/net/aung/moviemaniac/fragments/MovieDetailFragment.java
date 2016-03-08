@@ -14,17 +14,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.aung.moviemaniac.adapters.TrailerListAdapter;
-import net.aung.moviemaniac.data.vos.TrailerVO;
-import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
-import net.aung.moviemaniac.mvp.views.MovieDetailView;
-import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
+import net.aung.moviemaniac.adapters.TrailerListAdapter;
 import net.aung.moviemaniac.controllers.TrailerItemController;
 import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.databinding.FragmentMovieDetailBinding;
+import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
+import net.aung.moviemaniac.mvp.views.MovieDetailView;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
+import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
 
 import java.util.List;
@@ -174,7 +174,9 @@ public class MovieDetailFragment extends BaseFragment
     }
 
     private void setPaletteForRootContainer(Palette.Swatch colorDarkVaient) {
-        svContainerTrailer.setBackgroundColor(colorDarkVaient.getRgb());
+        if (colorDarkVaient != null) {
+            svContainerTrailer.setBackgroundColor(colorDarkVaient.getRgb());
+        }
     }
 
     private void setPaletteforTagLine(Palette.Swatch colorDarkVaient, Palette.Swatch colorLightVarient) {
