@@ -22,16 +22,18 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     private List<MovieVO> movieList;
     private MovieItemController controller;
+    private boolean isFavouriteSection;
 
-    public static MovieListAdapter newInstance(MovieItemController controller) {
+    public static MovieListAdapter newInstance(MovieItemController controller, boolean isFavouriteSection) {
         List<MovieVO> movieList = new ArrayList<>();
-        return new MovieListAdapter(movieList, controller);
+        return new MovieListAdapter(movieList, controller, isFavouriteSection);
     }
 
     //Let's make sure movieList is never null. Ref: empty data pattern.
-    private MovieListAdapter(@NonNull List<MovieVO> movieList, MovieItemController controller) {
+    private MovieListAdapter(@NonNull List<MovieVO> movieList, MovieItemController controller, boolean isFavouriteSection) {
         this.movieList = movieList;
         this.controller = controller;
+        this.isFavouriteSection = isFavouriteSection;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View viMovie = inflater.inflate(R.layout.view_item_movie, parent, false);
-        return new MovieViewHolder(viMovie, controller);
+        return new MovieViewHolder(viMovie, controller, isFavouriteSection);
     }
 
     @Override

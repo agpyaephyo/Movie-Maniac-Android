@@ -56,4 +56,5 @@
 
     <dimen name="fab_dimen">55dp</dimen>
     <dimen name="movie_star_margin_top">60dp</dimen>
+    <dimen name="empty_favourite_text_padding">50dp</dimen>
 </resources>

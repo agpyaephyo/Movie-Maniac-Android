@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <net.aung.moviemaniac.views.components.textview.DashUnderlineTextView
+        android:id="@+id/lbl_empty_favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:layout_centerInParent="true"
+        android:paddingLeft="@dimen/empty_favourite_text_padding"
+        android:paddingRight="@dimen/empty_favourite_text_padding"
+        android:gravity="center"
+        android:text="@string/empty_favourite"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <ImageView
+        android:id="@+id/iv_empty_favourite"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_above="@id/lbl_empty_favourite"
+        android:src="@drawable/pic_empty_favourite"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_medium_2"
+        />
+
+</RelativeLayout>

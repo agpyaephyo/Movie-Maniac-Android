@@ -25,6 +25,7 @@ import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.mvp.presenters.MovieListPresenter;
 import net.aung.moviemaniac.mvp.views.MovieListView;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
+import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
 import net.aung.moviemaniac.views.components.recyclerview.SmartScrollListener;
 
 import java.util.ArrayList;
@@ -45,7 +46,10 @@ public class MovieListFragment extends BaseFragment
     private static final String BARG_CATEGORY = "BARG_CATEGORY";
 
     @Bind(R.id.rv_movies)
-    RecyclerView rvMovies;
+    AutofitRecyclerView rvMovies;
+
+    @Bind(R.id.vp_empty_favourite)
+    View vEmptyFavourite;
 
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout swipeContainer;
@@ -80,7 +84,6 @@ public class MovieListFragment extends BaseFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        movieListAdapter = MovieListAdapter.newInstance(controller);
 
         movieListPresenter = new MovieListPresenter(this, mCategory);
         movieListPresenter.onCreate();
@@ -104,7 +107,10 @@ public class MovieListFragment extends BaseFragment
         rootView = inflater.inflate(R.layout.fragment_movie_list, container, false);
         ButterKnife.bind(this, rootView);
 
+        movieListAdapter = MovieListAdapter.newInstance(controller, mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES);
         rvMovies.setAdapter(movieListAdapter);
+        rvMovies.setEmptyView(vEmptyFavourite);
+
         rvMovies.addOnScrollListener(smartScrollListener);
 
         swipeContainer.setOnRefreshListener(this);
@@ -199,23 +205,33 @@ public class MovieListFragment extends BaseFragment
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String sortedBy = null;
-        String[] selectionArgs = null;
-        if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
-            sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
-            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR)};
-        } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
-            sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
-            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_TOP_RATED)};
-        }
+        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES) {
+            return new CursorLoader(getActivity(),
+                    MovieContract.MovieEntry.CONTENT_URI,
+                    null,
+                    MovieContract.MovieEntry.COLUMN_IS_STAR + " = ? ",
+                    new String[]{String.valueOf(1)}, // 1 means starred the movie.
+                    null
+            );
+        } else {
+            String sortedBy = null;
+            String[] selectionArgs = null;
+            if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
+                sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
+                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR)};
+            } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
+                sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
+                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_TOP_RATED)};
+            }
 
-        return new CursorLoader(getActivity(),
-                MovieContract.MovieEntry.CONTENT_URI,
-                null,
-                MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ? ",
-                selectionArgs,
-                sortedBy
-        );
+            return new CursorLoader(getActivity(),
+                    MovieContract.MovieEntry.CONTENT_URI,
+                    null,
+                    MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ? ",
+                    selectionArgs,
+                    sortedBy
+            );
+        }
     }
 
     @Override

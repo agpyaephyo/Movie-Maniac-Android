@@ -22,8 +22,9 @@
 
     <string name="pref_sort_order_key" translatable="false">pref_sort_order_key</string>
 
-    <string name="most_popular_movies">Most Popular Movies</string>
-    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="most_popular_movies">Most Popular</string>
+    <string name="top_rated_movies">Top Rated</string>
+    <string name="my_favourites">My Favourites</string>
     <string name="loading_more_movies">Loading more movies ...</string>
 
     <string name="star_data" translatable="false">
@@ -55,7 +56,10 @@
     </string>
     <string name="star">Star !!!</string>
 
+    <string name="remove_movie_from_favourite_confirmation_msg">You are about to remove this movie from your Favourite List. Is that what you want ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="remove_movie_from_favourite_confirmation_msg">You are about to remove this movie from your Favourite List. Is that what you want ?</string>
+
+    <string name="section_movie">Movie Shelf</string>
+    <string name="empty_favourite">You haven\'t pick any movie as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
 </resources>

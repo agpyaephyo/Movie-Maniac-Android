@@ -43,7 +43,7 @@ public class MovieListActivity extends BaseActivity
         ButterKnife.bind(this, this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.title_yote_shin));
+        toolbar.setTitle(getString(R.string.section_movie));
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -74,6 +74,7 @@ public class MovieListActivity extends BaseActivity
         mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager());
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES), getString(R.string.most_popular_movies));
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES), getString(R.string.top_rated_movies));
+        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MY_FAVOURITES), getString(R.string.my_favourites));
 
         pagerMovies.setAdapter(mMoviePagerAdapter);
         tlMovies.setupWithViewPager(pagerMovies);

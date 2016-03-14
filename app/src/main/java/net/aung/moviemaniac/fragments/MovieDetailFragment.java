@@ -195,7 +195,7 @@ public class MovieDetailFragment extends BaseFragment
             lblReviews.setVisibility(View.GONE);
         }
 
-        ibMovieStar.setImageResource(movie.isStar() ? R.drawable.ic_favorite_border_white_24dp : R.drawable.ic_fab_star);
+        ibMovieStar.setImageResource(movie.isStar() ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_fab_star);
     }
 
     @Override
@@ -314,7 +314,7 @@ public class MovieDetailFragment extends BaseFragment
             vpMovieStar.showMovieSaved(view, new ViewPodMovieStar.ControllerMovieSaved() {
                 @Override
                 public void onMovieSavedAnimationFinish() {
-                    ibMovieStar.setImageResource(R.drawable.ic_favorite_border_white_24dp);
+                    ibMovieStar.setImageResource(R.drawable.ic_favorite_white_24dp);
                 }
             });
         }

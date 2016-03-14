@@ -1,8 +1,10 @@
 package net.aung.moviemaniac.views.viewholders;
 
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.view.View;
@@ -25,6 +27,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by aung on 12/12/15.
@@ -44,9 +47,12 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
     @Bind(R.id.tv_genre_list)
     TextView tvGenreList;
 
+    @Bind(R.id.iv_cancel_star)
+    ImageView ivCancelStar;
+
     private View itemView;
 
-    public MovieViewHolder(View itemView, MovieItemController controller) {
+    public MovieViewHolder(View itemView, MovieItemController controller, boolean isFavouriteSection) {
         super(itemView);
         this.itemView = itemView;
         ButterKnife.bind(this, itemView);
@@ -55,6 +61,7 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
         this.controller = controller;
 
         ivPoster.setDrawingCacheEnabled(true);
+        ivCancelStar.setVisibility(isFavouriteSection ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -131,6 +138,21 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
         if (colorDarkVaient != null) {
             itemView.setBackgroundColor(colorDarkVaient.getRgb());
         }
+    }
+
+    @OnClick(R.id.iv_cancel_star)
+    public void onTapCancelStar(View view) {
+        new AlertDialog.Builder(view.getContext())
+                .setMessage(R.string.remove_movie_from_favourite_confirmation_msg)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        MovieVO movie = binding.getMovie();
+                        movie.setStar(false);
+                        movie.updateMovieStarStatus(); //TODO On Main Thread ?
+                    }})
+                .setNegativeButton(R.string.no, null).show();
     }
 
     /*

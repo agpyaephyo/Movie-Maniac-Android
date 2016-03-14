@@ -19,6 +19,7 @@ public class MovieManiacConstants {
 
     public static final int CATEGORY_MOST_POPULAR_MOVIES = 1;
     public static final int CATEGORY_TOP_RATED_MOVIES = 2;
+    public static final int CATEGORY_MY_FAVOURITES = 3;
 
     public static final String MOVIE_CATEGORY_PREFIX = "MOVIE_CATEGORY_";
 

@@ -20,4 +20,11 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <include
+        android:id="@+id/vp_empty_favourite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/view_pod_empty_favourite"
+        />
+
 </FrameLayout>

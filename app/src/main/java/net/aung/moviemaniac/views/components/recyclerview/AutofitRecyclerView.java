@@ -5,6 +5,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 
 /**
  * Created by aung on 12/12/15.
@@ -13,6 +14,8 @@ public class AutofitRecyclerView extends RecyclerView {
 
     private GridLayoutManager layoutManager;
     private int columnWidth = -1;
+
+    private View vEmptyView;
 
     private static final int DEFAULT_COLUMN_SPAN_COUNT = 2;
 
@@ -63,4 +66,50 @@ public class AutofitRecyclerView extends RecyclerView {
         }
         */
     }
+
+    @Override
+    public void setAdapter(Adapter adapter) {
+        final Adapter oldAdapter = getAdapter();
+        if(oldAdapter != null) {
+            oldAdapter.unregisterAdapterDataObserver(dataObserver);
+        }
+        super.setAdapter(adapter);
+        if(adapter != null) {
+            adapter.registerAdapterDataObserver(dataObserver);
+        }
+        checkIfEmpty();
+    }
+
+    public void setEmptyView(View view) {
+        this.vEmptyView = view;
+        checkIfEmpty();
+    }
+
+    protected void checkIfEmpty() {
+        if(vEmptyView != null && getAdapter() != null) {
+            final boolean isEmpty = getAdapter().getItemCount() == 0;
+            vEmptyView.setVisibility(isEmpty ? VISIBLE : GONE);
+            setVisibility(isEmpty ? GONE : VISIBLE);
+        }
+    }
+
+    private AdapterDataObserver dataObserver = new AdapterDataObserver() {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            checkIfEmpty();
+        }
+
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+            super.onItemRangeInserted(positionStart, itemCount);
+            checkIfEmpty();
+        }
+
+        @Override
+        public void onItemRangeRemoved(int positionStart, int itemCount) {
+            super.onItemRangeRemoved(positionStart, itemCount);
+            checkIfEmpty();
+        }
+    };
 }
