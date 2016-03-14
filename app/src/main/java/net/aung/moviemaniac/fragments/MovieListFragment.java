@@ -1,25 +1,34 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.aung.moviemaniac.MovieManiacApp;
+import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MovieListAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
+import net.aung.moviemaniac.data.persistence.MovieContract;
+import net.aung.moviemaniac.data.vos.CollectionVO;
+import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.mvp.presenters.MovieListPresenter;
 import net.aung.moviemaniac.mvp.views.MovieListView;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.SmartScrollListener;
-import net.aung.moviemaniac.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -31,7 +40,8 @@ import butterknife.ButterKnife;
 public class MovieListFragment extends BaseFragment
         implements MovieListView,
         SwipeRefreshLayout.OnRefreshListener,
-        SmartScrollListener.ControllerSmartScroll {
+        SmartScrollListener.ControllerSmartScroll,
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String BARG_CATEGORY = "BARG_CATEGORY";
 
@@ -84,7 +94,7 @@ public class MovieListFragment extends BaseFragment
     @Override
     protected void readArguments(Bundle bundle) {
         super.readArguments(bundle);
-        if(bundle != null) {
+        if (bundle != null) {
             mCategory = bundle.getInt(BARG_CATEGORY);
         }
     }
@@ -105,6 +115,12 @@ public class MovieListFragment extends BaseFragment
                 android.R.color.holo_red_dark);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(MovieManiacConstants.MOVIE_LIST_LOADER, null, this);
+        super.onActivityCreated(savedInstanceState);
     }
 
     /*
@@ -155,7 +171,7 @@ public class MovieListFragment extends BaseFragment
             swipeContainer.setRefreshing(false);
         }
 
-        if(isToAppend){
+        if (isToAppend) {
             movieListAdapter.appendMovieList(movieList);
         } else {
             movieListAdapter.setMovieList(movieList);
@@ -178,6 +194,72 @@ public class MovieListFragment extends BaseFragment
     public void onListEndReached() {
         Snackbar.make(rootView, getString(R.string.loading_more_movies), Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
+
         movieListPresenter.loadMoreData();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String sortedBy = null;
+        String[] selectionArgs = null;
+        if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
+            sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
+            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR)};
+        } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
+            sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
+            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_TOP_RATED)};
+        }
+
+        return new CursorLoader(getActivity(),
+                MovieContract.MovieEntry.CONTENT_URI,
+                null,
+                MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ? ",
+                selectionArgs,
+                sortedBy
+        );
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        List<MovieVO> movieList = new ArrayList<>();
+        if (data != null && data.moveToFirst()) {
+            do {
+                MovieVO movie = MovieVO.parseFromListCursor(data);
+                Cursor genreCursor = getContext().getContentResolver().query(MovieContract.MovieGenreEntry.buildMovieGenreUriWithMovieId(movie.getId()),
+                        null, null, null, null);
+
+                if (genreCursor != null && genreCursor.moveToFirst()) {
+                    do {
+                        movie.addGenreList(GenreVO.parseFromCursor(genreCursor));
+                    } while (genreCursor.moveToNext());
+                    genreCursor.close();
+                }
+
+                movieList.add(movie);
+
+                if (movie.getCollectionId() != 0) {
+                    Cursor collectionCursor = getContext().getContentResolver().query(MovieContract.CollectionEntry.CONTENT_URI,
+                            null,
+                            MovieContract.CollectionEntry.COLUMN_COLLECTION_ID + " = ?",
+                            new String[]{String.valueOf(movie.getCollectionId())},
+                            null);
+
+                    if (collectionCursor != null && collectionCursor.moveToFirst()) {
+                        movie.setCollection(CollectionVO.parseFromCursor(collectionCursor));
+                        collectionCursor.close();
+                    }
+                }
+
+            } while (data.moveToNext());
+        }
+
+        Log.d(MovieManiacApp.TAG, "Displaying movies for category " + mCategory + " : " + movieList.size());
+        displayMovieList(movieList, false);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        List<MovieVO> movieList = new ArrayList<>();
+        displayMovieList(movieList, false);
     }
 }

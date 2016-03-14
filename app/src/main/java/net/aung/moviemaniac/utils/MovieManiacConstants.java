@@ -11,12 +11,25 @@ import java.lang.annotation.RetentionPolicy;
 public class MovieManiacConstants {
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({SORT_ORDER_MOST_POPULAR, SORT_ORDER_HIGHEST_RATED})
+    @IntDef({SORT_ORDER_MOST_POPULAR, SORT_ORDER_TOP_RATED})
     public @interface SortOrder {}
 
     public static final int SORT_ORDER_MOST_POPULAR = 1;
-    public static final int SORT_ORDER_HIGHEST_RATED = 2;
+    public static final int SORT_ORDER_TOP_RATED = 2;
 
     public static final int CATEGORY_MOST_POPULAR_MOVIES = 1;
     public static final int CATEGORY_TOP_RATED_MOVIES = 2;
+
+    public static final String MOVIE_CATEGORY_PREFIX = "MOVIE_CATEGORY_";
+
+    //Loader IDs
+    public static final int MOVIE_LIST_LOADER = 0;
+
+    //Movie Type
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({MOVIE_TYPE_MOST_POPULAR, MOVIE_TYPE_TOP_RATED})
+    public @interface MovieType {}
+
+    public static final int MOVIE_TYPE_MOST_POPULAR = 100;
+    public static final int MOVIE_TYPE_TOP_RATED = 200;
 }

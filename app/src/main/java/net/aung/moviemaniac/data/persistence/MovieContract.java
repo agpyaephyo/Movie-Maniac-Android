@@ -64,6 +64,7 @@ public class MovieContract {
         public static final String COLUMN_TAGLINE = "tagline";
         public static final String COLUMN_IS_VIDEO = "is_video";
         public static final String COLUMN_COLLECTION_ID = "collection_id";
+        public static final String COLUMN_MOVIE_TYPE = "movie_type";
 
         public static Uri buildMovieUri(long id) {
             //content://net.aung.moviemaniac/movie/1
@@ -108,6 +109,15 @@ public class MovieContract {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_MOVIE_ID, Long.toString(movieId))
                     .build();
+        }
+
+        public static long getMovieIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
         }
     }
 
@@ -166,6 +176,15 @@ public class MovieContract {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_GENRE_ID, Long.toString(genreId))
                     .build();
+        }
+
+        public static long getMovieIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
         }
     }
 
@@ -249,6 +268,15 @@ public class MovieContract {
                     .appendQueryParameter(COLUMN_PRODUCTION_COMPANY_ID, Long.toString(companyId))
                     .build();
         }
+
+        public static long getMovieIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
     }
 
     public static final class ProductionCountryEntry implements BaseColumns {
@@ -307,6 +335,15 @@ public class MovieContract {
                     .appendQueryParameter(COLUMN_ISO_3166_1, iso_3166_1)
                     .build();
         }
+
+        public static long getMovieIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
     }
 
     public static final class SpokenLanguageEntry implements BaseColumns {
@@ -364,6 +401,15 @@ public class MovieContract {
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_ISO_639_1, iso_639_1)
                     .build();
+        }
+
+        public static long getMovieIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
         }
     }
 }

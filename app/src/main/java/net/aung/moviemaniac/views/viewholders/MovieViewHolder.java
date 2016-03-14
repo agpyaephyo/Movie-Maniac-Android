@@ -13,9 +13,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
-import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
+import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.databinding.ViewItemMovieBinding;
@@ -76,20 +76,22 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
                 });
 
         List<GenreVO> genreList = movie.getGenreList();
-        StringBuilder stringBuilder = new StringBuilder();
-        //stringBuilder.append("<font face='sans-serif-light'>");
-        int count = 0;
-        for (GenreVO genre : genreList) {
-            if (genre != null) {
-                stringBuilder.append("<b><u>" + genre.getName() + "</u></ b>");
-                if (count < genreList.size() - 1) {
-                    stringBuilder.append(" , ");
+        if (genreList != null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            //stringBuilder.append("<font face='sans-serif-light'>");
+            int count = 0;
+            for (GenreVO genre : genreList) {
+                if (genre != null) {
+                    stringBuilder.append("<b><u>" + genre.getName() + "</u></ b>");
+                    if (count < genreList.size() - 1) {
+                        stringBuilder.append(" , ");
+                    }
+                    count++;
                 }
-                count++;
             }
+            //stringBuilder.append("</font>");
+            tvGenreList.setText(Html.fromHtml(stringBuilder.toString()));
         }
-        //stringBuilder.append("</font>");
-        tvGenreList.setText(Html.fromHtml(stringBuilder.toString()));
 
     }
 

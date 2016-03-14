@@ -101,7 +101,7 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void getMovieTrailers(final int movieId) {
+    public void loadMovieTrailers(final int movieId) {
         Call<MovieTrailerResponse> movieTrailerResponseCall = theMovieApi.getTrailersByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
 
         movieTrailerResponseCall.enqueue(new MovieApiCallback<MovieTrailerResponse>() {
@@ -118,7 +118,7 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void getMovieDetail(final int movieId) {
+    public void loadMovieDetail(final int movieId) {
         Call<MovieVO> movieDetailCall = theMovieApi.getMovieDetailByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
         movieDetailCall.enqueue(new MovieApiCallback<MovieVO>() {
             @Override
@@ -134,7 +134,7 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void getGenreList() {
+    public void loadGenreList() {
         Call<GenreListResponse> genreListResponseCall = theMovieApi.getGenreList(BuildConfig.THE_MOVIE_API_KEY);
         genreListResponseCall.enqueue(new MovieApiCallback<GenreListResponse>() {
             @Override

@@ -1,6 +1,12 @@
 package net.aung.moviemaniac.data.vos;
 
+import android.content.ContentValues;
+
 import com.google.gson.annotations.SerializedName;
+
+import net.aung.moviemaniac.data.persistence.MovieContract;
+
+import java.util.List;
 
 /**
  * Created by aung on 12/16/15.
@@ -61,4 +67,33 @@ public class TrailerVO {
     public String getTrailerPath() {
         return String.format(YOUTUBE_IMAGE_PREVIEW_PATH_FORMAT, key);
     }
+
+    private ContentValues parseToContentValues(int movieId) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_TRAILER_ID, id);
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_ISO_639_1, iso639_1);
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_KEY, key);
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_NAME, name);
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_SITE, site);
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_SIZE, size);
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_TYPE, type);
+        contentValues.put(MovieContract.TrailerEntry.COLUMN_MOVIE_ID, movieId);
+        return contentValues;
+    }
+
+    /**
+     * for trailer table.
+     * @param trailerList
+     * @return
+     */
+    public static ContentValues[] parseToContentValueArray(List<TrailerVO> trailerList, int movieId) {
+        ContentValues[] contentValuesArray = new ContentValues[trailerList.size()];
+        for (int index = 0; index < contentValuesArray.length; index++) {
+            TrailerVO trailer = trailerList.get(index);
+            contentValuesArray[index] = trailer.parseToContentValues(movieId);
+        }
+
+        return contentValuesArray;
+    }
+
 }

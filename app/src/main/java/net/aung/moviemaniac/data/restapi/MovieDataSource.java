@@ -7,7 +7,7 @@ public interface MovieDataSource {
     void loadDiscoverMovieList(int pageNumber, String sortBy, boolean isForce);
     void loadPopularMovies(int pageNumber, boolean isForce);
     void loadTopRatedMovies(int pageNumber, boolean isForce);
-    void getMovieTrailers(int movieId);
-    void getMovieDetail(int movieId);
-    void getGenreList();
+    void loadMovieTrailers(int movieId);
+    void loadMovieDetail(int movieId);
+    void loadGenreList();
 }

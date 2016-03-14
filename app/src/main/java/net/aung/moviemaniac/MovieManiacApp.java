@@ -10,7 +10,7 @@ import android.util.SparseArray;
  */
 public class MovieManiacApp extends Application {
 
-    public static final String TAG = MovieManiacApp.class.getSimpleName();
+    public static final String TAG = "MovieManiacApp";
     public static SparseArray<Bitmap> sPosterCache = new SparseArray<Bitmap>(1);
 
     private static Context context;

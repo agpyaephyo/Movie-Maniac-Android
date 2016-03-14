@@ -21,45 +21,54 @@ import net.aung.moviemaniac.data.persistence.MovieContract.TrailerEntry;
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
             SpokenLanguageEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            SpokenLanguageEntry.COLUMN_ISO_639_1 + " TEXT UNIQUE NOT NULL, " +
-            SpokenLanguageEntry.COLUMN_NAME + " TEXT NOT NULL" +
+            SpokenLanguageEntry.COLUMN_ISO_639_1 + " TEXT NOT NULL, " +
+            SpokenLanguageEntry.COLUMN_NAME + " TEXT NOT NULL," +
+
+            " UNIQUE (" + SpokenLanguageEntry.COLUMN_ISO_639_1 +") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_PRODUCTION_COUNTRY_TABLE = "CREATE TABLE " + ProductionCountryEntry.TABLE_NAME + " (" +
             ProductionCountryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            ProductionCountryEntry.COLUMN_ISO_3166_1 + " TEXT UNIQUE NOT NULL, " +
-            ProductionCountryEntry.COLUMN_NAME + " TEXT NOT NULL" +
+            ProductionCountryEntry.COLUMN_ISO_3166_1 + " TEXT NOT NULL, " +
+            ProductionCountryEntry.COLUMN_NAME + " TEXT NOT NULL," +
+
+            " UNIQUE (" + ProductionCountryEntry.COLUMN_ISO_3166_1 +") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_PRODUCTION_COMPANY_TABLE = "CREATE TABLE " + ProductionCompanyEntry.TABLE_NAME + " (" +
             ProductionCompanyEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + " INTEGER UNIQUE NOT NULL, " +
-            ProductionCompanyEntry.COLUMN_NAME + " TEXT NOT NULL" +
+            ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + " INTEGER NOT NULL, " +
+            ProductionCompanyEntry.COLUMN_NAME + " TEXT NOT NULL," +
+
+            " UNIQUE (" + ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID +") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_COLLECTION_TABLE = "CREATE TABLE " + CollectionEntry.TABLE_NAME + " (" +
             CollectionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            CollectionEntry.COLUMN_COLLECTION_ID + " INTEGER UNIQUE NOT NULL, " +
+            CollectionEntry.COLUMN_COLLECTION_ID + " INTEGER NOT NULL, " +
             CollectionEntry.COLUMN_NAME + " TEXT NOT NULL, " +
             CollectionEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
-            CollectionEntry.COLUMN_BACKDROP_PATH + " TEXT NOT NULL " +
+            CollectionEntry.COLUMN_BACKDROP_PATH + " TEXT NOT NULL," +
+
+            " UNIQUE (" + CollectionEntry.COLUMN_COLLECTION_ID +") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_GENRE_TABLE = "CREATE TABLE " + GenreEntry.TABLE_NAME + " (" +
             GenreEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            GenreEntry.COLUMN_GENRE_ID + " INTEGER UNIQUE NOT NULL, " +
-            GenreEntry.COLUMN_NAME + " TEXT NOT NULL " +
+            GenreEntry.COLUMN_GENRE_ID + " INTEGER NOT NULL, " +
+            GenreEntry.COLUMN_NAME + " TEXT NOT NULL," +
+
+            " UNIQUE (" + GenreEntry.COLUMN_GENRE_ID +") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + MovieEntry.TABLE_NAME + " (" +
             MovieEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            MovieEntry.COLUMN_MOVIE_ID + " INTEGER UNIQUE NOT NULL, " +
-            MovieEntry.COLUMN_COLLECTION_ID + " INTEGER NOT NULL, " +
+            MovieEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
             MovieEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
             MovieEntry.COLUMN_OVERVIEW + " TEXT NOT NULL, " +
             MovieEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL, " +
@@ -71,24 +80,30 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             MovieEntry.COLUMN_VOTE_COUNT + " INTEGER NOT NULL, " +
             MovieEntry.COLUMN_VOTE_AVERAGE + " REAL NOT NULL, " +
             MovieEntry.COLUMN_IS_ADULT + " INTEGER DEFAULT 0, " +
-            MovieEntry.COLUMN_BUDGET + " INTEGER NOT NULL, " +
-            MovieEntry.COLUMN_HOMEPAGE + " TEXT NOT NULL, " +
-            MovieEntry.COLUMN_IMDB_ID + " TEXT NOT NULL, " +
-            MovieEntry.COLUMN_REVENUE + " INTEGER NOT NULL, " +
-            MovieEntry.COLUMN_RUNTIME + " INTEGER NOT NULL, " +
-            MovieEntry.COLUMN_STATUS + " TEXT NOT NULL, " +
-            MovieEntry.COLUMN_TAGLINE + " TEXT NOT NULL, " +
             MovieEntry.COLUMN_IS_VIDEO + " INTEGER DEFAULT 0, " +
+
+            MovieEntry.COLUMN_BUDGET + " INTEGER, " +
+            MovieEntry.COLUMN_HOMEPAGE + " TEXT, " +
+            MovieEntry.COLUMN_IMDB_ID + " TEXT, " +
+            MovieEntry.COLUMN_REVENUE + " INTEGER, " +
+            MovieEntry.COLUMN_RUNTIME + " INTEGER, " +
+            MovieEntry.COLUMN_STATUS + " TEXT, " +
+            MovieEntry.COLUMN_TAGLINE + " TEXT, " +
+            MovieEntry.COLUMN_COLLECTION_ID + " INTEGER, " +
+
+            MovieEntry.COLUMN_MOVIE_TYPE + " INTEGER NOT NULL, " +
 
             /* make reference for FK */
             " FOREIGN KEY (" + MovieEntry.COLUMN_COLLECTION_ID + ") REFERENCES " +
-            CollectionEntry.TABLE_NAME + " (" + CollectionEntry.COLUMN_COLLECTION_ID + ") " +
+            CollectionEntry.TABLE_NAME + " (" + CollectionEntry.COLUMN_COLLECTION_ID + ")," +
 
+            " UNIQUE (" + MovieEntry.COLUMN_MOVIE_ID +", "+
+            MovieEntry.COLUMN_MOVIE_TYPE+") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_TRAILER_TABLE = "CREATE TABLE " + TrailerEntry.TABLE_NAME + " (" +
             TrailerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            TrailerEntry.COLUMN_TRAILER_ID + " TEXT UNIQUE NOT NULL, " +
+            TrailerEntry.COLUMN_TRAILER_ID + " TEXT NOT NULL, " +
             TrailerEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
             TrailerEntry.COLUMN_ISO_639_1 + " TEXT NOT NULL, " +
             TrailerEntry.COLUMN_KEY + " TEXT NOT NULL, " +
@@ -99,8 +114,9 @@ public class MovieDBHelper extends SQLiteOpenHelper {
 
             /* make reference for FK */
             " FOREIGN KEY (" + TrailerEntry.COLUMN_MOVIE_ID + ") REFERENCES " +
-            MovieEntry.TABLE_NAME + " (" + MovieEntry.COLUMN_MOVIE_ID + ") " +
+            MovieEntry.TABLE_NAME + " (" + MovieEntry.COLUMN_MOVIE_ID + "), " +
 
+            " UNIQUE (" + TrailerEntry.COLUMN_TRAILER_ID +") ON CONFLICT REPLACE" +
             " );";
 
     private static final String SQL_CREATE_MOVIE_GENRE_TABLE = "CREATE TABLE " + MovieGenreEntry.TABLE_NAME + " (" +
@@ -203,5 +219,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ProductionCompanyEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ProductionCountryEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + SpokenLanguageEntry.TABLE_NAME);
+
+        onCreate(db);
     }
 }

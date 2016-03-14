@@ -10,8 +10,8 @@ import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.data.restapi.MovieDataSource;
 import net.aung.moviemaniac.data.restapi.MovieDataSourceImpl;
-import net.aung.moviemaniac.data.restapi.RestApiConstants;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +49,16 @@ public class MovieModel {
             eventBus.register(this);
         }
 
-        movieDataSource.getGenreList();
+        movieDataSource.loadGenreList();
     }
 
     public void loadMostPopularMovieList(int pageNumber, boolean isForce) {
+        Log.d(MovieManiacApp.TAG, "Loading popular movies for pageNumber : "+pageNumber);
         movieDataSource.loadPopularMovies(pageNumber, isForce);
     }
 
     public void loadTopRatedMovieList(int pageNumber, boolean isForce) {
+        Log.d(MovieManiacApp.TAG, "Loading top-rated movies for pageNumber : "+pageNumber);
         movieDataSource.loadTopRatedMovies(pageNumber, isForce);
     }
 
@@ -64,7 +66,7 @@ public class MovieModel {
         MovieVO movie = movieArrayMap.get(movieId);
         if (!movie.isDetailLoaded()) {
             Log.d(MovieManiacApp.TAG, "loadMovieDetailByMovieId " + movieId);
-            movieDataSource.getMovieDetail(movieId);
+            movieDataSource.loadMovieDetail(movieId);
         }
 
         return movie;
@@ -76,7 +78,7 @@ public class MovieModel {
 
         if (trailerList == null) {
             Log.d(MovieManiacApp.TAG, "loading trailer list for movieId " + movieId);
-            movieDataSource.getMovieTrailers(movieId);
+            movieDataSource.loadMovieTrailers(movieId);
         }
 
         return trailerList;
@@ -88,6 +90,9 @@ public class MovieModel {
         ArrayList<MovieVO> loadedMovieList = response.getResults();
         storeMoviesInArrayMap(loadedMovieList);
 
+        //Persistent into DB.
+        MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR);
+
         DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowMostPopularMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
     }
@@ -98,6 +103,9 @@ public class MovieModel {
         ArrayList<MovieVO> loadedMovieList = response.getResults();
         storeMoviesInArrayMap(loadedMovieList);
 
+        //Persistent into DB.
+        MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_TOP_RATED);
+
         DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowTopRatedMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
     }
@@ -105,16 +113,26 @@ public class MovieModel {
     public void onEventMainThread(DataEvent.LoadedMovieTrailerEvent event) {
         MovieVO movie = movieArrayMap.get(event.getMovieId());
         movie.setTrailerList(event.getResponse().getTrailerList());
+
+        //Persistent into DB.
+        movie.saveTrailerList();
     }
 
     public void onEventMainThread(DataEvent.LoadedMovieDetailEvent event) {
         MovieVO movieWithDetail = event.getMovie();
         movieWithDetail.setIsDetailLoaded(true);
         movieArrayMap.put(event.getMovieId(), movieWithDetail);
+
+        //Persistent into DB.
+        movieWithDetail.updateMovieFromDetail();
     }
 
     public void onEventMainThread(DataEvent.LoadedGenreListEvent event) {
-        storeGenreInArrayMap(event.getResponse().getGenreList());
+        ArrayList<GenreVO> genreList = event.getResponse().getGenreList();
+        storeGenreInArrayMap(genreList);
+
+        //Persistent into DB.
+        GenreVO.saveGenreFromList(genreList);
     }
 
     private void storeGenreInArrayMap(ArrayList<GenreVO> genreList) {

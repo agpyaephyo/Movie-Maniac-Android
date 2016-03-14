@@ -36,7 +36,7 @@ public class SortMovieDialog extends Dialog {
 
         @MovieManiacConstants.SortOrder int sortOrder = SettingsUtils.getSortOrder();
         rdoMostPopular.setChecked(sortOrder == MovieManiacConstants.SORT_ORDER_MOST_POPULAR);
-        rdoHighestRated.setChecked(sortOrder == MovieManiacConstants.SORT_ORDER_HIGHEST_RATED);
+        rdoHighestRated.setChecked(sortOrder == MovieManiacConstants.SORT_ORDER_TOP_RATED);
 
         rdoMostPopular.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -53,7 +53,7 @@ public class SortMovieDialog extends Dialog {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    SettingsUtils.saveSortOrder(MovieManiacConstants.SORT_ORDER_HIGHEST_RATED);
+                    SettingsUtils.saveSortOrder(MovieManiacConstants.SORT_ORDER_TOP_RATED);
                     Toast.makeText(getContext(), "Sort by highest rating", Toast.LENGTH_SHORT).show();
                     dismiss();
                 }
