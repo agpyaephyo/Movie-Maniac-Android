@@ -113,6 +113,7 @@ public class MovieVO {
     private Date releaseDate;
     private int collectionId;
     private int movieType;
+    private boolean isStar;
 
     private List<MovieReviewVO> reviewList;
 
@@ -300,6 +301,14 @@ public class MovieVO {
         this.reviewList = reviewList;
     }
 
+    public boolean isStar() {
+        return isStar;
+    }
+
+    public void setStar(boolean star) {
+        isStar = star;
+    }
+
     public ContentValues parseToContentValues() {
         ContentValues cv = new ContentValues();
         cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, id);
@@ -317,6 +326,7 @@ public class MovieVO {
         cv.put(MovieContract.MovieEntry.COLUMN_IS_VIDEO, isVideo ? 1 : 0);
         cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_TYPE, movieType);
         cv.put(MovieContract.MovieEntry.COLUMN_IS_DETAIL_LOADED, isDetailLoaded ? 1 : 0);
+        cv.put(MovieContract.MovieEntry.COLUMN_IS_STAR, isStar ? 1 : 0);
 
         if (budget != 0)
             cv.put(MovieContract.MovieEntry.COLUMN_BUDGET, budget);
@@ -371,7 +381,21 @@ public class MovieVO {
         Context context = MovieManiacApp.getContext();
         int insertedCount = context.getContentResolver().bulkInsert(MovieContract.MovieEntry.CONTENT_URI, movieListCVs);
 
-        Log.d(MovieManiacApp.TAG, "Bulk inserted into movie table with movieType - "+ movieType +" : " + insertedCount);
+        Log.d(MovieManiacApp.TAG, "Bulk inserted into movie table with movieType - " + movieType + " : " + insertedCount);
+    }
+
+    public void updateMovieStarStatus() {
+        ContentValues cv = new ContentValues();
+        cv.put(MovieContract.MovieEntry.COLUMN_IS_STAR, isStar ? 1 : 0);
+
+        Context context = MovieManiacApp.getContext();
+        int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?",
+                new String[]{String.valueOf(id)});
+
+        if (updateCount > 0) {
+            Log.d(MovieManiacApp.TAG, "The star status for movie " + title + " has updated to " + isStar);
+        }
     }
 
     public void updateMovieFromDetail() {
@@ -468,6 +492,7 @@ public class MovieVO {
         movie.collectionId = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_COLLECTION_ID));
         movie.movieType = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_TYPE));
         movie.isDetailLoaded = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IS_DETAIL_LOADED)) == 1;
+        movie.isStar = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IS_STAR)) == 1;
 
         return movie;
     }
@@ -487,6 +512,7 @@ public class MovieVO {
     }
 
     public void merge(MovieVO movie) {
-        movieType = movie.getMovieType();
+        movieType = movie.movieType;
+        isStar = movie.isStar;
     }
 }

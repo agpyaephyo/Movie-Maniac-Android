@@ -31,4 +31,10 @@
         <item name="android:elevation">2dp</item>
     </style>
 
+    <style name="MovieFavouriteContainer">
+        <item name="android:scaleX">0</item>
+        <item name="android:scaleY">0</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
 </resources>

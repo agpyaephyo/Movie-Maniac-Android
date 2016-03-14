@@ -33,7 +33,7 @@
     <dimen name="trailer_container_height">212dp</dimen>
     <dimen name="trailer_container_width">264dp</dimen>
 
-    <dimen name="movie_detal_backdrop_height">334dp</dimen>
+    <dimen name="movie_detail_backdrop_height">400dp</dimen>
 
     <dimen name="movie_title_min_height">60dp</dimen>
     <dimen name="loader_dimen">55dp</dimen>
@@ -53,4 +53,7 @@
     <dimen name="padding_login">50dp</dimen>
 
     <dimen name="pager_padding">0dp</dimen>
+
+    <dimen name="fab_dimen">55dp</dimen>
+    <dimen name="movie_star_margin_top">60dp</dimen>
 </resources>

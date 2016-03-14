@@ -1,15 +1,18 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,12 +44,14 @@ import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
+import net.aung.moviemaniac.views.pods.ViewPodMovieStar;
 import net.aung.moviemaniac.views.pods.ViewPodReviews;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by aung on 12/15/15.
@@ -58,6 +64,7 @@ public class MovieDetailFragment extends BaseFragment
     private static final String ARG_MOVIE_ID = "ARG_MOVIE_ID";
 
     private int mMovieId;
+    private MovieVO mMovie;
     private FragmentMovieDetailBinding binding;
     private MovieDetailPresenter presenter;
     private Bitmap poster;
@@ -84,6 +91,15 @@ public class MovieDetailFragment extends BaseFragment
 
     @Bind(R.id.vp_reviews)
     ViewPodReviews vpReviews;
+
+    @Bind(R.id.lbl_reviews)
+    TextView lblReviews;
+
+    @Bind(R.id.ib_movie_star)
+    ImageButton ibMovieStar;
+
+    @Bind(R.id.vp_movie_star)
+    ViewPodMovieStar vpMovieStar;
 
     public static MovieDetailFragment newInstance(int movieId) {
         MovieDetailFragment fragment = new MovieDetailFragment();
@@ -173,8 +189,13 @@ public class MovieDetailFragment extends BaseFragment
         }
 
         if (movie.getReviewList() != null && movie.getReviewList().size() > 0) {
+            lblReviews.setVisibility(View.VISIBLE);
             displayReviewList(movie.getReviewList());
+        } else {
+            lblReviews.setVisibility(View.GONE);
         }
+
+        ibMovieStar.setImageResource(movie.isStar() ? R.drawable.ic_favorite_border_white_24dp : R.drawable.ic_fab_star);
     }
 
     @Override
@@ -206,8 +227,22 @@ public class MovieDetailFragment extends BaseFragment
                     ? lightVibrantSwatch : lightMutedSwatch;
 
             setPaletteForRootContainer(colorDarkVaient);
-            setPaletteforTagLine(colorDarkVaient, colorLightVarient);
+            setPaletteForTagLine(colorDarkVaient, colorLightVarient);
+            setPaletteForStarFab(vibrantSwatch);
+            setPaletteForStarView(vibrantSwatch);
             //setVibrantColor(vibrantSwatch);
+        }
+    }
+
+    private void setPaletteForStarFab(Palette.Swatch swatch) {
+        if (swatch != null) {
+            ibMovieStar.getBackground().setColorFilter(swatch.getRgb(), PorterDuff.Mode.MULTIPLY);
+        }
+    }
+
+    private void setPaletteForStarView(Palette.Swatch swatch) {
+        if (swatch != null) {
+            vpMovieStar.getBackground().setColorFilter(swatch.getRgb(), PorterDuff.Mode.MULTIPLY);
         }
     }
 
@@ -215,7 +250,7 @@ public class MovieDetailFragment extends BaseFragment
         svContainerTrailer.setBackgroundColor(colorDarkVaient.getRgb());
     }
 
-    private void setPaletteforTagLine(Palette.Swatch colorDarkVaient, Palette.Swatch colorLightVarient) {
+    private void setPaletteForTagLine(Palette.Swatch colorDarkVaient, Palette.Swatch colorLightVarient) {
         if (colorDarkVaient != null && colorLightVarient != null) {
             tvTitle.setTextColor(colorDarkVaient.getRgb());
             tvTitle.setBackgroundColor(colorLightVarient.getRgb());
@@ -233,29 +268,55 @@ public class MovieDetailFragment extends BaseFragment
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()) {
-            MovieVO movie = MovieVO.parseFromDetailCursor(data);
+            mMovie = MovieVO.parseFromDetailCursor(data);
 
-            if (!movie.isDetailLoaded()) {
-                presenter.loadMovieDetailFromNetwork(movie);
+            if (!mMovie.isDetailLoaded()) {
+                presenter.loadMovieDetailFromNetwork(mMovie);
             } else {
-                movie.setGenreList(GenreVO.loadGenreListByMovieId(movie.getId()));
-                if (movie.getCollectionId() != 0) {
-                    movie.setCollection(CollectionVO.loadCollectionById(movie.getCollectionId()));
+                mMovie.setGenreList(GenreVO.loadGenreListByMovieId(mMovie.getId()));
+                if (mMovie.getCollectionId() != 0) {
+                    mMovie.setCollection(CollectionVO.loadCollectionById(mMovie.getCollectionId()));
                 }
-                movie.setProductionCompanyList(ProductionCompanyVO.loadProductionCompanyListByMovieId(movie.getId()));
-                movie.setProductionCountryList(ProductionCountryVO.loadProductionCountryListByMovieId(movie.getId()));
-                movie.setSpokenLanguageList(SpokenLanguageVO.loadSpokenLanguageListByMovieId(movie.getId()));
-                movie.setTrailerList(TrailerVO.loadTrailerListByMovieId(movie.getId()));
-                movie.setReviewList(MovieReviewVO.loadReviewListByMovieId(movie.getId()));
+                mMovie.setProductionCompanyList(ProductionCompanyVO.loadProductionCompanyListByMovieId(mMovie.getId()));
+                mMovie.setProductionCountryList(ProductionCountryVO.loadProductionCountryListByMovieId(mMovie.getId()));
+                mMovie.setSpokenLanguageList(SpokenLanguageVO.loadSpokenLanguageListByMovieId(mMovie.getId()));
+                mMovie.setTrailerList(TrailerVO.loadTrailerListByMovieId(mMovie.getId()));
+                mMovie.setReviewList(MovieReviewVO.loadReviewListByMovieId(mMovie.getId()));
             }
 
             Log.d(MovieManiacApp.TAG, "Displaying movies detail for movie_id " + mMovieId);
-            displayMovieDetail(movie);
+            displayMovieDetail(mMovie);
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @OnClick(R.id.ib_movie_star)
+    public void onTapStarMovie(View view) {
+        if (mMovie.isStar()) {
+            new AlertDialog.Builder(getContext())
+                    .setMessage(R.string.remove_movie_from_favourite_confirmation_msg)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            mMovie.setStar(false);
+                            mMovie.updateMovieStarStatus(); //TODO On Main Thread ?
+                            ibMovieStar.setImageResource(R.drawable.ic_fab_star);
+                        }})
+                    .setNegativeButton(R.string.no, null).show();
+        } else {
+            mMovie.setStar(true);
+            mMovie.updateMovieStarStatus(); //TODO On Main Thread ?
+            vpMovieStar.showMovieSaved(view, new ViewPodMovieStar.ControllerMovieSaved() {
+                @Override
+                public void onMovieSavedAnimationFinish() {
+                    ibMovieStar.setImageResource(R.drawable.ic_favorite_border_white_24dp);
+                }
+            });
+        }
     }
 }

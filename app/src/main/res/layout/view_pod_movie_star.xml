@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.aung.moviemaniac.views.pods.ViewPodMovieStar xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MovieFavouriteContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/accent">
+
+    <include
+        android:id="@+id/iv_star"
+        layout="@layout/view_component_star" />
+
+    <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
+        android:id="@+id/lbl_saved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/movie_star_margin_top"
+        android:text="@string/star"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_big_2x" />
+
+</net.aung.moviemaniac.views.pods.ViewPodMovieStar>

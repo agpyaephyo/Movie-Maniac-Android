@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/vd_star">
+
+    <target
+        android:name="star_group"
+        android:animation="@anim/movie_saved_star_rotate" />
+
+    <target
+        android:name="star"
+        android:animation="@anim/morph_star_lollipop" />
+    <!-- SVG commands has to be the same in order to apply morphing. Same commands, Different values.-->
+
+</animated-vector>
