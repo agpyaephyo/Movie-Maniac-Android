@@ -29,6 +29,8 @@ public class MovieProvider extends ContentProvider {
     public static final int MOVIE_PRODUCTION_COUNTRY = 1000;
     public static final int MOVIE_GENRE = 1100;
 
+    public static final int REVIEW = 1200;
+
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private MovieDBHelper mMovieDBHelper;
 
@@ -77,9 +79,11 @@ public class MovieProvider extends ContentProvider {
                         MovieContract.SpokenLanguageEntry.TABLE_NAME + "." + MovieContract.SpokenLanguageEntry.COLUMN_ISO_639_1);
     }
 
+    private static final String sMovieMovieIdSelection = MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?";
     private static final String sTrailerMovieIdSelection = MovieContract.TrailerEntry.COLUMN_MOVIE_ID + " = ?";
     private static final String sMovieGenreMovieIdSelection = MovieContract.MovieGenreEntry.COLUMN_MOVIE_ID + " = ?";
     private static final String sMovieProductionCompanyMovieIdSelection = MovieContract.MovieProductionCompanyEntry.COLUMN_MOVIE_ID + " = ?";
+    private static final String sReviewMovieIdSelection = MovieContract.ReviewEntry.COLUMN_MOVIE_ID + " = ?";
 
     @Override
     public boolean onCreate() {
@@ -99,7 +103,11 @@ public class MovieProvider extends ContentProvider {
             case MOVIE: {
                 //Uri for retrieving movies with desc popularity value.
                 //Uri for retrieving movies with desc voteAverage value.
-                //Including the collection information.
+                long movieId = MovieContract.MovieEntry.getMovieIdFromParam(uri);
+                if (movieId > -1) {
+                    selection = sMovieMovieIdSelection;
+                    selectionArgs = new String[]{String.valueOf(movieId)};
+                }
                 queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.MovieEntry.TABLE_NAME,
                         projection,
                         selection,
@@ -117,6 +125,22 @@ public class MovieProvider extends ContentProvider {
                     selectionArgs = new String[]{String.valueOf(movieId)};
                 }
                 queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.TrailerEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null, //group_by
+                        null, //having
+                        sortOrder);
+                break;
+            }
+            case REVIEW: {
+                //retrieving reviews for a movie id.
+                long movieId = MovieContract.ReviewEntry.getMovieIdFromParam(uri);
+                if (movieId > -1) {
+                    selection = sReviewMovieIdSelection;
+                    selectionArgs = new String[]{String.valueOf(movieId)};
+                }
+                queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.ReviewEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -234,6 +258,8 @@ public class MovieProvider extends ContentProvider {
                 return MovieContract.MovieProductionCompanyEntry.DIR_TYPE;
             case MOVIE_PRODUCTION_COUNTRY:
                 return MovieContract.MovieProductionCountryEntry.DIR_TYPE;
+            case REVIEW:
+                return MovieContract.ReviewEntry.DIR_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -346,6 +372,15 @@ public class MovieProvider extends ContentProvider {
                 }
                 break;
             }
+            case REVIEW: {
+                long _id = db.insert(MovieContract.ReviewEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    insertedUri = MovieContract.ReviewEntry.buildReviewUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -430,6 +465,7 @@ public class MovieProvider extends ContentProvider {
         uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_MOVIE_PRODUCTION_COMPANY, MOVIE_PRODUCTION_COMPANY);
         uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_MOVIE_PRODUCTION_COUNTRY, MOVIE_PRODUCTION_COUNTRY);
         uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_MOVIE_GENRE, MOVIE_GENRE);
+        uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_REVIEWS, REVIEW);
 
         return uriMatcher;
     }
@@ -470,6 +506,9 @@ public class MovieProvider extends ContentProvider {
 
             case MOVIE_SPOKEN_LANGUAGE:
                 return MovieContract.MovieSpokenLanguageEntry.TABLE_NAME;
+
+            case REVIEW:
+                return MovieContract.ReviewEntry.TABLE_NAME;
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);

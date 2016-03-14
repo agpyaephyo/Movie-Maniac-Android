@@ -42,7 +42,6 @@ public class MovieListPresenter extends BasePresenter {
         if (movieCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
             SettingsUtils.savePageNumber(movieCategory, pageNumber);
-            //movieListView.displayMovieList(event.getMovieList(), !event.isForce());
         }
     }
 
@@ -50,7 +49,6 @@ public class MovieListPresenter extends BasePresenter {
         if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
             SettingsUtils.savePageNumber(movieCategory, pageNumber);
-            //movieListView.displayMovieList(event.getMovieList(), !event.isForce());
         }
     }
 

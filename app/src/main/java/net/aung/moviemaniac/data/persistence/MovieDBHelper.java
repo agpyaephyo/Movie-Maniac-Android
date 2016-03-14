@@ -15,13 +15,14 @@ import net.aung.moviemaniac.data.persistence.MovieContract.ProductionCompanyEntr
 import net.aung.moviemaniac.data.persistence.MovieContract.ProductionCountryEntry;
 import net.aung.moviemaniac.data.persistence.MovieContract.SpokenLanguageEntry;
 import net.aung.moviemaniac.data.persistence.MovieContract.TrailerEntry;
+import net.aung.moviemaniac.data.persistence.MovieContract.ReviewEntry;
 
 /**
  * Created by aung on 3/8/16.
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
@@ -120,6 +121,21 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             " UNIQUE (" + TrailerEntry.COLUMN_TRAILER_ID +") ON CONFLICT REPLACE" +
             " );";
 
+    private static final String SQL_CREATE_REVIEW_TABLE = "CREATE TABLE " + ReviewEntry.TABLE_NAME + " (" +
+            ReviewEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            ReviewEntry.COLUMN_REVIEW_ID + " TEXT NOT NULL, " +
+            ReviewEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
+            ReviewEntry.COLUMN_AUTHOR + " TEXT NOT NULL, " +
+            ReviewEntry.COLUMN_CONTENT + " TEXT NOT NULL, " +
+            ReviewEntry.COLUMN_URL + " TEXT NOT NULL, " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + ReviewEntry.COLUMN_MOVIE_ID + ") REFERENCES " +
+            MovieEntry.TABLE_NAME + " (" + MovieEntry.COLUMN_MOVIE_ID + "), " +
+
+            " UNIQUE (" + ReviewEntry.COLUMN_REVIEW_ID +") ON CONFLICT REPLACE" +
+            " );";
+
     private static final String SQL_CREATE_MOVIE_GENRE_TABLE = "CREATE TABLE " + MovieGenreEntry.TABLE_NAME + " (" +
             MovieGenreEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             MovieGenreEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
@@ -205,6 +221,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_MOVIE_PRODUCTION_COMPANY_TABLE);
         db.execSQL(SQL_CREATE_MOVIE_PRODUCTION_COUNTRY_TABLE);
         db.execSQL(SQL_CREATE_MOVIE_SPOKEN_LANGUAGE_TABLE);
+        db.execSQL(SQL_CREATE_REVIEW_TABLE);
     }
 
     @Override
@@ -220,6 +237,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ProductionCompanyEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ProductionCountryEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + SpokenLanguageEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ReviewEntry.TABLE_NAME);
 
         onCreate(db);
     }

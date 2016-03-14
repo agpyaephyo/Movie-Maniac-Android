@@ -26,6 +26,7 @@ public class MovieContract {
     public static final String PATH_MOVIE_PRODUCTION_COMPANY = "movie_production_company";
     public static final String PATH_MOVIE_PRODUCTION_COUNTRY = "movie_production_country";
     public static final String PATH_MOVIE_GENRE = "movie_genre";
+    public static final String PATH_REVIEWS = "reviews";
 
     //public static final String PATH_USER = "user";
     //public static final String PATH_FAVOURITE = "favourite";
@@ -70,6 +71,22 @@ public class MovieContract {
         public static Uri buildMovieUri(long id) {
             //content://net.aung.moviemaniac/movie/1
             return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildMovieUriWithMovieId(int movieId) {
+            //content://net.aung.moviemaniac/movie?movie_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_MOVIE_ID, Integer.toString(movieId))
+                    .build();
+        }
+
+        public static long getMovieIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
         }
 
         //TODO Uri for retrieving movies with desc popularity value.
@@ -401,6 +418,47 @@ public class MovieContract {
             //content://net.aung.moviemaniac/movie_production_country?iso_639_1=Burma
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_ISO_639_1, iso_639_1)
+                    .build();
+        }
+
+        public static long getMovieIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static final class ReviewEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_REVIEWS).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_REVIEWS;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_REVIEWS;
+
+        public static final String TABLE_NAME = "review";
+
+        public static final String COLUMN_REVIEW_ID = "review_id";
+        public static final String COLUMN_MOVIE_ID = "movie_id";
+        public static final String COLUMN_AUTHOR = "author";
+        public static final String COLUMN_CONTENT = "content";
+        public static final String COLUMN_URL = "url";
+
+        public static Uri buildReviewUri(long id) {
+            //content://net.aung.moviemaniac/review/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        //Uri for retrieving reviews for a movie id.
+        public static Uri buildReviewUriWithMovieId(long movieId) {
+            //content://net.aung.moviemaniac/review?movie_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_MOVIE_ID, Long.toString(movieId))
                     .build();
         }
 

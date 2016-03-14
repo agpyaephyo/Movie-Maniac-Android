@@ -7,12 +7,14 @@ import net.aung.moviemaniac.data.restapi.MovieDataSource;
 import net.aung.moviemaniac.data.restapi.MovieDataSourceImpl;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.data.vos.GenreVO;
+import net.aung.moviemaniac.data.vos.MovieReviewVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.SettingsUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -68,6 +70,11 @@ public class MovieModel {
         movieDataSource.loadMovieTrailers(movieId);
     }
 
+    public void loadMovieReviewByMovieId(int movieId) {
+        Log.d(MovieManiacApp.TAG, "loading movie review list for movieId " + movieId);
+        movieDataSource.loadMovieReviews(movieId);
+    }
+
     public void onEventMainThread(DataEvent.LoadedMostPopularMovieListEvent event) {
         MovieListResponse response = event.getResponse();
 
@@ -111,5 +118,13 @@ public class MovieModel {
 
         //Update on Setting Flag.
         SettingsUtils.setGenreListLoaded(true);
+    }
+
+    public void onEventMainThread(DataEvent.LoadedMovieReviewEvent event) {
+        int movieId = event.getResponse().getMovieId();
+        List<MovieReviewVO> movieReviewList = event.getResponse().getReviewList();
+
+        //Persistent into DB.
+        MovieReviewVO.saveReviewsFromList(movieReviewList, movieId);
     }
 }

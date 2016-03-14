@@ -1,5 +1,6 @@
 package net.aung.moviemaniac.data.restapi;
 
+import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
@@ -48,6 +49,12 @@ public interface TheMovieApi {
 
     @GET("genre/movie/list")
     Call<GenreListResponse> getGenreList(
+            @Query("api_key") String apiKey
+    );
+
+    @GET("movie/{movieId}/reviews")
+    Call<MovieReviewResponse> getReviewsByMovieId(
+            @Path("movieId") int movieId,
             @Query("api_key") String apiKey
     );
 }

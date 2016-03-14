@@ -27,6 +27,7 @@ import net.aung.moviemaniac.controllers.TrailerItemController;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 import net.aung.moviemaniac.data.vos.CollectionVO;
 import net.aung.moviemaniac.data.vos.GenreVO;
+import net.aung.moviemaniac.data.vos.MovieReviewVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.ProductionCompanyVO;
 import net.aung.moviemaniac.data.vos.ProductionCountryVO;
@@ -39,6 +40,7 @@ import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
+import net.aung.moviemaniac.views.pods.ViewPodReviews;
 
 import java.util.List;
 
@@ -79,6 +81,9 @@ public class MovieDetailFragment extends BaseFragment
 
     @Bind(R.id.vp_container_genre)
     ViewPodGenreListDetail vpContainerGenre;
+
+    @Bind(R.id.vp_reviews)
+    ViewPodReviews vpReviews;
 
     public static MovieDetailFragment newInstance(int movieId) {
         MovieDetailFragment fragment = new MovieDetailFragment();
@@ -166,11 +171,20 @@ public class MovieDetailFragment extends BaseFragment
         if (movie.getTrailerList() != null && movie.getTrailerList().size() > 0) {
             displayTrailerList(movie.getTrailerList());
         }
+
+        if (movie.getReviewList() != null && movie.getReviewList().size() > 0) {
+            displayReviewList(movie.getReviewList());
+        }
     }
 
     @Override
     public void displayTrailerList(List<TrailerVO> trailerList) {
         trailerAdapter.setTrailerList(trailerList);
+    }
+
+    @Override
+    public void displayReviewList(List<MovieReviewVO> reviewList) {
+        vpReviews.displayReviewList(reviewList);
     }
 
     @Override
@@ -211,11 +225,8 @@ public class MovieDetailFragment extends BaseFragment
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(),
-                MovieContract.MovieEntry.CONTENT_URI,
-                null,
-                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? ",
-                new String[]{String.valueOf(mMovieId)},
-                null
+                MovieContract.MovieEntry.buildMovieUriWithMovieId(mMovieId),
+                null, null, null, null
         );
     }
 
@@ -235,6 +246,7 @@ public class MovieDetailFragment extends BaseFragment
                 movie.setProductionCountryList(ProductionCountryVO.loadProductionCountryListByMovieId(movie.getId()));
                 movie.setSpokenLanguageList(SpokenLanguageVO.loadSpokenLanguageListByMovieId(movie.getId()));
                 movie.setTrailerList(TrailerVO.loadTrailerListByMovieId(movie.getId()));
+                movie.setReviewList(MovieReviewVO.loadReviewListByMovieId(movie.getId()));
             }
 
             Log.d(MovieManiacApp.TAG, "Displaying movies detail for movie_id " + mMovieId);

@@ -1,5 +1,6 @@
 package net.aung.moviemaniac.events;
 
+import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
@@ -132,6 +133,18 @@ public class DataEvent {
         }
 
         public GenreListResponse getResponse() {
+            return response;
+        }
+    }
+
+    public static class LoadedMovieReviewEvent {
+        private MovieReviewResponse response;
+
+        public LoadedMovieReviewEvent(MovieReviewResponse response) {
+            this.response = response;
+        }
+
+        public MovieReviewResponse getResponse() {
             return response;
         }
     }

@@ -114,6 +114,8 @@ public class MovieVO {
     private int collectionId;
     private int movieType;
 
+    private List<MovieReviewVO> reviewList;
+
     public int getId() {
         return id;
     }
@@ -288,6 +290,14 @@ public class MovieVO {
 
     public void setMovieType(int movieType) {
         this.movieType = movieType;
+    }
+
+    public List<MovieReviewVO> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<MovieReviewVO> reviewList) {
+        this.reviewList = reviewList;
     }
 
     public ContentValues parseToContentValues() {

@@ -1,12 +1,13 @@
 package net.aung.moviemaniac.data.restapi;
 
-import net.aung.moviemaniac.data.vos.MovieVO;
-import net.aung.moviemaniac.events.DataEvent;
+import net.aung.moviemaniac.BuildConfig;
 import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.utils.CommonInstances;
-import net.aung.moviemaniac.BuildConfig;
 
 import de.greenrobot.event.EventBus;
 import retrofit.Call;
@@ -144,6 +145,22 @@ public class MovieDataSourceImpl implements MovieDataSource {
                 GenreListResponse genreListResponse = response.body();
                 if (genreListResponse != null) {
                     DataEvent.LoadedGenreListEvent event = new DataEvent.LoadedGenreListEvent(genreListResponse);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadMovieReviews(int movieId) {
+        Call<MovieReviewResponse> reviewListResponseCall = theMovieApi.getReviewsByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
+        reviewListResponseCall.enqueue(new MovieApiCallback<MovieReviewResponse>() {
+            @Override
+            public void onResponse(Response<MovieReviewResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                MovieReviewResponse movieReviewResponse = response.body();
+                if (movieReviewResponse != null) {
+                    DataEvent.LoadedMovieReviewEvent event = new DataEvent.LoadedMovieReviewEvent(movieReviewResponse);
                     EventBus.getDefault().post(event);
                 }
             }

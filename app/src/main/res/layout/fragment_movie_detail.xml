@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -34,32 +35,31 @@
                     android:foreground="@color/black_transparent_overlay"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{movie.backdropPath}"
-                    tools:src="@drawable/movie_backdrop"
-                    />
+                    tools:src="@drawable/movie_backdrop" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingRight="@dimen/margin_medium"
                     android:layout_marginTop="@dimen/margin_large"
                     android:orientation="horizontal"
+                    android:paddingRight="@dimen/margin_medium"
                     android:weightSum="2">
 
                     <RelativeLayout
                         android:id="@+id/fl_container_poster"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:elevation="@dimen/poster_elevation">
 
                         <ImageView
                             android:id="@+id/iv_poster"
                             android:layout_width="@dimen/item_movie_width"
                             android:layout_height="@dimen/item_movie_height"
+                            android:layout_marginBottom="@dimen/margin_medium_2"
                             android:layout_marginLeft="@dimen/margin_medium_2"
                             android:layout_marginTop="@dimen/margin_medium_2"
-                            android:layout_marginBottom="@dimen/margin_medium_2"
                             tools:src="@drawable/movie_poster" />
 
                         <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
@@ -88,9 +88,9 @@
                             android:layout_marginLeft="@dimen/margin_medium"
                             android:layout_marginTop="@dimen/margin_large"
                             android:fontFamily="sans-serif-condensed"
+                            android:text="@{movie.tagline}"
                             android:textColor="@color/text_white"
                             android:textSize="@dimen/text_regular_3x"
-                            android:text="@{movie.tagline}"
                             tools:text="Ant-Man" />
 
                         <android.support.v4.widget.NestedScrollView
@@ -106,12 +106,12 @@
                                 android:id="@+id/tv_overview"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingBottom="@dimen/margin_medium_2"
                                 android:fontFamily="sans-serif-condensed"
                                 android:lineSpacingExtra="1.2dp"
+                                android:paddingBottom="@dimen/margin_medium_2"
+                                android:text="@{movie.overview}"
                                 android:textColor="@color/text_white"
                                 android:textSize="@dimen/text_regular"
-                                android:text="@{movie.overview}"
                                 tools:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world." />
 
                         </android.support.v4.widget.NestedScrollView>
@@ -124,51 +124,50 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:orientation="vertical"
                     android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/margin_medium"
-                    android:paddingBottom="@dimen/margin_small">
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/margin_small"
+                    android:paddingLeft="@dimen/margin_medium">
 
                     <net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail
                         android:id="@+id/vp_movie_popularity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"
-                        />
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="@dimen/margin_medium">
+                        android:layout_marginLeft="@dimen/margin_medium"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-condensed"
+                            android:text="@{movie.status}"
                             android:textColor="@color/text_white"
                             android:textSize="@dimen/text_regular_3x"
-                            android:text="@{movie.status}"
                             tools:text="Released" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-condensed"
+                            android:text=" : "
                             android:textColor="@color/text_white"
-                            android:textSize="@dimen/text_regular_3x"
-                            android:text=" : "/>
+                            android:textSize="@dimen/text_regular_3x" />
 
                         <TextView
                             android:id="@+id/tv_release_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-condensed"
+                            android:text="@{movie.releaseDateDisplay}"
                             android:textColor="@color/text_white"
                             android:textSize="@dimen/text_regular_3x"
-                            android:text="@{movie.releaseDateDisplay}"
                             tools:text="2015-07-31" />
 
                     </LinearLayout>
@@ -180,25 +179,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_medium_2"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/text_regular_3x"
-                    android:fontFamily="sans-serif-condensed"
-                    android:lineSpacingExtra="1.2dp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
+                    android:background="@color/primary"
                     android:elevation="@dimen/tag_line_elevation"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="1.2dp"
+                    android:maxLines="2"
+                    android:padding="@dimen/margin_medium_2"
                     android:text="@{movie.title}"
                     android:textColor="@color/text_white"
-                    android:background="@color/primary"
-                    />
+                    android:textSize="@dimen/text_regular_3x" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -208,15 +205,14 @@
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
+                        android:layout_height="wrap_content">
 
                         <net.aung.moviemaniac.views.pods.ViewPodGenreListDetail
                             android:id="@+id/vp_container_genre"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="@dimen/margin_medium"
-                            android:orientation="horizontal" />
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/margin_medium" />
 
                     </HorizontalScrollView>
 
@@ -224,13 +220,13 @@
                         android:id="@+id/tv_runtime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/margin_medium"
                         android:layout_marginLeft="@dimen/margin_medium"
+                        android:background="@drawable/runtime_bg"
                         android:fontFamily="sans-serif-light"
+                        android:padding="@dimen/margin_medium"
+                        android:text="@{movie.runtimeDisplay}"
                         android:textColor="@color/text_white"
                         android:textSize="@dimen/text_regular"
-                        android:text="@{movie.runtimeDisplay}"
-                        android:background="@drawable/runtime_bg"
                         tools:text="2 hours 31 min" />
 
                 </LinearLayout>
@@ -239,22 +235,39 @@
                     android:id="@+id/rv_trailers"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/trailer_container_height"
-                    android:columnWidth="@dimen/item_movie_height"
                     android:clipToPadding="false"
+                    android:columnWidth="@dimen/item_movie_height"
                     android:paddingLeft="@dimen/margin_medium_2"
-                    android:paddingRight="@dimen/margin_medium_2"
-                    />
+                    android:paddingRight="@dimen/margin_medium_2" />
+
+                <net.aung.moviemaniac.views.components.textview.DashUnderlineTextView
+                    android:id="@+id/lbl_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:paddingBottom="@dimen/margin_medium_2"
+                    android:paddingLeft="@dimen/margin_medium_2"
+                    android:text="Reviews"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_regular_2x" />
+
+                <net.aung.moviemaniac.views.pods.ViewPodReviews
+                    android:id="@+id/vp_reviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
 
                 <net.aung.moviemaniac.views.components.textview.DashUnderlineTextView
                     android:id="@+id/tv_collection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/margin_medium_2"
-                    android:paddingBottom="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
                     android:fontFamily="sans-serif-condensed"
+                    android:paddingBottom="@dimen/margin_medium_2"
+                    android:paddingLeft="@dimen/margin_medium_2"
+                    android:text="@{movie.collection.name}"
                     android:textColor="@color/text_white"
                     android:textSize="@dimen/text_regular_3x"
-                    android:text="@{movie.collection.name}"
                     tools:text="The Super-hero Collection" />
 
             </LinearLayout>

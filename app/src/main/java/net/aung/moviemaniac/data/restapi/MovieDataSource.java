@@ -12,4 +12,5 @@ public interface MovieDataSource {
     void loadMovieTrailers(int movieId);
     void loadMovieDetail(MovieVO movie);
     void loadGenreList();
+    void loadMovieReviews(int movieId);
 }

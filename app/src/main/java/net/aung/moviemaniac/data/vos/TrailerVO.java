@@ -116,11 +116,9 @@ public class TrailerVO {
     public static List<TrailerVO> loadTrailerListByMovieId(int movieId) {
         Context context = MovieManiacApp.getContext();
         List<TrailerVO> trailerList = new ArrayList<>();
-        Cursor trailerCursor = context.getContentResolver().query(MovieContract.TrailerEntry.CONTENT_URI,
-                null,
-                MovieContract.TrailerEntry.COLUMN_MOVIE_ID + " = ?",
-                new String[]{String.valueOf(movieId)},
-                null);
+
+        Cursor trailerCursor = context.getContentResolver().query(MovieContract.TrailerEntry.buildTrailerUriWithMovieId(movieId),
+                null, null, null, null);
 
         if (trailerCursor != null && trailerCursor.moveToFirst()) {
             do {
