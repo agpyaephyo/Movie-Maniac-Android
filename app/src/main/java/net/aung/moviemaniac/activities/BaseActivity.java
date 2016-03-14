@@ -8,14 +8,17 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
+import net.aung.moviemaniac.controllers.TrailerItemController;
+import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.events.UserEvent;
+import net.aung.moviemaniac.utils.YoutubeUtils;
 
 import de.greenrobot.event.EventBus;
 
 /**
  * Created by aung on 12/15/15.
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements TrailerItemController {
 
     protected CallbackManager mCallbackManager;
     protected AccessTokenTracker mAccessTokenTracker;
@@ -47,5 +50,10 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mAccessTokenTracker.stopTracking();
+    }
+
+    @Override
+    public void onShowTrailer(TrailerVO trailer) {
+        YoutubeUtils.getObjInstance().playYoutbueVideo(this, trailer.getKey());
     }
 }

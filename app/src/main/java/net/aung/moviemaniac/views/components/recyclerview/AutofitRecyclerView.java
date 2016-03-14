@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
+import net.aung.moviemaniac.R;
+
 /**
  * Created by aung on 12/12/15.
  */
@@ -50,7 +52,9 @@ public class AutofitRecyclerView extends RecyclerView {
         addItemDecoration(new DividerItemDecoration(getContext()));
         setHasFixedSize(true);
 
-        layoutManager = new GridLayoutManager(getContext(), DEFAULT_COLUMN_SPAN_COUNT); //
+        int gridColumnSpanCount = getResources().getInteger(R.integer.movieListGrid);
+
+        layoutManager = new GridLayoutManager(getContext(), gridColumnSpanCount); //
         setLayoutManager(layoutManager);
 
         setItemAnimator(new DefaultItemAnimator());

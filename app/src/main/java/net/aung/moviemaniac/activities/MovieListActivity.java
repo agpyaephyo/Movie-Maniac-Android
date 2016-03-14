@@ -1,18 +1,23 @@
 package net.aung.moviemaniac.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MoviePagerAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.fragments.MovieDetailFragment;
 import net.aung.moviemaniac.fragments.MovieListFragment;
 import net.aung.moviemaniac.menus.LeftMenuFragment;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
@@ -64,6 +69,8 @@ public class MovieListActivity extends BaseActivity
         mLeftMenu = (LeftMenuFragment) getSupportFragmentManager().findFragmentById(R.id.left_meu);
         mLeftMenu.setUp(R.id.left_meu, mDrawerLayout, mCallbackManager);
 
+        final FrameLayout flTabletMovieDetail = (FrameLayout) findViewById(R.id.fl_tablet_movie_detail);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +113,16 @@ public class MovieListActivity extends BaseActivity
 
     @Override
     public void onNavigateToDetail(MovieVO movie) {
-        MovieDetailActivity.startActivity(this, movie.getId());
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fl_tablet_movie_detail, MovieDetailFragment.newInstance(movie.getId()))
+                    .commit();
+
+            mDrawerLayout.openDrawer(Gravity.RIGHT);
+        } else {
+            Intent intentToDetail = MovieDetailActivity.createNewIntent(movie.getId());
+            startActivity(intentToDetail);
+        }
 
         /*
         getSupportFragmentManager().beginTransaction()
