@@ -26,14 +26,16 @@ public class MovieListPresenter extends BasePresenter {
 
     @Override
     public void onStart() {
-        if (movieListView.isMovieListEmpty()) {
-            loadNewMovieList(false);
-        }
+
     }
 
     @Override
     public void onStop() {
 
+    }
+
+    public void loadMovieListFromNetwork() {
+        loadNewMovieList(false);
     }
 
     public void onEventMainThread(DataEvent.ShowMostPopularMovieListEvent event) {

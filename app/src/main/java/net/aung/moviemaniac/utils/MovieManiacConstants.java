@@ -24,6 +24,7 @@ public class MovieManiacConstants {
 
     //Loader IDs
     public static final int MOVIE_LIST_LOADER = 0;
+    public static final int MOVIE_DETAIL_LOADER = 1;
 
     //Movie Type
     @Retention(RetentionPolicy.SOURCE)
@@ -32,4 +33,6 @@ public class MovieManiacConstants {
 
     public static final int MOVIE_TYPE_MOST_POPULAR = 100;
     public static final int MOVIE_TYPE_TOP_RATED = 200;
+
+    public static final String IS_GENRE_LIST_LOADED_KEY = "IS_GENRE_LIST_LOADED_KEY";
 }

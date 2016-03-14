@@ -30,7 +30,7 @@ public class SettingsUtils {
     public static int retrievePageNumber(int movieCategory) {
         Context context = MovieManiacApp.getContext();
         SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        int loadedPageNumber = defaultSharedPref.getInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX+movieCategory, MovieModel.INITIAL_PAGE_NUMBER);
+        int loadedPageNumber = defaultSharedPref.getInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX + movieCategory, MovieModel.INITIAL_PAGE_NUMBER);
 
         return loadedPageNumber;
     }
@@ -38,12 +38,25 @@ public class SettingsUtils {
     public static void savePageNumber(int movieCategory, int loadedPageNumber) {
         Context context = MovieManiacApp.getContext();
         SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        defaultSharedPref.edit().putInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX+movieCategory, loadedPageNumber).apply();
+        defaultSharedPref.edit().putInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX + movieCategory, loadedPageNumber).apply();
     }
 
     public static void resetPageNumber(int movieCategory) {
         Context context = MovieManiacApp.getContext();
         SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        defaultSharedPref.edit().putInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX+movieCategory, MovieModel.INITIAL_PAGE_NUMBER).apply();
+        defaultSharedPref.edit().putInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX + movieCategory, MovieModel.INITIAL_PAGE_NUMBER).apply();
+    }
+
+    // -- Genre Related --
+    public static boolean isGenreListLoaded() {
+        Context context = MovieManiacApp.getContext();
+        SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        return defaultSharedPref.getBoolean(MovieManiacConstants.IS_GENRE_LIST_LOADED_KEY, false);
+    }
+
+    public static void setGenreListLoaded(boolean isGenreListLoaded) {
+        Context context = MovieManiacApp.getContext();
+        SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        defaultSharedPref.edit().putBoolean(MovieManiacConstants.IS_GENRE_LIST_LOADED_KEY, isGenreListLoaded).apply();
     }
 }

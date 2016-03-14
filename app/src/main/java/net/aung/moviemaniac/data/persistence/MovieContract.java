@@ -65,6 +65,7 @@ public class MovieContract {
         public static final String COLUMN_IS_VIDEO = "is_video";
         public static final String COLUMN_COLLECTION_ID = "collection_id";
         public static final String COLUMN_MOVIE_TYPE = "movie_type";
+        public static final String COLUMN_IS_DETAIL_LOADED = "is_detail_loaded";
 
         public static Uri buildMovieUri(long id) {
             //content://net.aung.moviemaniac/movie/1

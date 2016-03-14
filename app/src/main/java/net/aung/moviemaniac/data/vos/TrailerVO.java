@@ -1,11 +1,15 @@
 package net.aung.moviemaniac.data.vos;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,6 +87,7 @@ public class TrailerVO {
 
     /**
      * for trailer table.
+     *
      * @param trailerList
      * @return
      */
@@ -96,4 +101,35 @@ public class TrailerVO {
         return contentValuesArray;
     }
 
+    public static TrailerVO parseFromCursor(Cursor trailerCursor) {
+        TrailerVO trailer = new TrailerVO();
+        trailer.id = trailerCursor.getString(trailerCursor.getColumnIndex(MovieContract.TrailerEntry.COLUMN_TRAILER_ID));
+        trailer.iso639_1 = trailerCursor.getString(trailerCursor.getColumnIndex(MovieContract.TrailerEntry.COLUMN_ISO_639_1));
+        trailer.key = trailerCursor.getString(trailerCursor.getColumnIndex(MovieContract.TrailerEntry.COLUMN_KEY));
+        trailer.name = trailerCursor.getString(trailerCursor.getColumnIndex(MovieContract.TrailerEntry.COLUMN_NAME));
+        trailer.site = trailerCursor.getString(trailerCursor.getColumnIndex(MovieContract.TrailerEntry.COLUMN_SITE));
+        trailer.size = trailerCursor.getInt(trailerCursor.getColumnIndex(MovieContract.TrailerEntry.COLUMN_SIZE));
+        trailer.type = trailerCursor.getString(trailerCursor.getColumnIndex(MovieContract.TrailerEntry.COLUMN_TYPE));
+        return trailer;
+    }
+
+    public static List<TrailerVO> loadTrailerListByMovieId(int movieId) {
+        Context context = MovieManiacApp.getContext();
+        List<TrailerVO> trailerList = new ArrayList<>();
+        Cursor trailerCursor = context.getContentResolver().query(MovieContract.TrailerEntry.CONTENT_URI,
+                null,
+                MovieContract.TrailerEntry.COLUMN_MOVIE_ID + " = ?",
+                new String[]{String.valueOf(movieId)},
+                null);
+
+        if (trailerCursor != null && trailerCursor.moveToFirst()) {
+            do {
+                trailerList.add(TrailerVO.parseFromCursor(trailerCursor));
+
+            } while (trailerCursor.moveToNext());
+            trailerCursor.close();
+        }
+
+        return trailerList;
+    }
 }

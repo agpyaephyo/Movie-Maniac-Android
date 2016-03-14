@@ -87,6 +87,8 @@ public class MovieProvider extends ContentProvider {
         return true;
     }
 
+
+
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
@@ -115,6 +117,16 @@ public class MovieProvider extends ContentProvider {
                     selectionArgs = new String[]{String.valueOf(movieId)};
                 }
                 queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.TrailerEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null, //group_by
+                        null, //having
+                        sortOrder);
+                break;
+            }
+            case COLLECTION: {
+                queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.CollectionEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -212,6 +224,8 @@ public class MovieProvider extends ContentProvider {
                 return MovieContract.MovieEntry.DIR_TYPE;
             case TRAILER:
                 return MovieContract.TrailerEntry.DIR_TYPE;
+            case COLLECTION:
+                return MovieContract.CollectionEntry.DIR_TYPE;
             case MOVIE_GENRE:
                 return MovieContract.GenreEntry.DIR_TYPE;
             case MOVIE_SPOKEN_LANGUAGE:

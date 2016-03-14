@@ -20,7 +20,6 @@ import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MovieListAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.persistence.MovieContract;
-import net.aung.moviemaniac.data.vos.CollectionVO;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.mvp.presenters.MovieListPresenter;
@@ -225,36 +224,18 @@ public class MovieListFragment extends BaseFragment
         if (data != null && data.moveToFirst()) {
             do {
                 MovieVO movie = MovieVO.parseFromListCursor(data);
-                Cursor genreCursor = getContext().getContentResolver().query(MovieContract.MovieGenreEntry.buildMovieGenreUriWithMovieId(movie.getId()),
-                        null, null, null, null);
-
-                if (genreCursor != null && genreCursor.moveToFirst()) {
-                    do {
-                        movie.addGenreList(GenreVO.parseFromCursor(genreCursor));
-                    } while (genreCursor.moveToNext());
-                    genreCursor.close();
-                }
-
+                movie.setGenreList(GenreVO.loadGenreListByMovieId(movie.getId()));
                 movieList.add(movie);
-
-                if (movie.getCollectionId() != 0) {
-                    Cursor collectionCursor = getContext().getContentResolver().query(MovieContract.CollectionEntry.CONTENT_URI,
-                            null,
-                            MovieContract.CollectionEntry.COLUMN_COLLECTION_ID + " = ?",
-                            new String[]{String.valueOf(movie.getCollectionId())},
-                            null);
-
-                    if (collectionCursor != null && collectionCursor.moveToFirst()) {
-                        movie.setCollection(CollectionVO.parseFromCursor(collectionCursor));
-                        collectionCursor.close();
-                    }
-                }
 
             } while (data.moveToNext());
         }
 
         Log.d(MovieManiacApp.TAG, "Displaying movies for category " + mCategory + " : " + movieList.size());
         displayMovieList(movieList, false);
+
+        if (movieList.size() == 0) {
+            movieListPresenter.loadMovieListFromNetwork();
+        }
     }
 
     @Override

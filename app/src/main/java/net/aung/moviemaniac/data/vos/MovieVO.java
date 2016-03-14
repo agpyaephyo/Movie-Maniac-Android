@@ -220,8 +220,16 @@ public class MovieVO {
         return productionCompanyList;
     }
 
+    public void setProductionCompanyList(ArrayList<ProductionCompanyVO> productionCompanyList) {
+        this.productionCompanyList = productionCompanyList;
+    }
+
     public ArrayList<ProductionCountryVO> getProductionCountryList() {
         return productionCountryList;
+    }
+
+    public void setProductionCountryList(ArrayList<ProductionCountryVO> productionCountryList) {
+        this.productionCountryList = productionCountryList;
     }
 
     public long getRevenue() {
@@ -240,6 +248,10 @@ public class MovieVO {
 
     public ArrayList<SpokenLanguageVO> getSpokenLanguageList() {
         return spokenLanguageList;
+    }
+
+    public void setSpokenLanguageList(ArrayList<SpokenLanguageVO> spokenLanguageList) {
+        this.spokenLanguageList = spokenLanguageList;
     }
 
     public String getStatus() {
@@ -294,6 +306,7 @@ public class MovieVO {
         cv.put(MovieContract.MovieEntry.COLUMN_IS_ADULT, isAdult ? 1 : 0);
         cv.put(MovieContract.MovieEntry.COLUMN_IS_VIDEO, isVideo ? 1 : 0);
         cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_TYPE, movieType);
+        cv.put(MovieContract.MovieEntry.COLUMN_IS_DETAIL_LOADED, isDetailLoaded ? 1 : 0);
 
         if (budget != 0)
             cv.put(MovieContract.MovieEntry.COLUMN_BUDGET, budget);
@@ -340,7 +353,7 @@ public class MovieVO {
 
                 Context context = MovieManiacApp.getContext();
                 int insertedCount = context.getContentResolver().bulkInsert(MovieContract.MovieGenreEntry.CONTENT_URI, movieGenreListCVs);
-                Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_genre table : " + insertedCount);
+                //Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_genre table : " + insertedCount);
             }
         }
 
@@ -348,7 +361,7 @@ public class MovieVO {
         Context context = MovieManiacApp.getContext();
         int insertedCount = context.getContentResolver().bulkInsert(MovieContract.MovieEntry.CONTENT_URI, movieListCVs);
 
-        Log.d(MovieManiacApp.TAG, "Bulk inserted into movie table : " + insertedCount);
+        Log.d(MovieManiacApp.TAG, "Bulk inserted into movie table with movieType - "+ movieType +" : " + insertedCount);
     }
 
     public void updateMovieFromDetail() {
@@ -416,10 +429,10 @@ public class MovieVO {
         }
     }
 
-    public void saveTrailerList() {
+    public static void saveTrailerList(int movieId, List<TrailerVO> trailerList) {
         if (trailerList != null) {
             Context context = MovieManiacApp.getContext();
-            ContentValues[] trailerListCVs = TrailerVO.parseToContentValueArray(trailerList, id);
+            ContentValues[] trailerListCVs = TrailerVO.parseToContentValueArray(trailerList, movieId);
             //Bulk insert to TrailerEntry.
             int insertedTrailerListCount = context.getContentResolver().bulkInsert(MovieContract.TrailerEntry.CONTENT_URI, trailerListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into trailer table : " + insertedTrailerListCount);
@@ -444,8 +457,14 @@ public class MovieVO {
         movie.isVideo = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IS_VIDEO)) == 1;
         movie.collectionId = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_COLLECTION_ID));
         movie.movieType = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_TYPE));
+        movie.isDetailLoaded = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IS_DETAIL_LOADED)) == 1;
 
-        /*
+        return movie;
+    }
+
+    public static MovieVO parseFromDetailCursor(Cursor data) {
+        MovieVO movie = parseFromListCursor(data);
+
         movie.budget = data.getLong(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_BUDGET));
         movie.homepage = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_HOMEPAGE));
         movie.imdbId = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IMDB_ID));
@@ -454,17 +473,10 @@ public class MovieVO {
         movie.status = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_STATUS));
         movie.tagline = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_TAGLINE));
 
-        movie.collection = CollectionVO.parseFromCursor(data);
-        */
-
         return movie;
     }
 
-    public void addGenreList(GenreVO genre) {
-        if (genreList == null) {
-            genreList = new ArrayList<>();
-        }
-
-        genreList.add(genre);
+    public void merge(MovieVO movie) {
+        movieType = movie.getMovieType();
     }
 }

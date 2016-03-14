@@ -1,9 +1,12 @@
 package net.aung.moviemaniac.data.vos;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 
 import java.util.ArrayList;
@@ -70,5 +73,32 @@ public class ProductionCountryVO {
         }
 
         return contentValuesArray;
+    }
+
+    public static ProductionCountryVO parseFromCursor(Cursor productionCountryCursor) {
+        ProductionCountryVO productionCountry = new ProductionCountryVO();
+        productionCountry.iso_3166_1 = productionCountryCursor.getString(productionCountryCursor.getColumnIndex(MovieContract.ProductionCountryEntry.COLUMN_ISO_3166_1));
+        productionCountry.name = productionCountryCursor.getString(productionCountryCursor.getColumnIndex(MovieContract.ProductionCountryEntry.COLUMN_NAME));
+        return productionCountry;
+    }
+
+    public static ArrayList<ProductionCountryVO> loadProductionCountryListByMovieId(int movieId) {
+        Context context = MovieManiacApp.getContext();
+        ArrayList<ProductionCountryVO> productionCountryList = new ArrayList<>();
+        Cursor productionCountryCursor = context.getContentResolver().query(MovieContract.MovieProductionCountryEntry.CONTENT_URI,
+                null,
+                MovieContract.MovieProductionCountryEntry.COLUMN_MOVIE_ID + " = ?",
+                new String[]{String.valueOf(movieId)},
+                null);
+
+        if (productionCountryCursor != null && productionCountryCursor.moveToFirst()) {
+            do {
+                productionCountryList.add(ProductionCountryVO.parseFromCursor(productionCountryCursor));
+
+            } while (productionCountryCursor.moveToNext());
+            productionCountryCursor.close();
+        }
+
+        return productionCountryList;
     }
 }

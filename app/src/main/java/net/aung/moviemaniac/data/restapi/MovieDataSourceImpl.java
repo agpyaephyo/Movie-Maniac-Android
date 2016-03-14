@@ -118,15 +118,16 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void loadMovieDetail(final int movieId) {
-        Call<MovieVO> movieDetailCall = theMovieApi.getMovieDetailByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
+    public void loadMovieDetail(final MovieVO movie) {
+        Call<MovieVO> movieDetailCall = theMovieApi.getMovieDetailByMovieId(movie.getId(), BuildConfig.THE_MOVIE_API_KEY);
         movieDetailCall.enqueue(new MovieApiCallback<MovieVO>() {
             @Override
             public void onResponse(Response<MovieVO> response, Retrofit retrofit) {
                 super.onResponse(response, retrofit);
                 MovieVO movieDetailResponse = response.body();
                 if (movieDetailResponse != null) {
-                    DataEvent.LoadedMovieDetailEvent event = new DataEvent.LoadedMovieDetailEvent(movieDetailResponse, movieId);
+                    movieDetailResponse.merge(movie);
+                    DataEvent.LoadedMovieDetailEvent event = new DataEvent.LoadedMovieDetailEvent(movieDetailResponse);
                     EventBus.getDefault().post(event);
                 }
             }

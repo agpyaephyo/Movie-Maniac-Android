@@ -1,11 +1,15 @@
 package net.aung.moviemaniac.data.vos;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -69,5 +73,32 @@ public class ProductionCompanyVO {
         }
 
         return productionCompanyCVs;
+    }
+
+    public static ProductionCompanyVO parseFromCursor(Cursor productionCompanyCursor) {
+        ProductionCompanyVO productionCompany = new ProductionCompanyVO();
+        productionCompany.id = productionCompanyCursor.getInt(productionCompanyCursor.getColumnIndex(MovieContract.ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID));
+        productionCompany.name = productionCompanyCursor.getString(productionCompanyCursor.getColumnIndex(MovieContract.ProductionCompanyEntry.COLUMN_NAME));
+        return productionCompany;
+    }
+
+    public static ArrayList<ProductionCompanyVO> loadProductionCompanyListByMovieId(int movieId) {
+        Context context = MovieManiacApp.getContext();
+        ArrayList<ProductionCompanyVO> productionCompanyList = new ArrayList<>();
+        Cursor productionCompanyCursor = context.getContentResolver().query(MovieContract.MovieProductionCompanyEntry.CONTENT_URI,
+                null,
+                MovieContract.MovieProductionCompanyEntry.COLUMN_MOVIE_ID + " = ?",
+                new String[]{String.valueOf(movieId)},
+                null);
+
+        if (productionCompanyCursor != null && productionCompanyCursor.moveToFirst()) {
+            do {
+                productionCompanyList.add(ProductionCompanyVO.parseFromCursor(productionCompanyCursor));
+
+            } while (productionCompanyCursor.moveToNext());
+            productionCompanyCursor.close();
+        }
+
+        return productionCompanyList;
     }
 }

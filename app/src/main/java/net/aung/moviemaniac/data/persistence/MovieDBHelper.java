@@ -21,7 +21,7 @@ import net.aung.moviemaniac.data.persistence.MovieContract.TrailerEntry;
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
@@ -92,6 +92,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             MovieEntry.COLUMN_COLLECTION_ID + " INTEGER, " +
 
             MovieEntry.COLUMN_MOVIE_TYPE + " INTEGER NOT NULL, " +
+            MovieEntry.COLUMN_IS_DETAIL_LOADED + " INTEGER DEFAULT 0, " +
 
             /* make reference for FK */
             " FOREIGN KEY (" + MovieEntry.COLUMN_COLLECTION_ID + ") REFERENCES " +

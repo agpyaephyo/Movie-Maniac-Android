@@ -1,9 +1,12 @@
 package net.aung.moviemaniac.data.vos;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 
 import java.util.ArrayList;
@@ -68,5 +71,32 @@ public class SpokenLanguageVO {
         }
 
         return contentValuesArray;
+    }
+
+    public static SpokenLanguageVO parseFromCursor(Cursor spokenLanguageCursor) {
+        SpokenLanguageVO spokenLanguage = new SpokenLanguageVO();
+        spokenLanguage.iso_639_1 = spokenLanguageCursor.getString(spokenLanguageCursor.getColumnIndex(MovieContract.SpokenLanguageEntry.COLUMN_ISO_639_1));
+        spokenLanguage.name = spokenLanguageCursor.getString(spokenLanguageCursor.getColumnIndex(MovieContract.SpokenLanguageEntry.COLUMN_NAME));
+        return spokenLanguage;
+    }
+
+    public static ArrayList<SpokenLanguageVO> loadSpokenLanguageListByMovieId(int movieId) {
+        Context context = MovieManiacApp.getContext();
+        ArrayList<SpokenLanguageVO> spokenLanguageList = new ArrayList<>();
+        Cursor spokenLanguageCursor = context.getContentResolver().query(MovieContract.MovieSpokenLanguageEntry.CONTENT_URI,
+                null,
+                MovieContract.MovieSpokenLanguageEntry.COLUMN_MOVIE_ID + " = ?",
+                new String[]{String.valueOf(movieId)},
+                null);
+
+        if (spokenLanguageCursor != null && spokenLanguageCursor.moveToFirst()) {
+            do {
+                spokenLanguageList.add(SpokenLanguageVO.parseFromCursor(spokenLanguageCursor));
+
+            } while (spokenLanguageCursor.moveToNext());
+            spokenLanguageCursor.close();
+        }
+
+        return spokenLanguageList;
     }
 }

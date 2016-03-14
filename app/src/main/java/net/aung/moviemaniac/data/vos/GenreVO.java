@@ -11,6 +11,7 @@ import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aung on 12/16/15.
@@ -84,7 +85,23 @@ public class GenreVO {
         Log.d(MovieManiacApp.TAG, "Bulk inserted into genre table : " + insertedCount);
     }
 
-    public static GenreVO parseFromCursor(Cursor genreCursor) {
+    public static ArrayList<GenreVO> loadGenreListByMovieId(int movieId) {
+        Context context = MovieManiacApp.getContext();
+        ArrayList<GenreVO> genreList = new ArrayList<>();
+        Cursor genreCursor = context.getContentResolver().query(MovieContract.MovieGenreEntry.buildMovieGenreUriWithMovieId(movieId),
+                null, null, null, null);
+
+        if (genreCursor != null && genreCursor.moveToFirst()) {
+            do {
+                genreList.add(GenreVO.parseFromCursor(genreCursor));
+            } while (genreCursor.moveToNext());
+            genreCursor.close();
+        }
+
+        return genreList;
+    }
+
+    private static GenreVO parseFromCursor(Cursor genreCursor) {
         GenreVO genre = new GenreVO();
         genre.id = genreCursor.getInt(genreCursor.getColumnIndex(MovieContract.GenreEntry.COLUMN_GENRE_ID));
         genre.name = genreCursor.getString(genreCursor.getColumnIndex(MovieContract.GenreEntry.COLUMN_NAME));
