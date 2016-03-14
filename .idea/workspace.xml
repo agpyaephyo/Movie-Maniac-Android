@@ -21,29 +21,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="MovieManiacApp" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ca895fe-cd9a-4771-87a5-22008bb89e8e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/model/MovieModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/model/MovieModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieContract.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieContract.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieDBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieDBHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSource.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSourceImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSourceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/CollectionVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/CollectionVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/GenreVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/GenreVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCompanyVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCompanyVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCountryVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCountryVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/SpokenLanguageVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/SpokenLanguageVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TrailerVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TrailerVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/events/DataEvent.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/events/DataEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieDetailFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieDetailFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieDetailPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieDetailPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieListPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieListPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/SettingsUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/SettingsUtils.java" />
-    </list>
+    <list default="true" id="4ca895fe-cd9a-4771-87a5-22008bb89e8e" name="Default" comment="" />
     <ignored path="Movie-Maniac-Android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,8 +51,8 @@
       <file leaf-file-name="MovieListFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.4395604">
-              <caret line="235" column="36" selection-start-line="235" selection-start-column="36" selection-end-line="235" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.41758242">
+              <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -3240,8 +3218,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.4395604">
-          <caret line="235" column="36" selection-start-line="235" selection-start-column="36" selection-end-line="235" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.41758242">
+          <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
           <folding />
         </state>
       </provider>
