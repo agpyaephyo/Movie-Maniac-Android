@@ -35,6 +35,8 @@ public class ViewPodMoviePopularityDetail extends LinearLayout {
         if(popularityCount > 0) {
             setVisibility(View.VISIBLE);
         }
+
+        removeAllViews();
         for (int i = 0; i < popularityCount; i++) {
             ImageView iv = new ImageView(getContext());
             iv.setImageResource(R.drawable.movie_popularity_icon);

@@ -62,4 +62,5 @@
 
     <string name="section_movie">Movie Shelf</string>
     <string name="empty_favourite">You haven\'t pick any movie as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
+    <string name="send_to">Send this trailer to</string>
 </resources>

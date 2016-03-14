@@ -200,6 +200,7 @@
 
                     </LinearLayout>
 
+                    <!--
                     <ImageButton
                         android:id="@+id/ib_movie_star"
                         android:layout_width="@dimen/fab_dimen"
@@ -209,7 +210,17 @@
                         android:layout_marginRight="@dimen/margin_medium_2"
                         android:background="@drawable/bg_fab"
                         android:elevation="@dimen/tag_line_elevation"
-                        android:src="@drawable/ic_fab_star" />
+                        android:src="@drawable/ic_fab_star"
+                        android:visibility="gone"
+                        />
+                        -->
+
+                    <include
+                        android:id="@+id/vp_fabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        layout="@layout/view_pod_fabs"
+                        />
 
                 </FrameLayout>
 

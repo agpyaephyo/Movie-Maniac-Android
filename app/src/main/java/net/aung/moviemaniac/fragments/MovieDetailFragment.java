@@ -2,6 +2,7 @@ package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -20,9 +21,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
@@ -41,7 +42,9 @@ import net.aung.moviemaniac.databinding.FragmentMovieDetailBinding;
 import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
 import net.aung.moviemaniac.mvp.views.MovieDetailView;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
+import net.aung.moviemaniac.utils.YoutubeUtils;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
+import net.aung.moviemaniac.views.pods.ViewPodFabs;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMovieStar;
@@ -51,7 +54,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by aung on 12/15/15.
@@ -59,7 +61,8 @@ import butterknife.OnClick;
 public class MovieDetailFragment extends BaseFragment
         implements MovieDetailView,
         Palette.PaletteAsyncListener,
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>,
+        ViewPodFabs.ControllerFabs {
 
     private static final String ARG_MOVIE_ID = "ARG_MOVIE_ID";
 
@@ -95,11 +98,11 @@ public class MovieDetailFragment extends BaseFragment
     @Bind(R.id.lbl_reviews)
     TextView lblReviews;
 
-    @Bind(R.id.ib_movie_star)
-    ImageButton ibMovieStar;
-
     @Bind(R.id.vp_movie_star)
     ViewPodMovieStar vpMovieStar;
+
+    @Bind(R.id.vp_fabs)
+    ViewPodFabs vpFabs;
 
     public static MovieDetailFragment newInstance(int movieId) {
         MovieDetailFragment fragment = new MovieDetailFragment();
@@ -149,6 +152,8 @@ public class MovieDetailFragment extends BaseFragment
 
         rvTrailers.setAdapter(trailerAdapter);
 
+        vpFabs.setController(this);
+
         return rootView;
     }
 
@@ -195,7 +200,8 @@ public class MovieDetailFragment extends BaseFragment
             lblReviews.setVisibility(View.GONE);
         }
 
-        ibMovieStar.setImageResource(movie.isStar() ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_fab_star);
+        //ibMovieStar.setImageResource(movie.isStar() ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_fab_star);
+        vpFabs.updateStarStatus(movie.isStar());
     }
 
     @Override
@@ -228,15 +234,15 @@ public class MovieDetailFragment extends BaseFragment
 
             setPaletteForRootContainer(colorDarkVaient);
             setPaletteForTagLine(colorDarkVaient, colorLightVarient);
-            setPaletteForStarFab(vibrantSwatch);
+            setPaletteForFab(vibrantSwatch);
             setPaletteForStarView(vibrantSwatch);
             //setVibrantColor(vibrantSwatch);
         }
     }
 
-    private void setPaletteForStarFab(Palette.Swatch swatch) {
+    private void setPaletteForFab(Palette.Swatch swatch) {
         if (swatch != null) {
-            ibMovieStar.getBackground().setColorFilter(swatch.getRgb(), PorterDuff.Mode.MULTIPLY);
+            vpFabs.setPalette(swatch);
         }
     }
 
@@ -294,8 +300,8 @@ public class MovieDetailFragment extends BaseFragment
 
     }
 
-    @OnClick(R.id.ib_movie_star)
-    public void onTapStarMovie(View view) {
+    @Override
+    public void onTapFavourite() {
         if (mMovie.isStar()) {
             new AlertDialog.Builder(getContext())
                     .setMessage(R.string.remove_movie_from_favourite_confirmation_msg)
@@ -305,18 +311,38 @@ public class MovieDetailFragment extends BaseFragment
                         public void onClick(DialogInterface dialog, int whichButton) {
                             mMovie.setStar(false);
                             mMovie.updateMovieStarStatus(); //TODO On Main Thread ?
-                            ibMovieStar.setImageResource(R.drawable.ic_fab_star);
-                        }})
+                            vpFabs.updateStarStatus(false);
+                        }
+                    })
                     .setNegativeButton(R.string.no, null).show();
         } else {
             mMovie.setStar(true);
             mMovie.updateMovieStarStatus(); //TODO On Main Thread ?
-            vpMovieStar.showMovieSaved(view, new ViewPodMovieStar.ControllerMovieSaved() {
+            vpMovieStar.showMovieSaved(vpFabs, new ViewPodMovieStar.ControllerMovieSaved() {
                 @Override
                 public void onMovieSavedAnimationFinish() {
-                    ibMovieStar.setImageResource(R.drawable.ic_favorite_white_24dp);
+                    vpFabs.updateStarStatus(true);
                 }
             });
         }
+    }
+
+    @Override
+    public void onTapFacebook() {
+        Toast.makeText(getContext(), "Nothing happen ! Facebook integration is not there yet.", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTapShare() {
+        if (mMovie.getTrailerList() != null && mMovie.getTrailerList().size() > 0) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, mMovie.getTitle() + " : " + YoutubeUtils.getFullUrlFromYoutubeVideo(mMovie.getTrailerList().get(0).getKey()));
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
+        } else {
+            Toast.makeText(getContext(), "No trailer released or this movie yet. We'll let you know when there is a new trailer coming.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
