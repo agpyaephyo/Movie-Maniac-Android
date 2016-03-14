@@ -1,10 +1,10 @@
-package net.aung.moviemaniac.restapi;
+package net.aung.moviemaniac.data.restapi;
 
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.events.DataEvent;
-import net.aung.moviemaniac.restapi.responses.GenreListResponse;
-import net.aung.moviemaniac.restapi.responses.MovieListResponse;
-import net.aung.moviemaniac.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
+import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
 import net.aung.moviemaniac.utils.CommonInstances;
 import net.aung.moviemaniac.BuildConfig;
 
@@ -101,7 +101,7 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void getMovieTrailers(final int movieId) {
+    public void loadMovieTrailers(final int movieId) {
         Call<MovieTrailerResponse> movieTrailerResponseCall = theMovieApi.getTrailersByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
 
         movieTrailerResponseCall.enqueue(new MovieApiCallback<MovieTrailerResponse>() {
@@ -118,15 +118,16 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void getMovieDetail(final int movieId) {
-        Call<MovieVO> movieDetailCall = theMovieApi.getMovieDetailByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
+    public void loadMovieDetail(final MovieVO movie) {
+        Call<MovieVO> movieDetailCall = theMovieApi.getMovieDetailByMovieId(movie.getId(), BuildConfig.THE_MOVIE_API_KEY);
         movieDetailCall.enqueue(new MovieApiCallback<MovieVO>() {
             @Override
             public void onResponse(Response<MovieVO> response, Retrofit retrofit) {
                 super.onResponse(response, retrofit);
                 MovieVO movieDetailResponse = response.body();
                 if (movieDetailResponse != null) {
-                    DataEvent.LoadedMovieDetailEvent event = new DataEvent.LoadedMovieDetailEvent(movieDetailResponse, movieId);
+                    movieDetailResponse.merge(movie);
+                    DataEvent.LoadedMovieDetailEvent event = new DataEvent.LoadedMovieDetailEvent(movieDetailResponse);
                     EventBus.getDefault().post(event);
                 }
             }
@@ -134,7 +135,7 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
-    public void getGenreList() {
+    public void loadGenreList() {
         Call<GenreListResponse> genreListResponseCall = theMovieApi.getGenreList(BuildConfig.THE_MOVIE_API_KEY);
         genreListResponseCall.enqueue(new MovieApiCallback<GenreListResponse>() {
             @Override

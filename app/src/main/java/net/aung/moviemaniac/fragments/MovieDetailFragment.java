@@ -1,30 +1,43 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.aung.moviemaniac.adapters.TrailerListAdapter;
-import net.aung.moviemaniac.data.vos.TrailerVO;
-import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
-import net.aung.moviemaniac.mvp.views.MovieDetailView;
-import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
+import net.aung.moviemaniac.adapters.TrailerListAdapter;
 import net.aung.moviemaniac.controllers.TrailerItemController;
+import net.aung.moviemaniac.data.persistence.MovieContract;
+import net.aung.moviemaniac.data.vos.CollectionVO;
+import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.data.vos.ProductionCompanyVO;
+import net.aung.moviemaniac.data.vos.ProductionCountryVO;
+import net.aung.moviemaniac.data.vos.SpokenLanguageVO;
+import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.databinding.FragmentMovieDetailBinding;
+import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
+import net.aung.moviemaniac.mvp.views.MovieDetailView;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
+import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
 
 import java.util.List;
@@ -37,11 +50,12 @@ import butterknife.ButterKnife;
  */
 public class MovieDetailFragment extends BaseFragment
         implements MovieDetailView,
-        Palette.PaletteAsyncListener {
+        Palette.PaletteAsyncListener,
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String ARG_MOVIE_ID = "ARG_MOVIE_ID";
 
-    private int movieId;
+    private int mMovieId;
     private FragmentMovieDetailBinding binding;
     private MovieDetailPresenter presenter;
     private Bitmap poster;
@@ -83,7 +97,7 @@ public class MovieDetailFragment extends BaseFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new MovieDetailPresenter(this, movieId);
+        presenter = new MovieDetailPresenter(this);
         presenter.onCreate();
 
         poster = MovieManiacApp.sPosterCache.get(0);
@@ -95,7 +109,7 @@ public class MovieDetailFragment extends BaseFragment
     @Override
     protected void readArguments(Bundle bundle) {
         super.readArguments(bundle);
-        movieId = bundle.getInt(ARG_MOVIE_ID);
+        mMovieId = bundle.getInt(ARG_MOVIE_ID);
     }
 
     @Override
@@ -115,6 +129,12 @@ public class MovieDetailFragment extends BaseFragment
         rvTrailers.setAdapter(trailerAdapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(MovieManiacConstants.MOVIE_DETAIL_LOADER, null, this);
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -139,8 +159,12 @@ public class MovieDetailFragment extends BaseFragment
     public void displayMovieDetail(MovieVO movie) {
         binding.setMovie(movie);
         vpContainerGenre.setGenreList(movie.getGenreList());
-        if (!movie.isDetailLoaded()) {
+        if (movie.isDetailLoaded()) {
             vpMoviePopularity.drawPopularityIcons(movie.getPopularity());
+        }
+
+        if (movie.getTrailerList() != null && movie.getTrailerList().size() > 0) {
+            displayTrailerList(movie.getTrailerList());
         }
     }
 
@@ -182,5 +206,44 @@ public class MovieDetailFragment extends BaseFragment
             tvTitle.setTextColor(colorDarkVaient.getRgb());
             tvTitle.setBackgroundColor(colorLightVarient.getRgb());
         }
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getActivity(),
+                MovieContract.MovieEntry.CONTENT_URI,
+                null,
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? ",
+                new String[]{String.valueOf(mMovieId)},
+                null
+        );
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null && data.moveToFirst()) {
+            MovieVO movie = MovieVO.parseFromDetailCursor(data);
+
+            if (!movie.isDetailLoaded()) {
+                presenter.loadMovieDetailFromNetwork(movie);
+            } else {
+                movie.setGenreList(GenreVO.loadGenreListByMovieId(movie.getId()));
+                if (movie.getCollectionId() != 0) {
+                    movie.setCollection(CollectionVO.loadCollectionById(movie.getCollectionId()));
+                }
+                movie.setProductionCompanyList(ProductionCompanyVO.loadProductionCompanyListByMovieId(movie.getId()));
+                movie.setProductionCountryList(ProductionCountryVO.loadProductionCountryListByMovieId(movie.getId()));
+                movie.setSpokenLanguageList(SpokenLanguageVO.loadSpokenLanguageListByMovieId(movie.getId()));
+                movie.setTrailerList(TrailerVO.loadTrailerListByMovieId(movie.getId()));
+            }
+
+            Log.d(MovieManiacApp.TAG, "Displaying movies detail for movie_id " + mMovieId);
+            displayMovieDetail(movie);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }

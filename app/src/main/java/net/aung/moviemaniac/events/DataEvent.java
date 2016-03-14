@@ -1,9 +1,9 @@
 package net.aung.moviemaniac.events;
 
 import net.aung.moviemaniac.data.vos.MovieVO;
-import net.aung.moviemaniac.restapi.responses.GenreListResponse;
-import net.aung.moviemaniac.restapi.responses.MovieListResponse;
-import net.aung.moviemaniac.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
+import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
 
 import java.util.ArrayList;
 
@@ -96,19 +96,13 @@ public class DataEvent {
 
     public static class LoadedMovieDetailEvent {
         private MovieVO movie;
-        private int movieId;
 
-        public LoadedMovieDetailEvent(MovieVO movie, int movieId) {
+        public LoadedMovieDetailEvent(MovieVO movie) {
             this.movie = movie;
-            this.movieId = movieId;
         }
 
         public MovieVO getMovie() {
             return movie;
-        }
-
-        public int getMovieId() {
-            return movieId;
         }
     }
 

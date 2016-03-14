@@ -1,8 +1,17 @@
 package net.aung.moviemaniac.data.vos;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
+import net.aung.moviemaniac.MovieManiacApp;
+import net.aung.moviemaniac.data.persistence.MovieContract;
 import net.aung.moviemaniac.utils.DateFormatUtils;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -22,86 +31,88 @@ public class MovieVO {
     private static final String RUNTIME_FORMAT = "%1$d hrs %2$d mins";
 
     @SerializedName("id")
-    private int id;
+    private int id; //list - d
 
     @SerializedName("poster_path")
-    private String posterPath;
+    private String posterPath; //list - d
 
     @SerializedName("overview")
-    private String overview;
+    private String overview; //list - d
 
     @SerializedName("release_date")
-    private String releaseDateText;
+    private String releaseDateText; //list - d
 
     @SerializedName("genre_ids")
-    private int[] genreIds;
+    private int[] genreIds; //list
 
     @SerializedName("original_title")
-    private String originalTitle;
+    private String originalTitle; //list - d
 
     @SerializedName("original_language")
-    private String originalLanguage;
+    private String originalLanguage; //list - d
 
     @SerializedName("title")
-    private String title;
+    private String title; //list - d
 
     @SerializedName("backdrop_path")
-    private String backdropPath;
+    private String backdropPath; //list - d
 
     @SerializedName("popularity")
-    private float popularity;
+    private float popularity; //list - d
 
     @SerializedName("vote_count")
-    private int voteCount;
+    private int voteCount; //list - d
 
     @SerializedName("vote_average")
-    private float voteAverage;
+    private float voteAverage; //list - d
 
     @SerializedName("adult")
-    private boolean isAdult;
-
-    @SerializedName("belongs_to_collection")
-    private CollectionVO collection;
-
-    @SerializedName("budget")
-    private long budget;
-
-    @SerializedName("genres")
-    private ArrayList<GenreVO> genreList;
-
-    @SerializedName("homepage")
-    private String homepage;
-
-    @SerializedName("imdb_id")
-    private String imdbId;
-
-    @SerializedName("production_companies")
-    private ArrayList<ProductionCompanyVO> productionCompanyList;
-
-    @SerializedName("production_countries")
-    private ArrayList<ProductionCountryVO> productionCountryList;
-
-    @SerializedName("revenue")
-    private long revenue;
-
-    @SerializedName("runtime")
-    private int runtime;
-
-    @SerializedName("spoken_languages")
-    private ArrayList<SpokenLanguageVO> spokenLanguageList;
-
-    @SerializedName("status")
-    private String status;
-
-    @SerializedName("tagline")
-    private String tagline;
+    private boolean isAdult; //list - d
 
     @SerializedName("video")
-    private boolean isVideo;
+    private boolean isVideo; //list
+
+    @SerializedName("belongs_to_collection")
+    private CollectionVO collection; //detail
+
+    @SerializedName("budget")
+    private long budget; //detail
+
+    @SerializedName("genres")
+    private ArrayList<GenreVO> genreList; //detail
+
+    @SerializedName("homepage")
+    private String homepage; //detail
+
+    @SerializedName("imdb_id")
+    private String imdbId; //detail
+
+    @SerializedName("production_companies")
+    private ArrayList<ProductionCompanyVO> productionCompanyList; //detail
+
+    @SerializedName("production_countries")
+    private ArrayList<ProductionCountryVO> productionCountryList; //detail
+
+    @SerializedName("revenue")
+    private long revenue; //detail
+
+    @SerializedName("runtime")
+    private int runtime; //detail
+
+    @SerializedName("spoken_languages")
+    private ArrayList<SpokenLanguageVO> spokenLanguageList; //detail
+
+    @SerializedName("status")
+    private String status; //detail
+
+    @SerializedName("tagline")
+    private String tagline; //detail
 
     private List<TrailerVO> trailerList;
     private boolean isDetailLoaded;
     private Date releaseDate;
+    private int collectionId;
+    private int movieType;
 
     public int getId() {
         return id;
@@ -181,6 +192,10 @@ public class MovieVO {
         return collection;
     }
 
+    public void setCollection(CollectionVO collection) {
+        this.collection = collection;
+    }
+
     public long getBudget() {
         return budget;
     }
@@ -205,8 +220,16 @@ public class MovieVO {
         return productionCompanyList;
     }
 
+    public void setProductionCompanyList(ArrayList<ProductionCompanyVO> productionCompanyList) {
+        this.productionCompanyList = productionCompanyList;
+    }
+
     public ArrayList<ProductionCountryVO> getProductionCountryList() {
         return productionCountryList;
+    }
+
+    public void setProductionCountryList(ArrayList<ProductionCountryVO> productionCountryList) {
+        this.productionCountryList = productionCountryList;
     }
 
     public long getRevenue() {
@@ -225,6 +248,10 @@ public class MovieVO {
 
     public ArrayList<SpokenLanguageVO> getSpokenLanguageList() {
         return spokenLanguageList;
+    }
+
+    public void setSpokenLanguageList(ArrayList<SpokenLanguageVO> spokenLanguageList) {
+        this.spokenLanguageList = spokenLanguageList;
     }
 
     public String getStatus() {
@@ -249,5 +276,207 @@ public class MovieVO {
 
     public void setIsDetailLoaded(boolean isDetailLoaded) {
         this.isDetailLoaded = isDetailLoaded;
+    }
+
+    public int getCollectionId() {
+        return collectionId;
+    }
+
+    public int getMovieType() {
+        return movieType;
+    }
+
+    public void setMovieType(int movieType) {
+        this.movieType = movieType;
+    }
+
+    public ContentValues parseToContentValues() {
+        ContentValues cv = new ContentValues();
+        cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, id);
+        cv.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH, posterPath);
+        cv.put(MovieContract.MovieEntry.COLUMN_OVERVIEW, overview);
+        cv.put(MovieContract.MovieEntry.COLUMN_RELEASE_DATE, releaseDateText);
+        cv.put(MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE, originalTitle);
+        cv.put(MovieContract.MovieEntry.COLUMN_ORIGINAL_LANGUAGE, originalLanguage);
+        cv.put(MovieContract.MovieEntry.COLUMN_TITLE, title);
+        cv.put(MovieContract.MovieEntry.COLUMN_BACKDROP_PATH, backdropPath);
+        cv.put(MovieContract.MovieEntry.COLUMN_POPULARITY, popularity);
+        cv.put(MovieContract.MovieEntry.COLUMN_VOTE_COUNT, voteCount);
+        cv.put(MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE, voteAverage);
+        cv.put(MovieContract.MovieEntry.COLUMN_IS_ADULT, isAdult ? 1 : 0);
+        cv.put(MovieContract.MovieEntry.COLUMN_IS_VIDEO, isVideo ? 1 : 0);
+        cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_TYPE, movieType);
+        cv.put(MovieContract.MovieEntry.COLUMN_IS_DETAIL_LOADED, isDetailLoaded ? 1 : 0);
+
+        if (budget != 0)
+            cv.put(MovieContract.MovieEntry.COLUMN_BUDGET, budget);
+
+        if (homepage != null)
+            cv.put(MovieContract.MovieEntry.COLUMN_HOMEPAGE, homepage);
+
+        if (imdbId != null)
+            cv.put(MovieContract.MovieEntry.COLUMN_IMDB_ID, imdbId);
+
+        if (revenue != 0)
+            cv.put(MovieContract.MovieEntry.COLUMN_REVENUE, revenue);
+
+        if (runtime != 0)
+            cv.put(MovieContract.MovieEntry.COLUMN_RUNTIME, runtime);
+
+        if (status != null)
+            cv.put(MovieContract.MovieEntry.COLUMN_STATUS, status);
+
+        if (tagline != null)
+            cv.put(MovieContract.MovieEntry.COLUMN_TAGLINE, tagline);
+
+        if (collection != null)
+            cv.put(MovieContract.MovieEntry.COLUMN_COLLECTION_ID, collection.getId());
+
+        return cv;
+    }
+
+    public static void saveMovieFromList(List<MovieVO> movieList, @MovieManiacConstants.MovieType int movieType) {
+        ContentValues[] movieListCVs = new ContentValues[movieList.size()];
+        for (int index = 0; index < movieListCVs.length; index++) {
+            MovieVO movie = movieList.get(index);
+            movie.setMovieType(movieType);
+            movieListCVs[index] = movie.parseToContentValues();
+
+            if (movie.genreIds != null && movie.genreIds.length > 0) {
+                ContentValues[] movieGenreListCVs = new ContentValues[movie.getGenreIds().length];
+                for (int index_two = 0; index_two < movieGenreListCVs.length; index_two++) {
+                    ContentValues movieGenreCV = new ContentValues();
+                    movieGenreCV.put(MovieContract.MovieGenreEntry.COLUMN_GENRE_ID, movie.genreIds[index_two]);
+                    movieGenreCV.put(MovieContract.MovieGenreEntry.COLUMN_MOVIE_ID, movie.getId());
+                    movieGenreListCVs[index_two] = movieGenreCV;
+                }
+
+                Context context = MovieManiacApp.getContext();
+                int insertedCount = context.getContentResolver().bulkInsert(MovieContract.MovieGenreEntry.CONTENT_URI, movieGenreListCVs);
+                //Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_genre table : " + insertedCount);
+            }
+        }
+
+        //Bulk Insert movie.
+        Context context = MovieManiacApp.getContext();
+        int insertedCount = context.getContentResolver().bulkInsert(MovieContract.MovieEntry.CONTENT_URI, movieListCVs);
+
+        Log.d(MovieManiacApp.TAG, "Bulk inserted into movie table with movieType - "+ movieType +" : " + insertedCount);
+    }
+
+    public void updateMovieFromDetail() {
+        ContentValues cv = parseToContentValues();
+
+        //Update movie.
+        Context context = MovieManiacApp.getContext();
+        int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?",
+                new String[]{String.valueOf(id)});
+
+        if (collection != null) {
+            ContentValues cvCollection = collection.parseToContentValues();
+            //Insert collection.
+            Uri uri = context.getContentResolver().insert(MovieContract.CollectionEntry.CONTENT_URI, cvCollection);
+            Log.d(MovieManiacApp.TAG, "Inserted collection uri : " + uri);
+        }
+
+        if (genreList != null) {
+            ContentValues[] genreListCVs = GenreVO.parseToContentValueArray(genreList);
+            //Bulk insert to GenreEntry.
+            int insertedGenreCount = context.getContentResolver().bulkInsert(MovieContract.GenreEntry.CONTENT_URI, genreListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into genre table : " + insertedGenreCount);
+
+            ContentValues[] movieGenreListCVs = GenreVO.parseToContentValueArray(genreList, id);
+            //Bulk insert to MovieGenreEntry.
+            int insertedMovieGenreCount = context.getContentResolver().bulkInsert(MovieContract.MovieGenreEntry.CONTENT_URI, movieGenreListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_genre table : " + insertedMovieGenreCount);
+        }
+
+        if (productionCompanyList != null) {
+            ContentValues[] productionCompanyListCVs = ProductionCompanyVO.parseToContentValueArray(productionCompanyList);
+            //Bulk insert to ProductionCompanyEntry.
+            int insertedProductionCompanyCount = context.getContentResolver().bulkInsert(MovieContract.ProductionCompanyEntry.CONTENT_URI, productionCompanyListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into production_company table : " + insertedProductionCompanyCount);
+
+            ContentValues[] movieProductionCompanyListCVs = ProductionCompanyVO.parseToContentValueArray(productionCompanyList, id);
+            //Bulk insert to MovieProductionCompanyEntry.
+            int insertedMovieProductionCompanyCount = context.getContentResolver().bulkInsert(MovieContract.MovieProductionCompanyEntry.CONTENT_URI, movieProductionCompanyListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_production_company table : " + insertedMovieProductionCompanyCount);
+        }
+
+        if (productionCountryList != null) {
+            ContentValues[] productionCountryListCVs = ProductionCountryVO.parseToContentValueArray(productionCountryList);
+            //Bulk insert to ProductionCountryEntry.
+            int insertedProductionCountryCount = context.getContentResolver().bulkInsert(MovieContract.ProductionCountryEntry.CONTENT_URI, productionCountryListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into production_country table : " + insertedProductionCountryCount);
+
+            ContentValues[] movieProductionCountryListCVs = ProductionCountryVO.parseToContentValueArray(productionCountryList, id);
+            //Bulk insert to MovieProductionCountryEntry.
+            int insertedMovieProductionCountryCount = context.getContentResolver().bulkInsert(MovieContract.MovieProductionCountryEntry.CONTENT_URI, movieProductionCountryListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_production_country table : " + insertedMovieProductionCountryCount);
+        }
+
+        if (spokenLanguageList != null) {
+            ContentValues[] spokenLanguageListCVs = SpokenLanguageVO.parseToContentValueArray(spokenLanguageList);
+            //Bulk insert to SpokenLanguageEntry.
+            int insertedSpokenLanguageCount = context.getContentResolver().bulkInsert(MovieContract.SpokenLanguageEntry.CONTENT_URI, spokenLanguageListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into spoken_language table : " + insertedSpokenLanguageCount);
+
+            ContentValues[] movieSpokenLanguageListCVs = SpokenLanguageVO.parseToContentValueArray(spokenLanguageList, id);
+            //Bulk insert to MovieSpokenLanguageEntry.
+            int insertedMovieSpokenLanguageCount = context.getContentResolver().bulkInsert(MovieContract.MovieSpokenLanguageEntry.CONTENT_URI, movieSpokenLanguageListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_spoken_language table : " + insertedMovieSpokenLanguageCount);
+        }
+    }
+
+    public static void saveTrailerList(int movieId, List<TrailerVO> trailerList) {
+        if (trailerList != null) {
+            Context context = MovieManiacApp.getContext();
+            ContentValues[] trailerListCVs = TrailerVO.parseToContentValueArray(trailerList, movieId);
+            //Bulk insert to TrailerEntry.
+            int insertedTrailerListCount = context.getContentResolver().bulkInsert(MovieContract.TrailerEntry.CONTENT_URI, trailerListCVs);
+            Log.d(MovieManiacApp.TAG, "Bulk inserted into trailer table : " + insertedTrailerListCount);
+        }
+    }
+
+    public static MovieVO parseFromListCursor(Cursor data) {
+        MovieVO movie = new MovieVO();
+
+        movie.id = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_ID));
+        movie.posterPath = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_POSTER_PATH));
+        movie.overview = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_OVERVIEW));
+        movie.releaseDateText = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_RELEASE_DATE));
+        movie.originalTitle = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_ORIGINAL_TITLE));
+        movie.originalLanguage = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_ORIGINAL_LANGUAGE));
+        movie.title = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_TITLE));
+        movie.backdropPath = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_BACKDROP_PATH));
+        movie.popularity = data.getFloat(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_POPULARITY));
+        movie.voteCount = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_VOTE_COUNT));
+        movie.voteAverage = data.getFloat(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE));
+        movie.isAdult = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IS_ADULT)) == 1;
+        movie.isVideo = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IS_VIDEO)) == 1;
+        movie.collectionId = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_COLLECTION_ID));
+        movie.movieType = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_TYPE));
+        movie.isDetailLoaded = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IS_DETAIL_LOADED)) == 1;
+
+        return movie;
+    }
+
+    public static MovieVO parseFromDetailCursor(Cursor data) {
+        MovieVO movie = parseFromListCursor(data);
+
+        movie.budget = data.getLong(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_BUDGET));
+        movie.homepage = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_HOMEPAGE));
+        movie.imdbId = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_IMDB_ID));
+        movie.revenue = data.getLong(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_REVENUE));
+        movie.runtime = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_RUNTIME));
+        movie.status = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_STATUS));
+        movie.tagline = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_TAGLINE));
+
+        return movie;
+    }
+
+    public void merge(MovieVO movie) {
+        movieType = movie.getMovieType();
     }
 }

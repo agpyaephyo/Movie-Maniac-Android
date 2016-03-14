@@ -49,6 +49,12 @@
             android:authorities="com.facebook.app.FacebookContentProvider1234"
             android:exported="true" />
 
+        <provider
+            android:authorities="net.aung.moviemaniac"
+            android:name=".data.persistence.MovieProvider"
+            android:syncable="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>

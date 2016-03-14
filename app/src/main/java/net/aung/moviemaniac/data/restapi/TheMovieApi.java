@@ -1,9 +1,9 @@
-package net.aung.moviemaniac.restapi;
+package net.aung.moviemaniac.data.restapi;
 
 import net.aung.moviemaniac.data.vos.MovieVO;
-import net.aung.moviemaniac.restapi.responses.MovieListResponse;
-import net.aung.moviemaniac.restapi.responses.MovieTrailerResponse;
-import net.aung.moviemaniac.restapi.responses.GenreListResponse;
+import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 
 import retrofit.Call;
 import retrofit.http.GET;

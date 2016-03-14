@@ -1,4 +1,4 @@
-package net.aung.popularmovies;
+package net.aung.moviemaniac;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

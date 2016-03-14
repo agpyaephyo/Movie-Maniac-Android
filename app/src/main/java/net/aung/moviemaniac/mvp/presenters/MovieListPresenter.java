@@ -6,6 +6,7 @@ import net.aung.moviemaniac.data.model.MovieModel;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.mvp.views.MovieListView;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
+import net.aung.moviemaniac.utils.SettingsUtils;
 
 /**
  * Created by aung on 12/12/15.
@@ -20,14 +21,12 @@ public class MovieListPresenter extends BasePresenter {
     public MovieListPresenter(@NonNull MovieListView movieListView, int movieCategory) {
         this.movieListView = movieListView;
         this.movieCategory = movieCategory;
-        pageNumber = MovieModel.INITIAL_PAGE_NUMBER;
+        pageNumber = SettingsUtils.retrievePageNumber(movieCategory);
     }
 
     @Override
     public void onStart() {
-        if (movieListView.isMovieListEmpty()) {
-            loadNewMovieList(false);
-        }
+
     }
 
     @Override
@@ -35,17 +34,23 @@ public class MovieListPresenter extends BasePresenter {
 
     }
 
+    public void loadMovieListFromNetwork() {
+        loadNewMovieList(false);
+    }
+
     public void onEventMainThread(DataEvent.ShowMostPopularMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            movieListView.displayMovieList(event.getMovieList(), !event.isForce());
+            SettingsUtils.savePageNumber(movieCategory, pageNumber);
+            //movieListView.displayMovieList(event.getMovieList(), !event.isForce());
         }
     }
 
     public void onEventMainThread(DataEvent.ShowTopRatedMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            movieListView.displayMovieList(event.getMovieList(), !event.isForce());
+            SettingsUtils.savePageNumber(movieCategory, pageNumber);
+            //movieListView.displayMovieList(event.getMovieList(), !event.isForce());
         }
     }
 
@@ -63,6 +68,7 @@ public class MovieListPresenter extends BasePresenter {
 
     public void forceRefresh() {
         pageNumber = MovieModel.INITIAL_PAGE_NUMBER;
+        SettingsUtils.resetPageNumber(movieCategory);
         loadNewMovieList(true);
     }
 
