@@ -9,7 +9,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -119,6 +118,10 @@ public class MovieListFragment extends BaseFragment
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_red_dark);
 
+        if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES) {
+            swipeContainer.setEnabled(false);
+        }
+
         return rootView;
     }
 
@@ -197,15 +200,17 @@ public class MovieListFragment extends BaseFragment
 
     @Override
     public void onListEndReached() {
-        Snackbar.make(rootView, getString(R.string.loading_more_movies), Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show();
+        if (mCategory != MovieManiacConstants.CATEGORY_MY_FAVOURITES) {
+            Snackbar.make(rootView, getString(R.string.loading_more_movies), Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
 
-        movieListPresenter.loadMoreData();
+            movieListPresenter.loadMoreData();
+        }
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES) {
+        if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES) {
             return new CursorLoader(getActivity(),
                     MovieContract.MovieEntry.CONTENT_URI,
                     null,
