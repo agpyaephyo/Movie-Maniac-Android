@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_id": "movie-maniac-android",
+    "project_number": "155219399046",
+    "name": "Movie-Maniac-Android"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155219399046:android:718cf2d9e510f58a",
+        "client_id": "android:net.aung.moviemaniac",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "net.aung.moviemaniac",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-74829198-1"
+          }
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

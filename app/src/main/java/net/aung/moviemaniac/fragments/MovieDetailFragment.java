@@ -45,6 +45,7 @@ import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.YoutubeUtils;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodFabs;
+import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMovieStar;
@@ -253,7 +254,9 @@ public class MovieDetailFragment extends BaseFragment
     }
 
     private void setPaletteForRootContainer(Palette.Swatch colorDarkVaient) {
-        svContainerTrailer.setBackgroundColor(colorDarkVaient.getRgb());
+        if (colorDarkVaient != null) {
+            svContainerTrailer.setBackgroundColor(colorDarkVaient.getRgb());
+        }
     }
 
     private void setPaletteForTagLine(Palette.Swatch colorDarkVaient, Palette.Swatch colorLightVarient) {
