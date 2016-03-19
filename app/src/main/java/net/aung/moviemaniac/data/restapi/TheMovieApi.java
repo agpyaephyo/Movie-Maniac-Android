@@ -23,6 +23,12 @@ public interface TheMovieApi {
             @Query("sort_by") String sortBy
     );
 
+    @GET("movie/now_playing")
+    Call<MovieListResponse> getNowPlayingMovies(
+            @Query("api_key") String apiKey,
+            @Query("page") int pageNumber
+    );
+
     @GET("movie/popular")
     Call<MovieListResponse> getPopularMovies(
             @Query("api_key") String apiKey,

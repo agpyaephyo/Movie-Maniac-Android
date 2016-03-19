@@ -52,6 +52,13 @@ public class MovieListPresenter extends BasePresenter {
         }
     }
 
+    public void onEventMainThread(DataEvent.ShowNowPlayingMovieListEvent event) {
+        if (movieCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING) {
+            pageNumber = event.getPageNumber() + 1;
+            SettingsUtils.savePageNumber(movieCategory, pageNumber);
+        }
+    }
+
     public void onEventMainThread(DataEvent.FailedToLoadDataEvent event) {
         movieListView.displayFailToLoadData(event.getMessage());
     }
@@ -61,6 +68,8 @@ public class MovieListPresenter extends BasePresenter {
             MovieModel.getInstance().loadMostPopularMovieList(pageNumber, isForce);
         } else if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
             MovieModel.getInstance().loadTopRatedMovieList(pageNumber, isForce);
+        } else if (movieCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING) {
+            MovieModel.getInstance().loadNowPlayingMovieList(pageNumber, isForce);
         }
     }
 

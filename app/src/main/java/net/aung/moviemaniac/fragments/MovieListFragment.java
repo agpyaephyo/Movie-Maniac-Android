@@ -237,6 +237,9 @@ public class MovieListFragment extends BaseFragment
             } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
                 sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
                 selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_TOP_RATED)};
+            } else if (mCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING) {
+                sortedBy = null;
+                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_NOW_PLAYING)};
             }
 
             return new CursorLoader(getActivity(),

@@ -62,6 +62,26 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
+    public void loadNowPlayingMovies(int pageNumber, final boolean isForce) {
+        Call<MovieListResponse> nowPlayingMovieResponseCall = theMovieApi.getNowPlayingMovies(
+                BuildConfig.THE_MOVIE_API_KEY,
+                pageNumber
+        );
+
+        nowPlayingMovieResponseCall.enqueue(new MovieApiCallback<MovieListResponse>() {
+            @Override
+            public void onResponse(Response<MovieListResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                MovieListResponse movieListResponse = response.body();
+                if (movieListResponse != null) {
+                    DataEvent.LoadedNowPlayingMovieListEvent event = new DataEvent.LoadedNowPlayingMovieListEvent(movieListResponse, isForce);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
     public void loadPopularMovies(int pageNumber, final boolean isForce) {
         Call<MovieListResponse> popularMovieResponseCall = theMovieApi.getPopularMovies(
                 BuildConfig.THE_MOVIE_API_KEY,

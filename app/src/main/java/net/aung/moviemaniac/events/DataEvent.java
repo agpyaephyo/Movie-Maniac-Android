@@ -31,6 +31,13 @@ public class DataEvent {
         }
     }
 
+    public static class LoadedNowPlayingMovieListEvent extends LoadedMovieListEvent {
+
+        public LoadedNowPlayingMovieListEvent(MovieListResponse response, boolean isForce) {
+            super(response, isForce);
+        }
+    }
+
     public static class LoadedMostPopularMovieListEvent extends LoadedMovieListEvent {
 
         public LoadedMostPopularMovieListEvent(MovieListResponse response, boolean isForce) {
@@ -79,6 +86,13 @@ public class DataEvent {
     public static class ShowTopRatedMovieListEvent extends ShowMovieListEvent {
 
         public ShowTopRatedMovieListEvent(ArrayList<MovieVO> movieList, boolean isForce, int pageNumber) {
+            super(movieList, isForce, pageNumber);
+        }
+    }
+
+    public static class ShowNowPlayingMovieListEvent extends ShowMovieListEvent {
+
+        public ShowNowPlayingMovieListEvent(ArrayList<MovieVO> movieList, boolean isForce, int pageNumber) {
             super(movieList, isForce, pageNumber);
         }
     }
