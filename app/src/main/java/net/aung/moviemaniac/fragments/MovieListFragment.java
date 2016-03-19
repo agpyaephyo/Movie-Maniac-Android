@@ -65,6 +65,7 @@ public class MovieListFragment extends BaseFragment
     private MovieItemController controller;
 
     private int mCategory;
+    private List<MovieVO> mMovieList = new ArrayList<>();
 
     public static MovieListFragment newInstance(int category) {
         MovieListFragment fragment = new MovieListFragment();
@@ -260,8 +261,16 @@ public class MovieListFragment extends BaseFragment
             } while (data.moveToNext());
         }
 
-        Log.d(MovieManiacApp.TAG, "Displaying movies for category " + mCategory + " : " + movieList.size());
-        displayMovieList(movieList, false);
+        if(mMovieList.size() != movieList.size()) { //To prevent refreshing the recyclerView when coming back from detail screen.
+            mMovieList = movieList;
+
+            Log.d(MovieManiacApp.TAG, "Displaying movies for category " + mCategory + " : " + movieList.size());
+            displayMovieList(movieList, false);
+        } else {
+            if (swipeContainer.isRefreshing()) {
+                swipeContainer.setRefreshing(false);
+            }
+        }
 
         if (movieList.size() == 0) {
             movieListPresenter.loadMovieListFromNetwork();

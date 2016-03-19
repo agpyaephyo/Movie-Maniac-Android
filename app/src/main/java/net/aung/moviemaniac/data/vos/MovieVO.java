@@ -470,6 +470,9 @@ public class MovieVO {
             //Bulk insert to TrailerEntry.
             int insertedTrailerListCount = context.getContentResolver().bulkInsert(MovieContract.TrailerEntry.CONTENT_URI, trailerListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into trailer table : " + insertedTrailerListCount);
+
+            Uri movieUri = MovieContract.MovieEntry.buildMovieUriWithMovieId(movieId);
+            context.getContentResolver().notifyChange(movieUri, null);
         }
     }
 

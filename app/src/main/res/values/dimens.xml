@@ -59,4 +59,11 @@
     <dimen name="empty_favourite_text_padding">50dp</dimen>
     <dimen name="margin_tablet_movie_detail_horizontal">100dp</dimen>
     <dimen name="margin_tablet_movie_detail_vertical">100dp</dimen>
+
+    <dimen name="dimen_310">115dp</dimen>
+    <dimen name="dimen_280">100dp</dimen>
+    <dimen name="dimen_180">80dp</dimen>
+    <dimen name="dimen_160">65dp</dimen>
+    <dimen name="dimen_30">10dp</dimen>
+    <dimen name="dimen_20">5dp</dimen>
 </resources>

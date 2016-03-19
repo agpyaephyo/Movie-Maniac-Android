@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<net.aung.moviemaniac.views.pods.ViewPodFabs
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<net.aung.moviemaniac.views.pods.ViewPodFabs xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,6 +11,7 @@
         android:layout_marginBottom="@dimen/margin_xlarge"
         android:layout_marginRight="@dimen/margin_medium_2"
         android:background="@drawable/bg_fab"
+        android:contentDescription="@string/cd_ib_favourite"
         android:elevation="@dimen/tag_line_elevation"
         android:src="@drawable/ic_favorite_border_white_24dp" />
 
@@ -23,6 +23,7 @@
         android:layout_marginBottom="@dimen/margin_xlarge"
         android:layout_marginRight="@dimen/margin_medium_2"
         android:background="@drawable/bg_fab"
+        android:contentDescription="@string/cd_ib_facebook"
         android:elevation="@dimen/tag_line_elevation"
         android:src="@drawable/ic_facebook_white_24dp" />
 
@@ -34,6 +35,7 @@
         android:layout_marginBottom="@dimen/margin_xlarge"
         android:layout_marginRight="@dimen/margin_medium_2"
         android:background="@drawable/bg_fab"
+        android:contentDescription="@string/cd_ib_share"
         android:elevation="@dimen/tag_line_elevation"
         android:src="@drawable/ic_share_white_24dp" />
 
@@ -45,6 +47,7 @@
         android:layout_marginBottom="@dimen/margin_xlarge"
         android:layout_marginRight="@dimen/margin_medium_2"
         android:background="@drawable/bg_fab"
+        android:contentDescription="@string/cd_ib_plus"
         android:elevation="@dimen/tag_line_elevation"
         android:src="@drawable/ic_add_white_24dp" />
 

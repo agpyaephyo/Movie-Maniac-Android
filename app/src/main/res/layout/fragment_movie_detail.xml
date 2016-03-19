@@ -36,6 +36,7 @@
                         android:id="@+id/iv_backdrop"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/cd_iv_backdrop"
                         android:foreground="@color/black_transparent_overlay"
                         android:scaleType="centerCrop"
                         app:imageUrl="@{movie.backdropPath}"
@@ -69,7 +70,9 @@
                                     android:layout_height="@dimen/item_movie_height"
                                     android:layout_marginLeft="@dimen/margin_medium_2"
                                     android:layout_marginTop="@dimen/margin_medium_2"
-                                    tools:src="@drawable/movie_poster" />
+                                    tools:src="@drawable/movie_poster"
+                                    android:contentDescription="@string/cd_iv_poster"
+                                    />
 
                                 <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
                                     android:id="@+id/tv_rating"
@@ -217,10 +220,9 @@
 
                     <include
                         android:id="@+id/vp_fabs"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
                         layout="@layout/view_pod_fabs"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 </FrameLayout>
 
@@ -279,7 +281,7 @@
                         android:fontFamily="sans-serif-condensed"
                         android:paddingBottom="@dimen/margin_medium_2"
                         android:paddingLeft="@dimen/margin_medium_2"
-                        android:text="Reviews"
+                        android:text="@string/lbl_reviews"
                         android:textColor="@color/text_white"
                         android:textSize="@dimen/text_regular_2x" />
 

@@ -86,6 +86,7 @@ public class MovieListActivity extends BaseActivity
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MY_FAVOURITES), getString(R.string.my_favourites));
 
         pagerMovies.setAdapter(mMoviePagerAdapter);
+        pagerMovies.setOffscreenPageLimit(mMoviePagerAdapter.getCount());
         tlMovies.setupWithViewPager(pagerMovies);
     }
 

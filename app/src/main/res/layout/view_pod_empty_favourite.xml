@@ -7,13 +7,13 @@
         android:id="@+id/lbl_empty_favourite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
         android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.2"
         android:paddingLeft="@dimen/empty_favourite_text_padding"
         android:paddingRight="@dimen/empty_favourite_text_padding"
-        android:gravity="center"
         android:text="@string/empty_favourite"
-        android:lineSpacingMultiplier="1.2"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/text_regular_2x" />
 
@@ -22,9 +22,9 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_above="@id/lbl_empty_favourite"
-        android:src="@drawable/pic_empty_favourite"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/margin_medium_2"
-        />
+        android:contentDescription="@string/cd_iv_empty_favourite"
+        android:src="@drawable/pic_empty_favourite" />
 
 </RelativeLayout>

@@ -63,4 +63,23 @@
     <string name="section_movie">Movie Shelf</string>
     <string name="empty_favourite">You haven\'t pick any movie as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
     <string name="send_to">Send this trailer to</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_avd_star">Favourite the movie</string>
+    <string name="cd_ib_favourite">Tap to favourite the movie</string>
+    <string name="cd_ib_facebook">Tap to share the movie on Facebook</string>
+    <string name="cd_ib_share">Tap to share the movie</string>
+    <string name="cd_ib_plus">Tap to see available actions for the movie</string>
+    <string name="cd_iv_cover">Default cover image of the user</string>
+    <string name="cd_iv_trailer_preview">Trailer preview image of the movie</string>
+    <string name="cd_iv_empty_favourite">Placeholder image for empty list of favourite</string>
+    <string name="cd_iv_like">Like this movie</string>
+    <string name="cd_iv_save">Save this movie</string>
+    <string name="cd_iv_poster">Movie poster</string>
+    <string name="cd_iv_backdrop">Backdrop image of the movie</string>
+    <string name="cd_iv_profile">User profile image</string>
+    <string name="cd_iv_cancel_star">Remove the movie from favourite</string>
+
+
+    <string name="lbl_reviews">Reviews</string>
 </resources>

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<net.aung.moviemaniac.views.pods.ViewPodUserActions
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<net.aung.moviemaniac.views.pods.ViewPodUserActions xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_transparent_overlay"
+    android:orientation="horizontal"
     android:weightSum="3">
 
     <LinearLayout
@@ -13,28 +12,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_action_bg"
         android:gravity="center"
-        android:padding="@dimen/margin_medium"
-        android:background="@drawable/selector_action_bg">
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_medium">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_thumb_up_white_18dp"
             android:layout_gravity="center_vertical"
-            />
+            android:contentDescription="@string/cd_iv_like"
+            android:src="@drawable/ic_thumb_up_white_18dp" />
 
         <TextView
             android:id="@+id/lbl_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/text_small"
-            android:text="@string/lbl_like"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/margin_medium"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/lbl_like"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_small"
             tools:text="Like" />
 
     </LinearLayout>
@@ -44,28 +43,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_action_bg"
         android:gravity="center"
-        android:padding="@dimen/margin_medium"
-        android:background="@drawable/selector_action_bg">
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_medium">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_save_white_18dp"
             android:layout_gravity="center_vertical"
-            />
+            android:contentDescription="@string/cd_iv_save"
+            android:src="@drawable/ic_save_white_18dp" />
 
         <TextView
             android:id="@+id/lbl_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/text_small"
-            android:text="@string/lbl_save"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/margin_medium"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/lbl_save"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_small"
             tools:text="Comment" />
 
     </LinearLayout>
@@ -75,28 +74,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_action_bg"
         android:gravity="center"
-        android:padding="@dimen/margin_medium"
-        android:background="@drawable/selector_action_bg">
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_medium">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_share_white_18dp"
             android:layout_gravity="center_vertical"
-            />
+            android:contentDescription="@string/cd_ib_share"
+            android:src="@drawable/ic_share_white_18dp" />
 
         <TextView
             android:id="@+id/lbl_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/text_white"
-            android:textSize="@dimen/text_small"
-            android:text="@string/lbl_share"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/margin_medium"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/lbl_share"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_small"
             tools:text="Save" />
 
     </LinearLayout>
