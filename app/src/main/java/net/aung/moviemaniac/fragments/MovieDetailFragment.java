@@ -41,11 +41,12 @@ import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.databinding.FragmentMovieDetailBinding;
 import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
 import net.aung.moviemaniac.mvp.views.MovieDetailView;
+import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
+import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.utils.YoutubeUtils;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodFabs;
-import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMovieStar;
@@ -155,6 +156,20 @@ public class MovieDetailFragment extends BaseFragment
 
         vpFabs.setController(this);
 
+        svContainerTrailer.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+
+            private boolean isScrolled = false;
+
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (!isScrolled && scrollY > ScreenUtils.getScreenDimension().y) { //at least, the scroll position has exceed the screen height. So, the reviews are already appear.
+                    //scroll from top to bottom
+                    GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SCROLL_FOR_REVIEWS);
+                    isScrolled = true;
+                }
+            }
+        });
+
         return rootView;
     }
 
@@ -168,6 +183,11 @@ public class MovieDetailFragment extends BaseFragment
     public void onStart() {
         super.onStart();
         presenter.onStart();
+    }
+
+    @Override
+    protected void sendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_NAME_MOVIE_DETAIL);
     }
 
     @Override
@@ -312,6 +332,7 @@ public class MovieDetailFragment extends BaseFragment
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int whichButton) {
+                            GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_REMOVE_STAR_DETAIL);
                             mMovie.setStar(false);
                             mMovie.updateMovieStarStatus(); //TODO On Main Thread ?
                             vpFabs.updateStarStatus(false);
@@ -319,6 +340,7 @@ public class MovieDetailFragment extends BaseFragment
                     })
                     .setNegativeButton(R.string.no, null).show();
         } else {
+            GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_STAR);
             mMovie.setStar(true);
             mMovie.updateMovieStarStatus(); //TODO On Main Thread ?
             vpMovieStar.showMovieSaved(vpFabs, new ViewPodMovieStar.ControllerMovieSaved() {
@@ -332,11 +354,13 @@ public class MovieDetailFragment extends BaseFragment
 
     @Override
     public void onTapFacebook() {
+        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_SHARE_FACEBOOK);
         Toast.makeText(getContext(), "Nothing happen ! Facebook integration is not there yet.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onTapShare() {
+        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_SHARE);
         if (mMovie.getTrailerList() != null && mMovie.getTrailerList().size() > 0) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);

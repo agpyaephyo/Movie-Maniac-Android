@@ -2,8 +2,8 @@ package net.aung.moviemaniac.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
@@ -11,9 +11,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.Toast;
 
-import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MoviePagerAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
@@ -21,6 +20,7 @@ import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.fragments.MovieDetailFragment;
 import net.aung.moviemaniac.fragments.MovieListFragment;
 import net.aung.moviemaniac.menus.LeftMenuFragment;
+import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 
 import butterknife.Bind;
@@ -48,8 +48,6 @@ public class MovieListActivity extends BaseActivity
         setContentView(R.layout.activity_movie_list);
         ButterKnife.bind(this, this);
 
-        ((MovieManiacApp)getApplication()).startTracking();
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.section_movie));
         setSupportActionBar(toolbar);
@@ -58,21 +56,22 @@ public class MovieListActivity extends BaseActivity
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
 
-        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 SortMovieDialog dialog = new SortMovieDialog(MovieListActivity.this);
                 dialog.show();
+                */
+
+                String dailySpecial = GAUtils.getInstance().getDailySpecial();
+                Toast.makeText(getApplicationContext(), "Daily special : " + dailySpecial, Toast.LENGTH_SHORT).show();
             }
         });
-        */
 
         mLeftMenu = (LeftMenuFragment) getSupportFragmentManager().findFragmentById(R.id.left_meu);
         mLeftMenu.setUp(R.id.left_meu, mDrawerLayout, mCallbackManager);
-
-        final FrameLayout flTabletMovieDetail = (FrameLayout) findViewById(R.id.fl_tablet_movie_detail);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

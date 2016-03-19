@@ -11,6 +11,7 @@ import com.facebook.FacebookSdk;
 import net.aung.moviemaniac.controllers.TrailerItemController;
 import net.aung.moviemaniac.data.vos.TrailerVO;
 import net.aung.moviemaniac.events.UserEvent;
+import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.YoutubeUtils;
 
 import de.greenrobot.event.EventBus;
@@ -54,6 +55,7 @@ public class BaseActivity extends AppCompatActivity implements TrailerItemContro
 
     @Override
     public void onShowTrailer(TrailerVO trailer) {
+        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_PLAY_TRAILER);
         YoutubeUtils.getObjInstance().playYoutbueVideo(this, trailer.getKey());
     }
 }

@@ -21,6 +21,7 @@ import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.databinding.ViewItemMovieBinding;
+import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
 import java.util.List;
@@ -104,6 +105,7 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
 
     @Override
     public void onClick(View view) {
+        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_MOVIE_ITEM);
         BitmapDrawable bitmapDrawable = (BitmapDrawable) ivPoster.getDrawable();
         MovieManiacApp.sPosterCache.put(0, bitmapDrawable.getBitmap());
 
@@ -148,6 +150,7 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_REMOVE_STAR_LIST);
                         MovieVO movie = binding.getMovie();
                         movie.setStar(false);
                         movie.updateMovieStarStatus(); //TODO On Main Thread ?

@@ -14,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MovieListAdapter;
@@ -23,6 +26,7 @@ import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.mvp.presenters.MovieListPresenter;
 import net.aung.moviemaniac.mvp.views.MovieListView;
+import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
 import net.aung.moviemaniac.views.components.recyclerview.SmartScrollListener;
@@ -154,6 +158,11 @@ public class MovieListFragment extends BaseFragment
     public void onStart() {
         super.onStart();
         movieListPresenter.onStart();
+    }
+
+    @Override
+    protected void sendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_NAME_MOVIE_LIST);
     }
 
     @Override

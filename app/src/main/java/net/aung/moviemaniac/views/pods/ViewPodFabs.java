@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.BaseController;
 import net.aung.moviemaniac.controllers.ViewController;
+import net.aung.moviemaniac.utils.GAUtils;
 
 
 /**
@@ -166,6 +167,7 @@ public class ViewPodFabs extends FrameLayout implements ViewController {
                 if (!isOpen) {
                     openAnim();
                     isOpen = true;
+                    GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_FAB_PLUS);
                 } else {
                     closeAnim();
                     isOpen = false;

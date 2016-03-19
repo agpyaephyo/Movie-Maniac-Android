@@ -5,9 +5,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.SparseArray;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Logger;
 import com.google.android.gms.analytics.Tracker;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by aung on 12/9/15.
@@ -18,32 +20,22 @@ public class MovieManiacApp extends Application {
     public static SparseArray<Bitmap> sPosterCache = new SparseArray<Bitmap>(1);
 
     private static Context sContext;
-    private Tracker mTracker;
+    public static MovieManiacApp INSTANCE; //For GA->enableAutoActivityReports
+
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         sContext = getApplicationContext();
+        INSTANCE = this;
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
         sContext = null;
-    }
-
-    public void startTracking() {
-        if(mTracker == null) {
-            GoogleAnalytics ga = GoogleAnalytics.getInstance(this);
-            mTracker = ga.newTracker(R.xml.ga_config);
-            ga.enableAutoActivityReports(this);
-            ga.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
-        }
-    }
-
-    public Tracker getTracker() {
-        startTracking();
-        return mTracker;
+        INSTANCE = null;
     }
 
     public static Context getContext() {
