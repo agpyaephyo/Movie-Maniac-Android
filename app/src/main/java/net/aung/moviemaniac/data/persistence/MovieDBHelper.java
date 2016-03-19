@@ -22,7 +22,7 @@ import net.aung.moviemaniac.data.persistence.MovieContract.ReviewEntry;
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 11;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
@@ -76,7 +76,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             MovieEntry.COLUMN_ORIGINAL_TITLE + " TEXT NOT NULL, " +
             MovieEntry.COLUMN_ORIGINAL_LANGUAGE + " TEXT NOT NULL, " +
             MovieEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
-            MovieEntry.COLUMN_BACKDROP_PATH + " TEXT NOT NULL, " +
+            MovieEntry.COLUMN_BACKDROP_PATH + " TEXT, " +
             MovieEntry.COLUMN_POPULARITY + " REAL NOT NULL, " +
             MovieEntry.COLUMN_VOTE_COUNT + " INTEGER NOT NULL, " +
             MovieEntry.COLUMN_VOTE_AVERAGE + " REAL NOT NULL, " +

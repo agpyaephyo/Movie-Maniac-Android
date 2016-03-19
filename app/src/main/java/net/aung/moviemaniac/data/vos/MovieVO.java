@@ -390,8 +390,8 @@ public class MovieVO {
 
         Context context = MovieManiacApp.getContext();
         int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
-                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?",
-                new String[]{String.valueOf(id)});
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND "+ MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
+                new String[]{String.valueOf(id), String.valueOf(movieType)});
 
         if (updateCount > 0) {
             Log.d(MovieManiacApp.TAG, "The star status for movie " + title + " has updated to " + isStar);
@@ -404,8 +404,8 @@ public class MovieVO {
         //Update movie.
         Context context = MovieManiacApp.getContext();
         int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
-                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?",
-                new String[]{String.valueOf(id)});
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND "+ MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
+                new String[]{String.valueOf(id), String.valueOf(movieType)});
 
         if (collection != null) {
             ContentValues cvCollection = collection.parseToContentValues();

@@ -21,6 +21,7 @@ public class MovieManiacConstants {
     public static final int CATEGORY_TOP_RATED_MOVIES = 2;
     public static final int CATEGORY_MY_FAVOURITES = 3;
     public static final int CATEGORY_NOW_PLAYING = 4;
+    public static final int CATEGORY_UPCOMING = 5;
 
     public static final String MOVIE_CATEGORY_PREFIX = "MOVIE_CATEGORY_";
 
@@ -30,12 +31,13 @@ public class MovieManiacConstants {
 
     //Movie Type
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({MOVIE_TYPE_MOST_POPULAR, MOVIE_TYPE_TOP_RATED, MOVIE_TYPE_NOW_PLAYING})
+    @IntDef({MOVIE_TYPE_MOST_POPULAR, MOVIE_TYPE_TOP_RATED, MOVIE_TYPE_NOW_PLAYING, MOVIE_TYPE_UPCOMING})
     public @interface MovieType {}
 
     public static final int MOVIE_TYPE_MOST_POPULAR = 100;
     public static final int MOVIE_TYPE_TOP_RATED = 200;
     public static final int MOVIE_TYPE_NOW_PLAYING = 300;
+    public static final int MOVIE_TYPE_UPCOMING = 400;
 
     public static final String IS_GENRE_LIST_LOADED_KEY = "IS_GENRE_LIST_LOADED_KEY";
 }

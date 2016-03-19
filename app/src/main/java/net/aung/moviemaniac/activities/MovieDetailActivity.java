@@ -14,10 +14,12 @@ import net.aung.moviemaniac.utils.ScreenUtils;
 public class MovieDetailActivity extends BaseActivity {
 
     private static final String INTENT_EXTRA_MOVIE_ID = "INTENT_EXTRA_MOVIE_ID";
+    private static final String INTENT_EXTRA_MOVIE_TYPE = "INTENT_EXTRA_MOVIE_TYPE";
 
-    public static Intent createNewIntent(int movieId) {
+    public static Intent createNewIntent(int movieId, int movieType) {
         Intent intent = new Intent(MovieManiacApp.getContext(), MovieDetailActivity.class);
         intent.putExtra(INTENT_EXTRA_MOVIE_ID, movieId);
+        intent.putExtra(INTENT_EXTRA_MOVIE_TYPE, movieType);
         return intent;
     }
 
@@ -28,9 +30,10 @@ public class MovieDetailActivity extends BaseActivity {
         ScreenUtils.setStatusbarTranslucent(true, this);
 
         int movieId = getIntent().getIntExtra(INTENT_EXTRA_MOVIE_ID, 0);
+        int movieType = getIntent().getIntExtra(INTENT_EXTRA_MOVIE_TYPE, 0);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fl_container, MovieDetailFragment.newInstance(movieId))
+                    .add(R.id.fl_container, MovieDetailFragment.newInstance(movieId, movieType))
                     .commit();
         }
     }

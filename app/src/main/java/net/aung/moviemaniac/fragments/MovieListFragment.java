@@ -240,6 +240,9 @@ public class MovieListFragment extends BaseFragment
             } else if (mCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING) {
                 sortedBy = null;
                 selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_NOW_PLAYING)};
+            } else if (mCategory == MovieManiacConstants.CATEGORY_UPCOMING) {
+                sortedBy = null;
+                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_UPCOMING)};
             }
 
             return new CursorLoader(getActivity(),

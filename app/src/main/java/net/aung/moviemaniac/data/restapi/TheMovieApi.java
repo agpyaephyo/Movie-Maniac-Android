@@ -29,6 +29,12 @@ public interface TheMovieApi {
             @Query("page") int pageNumber
     );
 
+    @GET("movie/upcoming")
+    Call<MovieListResponse> getUpcomingMovies(
+            @Query("api_key") String apiKey,
+            @Query("page") int pageNumber
+    );
+
     @GET("movie/popular")
     Call<MovieListResponse> getPopularMovies(
             @Query("api_key") String apiKey,

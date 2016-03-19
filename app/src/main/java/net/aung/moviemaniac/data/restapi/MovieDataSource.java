@@ -8,6 +8,7 @@ import net.aung.moviemaniac.data.vos.MovieVO;
 public interface MovieDataSource {
     void loadDiscoverMovieList(int pageNumber, String sortBy, boolean isForce);
     void loadNowPlayingMovies(int pageNumber, boolean isForce);
+    void loadUpcomingMovies(int pageNumber, boolean isForce);
     void loadPopularMovies(int pageNumber, boolean isForce);
     void loadTopRatedMovies(int pageNumber, boolean isForce);
     void loadMovieTrailers(int movieId);

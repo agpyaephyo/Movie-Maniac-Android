@@ -67,8 +67,10 @@ public class MovieDetailFragment extends BaseFragment
         ViewPodFabs.ControllerFabs {
 
     private static final String ARG_MOVIE_ID = "ARG_MOVIE_ID";
+    private static final String ARG_MOVIE_TYPE = "ARG_MOVIE_TYPE";
 
     private int mMovieId;
+    private int mMovieType;
     private MovieVO mMovie;
     private FragmentMovieDetailBinding binding;
     private MovieDetailPresenter presenter;
@@ -106,10 +108,11 @@ public class MovieDetailFragment extends BaseFragment
     @Bind(R.id.vp_fabs)
     ViewPodFabs vpFabs;
 
-    public static MovieDetailFragment newInstance(int movieId) {
+    public static MovieDetailFragment newInstance(int movieId, int movieType) {
         MovieDetailFragment fragment = new MovieDetailFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_MOVIE_ID, movieId);
+        bundle.putInt(ARG_MOVIE_TYPE, movieType);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -136,6 +139,7 @@ public class MovieDetailFragment extends BaseFragment
     protected void readArguments(Bundle bundle) {
         super.readArguments(bundle);
         mMovieId = bundle.getInt(ARG_MOVIE_ID);
+        mMovieType = bundle.getInt(ARG_MOVIE_TYPE);
     }
 
     @Override
@@ -289,9 +293,11 @@ public class MovieDetailFragment extends BaseFragment
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(),
-                MovieContract.MovieEntry.buildMovieUriWithMovieId(mMovieId),
-                null, null, null, null
-        );
+                MovieContract.MovieEntry.CONTENT_URI,
+                null,
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND "+ MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
+                new String[]{String.valueOf(mMovieId), String.valueOf(mMovieType)},
+                null);
     }
 
     @Override

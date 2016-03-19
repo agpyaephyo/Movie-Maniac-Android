@@ -38,6 +38,13 @@ public class DataEvent {
         }
     }
 
+    public static class LoadedUpcomingMovieListEvent extends LoadedMovieListEvent {
+
+        public LoadedUpcomingMovieListEvent(MovieListResponse response, boolean isForce) {
+            super(response, isForce);
+        }
+    }
+
     public static class LoadedMostPopularMovieListEvent extends LoadedMovieListEvent {
 
         public LoadedMostPopularMovieListEvent(MovieListResponse response, boolean isForce) {
@@ -79,6 +86,13 @@ public class DataEvent {
     public static class ShowMostPopularMovieListEvent extends ShowMovieListEvent {
 
         public ShowMostPopularMovieListEvent(ArrayList<MovieVO> movieList, boolean isForce, int pageNumber) {
+            super(movieList, isForce, pageNumber);
+        }
+    }
+
+    public static class ShowUpcomingMovieListEvent extends ShowMovieListEvent {
+
+        public ShowUpcomingMovieListEvent(ArrayList<MovieVO> movieList, boolean isForce, int pageNumber) {
             super(movieList, isForce, pageNumber);
         }
     }

@@ -82,6 +82,7 @@ public class MovieListActivity extends BaseActivity
 
         mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager());
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_NOW_PLAYING), getString(R.string.now_playing_movies));
+        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_UPCOMING), getString(R.string.upcoming_movies));
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES), getString(R.string.most_popular_movies));
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES), getString(R.string.top_rated_movies));
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MY_FAVOURITES), getString(R.string.my_favourites));
@@ -119,12 +120,12 @@ public class MovieListActivity extends BaseActivity
     public void onNavigateToDetail(MovieVO movie) {
         if (getResources().getBoolean(R.bool.isTablet)) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_tablet_movie_detail, MovieDetailFragment.newInstance(movie.getId()))
+                    .replace(R.id.fl_tablet_movie_detail, MovieDetailFragment.newInstance(movie.getId(), movie.getMovieType()))
                     .commit();
 
             mDrawerLayout.openDrawer(Gravity.RIGHT);
         } else {
-            Intent intentToDetail = MovieDetailActivity.createNewIntent(movie.getId());
+            Intent intentToDetail = MovieDetailActivity.createNewIntent(movie.getId(), movie.getMovieType());
             startActivity(intentToDetail);
         }
 

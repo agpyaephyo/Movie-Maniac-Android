@@ -65,6 +65,11 @@ public class MovieModel {
         movieDataSource.loadNowPlayingMovies(pageNumber, isForce);
     }
 
+    public void loadUpcomingMovieList(int pageNumber, boolean isForce) {
+        Log.d(MovieManiacApp.TAG, "Loading upcoming movies for pageNumber : " + pageNumber);
+        movieDataSource.loadUpcomingMovies(pageNumber, isForce);
+    }
+
     public void loadMovieDetailByMovieId(MovieVO movie) {
         Log.d(MovieManiacApp.TAG, "Loading movie detail by movieId " + movie.getId());
         movieDataSource.loadMovieDetail(movie);
@@ -88,6 +93,17 @@ public class MovieModel {
         MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR);
 
         DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowMostPopularMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
+        EventBus.getDefault().post(showDataEvent);
+    }
+
+    public void onEventMainThread(DataEvent.LoadedUpcomingMovieListEvent event) {
+        MovieListResponse response = event.getResponse();
+
+        ArrayList<MovieVO> loadedMovieList = response.getResults();
+        //Persistent into DB.
+        MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_UPCOMING);
+
+        DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowUpcomingMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
     }
 
