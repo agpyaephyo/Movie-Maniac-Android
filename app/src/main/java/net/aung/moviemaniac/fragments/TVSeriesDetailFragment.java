@@ -1,6 +1,8 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -11,6 +13,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +44,7 @@ import net.aung.moviemaniac.mvp.views.TVSeriesDetailView;
 import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.ScreenUtils;
+import net.aung.moviemaniac.utils.YoutubeUtils;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodFabs;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
@@ -220,20 +224,10 @@ public class TVSeriesDetailFragment extends BaseFragment
             displayTrailerList(tvSeries.getTrailerList());
         }
 
-        /*
-        if (tvSeries.getReviewList() != null && tvSeries.getReviewList().size() > 0) {
-            lblReviews.setVisibility(View.VISIBLE);
-            displayReviewList(tvSeries.getReviewList());
-        } else {
-            lblReviews.setVisibility(View.GONE);
-        }
-        */
-
         if(tvSeries.getSeasonList() != null && tvSeries.getSeasonList().size() > 0) {
             displaySeasonList(tvSeries.getSeasonList());
         }
 
-        //ibMovieStar.setImageResource(tvSeries.isStar() ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_fab_star);
         vpFabs.updateStarStatus(tvSeries.isStar());
     }
 
@@ -246,13 +240,6 @@ public class TVSeriesDetailFragment extends BaseFragment
     public void displayTrailerList(List<TrailerVO> trailerList) {
         trailerAdapter.setTrailerList(trailerList);
     }
-
-    /*
-    @Override
-    public void displayReviewList(List<MovieReviewVO> reviewList) {
-        vpReviews.displayReviewList(reviewList);
-    }
-    */
 
     @Override
     public void onGenerated(Palette palette) {
@@ -342,7 +329,6 @@ public class TVSeriesDetailFragment extends BaseFragment
 
     @Override
     public void onTapFavourite() {
-        /*
         if (mTVSeries.isStar()) {
             new AlertDialog.Builder(getContext())
                     .setMessage(R.string.remove_movie_from_favourite_confirmation_msg)
@@ -368,7 +354,6 @@ public class TVSeriesDetailFragment extends BaseFragment
                 }
             });
         }
-        */
     }
 
     @Override
@@ -379,17 +364,15 @@ public class TVSeriesDetailFragment extends BaseFragment
 
     @Override
     public void onTapShare() {
-        /*
         GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_SHARE);
         if (mTVSeries.getTrailerList() != null && mTVSeries.getTrailerList().size() > 0) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, mTVSeries.getTitle() + " : " + YoutubeUtils.getFullUrlFromYoutubeVideo(mTVSeries.getTrailerList().get(0).getKey()));
+            sendIntent.putExtra(Intent.EXTRA_TEXT, mTVSeries.getName() + " : " + YoutubeUtils.getFullUrlFromYoutubeVideo(mTVSeries.getTrailerList().get(0).getKey()));
             sendIntent.setType("text/plain");
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
         } else {
             Toast.makeText(getContext(), "No trailer released or this movie yet. We'll let you know when there is a new trailer coming.", Toast.LENGTH_SHORT).show();
         }
-        */
     }
 }

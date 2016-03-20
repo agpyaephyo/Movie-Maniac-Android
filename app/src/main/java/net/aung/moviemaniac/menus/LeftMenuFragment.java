@@ -65,7 +65,7 @@ public class LeftMenuFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_left_menu, container, false);
         ButterKnife.bind(this, rootView);
 
-        tvAppVersion.setText(getString(R.string.title_yote_shin) + " v0.1");
+        tvAppVersion.setText(getString(R.string.app_name) + " v0.1");
 
         try {
             String leftMenu = JsonUtils.getInstance().loadLeftMenuData();

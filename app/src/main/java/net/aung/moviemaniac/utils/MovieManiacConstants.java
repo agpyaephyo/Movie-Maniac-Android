@@ -24,6 +24,7 @@ public class MovieManiacConstants {
     public static final int CATEGORY_UPCOMING_MOVIES = 5;
     public static final int CATEGORY_MOST_POPULAR_TV_SERIES = 6;
     public static final int CATEGORY_TOP_RATED_TV_SERIES = 7;
+    public static final int CATEGORY_MY_FAVOURITES_TV_SERIES = 8;
 
     public static final String MOVIE_CATEGORY_PREFIX = "MOVIE_CATEGORY_";
     public static final String TV_SERIES_CATEGORY_PREFIX = "TV_SERIES_CATEGORY_";

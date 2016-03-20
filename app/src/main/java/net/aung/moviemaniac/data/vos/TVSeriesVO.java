@@ -211,6 +211,10 @@ public class TVSeriesVO {
         return isStar;
     }
 
+    public void setStar(boolean isStar) {
+        this.isStar = isStar;
+    }
+
     public boolean isDetailLoaded() {
         return isDetailLoaded;
     }
@@ -385,6 +389,20 @@ public class TVSeriesVO {
 
             Uri movieUri = MovieContract.TVSeriesEntry.buildTVSeriesUri(tvSeriesId);
             context.getContentResolver().notifyChange(movieUri, null);
+        }
+    }
+
+    public void updateMovieStarStatus() {
+        ContentValues cv = new ContentValues();
+        cv.put(MovieContract.TVSeriesEntry.COLUMN_IS_STAR, isStar ? 1 : 0);
+
+        Context context = MovieManiacApp.getContext();
+        int updateCount = context.getContentResolver().update(MovieContract.TVSeriesEntry.CONTENT_URI, cv,
+                MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_ID + " = ? AND " + MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " = ?",
+                new String[]{String.valueOf(tvSerieId), String.valueOf(tvSeriesType)});
+
+        if (updateCount > 0) {
+            Log.d(MovieManiacApp.TAG, "The star status for tv series " + name + " has updated to " + isStar);
         }
     }
 }

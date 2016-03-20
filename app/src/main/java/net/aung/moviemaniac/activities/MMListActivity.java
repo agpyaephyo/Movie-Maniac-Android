@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.aung.moviemaniac.R;
@@ -49,7 +50,7 @@ public class MMListActivity extends BaseActivity implements
     */
 
     private int mCurrentMenuIndex;
-    private Toolbar mToolbar;
+    private TextView tvScreenTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,11 @@ public class MMListActivity extends BaseActivity implements
         setContentView(R.layout.activity_movie_list);
         ButterKnife.bind(this, this);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tvScreenTitle = (TextView) toolbar.findViewById(R.id.tv_title);
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
@@ -73,15 +76,17 @@ public class MMListActivity extends BaseActivity implements
                 dialog.show();
                 */
 
+                /*
                 String dailySpecial = GAUtils.getInstance().getDailySpecial();
                 Toast.makeText(getApplicationContext(), "Daily special : " + dailySpecial, Toast.LENGTH_SHORT).show();
+                */
             }
         });
 
         mLeftMenu = (LeftMenuFragment) getSupportFragmentManager().findFragmentById(R.id.left_meu);
         mLeftMenu.setUp(R.id.left_meu, mDrawerLayout, mCallbackManager);
 
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mLeftMenu.openMenu();
@@ -195,14 +200,14 @@ public class MMListActivity extends BaseActivity implements
     }
 
     private void showMovieShelf() {
-        getSupportActionBar().setTitle(R.string.section_movie);
+        tvScreenTitle.setText(R.string.section_movie);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_pager, MoviePagerFragment.newInstance())
                 .commit();
     }
 
     private void showTVSeriesShelf() {
-        getSupportActionBar().setTitle(R.string.section_tv_series);
+        tvScreenTitle.setText(R.string.section_tv_series);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_pager, TVSeriesPagerFragment.newInstance())
                 .commit();

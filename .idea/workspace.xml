@@ -33,49 +33,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ca895fe-cd9a-4771-87a5-22008bb89e8e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMDetailActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/adapters/SeasonListAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/controllers/SeasonItemController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/controllers/TVSeriesItemController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesDetailFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/TVSeriesDetailPresenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/views/TVSeriesDetailView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/views/viewholders/TVSeasonViewHolder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_series_detail.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_item_season.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MovieDetailActivity.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MovieListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/MovieTrailerResponse.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/TrailerResponse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/BaseActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/adapters/TVSeriesListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/adapters/TVSeriesListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/model/MovieModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/model/MovieModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieContract.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieContract.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieDBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieDBHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSource.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSourceImpl.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSourceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/TheMovieApi.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/TheMovieApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCompanyVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCompanyVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVNetworkVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVNetworkVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeasonVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeasonVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeriesVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeriesVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TrailerVO.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TrailerVO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/events/DataEvent.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/events/DataEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesDetailFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesDetailFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesListFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/pagers/TVSeriesPagerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/pagers/TVSeriesPagerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieDetailPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieDetailPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/TVSeriesListPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/TVSeriesListPresenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/GAUtils.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/GAUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/menus/LeftMenuFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/menus/LeftMenuFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/views/viewholders/TVSeriesViewHolder.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/views/viewholders/TVSeriesViewHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_movie_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_movie_detail.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_movie_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_movie_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_movie.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_movie.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/view_item_menu.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_item_menu.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/ga_config.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/ga_config.xml" />
     </list>
     <ignored path="Movie-Maniac-Android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,172 +73,127 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TVSeriesDetailFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesDetailFragment.java">
+      <file leaf-file-name="MMListActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.442117">
-              <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="69" column="78" selection-start-line="69" selection-start-column="78" selection-end-line="69" selection-end-column="78" />
+              <folding>
+                <element signature="e#2465#2976#0" expanded="true" />
+                <element signature="e#2975#2976#0" expanded="true" />
+                <element signature="e#3199#3353#0" expanded="true" />
+                <element signature="e#3352#3353#0" expanded="true" />
+                <element signature="e#7884#7906#0" expanded="true" />
+                <element signature="e#8141#8167#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.36363637">
+              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_tv_series_detail.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_series_detail.xml">
+      <file leaf-file-name="LeftMenuFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/menus/LeftMenuFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="67" column="54" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_left_menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_left_menu.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1929827">
-              <caret line="277" column="72" selection-start-line="277" selection-start-column="72" selection-end-line="277" selection-end-column="72" />
-              <folding>
-                <element signature="e#920#961#0" expanded="true" />
-                <element signature="e#1091#1128#0" expanded="true" />
-                <element signature="e#1444#1468#0" expanded="true" />
-                <element signature="e#2154#2175#0" expanded="true" />
-                <element signature="e#2340#2362#0" expanded="true" />
-                <element signature="e#2838#2863#0" expanded="true" />
-                <element signature="e#3030#3055#0" expanded="true" />
-                <element signature="e#3114#3140#0" expanded="true" />
-                <element signature="e#3203#3227#0" expanded="true" />
-                <element signature="e#3289#3313#0" expanded="true" />
-                <element signature="e#3377#3399#0" expanded="true" />
-                <element signature="e#3829#3850#0" expanded="true" />
-                <element signature="e#4199#4223#0" expanded="true" />
-                <element signature="e#4648#4670#0" expanded="true" />
-                <element signature="e#4728#4752#0" expanded="true" />
-                <element signature="e#5412#5433#0" expanded="true" />
-                <element signature="e#6375#6396#0" expanded="true" />
-                <element signature="e#6445#6467#0" expanded="true" />
-                <element signature="e#7135#7157#0" expanded="true" />
-                <element signature="e#7215#7237#0" expanded="true" />
-                <element signature="e#7829#7850#0" expanded="true" />
-                <element signature="e#8451#8472#0" expanded="true" />
-                <element signature="e#8951#8978#0" expanded="true" />
-                <element signature="e#9317#9341#0" expanded="true" />
-                <element signature="e#9513#9537#0" expanded="true" />
-                <element signature="e#11021#11043#0" expanded="true" />
-                <element signature="e#11685#11707#0" expanded="true" />
-                <element signature="e#12035#12057#0" expanded="true" />
-                <element signature="e#12238#12260#0" expanded="true" />
-                <element signature="e#12442#12463#0" expanded="true" />
-                <element signature="e#12938#12962#0" expanded="true" />
-                <element signature="e#13007#13031#0" expanded="true" />
-                <element signature="e#13069#13090#0" expanded="true" />
-                <element signature="e#13194#13218#0" expanded="true" />
-                <element signature="e#13442#13475#0" expanded="true" />
-                <element signature="e#13574#13600#0" expanded="true" />
-                <element signature="e#13645#13669#0" expanded="true" />
-                <element signature="e#13715#13739#0" expanded="true" />
-                <element signature="e#14122#14146#0" expanded="true" />
-                <element signature="e#14191#14215#0" expanded="true" />
-                <element signature="e#14253#14275#0" expanded="true" />
-                <element signature="e#14379#14403#0" expanded="true" />
-                <element signature="e#14628#14661#0" expanded="true" />
-                <element signature="e#14760#14786#0" expanded="true" />
-                <element signature="e#14831#14855#0" expanded="true" />
-                <element signature="e#14901#14925#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MovieManiacConstants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_item_season.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/view_item_season.xml">
+      <file leaf-file-name="view_item_menu.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/view_item_menu.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5789474">
-              <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            <state vertical-scroll-proportion="-3.508772">
+              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_movie_list.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_movie_list.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.45058823">
+              <caret line="81" column="59" selection-start-line="81" selection-start-column="59" selection-end-line="81" selection-end-column="59" />
               <folding>
-                <element signature="e#438#464#0" expanded="true" />
-                <element signature="e#495#520#0" expanded="true" />
-                <element signature="e#726#756#0" expanded="true" />
-                <element signature="e#1108#1138#0" expanded="true" />
-                <element signature="e#1408#1429#0" expanded="true" />
-                <element signature="e#1613#1637#0" expanded="true" />
-                <element signature="e#1676#1698#0" expanded="true" />
-                <element signature="e#2127#2149#0" expanded="true" />
-                <element signature="e#2188#2210#0" expanded="true" />
-                <element signature="e#2658#2680#0" expanded="true" />
-                <element signature="e#2719#2741#0" expanded="true" />
+                <element signature="e#1401#1419#0" expanded="true" />
+                <element signature="e#1515#1539#0" expanded="true" />
+                <element signature="e#3487#3511#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TVSeriesDetailView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/views/TVSeriesDetailView.java">
+      <file leaf-file-name="fragment_tv_series_pager.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_series_pager.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+            <state vertical-scroll-proportion="-4.5614033">
+              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TVSeriesVO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeriesVO.java">
+      <file leaf-file-name="dimens.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="229" column="11" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5471#5472#0" expanded="true" />
-                <element signature="e#5505#5506#0" expanded="true" />
-                <element signature="e#5568#5569#0" expanded="true" />
-                <element signature="e#5614#5615#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrailerVO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TrailerVO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="138" column="34" selection-start-line="138" selection-start-column="34" selection-end-line="138" selection-end-column="34" />
+            <state vertical-scroll-proportion="-12.346154">
+              <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MovieContract.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieContract.java">
+      <file leaf-file-name="fragment_movie_detail.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_movie_detail.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="148" column="40" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
+            <state vertical-scroll-proportion="-9.473684">
+              <caret line="119" column="81" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MovieProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieProvider.java">
+      <file leaf-file-name="MovieListFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="166" column="63" selection-start-line="166" selection-start-column="63" selection-end-line="166" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MovieDBHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieDBHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+              <caret line="240" column="18" selection-start-line="240" selection-start-column="18" selection-end-line="240" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -1991,36 +1916,25 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_serie_list.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSerieListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/views/TVSeriesListView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/TVSerieListResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/TVSeriesListResponse.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_series_pager.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/views/components/recyclerview/AutofitRecyclerView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/view_item_tv_series.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/GenreVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/SettingsUtils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/pagers/TVSeriesPagerFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/TVSeriesListPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCompanyVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVNetworkVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/controllers/TVSeriesItemController.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_movie_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MovieDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MovieListActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/view_item_movie.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_movie_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/GAUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/views/viewholders/TVSeriesViewHolder.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/adapters/TVSeriesListAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/controllers/SeasonItemController.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeasonVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/views/viewholders/TVSeasonViewHolder.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/BaseActivity.java" />
@@ -2037,11 +1951,22 @@
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieDBHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TrailerVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieProvider.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeriesVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/views/TVSeriesDetailView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/view_item_season.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_series_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesDetailFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeriesVO.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/pagers/TVSeriesPagerFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_series_pager.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/menus/LeftMenuFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/view_item_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_movie_list.xml" />
       </list>
     </option>
   </component>
@@ -3439,36 +3364,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Movie-Maniac-Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Movie-Maniac-Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="androidTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviemaniac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -3979,70 +3874,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/view_item_tv_series.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.023529412">
-          <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/SettingsUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="48" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="48" />
-          <folding>
-            <element signature="e#612#659#0" expanded="false" />
-            <element signature="e#998#1045#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/TVSeriesListPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/pagers/TVSeriesPagerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="116" selection-start-line="42" selection-start-column="88" selection-end-line="42" selection-end-column="116" />
-          <folding>
-            <element signature="e#1478#1517#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/views/MovieDetailView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieReviewVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieDetailPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/GenreVO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4075,32 +3906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_movie_list.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.052631">
-          <caret line="82" column="35" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="40" selection-start-line="175" selection-start-column="40" selection-end-line="175" selection-end-column="40" />
-          <folding>
-            <element signature="e#2280#2753#0" expanded="true" />
-            <element signature="e#2752#2753#0" expanded="true" />
-            <element signature="e#2977#3131#0" expanded="true" />
-            <element signature="e#3130#3131#0" expanded="true" />
-            <element signature="e#7671#7693#0" expanded="true" />
-            <element signature="e#7937#7963#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/view_item_movie.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -4118,17 +3923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="210" column="15" selection-start-line="210" selection-start-column="15" selection-end-line="210" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_movie_detail.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6470588">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -4153,14 +3947,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="77" selection-start-line="46" selection-start-column="77" selection-end-line="46" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="51" selection-start-line="114" selection-start-column="51" selection-end-line="114" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -4204,14 +3990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.945455">
-          <caret line="99" column="38" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -4335,14 +4113,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="462" column="8" selection-start-line="462" selection-start-column="8" selection-end-line="471" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/model/MovieModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4391,32 +4161,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeriesVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="229" column="11" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5471#5472#0" expanded="true" />
-            <element signature="e#5505#5506#0" expanded="true" />
-            <element signature="e#5568#5569#0" expanded="true" />
-            <element signature="e#5614#5615#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/views/TVSeriesDetailView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="54" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -4502,11 +4250,181 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="393" column="9" selection-start-line="383" selection-start-column="8" selection-end-line="393" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesDetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.442117">
-          <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="348" column="35" selection-start-line="348" selection-start-column="35" selection-end-line="348" selection-end-column="35" />
+          <folding>
+            <element signature="e#12278#12331#0" expanded="true" />
+            <element signature="e#12437#12449#0" expanded="true" />
+            <element signature="e#12451#12940#0" expanded="true" />
+            <element signature="e#12939#12940#0" expanded="true" />
+            <element signature="e#12981#12992#0" expanded="true" />
+            <element signature="e#13263#13477#0" expanded="true" />
+            <element signature="e#13476#13477#0" expanded="true" />
+            <element signature="e#14353#14393#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TVSeriesVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.107143">
+          <caret line="394" column="16" selection-start-line="394" selection-start-column="16" selection-end-line="394" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3002#3089#0" expanded="true" />
+            <element signature="e#5024#5025#0" expanded="true" />
+            <element signature="e#5060#5061#0" expanded="true" />
+            <element signature="e#5376#5465#0" expanded="true" />
+            <element signature="e#5550#5551#0" expanded="true" />
+            <element signature="e#5584#5585#0" expanded="true" />
+            <element signature="e#5647#5648#0" expanded="true" />
+            <element signature="e#5693#5694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="64" selection-start-line="26" selection-start-column="64" selection-end-line="26" selection-end-column="64" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/pagers/TVSeriesPagerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+          <folding>
+            <element signature="e#1478#1517#0" expanded="true" />
+            <element signature="e#1643#1676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/TVSeriesListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="218" column="0" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+          <folding>
+            <element signature="e#6652#6694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="240" column="18" selection-start-line="240" selection-start-column="18" selection-end-line="240" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_movie_detail.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.473684">
+          <caret line="119" column="81" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tv_series_pager.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5614033">
+          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.36363637">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/menus/LeftMenuFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="54" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_left_menu.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/view_item_menu.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.508772">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.346154">
+          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="78" selection-start-line="69" selection-start-column="78" selection-end-line="69" selection-end-column="78" />
+          <folding>
+            <element signature="e#2465#2976#0" expanded="true" />
+            <element signature="e#2975#2976#0" expanded="true" />
+            <element signature="e#3199#3353#0" expanded="true" />
+            <element signature="e#3352#3353#0" expanded="true" />
+            <element signature="e#7884#7906#0" expanded="true" />
+            <element signature="e#8141#8167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_movie_list.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45058823">
+          <caret line="81" column="59" selection-start-line="81" selection-start-column="59" selection-end-line="81" selection-end-column="59" />
+          <folding>
+            <element signature="e#1401#1419#0" expanded="true" />
+            <element signature="e#1515#1539#0" expanded="true" />
+            <element signature="e#3487#3511#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

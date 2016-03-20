@@ -48,7 +48,7 @@
 
     <dimen name="elevation_card">2dp</dimen>
 
-    <dimen name="width_left_menu">340dp</dimen>
+    <dimen name="width_left_menu">300dp</dimen>
     <dimen name="user_info_height">280dp</dimen>
     <dimen name="button_border_stroke">1dp</dimen>
 

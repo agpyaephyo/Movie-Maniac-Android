@@ -229,16 +229,16 @@ public class MovieListFragment extends BaseFragment
             String sortedBy = null;
             String[] selectionArgs = null;
             if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
-                sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
+                //sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
                 selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR)};
             } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
-                sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
+                //sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
                 selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_TOP_RATED)};
             } else if (mCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES) {
-                sortedBy = null;
+                //sortedBy = null;
                 selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_NOW_PLAYING)};
             } else if (mCategory == MovieManiacConstants.CATEGORY_UPCOMING_MOVIES) {
-                sortedBy = null;
+                //sortedBy = null;
                 selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_UPCOMING)};
             }
 

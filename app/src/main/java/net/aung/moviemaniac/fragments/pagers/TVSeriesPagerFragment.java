@@ -41,6 +41,7 @@ public class TVSeriesPagerFragment extends Fragment {
         mMoviePagerAdapter = new MoviePagerAdapter(getActivity().getSupportFragmentManager());
         mMoviePagerAdapter.addTab(TVSeriesListFragment.newInstance(MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES), getString(R.string.most_popular_tv_series));
         mMoviePagerAdapter.addTab(TVSeriesListFragment.newInstance(MovieManiacConstants.CATEGORY_TOP_RATED_TV_SERIES), getString(R.string.top_rated_tv_series));
+        mMoviePagerAdapter.addTab(TVSeriesListFragment.newInstance(MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES), getString(R.string.my_favourites));
     }
 
     @Override

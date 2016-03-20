@@ -122,11 +122,9 @@ public class TVSeriesListFragment extends BaseFragment
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_red_dark);
 
-        /*
-        if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
+        if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES) {
             swipeContainer.setEnabled(false);
         }
-        */
 
         return rootView;
     }
@@ -211,31 +209,42 @@ public class TVSeriesListFragment extends BaseFragment
 
     @Override
     public void onListEndReached() {
-        Snackbar.make(rootView, getString(R.string.loading_more_tv_series), Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show();
+        if (mCategory != MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES) {
+            Snackbar.make(rootView, getString(R.string.loading_more_tv_series), Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
 
-        tvSeriesListPresenter.loadMoreData();
+            tvSeriesListPresenter.loadMoreData();
+        }
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES) {
+            return new CursorLoader(getActivity(),
+                    MovieContract.TVSeriesEntry.CONTENT_URI,
+                    null,
+                    MovieContract.TVSeriesEntry.COLUMN_IS_STAR + " = ? ",
+                    new String[]{String.valueOf(1)}, // 1 means starred the tv series.
+                    null
+            );
+        } else {
+            String sortedBy = null;
+            String[] selectionArgs = null;
+            if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES) {
+                //sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
+                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_MOST_POPULAR)};
+            } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_TV_SERIES) {
+                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_TOP_RATED)};
+            }
 
-        String sortedBy = null;
-        String[] selectionArgs = null;
-        if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES) {
-            //sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
-            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_MOST_POPULAR)};
-        } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_TV_SERIES) {
-            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_TOP_RATED)};
+            return new CursorLoader(getActivity(),
+                    MovieContract.TVSeriesEntry.CONTENT_URI,
+                    null,
+                    MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " = ? ",
+                    selectionArgs,
+                    sortedBy
+            );
         }
-
-        return new CursorLoader(getActivity(),
-                MovieContract.TVSeriesEntry.CONTENT_URI,
-                null,
-                MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " = ? ",
-                selectionArgs,
-                sortedBy
-        );
     }
 
     @Override
