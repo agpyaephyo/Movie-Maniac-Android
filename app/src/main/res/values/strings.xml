@@ -87,4 +87,5 @@
     <string name="most_popular_tv_series">Most Popular</string>
 
     <string name="format_first_air_date">First air date : <xliff:g id="first_air_date">%1$s</xliff:g></string>
+    <string name="loading_more_tv_series">Loading more TV Series ...</string>
 </resources>

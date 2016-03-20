@@ -1,17 +1,25 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.TVSeriesListAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
+import net.aung.moviemaniac.data.persistence.MovieContract;
+import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.mvp.presenters.TVSeriesListPresenter;
 import net.aung.moviemaniac.mvp.views.TVSeriesListView;
@@ -32,8 +40,8 @@ import butterknife.ButterKnife;
 public class TVSeriesListFragment extends BaseFragment
         implements TVSeriesListView,
         SwipeRefreshLayout.OnRefreshListener,
-        SmartScrollListener.ControllerSmartScroll/*,
-        LoaderManager.LoaderCallbacks<Cursor>*/ {
+        SmartScrollListener.ControllerSmartScroll,
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String BARG_CATEGORY = "BARG_CATEGORY";
 
@@ -55,7 +63,7 @@ public class TVSeriesListFragment extends BaseFragment
     //private MovieItemController controller;
 
     private int mCategory;
-    //private List<TVSeriesVO> mTVSeriesList = new ArrayList<>();
+    private List<TVSeriesVO> mTVSeriesList = new ArrayList<>();
 
     public static TVSeriesListFragment newInstance(int category) {
         TVSeriesListFragment fragment = new TVSeriesListFragment();
@@ -125,7 +133,7 @@ public class TVSeriesListFragment extends BaseFragment
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        //getLoaderManager().initLoader(MovieManiacConstants.TV_SERIES_LIST_LOADER, null, this);
+        getLoaderManager().initLoader(MovieManiacConstants.TV_SERIES_LIST_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -203,86 +211,62 @@ public class TVSeriesListFragment extends BaseFragment
 
     @Override
     public void onListEndReached() {
-        /*
-        if (mCategory != MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
-            Snackbar.make(rootView, getString(R.string.loading_more_movies), Snackbar.LENGTH_SHORT)
-                    .setAction("Action", null).show();
+        Snackbar.make(rootView, getString(R.string.loading_more_tv_series), Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
 
-            tvSeriesListPresenter.loadMoreData();
-        }
-        */
+        tvSeriesListPresenter.loadMoreData();
     }
 
-    /*
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
-            return new CursorLoader(getActivity(),
-                    MovieContract.MovieEntry.CONTENT_URI,
-                    null,
-                    MovieContract.MovieEntry.COLUMN_IS_STAR + " = ? ",
-                    new String[]{String.valueOf(1)}, // 1 means starred the movie.
-                    null
-            );
-        } else {
+
             String sortedBy = null;
             String[] selectionArgs = null;
-            if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
-                sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
-                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR)};
-            } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
-                sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_VOTE_AVERAGE + " DESC";
-                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_TOP_RATED)};
-            } else if (mCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES) {
-                sortedBy = null;
-                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_NOW_PLAYING)};
-            } else if (mCategory == MovieManiacConstants.CATEGORY_UPCOMING_MOVIES) {
-                sortedBy = null;
-                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.MOVIE_TYPE_UPCOMING)};
+            if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES) {
+                //sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
+                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_MOST_POPULAR)};
             }
 
             return new CursorLoader(getActivity(),
-                    MovieContract.MovieEntry.CONTENT_URI,
+                    MovieContract.TVSeriesEntry.CONTENT_URI,
                     null,
-                    MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ? ",
+                    MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " = ? ",
                     selectionArgs,
                     sortedBy
             );
-        }
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        List<MovieVO> movieList = new ArrayList<>();
+        List<TVSeriesVO> tvSeriesList = new ArrayList<>();
         if (data != null && data.moveToFirst()) {
             do {
-                MovieVO movie = MovieVO.parseFromListCursor(data);
-                movie.setGenreList(GenreVO.loadGenreListByMovieId(movie.getId()));
-                movieList.add(movie);
+                TVSeriesVO tvSeries = TVSeriesVO.parseFromListCursor(data);
+                tvSeries.setGenreList(GenreVO.loadGenreListByTVSeriesId(tvSeries.getTvSerieId()));
+                tvSeriesList.add(tvSeries);
 
             } while (data.moveToNext());
         }
 
-        if(mTVSeriesList.size() != movieList.size()) { //To prevent refreshing the recyclerView when coming back from detail screen.
-            mTVSeriesList = movieList;
+        if(mTVSeriesList.size() != tvSeriesList.size()) { //To prevent refreshing the recyclerView when coming back from detail screen.
+            mTVSeriesList = tvSeriesList;
 
-            Log.d(MovieManiacApp.TAG, "Displaying movies for category " + mCategory + " : " + movieList.size());
-            displayMovieList(movieList, false);
+            Log.d(MovieManiacApp.TAG, "Displaying tv series for category " + mCategory + " : " + tvSeriesList.size());
+            displayTVSeriesList(tvSeriesList, false);
         } else {
             if (swipeContainer.isRefreshing()) {
                 swipeContainer.setRefreshing(false);
             }
         }
 
-        if (movieList.size() == 0) {
+        if (tvSeriesList.size() == 0) {
             tvSeriesListPresenter.loadMovieListFromNetwork();
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        List<MovieVO> movieList = new ArrayList<>();
-        displayMovieList(movieList, false);
+        List<TVSeriesVO> movieList = new ArrayList<>();
+        displayTVSeriesList(movieList, false);
     }
-    */
 }

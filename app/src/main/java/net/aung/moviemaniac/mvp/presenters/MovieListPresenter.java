@@ -21,7 +21,7 @@ public class MovieListPresenter extends BasePresenter {
     public MovieListPresenter(@NonNull MovieListView movieListView, int movieCategory) {
         this.movieListView = movieListView;
         this.movieCategory = movieCategory;
-        pageNumber = SettingsUtils.retrievePageNumber(movieCategory);
+        pageNumber = SettingsUtils.retrieveMoviePageNumber(movieCategory);
     }
 
     @Override

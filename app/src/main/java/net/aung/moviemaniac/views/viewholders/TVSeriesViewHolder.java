@@ -75,7 +75,6 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
                     }
                 });
 
-        /*
         List<GenreVO> genreList = tvSeries.getGenreList();
         if (genreList != null) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -93,7 +92,6 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
             //stringBuilder.append("</font>");
             tvGenreList.setText(Html.fromHtml(stringBuilder.toString()));
         }
-        */
     }
 
     @Override

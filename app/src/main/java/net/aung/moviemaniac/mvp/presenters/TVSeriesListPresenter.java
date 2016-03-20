@@ -21,12 +21,12 @@ public class TVSeriesListPresenter extends BasePresenter {
     public TVSeriesListPresenter(@NonNull TVSeriesListView tvSeriesListView, int tvSeriesCategory) {
         this.tvSeriesListView = tvSeriesListView;
         this.tvSeriesCategory = tvSeriesCategory;
-        pageNumber = SettingsUtils.retrievePageNumber(tvSeriesCategory);
+        pageNumber = SettingsUtils.retrieveTVSeriesPageNumber(tvSeriesCategory);
     }
 
     @Override
     public void onStart() {
-        loadMovieListFromNetwork();
+        //loadMovieListFromNetwork();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TVSeriesListPresenter extends BasePresenter {
             pageNumber = event.getPageNumber() + 1;
             SettingsUtils.saveTVSeriesPageNumber(tvSeriesCategory, pageNumber);
 
-            tvSeriesListView.displayTVSeriesList(event.getTvSeriesList(), false);
+            //tvSeriesListView.displayTVSeriesList(event.getTvSeriesList(), false);
         }
     }
 

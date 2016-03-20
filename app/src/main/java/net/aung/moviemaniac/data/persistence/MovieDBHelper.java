@@ -28,7 +28,7 @@ import net.aung.moviemaniac.data.persistence.MovieContract.TVSeasonEntry;
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 14;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
@@ -216,7 +216,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             TVSeriesEntry.COLUMN_TV_SERIES_ID + " INTEGER NOT NULL, " +
             TVSeriesEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
             TVSeriesEntry.COLUMN_OVERVIEW + " TEXT NOT NULL, " +
-            TVSeriesEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL, " +
+            TVSeriesEntry.COLUMN_FIRST_AIR_DATE + " TEXT NOT NULL, " +
             TVSeriesEntry.COLUMN_ORIGINAL_NAME + " TEXT NOT NULL, " +
             TVSeriesEntry.COLUMN_ORIGINAL_LANGUAGE + " TEXT NOT NULL, " +
             TVSeriesEntry.COLUMN_NAME + " TEXT NOT NULL, " +
@@ -332,6 +332,12 @@ public class MovieDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_MOVIE_PRODUCTION_COUNTRY_TABLE);
         db.execSQL(SQL_CREATE_MOVIE_SPOKEN_LANGUAGE_TABLE);
         db.execSQL(SQL_CREATE_REVIEW_TABLE);
+        db.execSQL(SQL_CREATE_TV_SERIES_TABLE);
+        db.execSQL(SQL_CREATE_TV_SERIES_GENRE_TABLE);
+        db.execSQL(SQL_CREATE_TV_SERIES_PRODUCTION_COMPANY_TABLE);
+        db.execSQL(SQL_CREATE_NETWORKS_TABLE);
+        db.execSQL(SQL_CREATE_TV_SERIES_NETWORK_TABLE);
+        db.execSQL(SQL_CREATE_TV_SEASONS_TABLE);
     }
 
     @Override
@@ -348,6 +354,12 @@ public class MovieDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ProductionCountryEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + SpokenLanguageEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ReviewEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TVSeriesNetworkEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ReviewEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TVSeriesEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TVSeriesGenreEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TVSeriesProductionCompanyEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + NetworkEntry.TABLE_NAME);
 
         onCreate(db);
     }

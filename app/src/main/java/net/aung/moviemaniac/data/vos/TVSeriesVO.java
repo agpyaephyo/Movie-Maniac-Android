@@ -1,11 +1,15 @@
 package net.aung.moviemaniac.data.vos;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
+import net.aung.moviemaniac.data.persistence.MovieContract;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 
 import java.util.ArrayList;
@@ -55,6 +59,8 @@ public class TVSeriesVO {
     private String orignalName;
 
     private int tvSeriesType;
+    private boolean isStar;
+    private boolean isDetailLoaded;
 
     @SerializedName("genres")
     private ArrayList<GenreVO> genreList; //detail
@@ -147,6 +153,10 @@ public class TVSeriesVO {
         return genreList;
     }
 
+    public void setGenreList(ArrayList<GenreVO> genreList) {
+        this.genreList = genreList;
+    }
+
     public String getHomepage() {
         return homepage;
     }
@@ -179,6 +189,14 @@ public class TVSeriesVO {
         return status;
     }
 
+    public boolean isStar() {
+        return isStar;
+    }
+
+    public boolean isDetailLoaded() {
+        return isDetailLoaded;
+    }
+
     public static void saveTVSeriesFromList(ArrayList<TVSeriesVO> loadedTVSeriesList, @MovieManiacConstants.TVSeriesType int tvSeriesType) {
         ContentValues[] tvSeriesCVs = new ContentValues[loadedTVSeriesList.size()];
         for (int index = 0; index < tvSeriesCVs.length; index++) {
@@ -186,11 +204,70 @@ public class TVSeriesVO {
             tvSeries.setTvSeriesType(tvSeriesType);
 
             tvSeriesCVs[index] = tvSeries.parseToContentValues();
+
+            if (tvSeries.genreIds != null && tvSeries.genreIds.length > 0) {
+                ContentValues[] tvSeriesGenreListCVs = new ContentValues[tvSeries.genreIds.length];
+                for (int index_two = 0; index_two < tvSeriesGenreListCVs.length; index_two++) {
+                    ContentValues tvSeriesGenreCV = new ContentValues();
+                    tvSeriesGenreCV.put(MovieContract.TVSeriesGenreEntry.COLUMN_GENRE_ID, tvSeries.genreIds[index_two]);
+                    tvSeriesGenreCV.put(MovieContract.TVSeriesGenreEntry.COLUMN_TV_SERIES_ID, tvSeries.getTvSerieId());
+
+                    tvSeriesGenreListCVs[index_two] = tvSeriesGenreCV;
+                }
+
+                Context context = MovieManiacApp.getContext();
+                int insertedCount = context.getContentResolver().bulkInsert(MovieContract.TVSeriesGenreEntry.CONTENT_URI, tvSeriesGenreListCVs);
+            }
         }
+
+        //Bulk Insert movie.
+        Context context = MovieManiacApp.getContext();
+        int insertedCount = context.getContentResolver().bulkInsert(MovieContract.TVSeriesEntry.CONTENT_URI, tvSeriesCVs);
+
+        Log.d(MovieManiacApp.TAG, "Bulk inserted into tv_series table with tv series type - " + tvSeriesType + " : " + insertedCount);
     }
 
     private ContentValues parseToContentValues() {
         ContentValues tvSeriesCV = new ContentValues();
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_ID, tvSerieId);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_POSTER_PATH, posterPath);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_OVERVIEW, overview);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_FIRST_AIR_DATE, firstAirDateText);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_NAME, name);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_ORIGINAL_LANGUAGE, originalLanguage);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_ORIGINAL_NAME, orignalName);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_BACKDROP_PATH, backdropPath);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_POPULARITY, popularity);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_VOTE_COUNT, voteCount);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_VOTE_AVERAGE, voteAverage);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE, tvSeriesType);
+
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_HOMEPAGE, homepage);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_LAST_AIR_DATE, lastAirDateText);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_NUMBER_OF_EPISODES, numberOfEpisodes);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_NUMBER_OF_SEASON, numberOfSeasons);
+        tvSeriesCV.put(MovieContract.TVSeriesEntry.COLUMN_STATUS, status);
+
         return tvSeriesCV;
+    }
+
+    public static TVSeriesVO parseFromListCursor(Cursor data) {
+        TVSeriesVO tvSeries = new TVSeriesVO();
+
+        tvSeries.tvSerieId = data.getInt(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_ID));
+        tvSeries.posterPath = data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_POSTER_PATH));
+        tvSeries.overview = data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_OVERVIEW));
+        tvSeries.popularity = data.getFloat(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_POPULARITY));
+        tvSeries.backdropPath = data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_BACKDROP_PATH));
+        tvSeries.voteAverage = data.getDouble(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_VOTE_AVERAGE));
+        tvSeries.firstAirDateText = data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_FIRST_AIR_DATE));
+        tvSeries.originalLanguage = data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_ORIGINAL_LANGUAGE));
+        tvSeries.voteCount = data.getInt(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_VOTE_COUNT));
+        tvSeries.name = data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_NAME));
+        tvSeries.orignalName = data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_ORIGINAL_NAME));
+        tvSeries.isStar = data.getInt(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_IS_STAR)) == 1;
+        tvSeries.tvSeriesType = data.getInt(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE));
+
+        return tvSeries;
     }
 }

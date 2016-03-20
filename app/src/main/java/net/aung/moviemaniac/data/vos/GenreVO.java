@@ -101,6 +101,22 @@ public class GenreVO {
         return genreList;
     }
 
+    public static ArrayList<GenreVO> loadGenreListByTVSeriesId(int tvSeriesId) {
+        Context context = MovieManiacApp.getContext();
+        ArrayList<GenreVO> genreList = new ArrayList<>();
+        Cursor genreCursor = context.getContentResolver().query(MovieContract.TVSeriesGenreEntry.buildTVSeriesGenreUriWithTVSeriesId(tvSeriesId),
+                null, null, null, null);
+
+        if (genreCursor != null && genreCursor.moveToFirst()) {
+            do {
+                genreList.add(GenreVO.parseFromCursor(genreCursor));
+            } while (genreCursor.moveToNext());
+            genreCursor.close();
+        }
+
+        return genreList;
+    }
+
     private static GenreVO parseFromCursor(Cursor genreCursor) {
         GenreVO genre = new GenreVO();
         genre.id = genreCursor.getInt(genreCursor.getColumnIndex(MovieContract.GenreEntry.COLUMN_GENRE_ID));

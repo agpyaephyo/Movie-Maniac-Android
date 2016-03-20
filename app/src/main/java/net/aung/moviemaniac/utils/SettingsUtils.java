@@ -27,10 +27,18 @@ public class SettingsUtils {
     }
 
     // -- Page Number Related --
-    public static int retrievePageNumber(int movieCategory) {
+    public static int retrieveMoviePageNumber(int movieCategory) {
         Context context = MovieManiacApp.getContext();
         SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         int loadedPageNumber = defaultSharedPref.getInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX + movieCategory, MovieModel.INITIAL_PAGE_NUMBER);
+
+        return loadedPageNumber;
+    }
+
+    public static int retrieveTVSeriesPageNumber(int tvSeriesCategory) {
+        Context context = MovieManiacApp.getContext();
+        SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        int loadedPageNumber = defaultSharedPref.getInt(MovieManiacConstants.TV_SERIES_CATEGORY_PREFIX + tvSeriesCategory, MovieModel.INITIAL_PAGE_NUMBER);
 
         return loadedPageNumber;
     }

@@ -496,7 +496,6 @@ public class MovieContract {
         public static final String COLUMN_TV_SERIES_ID = "tv_series_id";
         public static final String COLUMN_POSTER_PATH = "poster_path";
         public static final String COLUMN_OVERVIEW = "overview";
-        public static final String COLUMN_RELEASE_DATE = "release_date";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_ORIGINAL_LANGUAGE = "original_language";
         public static final String COLUMN_ORIGINAL_NAME = "original_name";
@@ -504,6 +503,7 @@ public class MovieContract {
         public static final String COLUMN_POPULARITY = "popularity";
         public static final String COLUMN_VOTE_COUNT = "vote_count";
         public static final String COLUMN_VOTE_AVERAGE = "vote_average";
+        public static final String COLUMN_FIRST_AIR_DATE = "first_air_date";
 
         public static final String COLUMN_TV_SERIES_TYPE = "tv_series_type";
         public static final String COLUMN_IS_DETAIL_LOADED = "is_detail_loaded";
@@ -573,7 +573,7 @@ public class MovieContract {
         }
 
         public static long getTVSeriesIdFromParam(Uri uri) {
-            String movieIdString = uri.getQueryParameter(COLUMN_GENRE_ID);
+            String movieIdString = uri.getQueryParameter(COLUMN_TV_SERIES_ID);
             if(movieIdString != null && movieIdString.length() > 0) {
                 return Long.parseLong(movieIdString);
             } else {
