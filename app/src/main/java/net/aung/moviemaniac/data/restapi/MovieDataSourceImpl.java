@@ -4,9 +4,10 @@ import net.aung.moviemaniac.BuildConfig;
 import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
-import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.restapi.responses.TrailerResponse;
 import net.aung.moviemaniac.data.restapi.responses.TVSeriesListResponse;
 import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.utils.CommonInstances;
 
@@ -144,15 +145,15 @@ public class MovieDataSourceImpl implements MovieDataSource {
 
     @Override
     public void loadMovieTrailers(final int movieId) {
-        Call<MovieTrailerResponse> movieTrailerResponseCall = theMovieApi.getTrailersByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
+        Call<TrailerResponse> movieTrailerResponseCall = theMovieApi.getTrailersByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
 
-        movieTrailerResponseCall.enqueue(new MovieApiCallback<MovieTrailerResponse>() {
+        movieTrailerResponseCall.enqueue(new MovieApiCallback<TrailerResponse>() {
             @Override
-            public void onResponse(Response<MovieTrailerResponse> response, Retrofit retrofit) {
+            public void onResponse(Response<TrailerResponse> response, Retrofit retrofit) {
                 super.onResponse(response, retrofit);
-                MovieTrailerResponse movieTrailerResponse = response.body();
-                if (movieTrailerResponse != null) {
-                    DataEvent.LoadedMovieTrailerEvent event = new DataEvent.LoadedMovieTrailerEvent(movieTrailerResponse, movieId);
+                TrailerResponse trailerResponse = response.body();
+                if (trailerResponse != null) {
+                    DataEvent.LoadedMovieTrailerEvent event = new DataEvent.LoadedMovieTrailerEvent(trailerResponse, movieId);
                     EventBus.getDefault().post(event);
                 }
             }
@@ -222,6 +223,60 @@ public class MovieDataSourceImpl implements MovieDataSource {
                 TVSeriesListResponse tvSeriesListResponse = response.body();
                 if (tvSeriesListResponse != null) {
                     DataEvent.LoadedPopularTVSeriesListEvent event = new DataEvent.LoadedPopularTVSeriesListEvent(tvSeriesListResponse, isForce);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadTopRatedTVSeries(int pageNumber, final boolean isForce) {
+        Call<TVSeriesListResponse> popularTVSeriesResponseCall = theMovieApi.getTopRatedTVSeries(
+                BuildConfig.THE_MOVIE_API_KEY,
+                pageNumber
+        );
+
+        popularTVSeriesResponseCall.enqueue(new MovieApiCallback<TVSeriesListResponse>() {
+            @Override
+            public void onResponse(Response<TVSeriesListResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                TVSeriesListResponse tvSeriesListResponse = response.body();
+                if (tvSeriesListResponse != null) {
+                    DataEvent.LoadedTopRatedTVSeriesListEvent event = new DataEvent.LoadedTopRatedTVSeriesListEvent(tvSeriesListResponse, isForce);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadTVSeriesDetail(final TVSeriesVO tvSeries) {
+        Call<TVSeriesVO> tvSeriesDetailCall = theMovieApi.getTVSeriesDetailByTVSeriesId(tvSeries.getTvSerieId(), BuildConfig.THE_MOVIE_API_KEY);
+        tvSeriesDetailCall.enqueue(new MovieApiCallback<TVSeriesVO>() {
+            @Override
+            public void onResponse(Response<TVSeriesVO> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                TVSeriesVO tvSeriesDetailResponse = response.body();
+                if (tvSeriesDetailResponse != null) {
+                    tvSeriesDetailResponse.merge(tvSeries);
+                    DataEvent.LoadedTVSeriesDetailEvent event = new DataEvent.LoadedTVSeriesDetailEvent(tvSeriesDetailResponse);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadTvSeriesTrailers(final int tvSeriesId) {
+        Call<TrailerResponse> movieTrailerResponseCall = theMovieApi.getTrailersByTVSeriesId(tvSeriesId, BuildConfig.THE_MOVIE_API_KEY);
+
+        movieTrailerResponseCall.enqueue(new MovieApiCallback<TrailerResponse>() {
+            @Override
+            public void onResponse(Response<TrailerResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                TrailerResponse trailerResponse = response.body();
+                if (trailerResponse != null) {
+                    DataEvent.LoadedTVSeriesTrailerEvent event = new DataEvent.LoadedTVSeriesTrailerEvent(trailerResponse, tvSeriesId);
                     EventBus.getDefault().post(event);
                 }
             }

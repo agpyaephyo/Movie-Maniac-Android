@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="season"
+            type="net.aung.moviemaniac.data.vos.TVSeasonVO" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="@dimen/item_movie_height"
+        android:layout_height="@dimen/item_movie_width">
+
+        <ImageView
+            android:id="@+id/iv_season_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/cd_iv_season_preview"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{season.posterPath}"
+            tools:src="@drawable/trailer_02" />
+
+        <ImageView
+            android:id="@+id/iv_season_preview_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/cd_iv_season_preview"
+            android:scaleType="centerCrop"
+            android:src="#8000" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@{season.seasonNumber}"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/text_regular_2x"
+            android:layout_marginLeft="@dimen/margin_medium"
+            tools:text="Season 1" />
+
+        <TextView
+            android:id="@+id/tv_air_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@{season.airDateText}"
+            android:textColor="@color/text_white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/margin_xlarge"
+            android:layout_marginLeft="@dimen/margin_medium"
+            tools:text="Air date : 2004-09-08" />
+
+        <TextView
+            android:id="@+id/tv_total_episode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@{season.episodeCount}"
+            android:textColor="@color/text_white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            tools:text="Total Episode : 13" />
+
+    </FrameLayout>
+
+</layout>

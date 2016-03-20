@@ -123,6 +123,7 @@ public class MovieContract {
         public static final String COLUMN_SIZE = "size";
         public static final String COLUMN_TYPE = "type";
         public static final String COLUMN_MOVIE_ID = "movie_id";
+        public static final String COLUMN_TV_SERIES_ID = "tv_series_id";
 
         public static Uri buildTrailerUri(long id) {
             //content://net.aung.moviemaniac/trailer/1
@@ -137,10 +138,27 @@ public class MovieContract {
                     .build();
         }
 
+        //Uri for retrieving trailers for a movie id.
+        public static Uri buildTrailerUriWithTVSereisId(long tvSeriesId) {
+            //content://net.aung.moviemaniac/trailer?tv_series_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TV_SERIES_ID, Long.toString(tvSeriesId))
+                    .build();
+        }
+
         public static long getMovieIdFromParam(Uri uri) {
             String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
             if(movieIdString != null && movieIdString.length() > 0) {
                 return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
+
+        public static long getTVSeriesIdFromParam(Uri uri) {
+            String tvSeriesIdString = uri.getQueryParameter(COLUMN_TV_SERIES_ID);
+            if(tvSeriesIdString != null && tvSeriesIdString.length() > 0) {
+                return Long.parseLong(tvSeriesIdString);
             } else {
                 return -1;
             }
@@ -514,6 +532,7 @@ public class MovieContract {
         public static final String COLUMN_NUMBER_OF_EPISODES = "number_of_episodes";
         public static final String COLUMN_NUMBER_OF_SEASON = "number_of_seasons";
         public static final String COLUMN_STATUS = "status";
+        public static final String COLUMN_EPISODE_RUNTIME = "episode_runtime";
 
         public static Uri buildTVSeriesUri(long id) {
             //content://net.aung.moviemaniac/tv_series/1

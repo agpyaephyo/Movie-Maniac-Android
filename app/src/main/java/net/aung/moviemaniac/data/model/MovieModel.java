@@ -92,6 +92,21 @@ public class MovieModel {
         movieDataSource.loadPopularTVSeries(pageNumber, isForce);
     }
 
+    public void loadTopRatedTVSeriesList(int pageNumber, boolean isForce) {
+        Log.d(MovieManiacApp.TAG, "Loading top rated tv series for pageNumber : " + pageNumber);
+        movieDataSource.loadTopRatedTVSeries(pageNumber, isForce);
+    }
+
+    public void loadTVSeriesDetailByTVSeriesId(TVSeriesVO tvSeries) {
+        Log.d(MovieManiacApp.TAG, "Loading tv series detail by tv series id " + tvSeries.getTvSerieId());
+        movieDataSource.loadTVSeriesDetail(tvSeries);
+    }
+
+    public void loadTrailerListByTVSeriesId(int tvSeriesId) {
+        Log.d(MovieManiacApp.TAG, "loading trailer list for tv series id " + tvSeriesId);
+        movieDataSource.loadTvSeriesTrailers(tvSeriesId);
+    }
+
     public void onEventMainThread(DataEvent.LoadedMostPopularMovieListEvent event) {
         MovieListResponse response = event.getResponse();
 
@@ -176,5 +191,29 @@ public class MovieModel {
 
         DataEvent.ShowTVSeriesListEvent showDataEvent = new DataEvent.ShowPopularTVSeriesListEvent(loadedTVSeriesList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
+    }
+
+    public void onEventMainThread(DataEvent.LoadedTopRatedTVSeriesListEvent event) {
+        TVSeriesListResponse response = event.getResponse();
+
+        ArrayList<TVSeriesVO> loadedTVSeriesList = response.getTvSeriesList();
+        //Persistent into DB.
+        TVSeriesVO.saveTVSeriesFromList(loadedTVSeriesList, MovieManiacConstants.TV_SERIES_TYPE_TOP_RATED);
+
+        DataEvent.ShowTVSeriesListEvent showDataEvent = new DataEvent.ShowTopRatedTVSeriesListEvent(loadedTVSeriesList, event.isForce(), event.getResponse().getPage());
+        EventBus.getDefault().post(showDataEvent);
+    }
+
+    public void onEventMainThread(DataEvent.LoadedTVSeriesDetailEvent event) {
+        TVSeriesVO tvSeriesWithDetail = event.getTvSeries();
+        tvSeriesWithDetail.setDetailLoaded(true);
+
+        //Persistent into DB.
+        tvSeriesWithDetail.updateTVSeriesFromDetail();
+    }
+
+    public void onEventMainThread(DataEvent.LoadedTVSeriesTrailerEvent event) {
+        //Persistent into DB.
+        TVSeriesVO.saveTrailerList(event.getTvSeriesId(), event.getResponse().getTrailerList());
     }
 }

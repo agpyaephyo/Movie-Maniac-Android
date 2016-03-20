@@ -43,7 +43,7 @@ public class MovieDetailPresenter extends BasePresenter {
     }
 
     public void onEventMainThread(DataEvent.LoadedMovieDetailEvent event) {
-        //MovieVO movieWithDetail = event.getMovie();
+        //MovieVO movieWithDetail = event.getTvSeries();
         //movieDetailView.displayMovieDetail(movieWithDetail);
     }
 

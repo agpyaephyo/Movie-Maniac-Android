@@ -101,4 +101,39 @@ public class ProductionCompanyVO {
 
         return productionCompanyList;
     }
+
+    public static ArrayList<ProductionCompanyVO> loadProductionCompanyListByTVSeriesId(int tvSeriesId) {
+        Context context = MovieManiacApp.getContext();
+        ArrayList<ProductionCompanyVO> productionCompanyList = new ArrayList<>();
+        Cursor productionCompanyCursor = context.getContentResolver().query(MovieContract.TVSeriesProductionCompanyEntry.CONTENT_URI,
+                null,
+                MovieContract.TVSeriesProductionCompanyEntry.COLUMN_TV_SERIES_ID + " = ?",
+                new String[]{String.valueOf(tvSeriesId)},
+                null);
+
+        if (productionCompanyCursor != null && productionCompanyCursor.moveToFirst()) {
+            do {
+                productionCompanyList.add(ProductionCompanyVO.parseFromCursor(productionCompanyCursor));
+
+            } while (productionCompanyCursor.moveToNext());
+            productionCompanyCursor.close();
+        }
+
+        return productionCompanyList;
+    }
+
+    public static ContentValues[] parseToContentValueArrayTVSeries(ArrayList<ProductionCompanyVO> productionCompanyList, int tvSeriesId) {
+        ContentValues[] productionCompanyCVs = new ContentValues[productionCompanyList.size()];
+        for (int index = 0; index < productionCompanyList.size(); index++) {
+            ProductionCompanyVO productionCompany = productionCompanyList.get(index);
+
+            ContentValues cv = new ContentValues();
+            cv.put(MovieContract.TVSeriesProductionCompanyEntry.COLUMN_TV_SERIES_ID, tvSeriesId);
+            cv.put(MovieContract.TVSeriesProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID, productionCompany.getId());
+
+            productionCompanyCVs[index] = cv;
+        }
+
+        return productionCompanyCVs;
+    }
 }

@@ -56,36 +56,47 @@
     </string>
     <string name="star">Star !!!</string>
 
-    <string name="remove_movie_from_favourite_confirmation_msg">You are about to remove this movie from your Favourite List. Is that what you want ?</string>
+    <string name="remove_movie_from_favourite_confirmation_msg">You are about to remove this tvSeries from your Favourite List. Is that what you want ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
     <string name="section_movie">Movie Shelf</string>
-    <string name="empty_favourite">You haven\'t pick any movie as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
+    <string name="empty_favourite">You haven\'t pick any tvSeries as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
     <string name="send_to">Send this trailer to</string>
 
     <!-- Content Descriptions -->
-    <string name="cd_avd_star">Favourite the movie</string>
-    <string name="cd_ib_favourite">Tap to favourite the movie</string>
-    <string name="cd_ib_facebook">Tap to share the movie on Facebook</string>
-    <string name="cd_ib_share">Tap to share the movie</string>
-    <string name="cd_ib_plus">Tap to see available actions for the movie</string>
+    <string name="cd_avd_star">Favourite the tvSeries</string>
+    <string name="cd_ib_favourite">Tap to favourite the tvSeries</string>
+    <string name="cd_ib_facebook">Tap to share the tvSeries on Facebook</string>
+    <string name="cd_ib_share">Tap to share the tvSeries</string>
+    <string name="cd_ib_plus">Tap to see available actions for the tvSeries</string>
     <string name="cd_iv_cover">Default cover image of the user</string>
-    <string name="cd_iv_trailer_preview">Trailer preview image of the movie</string>
+    <string name="cd_iv_trailer_preview">Trailer preview image of the tvSeries</string>
     <string name="cd_iv_empty_favourite">Placeholder image for empty list of favourite</string>
-    <string name="cd_iv_like">Like this movie</string>
-    <string name="cd_iv_save">Save this movie</string>
+    <string name="cd_iv_like">Like this tvSeries</string>
+    <string name="cd_iv_save">Save this tvSeries</string>
     <string name="cd_iv_poster">Movie poster</string>
-    <string name="cd_iv_backdrop">Backdrop image of the movie</string>
+    <string name="cd_iv_backdrop">Backdrop image of the tvSeries</string>
     <string name="cd_iv_profile">User profile image</string>
-    <string name="cd_iv_cancel_star">Remove the movie from favourite</string>
+    <string name="cd_iv_cancel_star">Remove the tvSeries from favourite</string>
+    <string name="cd_iv_season_preview">Season preview image of the tvSeries</string>
 
 
     <string name="lbl_reviews">Reviews</string>
     <string name="now_playing_movies">Now on Cinema</string>
     <string name="upcoming_movies">Upcoming</string>
     <string name="most_popular_tv_series">Most Popular</string>
+    <string name="top_rated_tv_series">Top Rated</string>
 
     <string name="format_first_air_date">First air date : <xliff:g id="first_air_date">%1$s</xliff:g></string>
     <string name="loading_more_tv_series">Loading more TV Series ...</string>
+    <string name="section_tv_series">TV Series Shelf</string>
+
+    <string name="format_episode_runtime">Episode runtime : <xliff:g id="episode_run_time">%1$s</xliff:g> min</string>
+    <string name="lbl_seasons">Seasons</string>
+
+    <string name="format_season_number">Season <xliff:g id="season_number">%1$s</xliff:g></string>
+    <string name="format_season_air_date">Air date : <xliff:g id="season_number">%1$s</xliff:g></string>
+    <string name="format_episode_count">Total Episode : <xliff:g id="episode_count">%1$s</xliff:g></string>
+    <string name="lbl_trailers">Trailers</string>
 </resources>

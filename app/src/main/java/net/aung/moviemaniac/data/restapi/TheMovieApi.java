@@ -4,8 +4,9 @@ import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
 import net.aung.moviemaniac.data.restapi.responses.TVSeriesListResponse;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
-import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.restapi.responses.TrailerResponse;
 import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
+import net.aung.moviemaniac.data.vos.TVSeriesVO;
 
 import retrofit.Call;
 import retrofit.http.GET;
@@ -49,7 +50,7 @@ public interface TheMovieApi {
     );
 
     @GET("movie/{movieId}/videos")
-    Call<MovieTrailerResponse> getTrailersByMovieId(
+    Call<TrailerResponse> getTrailersByMovieId(
             @Path("movieId") int movieId,
             @Query("api_key") String apiKey
     );
@@ -75,5 +76,23 @@ public interface TheMovieApi {
     Call<TVSeriesListResponse> getPopularTVSeries(
             @Query("api_key") String apiKey,
             @Query("page") int pageNumber
+    );
+
+    @GET("tv/top_rated")
+    Call<TVSeriesListResponse> getTopRatedTVSeries(
+            @Query("api_key") String apiKey,
+            @Query("page") int pageNumber
+    );
+
+    @GET("tv/{tvSeriesId}")
+    Call<TVSeriesVO> getTVSeriesDetailByTVSeriesId(
+            @Path("tvSeriesId") int tvSeriesId,
+            @Query("api_key") String apiKey
+    );
+
+    @GET("tv/{tvSeriesId}/videos")
+    Call<TrailerResponse> getTrailersByTVSeriesId(
+            @Path("tvSeriesId") int tvSeriesId,
+            @Query("api_key") String apiKey
     );
 }

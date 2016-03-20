@@ -1,6 +1,7 @@
 package net.aung.moviemaniac.data.restapi;
 
 import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.data.vos.TVSeriesVO;
 
 /**
  * Created by aung on 12/15/15.
@@ -16,4 +17,7 @@ public interface MovieDataSource {
     void loadGenreList();
     void loadMovieReviews(int movieId);
     void loadPopularTVSeries(int pageNumber, boolean isForce);
+    void loadTopRatedTVSeries(int pageNumber, boolean isForce);
+    void loadTVSeriesDetail(TVSeriesVO tvSeries);
+    void loadTvSeriesTrailers(int tvSeriesId);
 }

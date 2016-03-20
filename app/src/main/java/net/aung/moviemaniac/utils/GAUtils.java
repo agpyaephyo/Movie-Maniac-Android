@@ -39,6 +39,7 @@ public class GAUtils {
     //Event Actions - List
     public static final String EVENT_ACTION_TAP_REMOVE_STAR_LIST = "Tap remove star on List Screen";
     public static final String EVENT_ACTION_TAP_MOVIE_ITEM = "Tap movie item";
+    public static final String EVENT_ACTION_TAP_TV_SERIES_ITEM = "Tap tv series item";
 
     //Keys in GTM Container
     private static final String CONTAINER_KEY_DAILY_SPECIAL = "daily-special";

@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.TVSeriesListAdapter;
-import net.aung.moviemaniac.controllers.MovieItemController;
+import net.aung.moviemaniac.controllers.TVSeriesItemController;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
@@ -60,7 +60,7 @@ public class TVSeriesListFragment extends BaseFragment
     private TVSeriesListPresenter tvSeriesListPresenter;
 
     private SmartScrollListener smartScrollListener;
-    //private MovieItemController controller;
+    private TVSeriesItemController controller;
 
     private int mCategory;
     private List<TVSeriesVO> mTVSeriesList = new ArrayList<>();
@@ -80,7 +80,7 @@ public class TVSeriesListFragment extends BaseFragment
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        //controller = (MovieItemController) context;
+        controller = (TVSeriesItemController) context;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class TVSeriesListFragment extends BaseFragment
         rootView = inflater.inflate(R.layout.fragment_tv_series_list, container, false);
         ButterKnife.bind(this, rootView);
 
-        tvSeriesListAdapter = TVSeriesListAdapter.newInstance(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES);
+        tvSeriesListAdapter = TVSeriesListAdapter.newInstance(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES, controller);
 
         rvTVSeries.setGridColumnSpan(1);
         rvTVSeries.setAdapter(tvSeriesListAdapter);
@@ -220,20 +220,22 @@ public class TVSeriesListFragment extends BaseFragment
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-            String sortedBy = null;
-            String[] selectionArgs = null;
-            if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES) {
-                //sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
-                selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_MOST_POPULAR)};
-            }
+        String sortedBy = null;
+        String[] selectionArgs = null;
+        if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES) {
+            //sortedBy = MovieContract.MovieEntry.TABLE_NAME + "." + MovieContract.MovieEntry.COLUMN_POPULARITY + " DESC";
+            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_MOST_POPULAR)};
+        } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_TV_SERIES) {
+            selectionArgs = new String[]{String.valueOf(MovieManiacConstants.TV_SERIES_TYPE_TOP_RATED)};
+        }
 
-            return new CursorLoader(getActivity(),
-                    MovieContract.TVSeriesEntry.CONTENT_URI,
-                    null,
-                    MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " = ? ",
-                    selectionArgs,
-                    sortedBy
-            );
+        return new CursorLoader(getActivity(),
+                MovieContract.TVSeriesEntry.CONTENT_URI,
+                null,
+                MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " = ? ",
+                selectionArgs,
+                sortedBy
+        );
     }
 
     @Override
@@ -248,7 +250,7 @@ public class TVSeriesListFragment extends BaseFragment
             } while (data.moveToNext());
         }
 
-        if(mTVSeriesList.size() != tvSeriesList.size()) { //To prevent refreshing the recyclerView when coming back from detail screen.
+        if (mTVSeriesList.size() != tvSeriesList.size()) { //To prevent refreshing the recyclerView when coming back from detail screen.
             mTVSeriesList = tvSeriesList;
 
             Log.d(MovieManiacApp.TAG, "Displaying tv series for category " + mCategory + " : " + tvSeriesList.size());

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.MovieItemController;
+import net.aung.moviemaniac.controllers.TVSeriesItemController;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.views.viewholders.MovieViewHolder;
@@ -23,17 +24,19 @@ import java.util.List;
 public class TVSeriesListAdapter extends RecyclerView.Adapter<TVSeriesViewHolder> {
 
     private List<TVSeriesVO> tvSeriesList;
+    private TVSeriesItemController controller;
     private boolean isFavouriteSection;
 
-    public static TVSeriesListAdapter newInstance(boolean isFavouriteSection) {
+    public static TVSeriesListAdapter newInstance(boolean isFavouriteSection, TVSeriesItemController controller) {
         List<TVSeriesVO> tvSeriesList = new ArrayList<>();
-        return new TVSeriesListAdapter(tvSeriesList, isFavouriteSection);
+        return new TVSeriesListAdapter(tvSeriesList, isFavouriteSection, controller);
     }
 
     //Let's make sure tvSeriesList is never null. Ref: empty data pattern.
-    private TVSeriesListAdapter(@NonNull List<TVSeriesVO> tvSeriesList, boolean isFavouriteSection) {
+    private TVSeriesListAdapter(@NonNull List<TVSeriesVO> tvSeriesList, boolean isFavouriteSection, TVSeriesItemController controller) {
         this.tvSeriesList = tvSeriesList;
         this.isFavouriteSection = isFavouriteSection;
+        this.controller = controller;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class TVSeriesListAdapter extends RecyclerView.Adapter<TVSeriesViewHolder
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View viMovie = inflater.inflate(R.layout.view_item_tv_series, parent, false);
-        return new TVSeriesViewHolder(viMovie, isFavouriteSection);
+        return new TVSeriesViewHolder(viMovie, isFavouriteSection, controller);
     }
 
     @Override

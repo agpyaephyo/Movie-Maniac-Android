@@ -2,6 +2,7 @@ package net.aung.moviemaniac.views.viewholders;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.view.View;
@@ -12,10 +13,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
+import net.aung.moviemaniac.controllers.TVSeriesItemController;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.databinding.ViewItemTvSeriesBinding;
+import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
 import java.util.List;
@@ -46,12 +50,15 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
 
     private View itemView;
 
-    public TVSeriesViewHolder(View itemView, boolean isFavouriteSection) {
+    private TVSeriesItemController controller;
+
+    public TVSeriesViewHolder(View itemView, boolean isFavouriteSection, TVSeriesItemController controller) {
         super(itemView);
         this.itemView = itemView;
         ButterKnife.bind(this, itemView);
 
         binding = DataBindingUtil.bind(itemView);
+        this.controller = controller;
 
         ivPoster.setDrawingCacheEnabled(true);
         ivCancelStar.setVisibility(isFavouriteSection ? View.VISIBLE : View.GONE);
@@ -96,11 +103,11 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
 
     @Override
     public void onClick(View view) {
-        /*
-        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_MOVIE_ITEM);
+        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_TV_SERIES_ITEM);
         BitmapDrawable bitmapDrawable = (BitmapDrawable) ivPoster.getDrawable();
         MovieManiacApp.sPosterCache.put(0, bitmapDrawable.getBitmap());
-        */
+
+        controller.onNavigateToDetail(binding.getTvSeries());
     }
 
     @Override
@@ -144,7 +151,7 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_REMOVE_STAR_LIST);
-                        MovieVO movie = binding.getMovie();
+                        MovieVO movie = binding.getTvSeries();
                         movie.setStar(false);
                         movie.updateMovieStarStatus(); //TODO On Main Thread ?
                     }})

@@ -462,7 +462,7 @@ public class MovieVO {
     public static void saveTrailerList(int movieId, List<TrailerVO> trailerList) {
         if (trailerList != null) {
             Context context = MovieManiacApp.getContext();
-            ContentValues[] trailerListCVs = TrailerVO.parseToContentValueArray(trailerList, movieId);
+            ContentValues[] trailerListCVs = TrailerVO.parseToContentValueArrayForMovie(trailerList, movieId);
             //Bulk insert to TrailerEntry.
             int insertedTrailerListCount = context.getContentResolver().bulkInsert(MovieContract.TrailerEntry.CONTENT_URI, trailerListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into trailer table : " + insertedTrailerListCount);

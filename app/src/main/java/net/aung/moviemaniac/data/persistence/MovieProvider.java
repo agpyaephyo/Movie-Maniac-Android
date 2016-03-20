@@ -115,6 +115,7 @@ public class MovieProvider extends ContentProvider {
     private static final String sMovieMovieIdSelection = MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?";
     private static final String sTVSeriesTVSeriesIdSelection = MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_ID + " = ?";
     private static final String sTrailerMovieIdSelection = MovieContract.TrailerEntry.COLUMN_MOVIE_ID + " = ?";
+    private static final String sTrailerTVSeriesIdSelection = MovieContract.TrailerEntry.COLUMN_TV_SERIES_ID + " = ?";
     private static final String sMovieGenreMovieIdSelection = MovieContract.MovieGenreEntry.COLUMN_MOVIE_ID + " = ?";
     private static final String sTVSeriesGenreTVSeriesIdSelection = MovieContract.TVSeriesGenreEntry.COLUMN_TV_SERIES_ID + " = ?";
     private static final String sMovieProductionCompanyMovieIdSelection = MovieContract.MovieProductionCompanyEntry.COLUMN_MOVIE_ID + " = ?";
@@ -160,7 +161,14 @@ public class MovieProvider extends ContentProvider {
                 if (movieId > -1) {
                     selection = sTrailerMovieIdSelection;
                     selectionArgs = new String[]{String.valueOf(movieId)};
+                } else {
+                    long tvSeriesId = MovieContract.TrailerEntry.getTVSeriesIdFromParam(uri);
+                    if(tvSeriesId > -1) {
+                        selection = sTrailerTVSeriesIdSelection;
+                        selectionArgs = new String[]{String.valueOf(tvSeriesId)};
+                    }
                 }
+
                 queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.TrailerEntry.TABLE_NAME,
                         projection,
                         selection,
@@ -303,7 +311,7 @@ public class MovieProvider extends ContentProvider {
                     selectionArgs = new String[]{String.valueOf(tvSeriesId)};
                 }
 
-                queryCursor = sMovieProductionCompany_ProductionCompanyIJ.query(mMovieDBHelper.getReadableDatabase(),
+                queryCursor = sTVSeriesProductionCompany_ProductionCompanyIJ.query(mMovieDBHelper.getReadableDatabase(),
                         projection,
                         selection,
                         selectionArgs,

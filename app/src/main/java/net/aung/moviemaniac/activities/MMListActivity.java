@@ -13,9 +13,12 @@ import android.widget.Toast;
 
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.MovieItemController;
+import net.aung.moviemaniac.controllers.TVSeriesItemController;
 import net.aung.moviemaniac.data.vos.MenuVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.fragments.MovieDetailFragment;
+import net.aung.moviemaniac.fragments.TVSeriesDetailFragment;
 import net.aung.moviemaniac.fragments.pagers.MoviePagerFragment;
 import net.aung.moviemaniac.fragments.pagers.TVSeriesPagerFragment;
 import net.aung.moviemaniac.menus.LeftMenuFragment;
@@ -25,8 +28,9 @@ import net.aung.moviemaniac.views.items.ViewItemMenu;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MovieListActivity extends BaseActivity
-        implements MovieItemController,
+public class MMListActivity extends BaseActivity implements
+        MovieItemController,
+        TVSeriesItemController,
         ViewItemMenu.MenuItemController {
 
     private LeftMenuFragment mLeftMenu;
@@ -45,6 +49,7 @@ public class MovieListActivity extends BaseActivity
     */
 
     private int mCurrentMenuIndex;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +57,8 @@ public class MovieListActivity extends BaseActivity
         setContentView(R.layout.activity_movie_list);
         ButterKnife.bind(this, this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.section_movie));
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
@@ -77,7 +81,7 @@ public class MovieListActivity extends BaseActivity
         mLeftMenu = (LeftMenuFragment) getSupportFragmentManager().findFragmentById(R.id.left_meu);
         mLeftMenu.setUp(R.id.left_meu, mDrawerLayout, mCallbackManager);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mLeftMenu.openMenu();
@@ -136,12 +140,12 @@ public class MovieListActivity extends BaseActivity
     public void onNavigateToDetail(MovieVO movie) {
         if (getResources().getBoolean(R.bool.isTablet)) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_tablet_movie_detail, MovieDetailFragment.newInstance(movie.getId(), movie.getMovieType()))
+                    .replace(R.id.fl_tablet_detail, MovieDetailFragment.newInstance(movie.getId(), movie.getMovieType()))
                     .commit();
 
             mDrawerLayout.openDrawer(Gravity.RIGHT);
         } else {
-            Intent intentToDetail = MovieDetailActivity.createNewIntent(movie.getId(), movie.getMovieType());
+            Intent intentToDetail = MMDetailActivity.createMovieIntent(movie.getId(), movie.getMovieType());
             startActivity(intentToDetail);
         }
 
@@ -152,6 +156,20 @@ public class MovieListActivity extends BaseActivity
                 .addToBackStack(null)
                 .commit();
                 */
+    }
+
+    @Override
+    public void onNavigateToDetail(TVSeriesVO tvSeries) {
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fl_tablet_detail, TVSeriesDetailFragment.newInstance(tvSeries.getTvSerieId(), tvSeries.getTvSeriesType()))
+                    .commit();
+
+            mDrawerLayout.openDrawer(Gravity.RIGHT);
+        } else {
+            Intent intentToDetail = MMDetailActivity.createTVSeriesIntent(tvSeries.getTvSerieId(), tvSeries.getTvSeriesType());
+            startActivity(intentToDetail);
+        }
     }
 
     @Override
@@ -166,7 +184,7 @@ public class MovieListActivity extends BaseActivity
                 break;
             case MenuVO.MENU_INDEX_TV_SERIES_SHELF:
                 mDrawerLayout.closeDrawers();
-                if(mCurrentMenuIndex != MenuVO.MENU_INDEX_TV_SERIES_SHELF) {
+                if (mCurrentMenuIndex != MenuVO.MENU_INDEX_TV_SERIES_SHELF) {
                     mCurrentMenuIndex = MenuVO.MENU_INDEX_TV_SERIES_SHELF;
                     showTVSeriesShelf();
                 }
@@ -177,12 +195,14 @@ public class MovieListActivity extends BaseActivity
     }
 
     private void showMovieShelf() {
+        getSupportActionBar().setTitle(R.string.section_movie);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_pager, MoviePagerFragment.newInstance())
                 .commit();
     }
 
     private void showTVSeriesShelf() {
+        getSupportActionBar().setTitle(R.string.section_tv_series);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_pager, TVSeriesPagerFragment.newInstance())
                 .commit();

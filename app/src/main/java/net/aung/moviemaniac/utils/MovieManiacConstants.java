@@ -23,6 +23,7 @@ public class MovieManiacConstants {
     public static final int CATEGORY_NOW_PLAYING_MOVIES = 4;
     public static final int CATEGORY_UPCOMING_MOVIES = 5;
     public static final int CATEGORY_MOST_POPULAR_TV_SERIES = 6;
+    public static final int CATEGORY_TOP_RATED_TV_SERIES = 7;
 
     public static final String MOVIE_CATEGORY_PREFIX = "MOVIE_CATEGORY_";
     public static final String TV_SERIES_CATEGORY_PREFIX = "TV_SERIES_CATEGORY_";
@@ -31,6 +32,7 @@ public class MovieManiacConstants {
     public static final int MOVIE_LIST_LOADER = 0;
     public static final int MOVIE_DETAIL_LOADER = 1;
     public static final int TV_SERIES_LIST_LOADER = 2;
+    public static final int TV_SERIES_DETAIL_LOADER = 3;
 
     //Movie Type
     @Retention(RetentionPolicy.SOURCE)
@@ -44,10 +46,11 @@ public class MovieManiacConstants {
 
     //Movie Type
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({TV_SERIES_TYPE_MOST_POPULAR})
+    @IntDef({TV_SERIES_TYPE_MOST_POPULAR, TV_SERIES_TYPE_TOP_RATED})
     public @interface TVSeriesType {}
 
     public static final int TV_SERIES_TYPE_MOST_POPULAR = 500;
+    public static final int TV_SERIES_TYPE_TOP_RATED = 600;
 
     public static final String IS_GENRE_LIST_LOADED_KEY = "IS_GENRE_LIST_LOADED_KEY";
 

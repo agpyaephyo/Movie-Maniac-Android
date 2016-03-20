@@ -47,36 +47,24 @@ public class TVSeriesListPresenter extends BasePresenter {
         }
     }
 
-    /*
-    public void onEventMainThread(DataEvent.ShowTopRatedMovieListEvent event) {
-        if (tvSeriesCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
+    public void onEventMainThread(DataEvent.ShowTopRatedTVSeriesListEvent event) {
+        if (tvSeriesCategory == MovieManiacConstants.CATEGORY_TOP_RATED_TV_SERIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveMoviePageNumber(tvSeriesCategory, pageNumber);
-        }
-    }
+            SettingsUtils.saveTVSeriesPageNumber(tvSeriesCategory, pageNumber);
 
-    public void onEventMainThread(DataEvent.ShowNowPlayingMovieListEvent event) {
-        if (tvSeriesCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES) {
-            pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveMoviePageNumber(tvSeriesCategory, pageNumber);
-        }
-    }
-
-    public void onEventMainThread(DataEvent.ShowUpcomingMovieListEvent event) {
-        if (tvSeriesCategory == MovieManiacConstants.CATEGORY_UPCOMING_MOVIES) {
-            pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveMoviePageNumber(tvSeriesCategory, pageNumber);
+            //tvSeriesListView.displayTVSeriesList(event.getTvSeriesList(), false);
         }
     }
 
     public void onEventMainThread(DataEvent.FailedToLoadDataEvent event) {
         tvSeriesListView.displayFailToLoadData(event.getMessage());
     }
-    */
 
     private void loadNewMovieList(boolean isForce) {
         if (tvSeriesCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES) {
             MovieModel.getInstance().loadMostPopularTVSeriesList(pageNumber, isForce);
+        } else if(tvSeriesCategory == MovieManiacConstants.CATEGORY_TOP_RATED_TV_SERIES) {
+            MovieModel.getInstance().loadTopRatedTVSeriesList(pageNumber, isForce);
         }
     }
 

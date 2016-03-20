@@ -3,6 +3,6 @@
     <string name="ga_trackingId">UA-74829198-1</string>
     <bool name="ga_autoActivityTracking">false</bool>
     <integer name="ga_sessionTimeout">300</integer>
-    <screenName name="net.aung.moviemaniac.activities.MovieListActivity">Movie List</screenName>
-    <screenName name="net.aung.moviemaniac.activities.MovieDetailActivity">Movie Detail</screenName>
+    <screenName name="net.aung.moviemaniac.activities.MMListActivity">Movie List</screenName>
+    <screenName name="net.aung.moviemaniac.activities.MMDetailActivity">Movie Detail</screenName>
 </resources>

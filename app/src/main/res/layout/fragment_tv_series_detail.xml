@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="tvSeries"
+            type="net.aung.moviemaniac.data.vos.TVSeriesVO" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/sv_container_trailer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/detail_padding_bottom_navigation">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/movie_detail_backdrop_height"
+                    android:focusableInTouchMode="true">
+
+                    <ImageView
+                        android:id="@+id/iv_backdrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/cd_iv_backdrop"
+                        android:foreground="@color/black_transparent_overlay"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{tvSeries.backdropPath}"
+                        tools:src="@drawable/movie_backdrop" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingRight="@dimen/margin_medium"
+                            android:weightSum="2">
+
+                            <RelativeLayout
+                                android:id="@+id/fl_container_poster"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:elevation="@dimen/poster_elevation">
+
+                                <ImageView
+                                    android:id="@+id/iv_poster"
+                                    android:layout_width="@dimen/item_movie_width"
+                                    android:layout_height="@dimen/item_movie_height"
+                                    android:layout_marginLeft="@dimen/margin_medium_2"
+                                    android:layout_marginTop="@dimen/margin_medium_2"
+                                    android:contentDescription="@string/cd_iv_poster"
+                                    tools:src="@drawable/movie_poster" />
+
+                                <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
+                                    android:id="@+id/tv_rating"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_margin="@dimen/margin_small"
+                                    android:background="@drawable/movie_rating_bg"
+                                    android:gravity="center"
+                                    android:text="@{tvSeries.voteAverage}"
+                                    android:textColor="@color/primary_text"
+                                    android:textSize="@dimen/text_regular_3x"
+                                    tools:text="6.2" />
+
+                            </RelativeLayout>
+
+                            <android.support.v4.widget.NestedScrollView
+                                android:id="@+id/sv_overview"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium_2"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/tv_overview"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-condensed"
+                                    android:lineSpacingExtra="1.2dp"
+                                    android:text="@{tvSeries.overview}"
+                                    android:textColor="@color/text_white"
+                                    android:textSize="@dimen/text_regular"
+                                    tools:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world." />
+
+                            </android.support.v4.widget.NestedScrollView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/margin_small"
+                            android:paddingLeft="@dimen/margin_medium">
+
+                            <net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail
+                                android:id="@+id/vp_tv_series_popularity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:visibility="gone" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/margin_medium"
+                                android:layout_marginTop="@dimen/margin_medium"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-condensed"
+                                    android:text="@{tvSeries.status}"
+                                    android:textColor="@color/text_white"
+                                    android:textSize="@dimen/text_regular"
+                                    tools:text="Released" />
+
+                                <TextView
+                                    android:id="@+id/tv_release_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-light"
+                                    android:text="@{tvSeries.firstAirDateText}"
+                                    android:textColor="@color/text_white"
+                                    android:textSize="@dimen/text_regular"
+                                    tools:text="2015-07-31" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/primary"
+                            android:elevation="@dimen/tag_line_elevation"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif-condensed"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="1.2dp"
+                            android:maxLines="2"
+                            android:padding="@dimen/margin_medium_2"
+                            android:text="@{tvSeries.name}"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/text_regular_3x" />
+
+                    </LinearLayout>
+
+                    <!--
+                    <ImageButton
+                        android:id="@+id/ib_movie_star"
+                        android:layout_width="@dimen/fab_dimen"
+                        android:layout_height="@dimen/fab_dimen"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginBottom="@dimen/margin_xlarge"
+                        android:layout_marginRight="@dimen/margin_medium_2"
+                        android:background="@drawable/bg_fab"
+                        android:elevation="@dimen/tag_line_elevation"
+                        android:src="@drawable/ic_fab_star"
+                        android:visibility="gone"
+                        />
+                        -->
+
+                    <include
+                        android:id="@+id/vp_fabs"
+                        layout="@layout/view_pod_fabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_medium"
+                        android:orientation="vertical">
+
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <net.aung.moviemaniac.views.pods.ViewPodGenreListDetail
+                                android:id="@+id/vp_container_genre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingLeft="@dimen/margin_medium" />
+
+                        </HorizontalScrollView>
+
+                        <TextView
+                            android:id="@+id/tv_runtime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_medium"
+                            android:background="@drawable/runtime_bg"
+                            android:fontFamily="sans-serif-light"
+                            android:padding="@dimen/margin_medium"
+                            android:text="@{tvSeries.episodeRuntime}"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/text_regular"
+                            tools:text="2 hours 31 min" />
+
+                    </LinearLayout>
+
+                    <net.aung.moviemaniac.views.components.textview.DashUnderlineTextView
+                        android:id="@+id/lbl_seasons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:paddingBottom="@dimen/margin_medium_2"
+                        android:paddingLeft="@dimen/margin_medium_2"
+                        android:text="@string/lbl_seasons"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_regular_2x" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_seasons"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/trailer_container_height"
+                        android:clipToPadding="false"
+                        android:columnWidth="@dimen/item_movie_height"
+                        android:paddingLeft="@dimen/margin_medium_2"
+                        android:paddingRight="@dimen/margin_medium_2" />
+
+                    <net.aung.moviemaniac.views.components.textview.DashUnderlineTextView
+                        android:id="@+id/lbl_trailers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:paddingBottom="@dimen/margin_medium_2"
+                        android:paddingLeft="@dimen/margin_medium_2"
+                        android:text="@string/lbl_trailers"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/text_regular_2x" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_trailers"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/trailer_container_height"
+                        android:clipToPadding="false"
+                        android:columnWidth="@dimen/item_movie_height"
+                        android:paddingLeft="@dimen/margin_medium_2"
+                        android:paddingRight="@dimen/margin_medium_2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/vp_movie_star"
+            layout="@layout/view_pod_movie_star"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</layout>

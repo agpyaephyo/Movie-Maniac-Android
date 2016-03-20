@@ -28,7 +28,7 @@ import net.aung.moviemaniac.data.persistence.MovieContract.TVSeasonEntry;
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 18;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
@@ -113,7 +113,8 @@ public class MovieDBHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TRAILER_TABLE = "CREATE TABLE " + TrailerEntry.TABLE_NAME + " (" +
             TrailerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             TrailerEntry.COLUMN_TRAILER_ID + " TEXT NOT NULL, " +
-            TrailerEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
+            TrailerEntry.COLUMN_MOVIE_ID + " INTEGER, " +
+            TrailerEntry.COLUMN_TV_SERIES_ID + " INTEGER, " +
             TrailerEntry.COLUMN_ISO_639_1 + " TEXT NOT NULL, " +
             TrailerEntry.COLUMN_KEY + " TEXT NOT NULL, " +
             TrailerEntry.COLUMN_NAME + " TEXT NOT NULL, " +
@@ -234,6 +235,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             TVSeriesEntry.COLUMN_NUMBER_OF_EPISODES + " INTEGER, " +
             TVSeriesEntry.COLUMN_NUMBER_OF_SEASON + " INTEGER, " +
             TVSeriesEntry.COLUMN_STATUS + " TEXT," +
+            TVSeriesEntry.COLUMN_EPISODE_RUNTIME + " INTEGER DEFAULT 0," +
 
             " UNIQUE (" + TVSeriesEntry.COLUMN_TV_SERIES_ID +", "+
             TVSeriesEntry.COLUMN_TV_SERIES_TYPE+") ON CONFLICT REPLACE" +
@@ -360,6 +362,8 @@ public class MovieDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TVSeriesGenreEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TVSeriesProductionCompanyEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + NetworkEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TVSeriesNetworkEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TVSeasonEntry.TABLE_NAME);
 
         onCreate(db);
     }

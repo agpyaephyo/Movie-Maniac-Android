@@ -3,7 +3,7 @@ package net.aung.moviemaniac.events;
 import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
-import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.restapi.responses.TrailerResponse;
 import net.aung.moviemaniac.data.restapi.responses.TVSeriesListResponse;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
@@ -86,6 +86,13 @@ public class DataEvent {
         }
     }
 
+    public static class LoadedTopRatedTVSeriesListEvent extends LoadedTVSerieListEvent {
+
+        public LoadedTopRatedTVSeriesListEvent(TVSeriesListResponse response, boolean isForce) {
+            super(response, isForce);
+        }
+    }
+
     public static class ShowMovieListEvent {
         private ArrayList<MovieVO> movieList;
         private boolean isForce;
@@ -163,15 +170,15 @@ public class DataEvent {
     }
 
     public static class LoadedMovieTrailerEvent {
-        private MovieTrailerResponse response;
+        private TrailerResponse response;
         private int movieId;
 
-        public LoadedMovieTrailerEvent(MovieTrailerResponse response, int movieId) {
+        public LoadedMovieTrailerEvent(TrailerResponse response, int movieId) {
             this.response = response;
             this.movieId = movieId;
         }
 
-        public MovieTrailerResponse getResponse() {
+        public TrailerResponse getResponse() {
             return response;
         }
 
@@ -232,6 +239,43 @@ public class DataEvent {
 
         public ShowPopularTVSeriesListEvent(ArrayList<TVSeriesVO> tvSeriesList, boolean isForce, int pageNumber) {
             super(tvSeriesList, isForce, pageNumber);
+        }
+    }
+
+    public static class ShowTopRatedTVSeriesListEvent extends ShowTVSeriesListEvent {
+
+        public ShowTopRatedTVSeriesListEvent(ArrayList<TVSeriesVO> tvSeriesList, boolean isForce, int pageNumber) {
+            super(tvSeriesList, isForce, pageNumber);
+        }
+    }
+
+    public static class LoadedTVSeriesDetailEvent {
+        private TVSeriesVO tvSeries;
+
+        public LoadedTVSeriesDetailEvent(TVSeriesVO tvSeries) {
+            this.tvSeries = tvSeries;
+        }
+
+        public TVSeriesVO getTvSeries() {
+            return tvSeries;
+        }
+    }
+
+    public static class LoadedTVSeriesTrailerEvent {
+        private TrailerResponse response;
+        private int tvSeriesId;
+
+        public LoadedTVSeriesTrailerEvent(TrailerResponse response, int tvSeriesId) {
+            this.response = response;
+            this.tvSeriesId = tvSeriesId;
+        }
+
+        public TrailerResponse getResponse() {
+            return response;
+        }
+
+        public int getTvSeriesId() {
+            return tvSeriesId;
         }
     }
 }

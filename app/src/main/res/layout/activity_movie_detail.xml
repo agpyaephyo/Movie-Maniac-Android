@@ -4,5 +4,5 @@
     android:id="@+id/fl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.aung.moviemaniac.activities.MovieDetailActivity"
+    tools:context=".activities.MMDetailActivity"
     tools:ignore="MergeRootFrame" />

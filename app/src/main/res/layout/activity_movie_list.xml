@@ -6,13 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.aung.moviemaniac.activities.MovieListActivity">
+    tools:context=".activities.MMListActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="net.aung.moviemaniac.activities.MovieListActivity">
+        tools:context=".activities.MMListActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -80,7 +80,7 @@
         tools:layout="@layout/fragment_left_menu" />
 
     <FrameLayout
-        android:id="@+id/fl_tablet_movie_detail"
+        android:id="@+id/fl_tablet_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/margin_tablet_movie_detail_vertical"
