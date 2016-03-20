@@ -35,10 +35,16 @@ public class SettingsUtils {
         return loadedPageNumber;
     }
 
-    public static void savePageNumber(int movieCategory, int loadedPageNumber) {
+    public static void saveMoviePageNumber(int movieCategory, int loadedPageNumber) {
         Context context = MovieManiacApp.getContext();
         SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         defaultSharedPref.edit().putInt(MovieManiacConstants.MOVIE_CATEGORY_PREFIX + movieCategory, loadedPageNumber).apply();
+    }
+
+    public static void saveTVSeriesPageNumber(int tvSeriesCategory, int loadedPageNumber) {
+        Context context = MovieManiacApp.getContext();
+        SharedPreferences defaultSharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        defaultSharedPref.edit().putInt(MovieManiacConstants.TV_SERIES_CATEGORY_PREFIX + tvSeriesCategory, loadedPageNumber).apply();
     }
 
     public static void resetPageNumber(int movieCategory) {

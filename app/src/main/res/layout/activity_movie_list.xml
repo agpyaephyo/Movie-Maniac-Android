@@ -28,7 +28,9 @@
 
         </android.support.design.widget.AppBarLayout>
 
+        <!--
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -50,6 +52,14 @@
                 />
 
         </LinearLayout>
+        -->
+
+        <FrameLayout
+            android:id="@+id/fl_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

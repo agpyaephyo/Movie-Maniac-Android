@@ -15,6 +15,8 @@ import java.io.InputStream;
 public class JsonUtils {
 
     private static final String PATH_DUMMY_DATA = "dummy_data";
+    private static final String PATH_MENU_DATA = "menu";
+    private static final String MENU_FILE = "left_menu.json";
 
     private static JsonUtils objInstace;
 
@@ -56,6 +58,11 @@ public class JsonUtils {
      */
     public String loadDummyData(String fileName) throws IOException, JSONException {
         byte[] buffer = readJsonFile(PATH_DUMMY_DATA + "/" + fileName);
+        return new String(buffer, "UTF-8").toString();
+    }
+
+    public String loadLeftMenuData() throws IOException, JSONException {
+        byte[] buffer = readJsonFile(PATH_MENU_DATA + "/" + MENU_FILE);
         return new String(buffer, "UTF-8").toString();
     }
 }

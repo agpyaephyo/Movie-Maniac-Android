@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/tools">
     <string name="app_name">Movie Maniac</string>
     <string name="title_yote_shin">ပွဲကြိုက်ခင်</string>
 
@@ -84,4 +84,7 @@
     <string name="lbl_reviews">Reviews</string>
     <string name="now_playing_movies">Now on Cinema</string>
     <string name="upcoming_movies">Upcoming</string>
+    <string name="most_popular_tv_series">Most Popular</string>
+
+    <string name="format_first_air_date">First air date : <xliff:g id="first_air_date">%1$s</xliff:g></string>
 </resources>

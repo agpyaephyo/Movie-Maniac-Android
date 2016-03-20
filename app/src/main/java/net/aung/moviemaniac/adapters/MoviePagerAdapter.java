@@ -2,7 +2,7 @@ package net.aung.moviemaniac.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by aung on 3/8/16.
  */
-public class MoviePagerAdapter extends FragmentPagerAdapter {
+public class MoviePagerAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> mFragments = new ArrayList<>();
     private List<String> mFragmentTitles = new ArrayList<>();

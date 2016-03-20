@@ -89,6 +89,11 @@ public class AutofitRecyclerView extends RecyclerView {
         checkIfEmpty();
     }
 
+    public void setGridColumnSpan(int columnSpan) {
+        layoutManager = new GridLayoutManager(getContext(), columnSpan); //
+        setLayoutManager(layoutManager);
+    }
+
     protected void checkIfEmpty() {
         if(vEmptyView != null && getAdapter() != null) {
             final boolean isEmpty = getAdapter().getItemCount() == 0;

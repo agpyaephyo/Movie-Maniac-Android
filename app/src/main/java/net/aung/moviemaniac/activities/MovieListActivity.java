@@ -3,8 +3,6 @@ package net.aung.moviemaniac.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -14,26 +12,29 @@ import android.view.View;
 import android.widget.Toast;
 
 import net.aung.moviemaniac.R;
-import net.aung.moviemaniac.adapters.MoviePagerAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
+import net.aung.moviemaniac.data.vos.MenuVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.fragments.MovieDetailFragment;
-import net.aung.moviemaniac.fragments.MovieListFragment;
+import net.aung.moviemaniac.fragments.pagers.MoviePagerFragment;
+import net.aung.moviemaniac.fragments.pagers.TVSeriesPagerFragment;
 import net.aung.moviemaniac.menus.LeftMenuFragment;
 import net.aung.moviemaniac.utils.GAUtils;
-import net.aung.moviemaniac.utils.MovieManiacConstants;
+import net.aung.moviemaniac.views.items.ViewItemMenu;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MovieListActivity extends BaseActivity
-        implements MovieItemController {
+        implements MovieItemController,
+        ViewItemMenu.MenuItemController {
 
     private LeftMenuFragment mLeftMenu;
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
+    /*
     @Bind(R.id.pager_movies)
     ViewPager pagerMovies;
 
@@ -41,6 +42,9 @@ public class MovieListActivity extends BaseActivity
     TabLayout tlMovies;
 
     private MoviePagerAdapter mMoviePagerAdapter;
+    */
+
+    private int mCurrentMenuIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,16 +84,28 @@ public class MovieListActivity extends BaseActivity
             }
         });
 
+        /*
         mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager());
-        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_NOW_PLAYING), getString(R.string.now_playing_movies));
-        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_UPCOMING), getString(R.string.upcoming_movies));
+        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES), getString(R.string.now_playing_movies));
+        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_UPCOMING_MOVIES), getString(R.string.upcoming_movies));
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES), getString(R.string.most_popular_movies));
         mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES), getString(R.string.top_rated_movies));
-        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MY_FAVOURITES), getString(R.string.my_favourites));
+        mMoviePagerAdapter.addTab(MovieListFragment.newInstance(MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES), getString(R.string.my_favourites));
 
         pagerMovies.setAdapter(mMoviePagerAdapter);
         pagerMovies.setOffscreenPageLimit(mMoviePagerAdapter.getCount());
         tlMovies.setupWithViewPager(pagerMovies);
+        */
+
+        if (savedInstanceState == null) {
+            /*
+            showMovieShelf();
+            mCurrentMenuIndex = MenuVO.MENU_INDEX_MOVIE_SHELF;
+            */
+
+            showTVSeriesShelf();
+            mCurrentMenuIndex = MenuVO.MENU_INDEX_TV_SERIES_SHELF;
+        }
     }
 
     @Override
@@ -136,5 +152,39 @@ public class MovieListActivity extends BaseActivity
                 .addToBackStack(null)
                 .commit();
                 */
+    }
+
+    @Override
+    public void onTapMenu(MenuVO menu) {
+        switch (menu.getMenuId()) {
+            case MenuVO.MENU_INDEX_MOVIE_SHELF:
+                mDrawerLayout.closeDrawers();
+                if (mCurrentMenuIndex != MenuVO.MENU_INDEX_MOVIE_SHELF) {
+                    mCurrentMenuIndex = MenuVO.MENU_INDEX_MOVIE_SHELF;
+                    showMovieShelf();
+                }
+                break;
+            case MenuVO.MENU_INDEX_TV_SERIES_SHELF:
+                mDrawerLayout.closeDrawers();
+                if(mCurrentMenuIndex != MenuVO.MENU_INDEX_TV_SERIES_SHELF) {
+                    mCurrentMenuIndex = MenuVO.MENU_INDEX_TV_SERIES_SHELF;
+                    showTVSeriesShelf();
+                }
+                break;
+            default:
+                throw new UnsupportedOperationException("Menu Id is not supported.");
+        }
+    }
+
+    private void showMovieShelf() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_pager, MoviePagerFragment.newInstance())
+                .commit();
+    }
+
+    private void showTVSeriesShelf() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_pager, TVSeriesPagerFragment.newInstance())
+                .commit();
     }
 }

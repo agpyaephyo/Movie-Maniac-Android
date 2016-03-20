@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="tvSeries"
+            type="net.aung.moviemaniac.data.vos.TVSeriesVO" />
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardElevation="@dimen/elevation_card"
+        card_view:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:foreground="@drawable/selector_action_bg">
+
+            <FrameLayout
+                android:id="@+id/rl_root_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/iv_poster"
+                    android:layout_width="@dimen/item_tv_width"
+                    android:layout_height="@dimen/item_tv_height"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/cd_iv_poster"
+                    tools:src="@drawable/movie_poster" />
+
+                <net.aung.moviemaniac.views.pods.ViewPodMoviePopularity
+                    android:id="@+id/vp_movie_popularity"
+                    android:layout_width="@dimen/item_tv_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:paddingEnd="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium"
+                    android:orientation="horizontal" />
+
+                <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
+                    android:id="@+id/tv_rating"
+                    style="@style/MoviePopularity"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="@{tvSeries.voteAverage}"
+                    android:textColor="@color/primary_text"
+                    tools:text="6.2" />
+
+                <ImageView
+                    android:id="@+id/iv_cancel_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:contentDescription="@string/cd_iv_cancel_star"
+                    android:src="@drawable/ic_cancel_white_24dp"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_medium">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="1.2dp"
+                    android:text="@{tvSeries.name}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_regular_3x"
+                    tools:text="Walking Dead" />
+
+                <TextView
+                    android:id="@+id/tv_genre_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_regular"
+                    tools:text="Thiller, Action"
+                    android:text="Thiller, Action"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@{tvSeries.overview}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_regular"
+                    android:lineSpacingExtra="1.2dp"
+                    tools:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats."
+                    android:maxLines="7"
+                    android:ellipsize="end"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_air_first_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="1.2dp"
+                    android:text="@{tvSeries.firstAirDateText}"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_small"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_gravity="right|bottom"
+                    tools:text="Air since : 2007-09-12" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

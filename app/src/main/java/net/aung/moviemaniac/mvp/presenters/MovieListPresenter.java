@@ -41,28 +41,28 @@ public class MovieListPresenter extends BasePresenter {
     public void onEventMainThread(DataEvent.ShowMostPopularMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.savePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
         }
     }
 
     public void onEventMainThread(DataEvent.ShowTopRatedMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.savePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
         }
     }
 
     public void onEventMainThread(DataEvent.ShowNowPlayingMovieListEvent event) {
-        if (movieCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING) {
+        if (movieCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.savePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
         }
     }
 
     public void onEventMainThread(DataEvent.ShowUpcomingMovieListEvent event) {
-        if (movieCategory == MovieManiacConstants.CATEGORY_UPCOMING) {
+        if (movieCategory == MovieManiacConstants.CATEGORY_UPCOMING_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.savePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
         }
     }
 
@@ -75,9 +75,9 @@ public class MovieListPresenter extends BasePresenter {
             MovieModel.getInstance().loadMostPopularMovieList(pageNumber, isForce);
         } else if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
             MovieModel.getInstance().loadTopRatedMovieList(pageNumber, isForce);
-        } else if (movieCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING) {
+        } else if (movieCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES) {
             MovieModel.getInstance().loadNowPlayingMovieList(pageNumber, isForce);
-        } else if (movieCategory == MovieManiacConstants.CATEGORY_UPCOMING) {
+        } else if (movieCategory == MovieManiacConstants.CATEGORY_UPCOMING_MOVIES) {
             MovieModel.getInstance().loadUpcomingMovieList(pageNumber, isForce);
         }
     }

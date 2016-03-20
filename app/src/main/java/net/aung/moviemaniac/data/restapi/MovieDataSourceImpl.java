@@ -5,6 +5,7 @@ import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieTrailerResponse;
+import net.aung.moviemaniac.data.restapi.responses.TVSeriesListResponse;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.utils.CommonInstances;
@@ -201,6 +202,26 @@ public class MovieDataSourceImpl implements MovieDataSource {
                 MovieReviewResponse movieReviewResponse = response.body();
                 if (movieReviewResponse != null) {
                     DataEvent.LoadedMovieReviewEvent event = new DataEvent.LoadedMovieReviewEvent(movieReviewResponse);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void loadPopularTVSeries(int pageNumber, final boolean isForce) {
+        Call<TVSeriesListResponse> popularTVSeriesResponseCall = theMovieApi.getPopularTVSeries(
+                BuildConfig.THE_MOVIE_API_KEY,
+                pageNumber
+        );
+
+        popularTVSeriesResponseCall.enqueue(new MovieApiCallback<TVSeriesListResponse>() {
+            @Override
+            public void onResponse(Response<TVSeriesListResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                TVSeriesListResponse tvSeriesListResponse = response.body();
+                if (tvSeriesListResponse != null) {
+                    DataEvent.LoadedPopularTVSeriesListEvent event = new DataEvent.LoadedPopularTVSeriesListEvent(tvSeriesListResponse, isForce);
                     EventBus.getDefault().post(event);
                 }
             }

@@ -22,6 +22,7 @@ public class GAUtils {
     //Screens
     public static final String SCREEN_NAME_MOVIE_DETAIL = "Movie Detail";
     public static final String SCREEN_NAME_MOVIE_LIST = "Movie List";
+    public static final String SCREEN_NAME_TV_SERIES_LIST = "TV Series List";
 
     //Event Categories
     public static final String EVENT_CATEGORY_USER_ACTION = "User Action";

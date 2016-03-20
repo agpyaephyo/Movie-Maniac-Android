@@ -6,9 +6,11 @@ import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.restapi.MovieDataSource;
 import net.aung.moviemaniac.data.restapi.MovieDataSourceImpl;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
+import net.aung.moviemaniac.data.restapi.responses.TVSeriesListResponse;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieReviewVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
+import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.SettingsUtils;
@@ -85,6 +87,11 @@ public class MovieModel {
         movieDataSource.loadMovieReviews(movieId);
     }
 
+    public void loadMostPopularTVSeriesList(int pageNumber, boolean isForce) {
+        Log.d(MovieManiacApp.TAG, "Loading popular tv series for pageNumber : " + pageNumber);
+        movieDataSource.loadPopularTVSeries(pageNumber, isForce);
+    }
+
     public void onEventMainThread(DataEvent.LoadedMostPopularMovieListEvent event) {
         MovieListResponse response = event.getResponse();
 
@@ -158,5 +165,16 @@ public class MovieModel {
 
         //Persistent into DB.
         MovieReviewVO.saveReviewsFromList(movieReviewList, movieId);
+    }
+
+    public void onEventMainThread(DataEvent.LoadedPopularTVSeriesListEvent event) {
+        TVSeriesListResponse response = event.getResponse();
+
+        ArrayList<TVSeriesVO> loadedTVSeriesList = response.getTvSeriesList();
+        //Persistent into DB.
+        //MovieVO.saveMovieFromList(loadedTVSeriesList, MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR);
+
+        DataEvent.ShowTVSeriesListEvent showDataEvent = new DataEvent.ShowPopularTVSeriesListEvent(loadedTVSeriesList, event.isForce(), event.getResponse().getPage());
+        EventBus.getDefault().post(showDataEvent);
     }
 }

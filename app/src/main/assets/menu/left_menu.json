@@ -1,0 +1,12 @@
+[
+  {
+    "menu_id": 100,
+    "menu_label": "Movie Shelf",
+    "menu_icon": "movie_shelf.png"
+  },
+  {
+    "menu_id": 200,
+    "menu_label": "TV Series Shelf",
+    "menu_icon": "tv_series_shelf.png"
+  }
+]

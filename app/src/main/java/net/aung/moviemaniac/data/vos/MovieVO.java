@@ -24,10 +24,6 @@ import java.util.List;
  */
 public class MovieVO {
 
-    public static final String IMAGE_BASE_PATH = "http://image.tmdb.org/t/p/";
-    public static final String IMAGE_SIZE_W185 = "w185";
-    public static final String IMAGE_SIZE_W500 = "w500";
-
     private static final String RUNTIME_FORMAT = "%1$d hrs %2$d mins";
 
     @SerializedName("id")
@@ -122,7 +118,7 @@ public class MovieVO {
     }
 
     public String getPosterPath() {
-        return IMAGE_BASE_PATH + IMAGE_SIZE_W500 + posterPath;
+        return MovieManiacConstants.IMAGE_BASE_PATH + MovieManiacConstants.IMAGE_SIZE_W500 + posterPath;
     }
 
     public String getOverview() {
@@ -168,7 +164,7 @@ public class MovieVO {
     }
 
     public String getBackdropPath() {
-        return IMAGE_BASE_PATH + IMAGE_SIZE_W500 + backdropPath;
+        return MovieManiacConstants.IMAGE_BASE_PATH + MovieManiacConstants.IMAGE_SIZE_W500 + backdropPath;
     }
 
     public float getPopularity() {

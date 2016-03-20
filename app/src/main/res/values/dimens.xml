@@ -30,6 +30,9 @@
     <dimen name="item_movie_width">196dp</dimen>
     <dimen name="item_movie_height">248dp</dimen>
 
+    <dimen name="item_tv_width">159dp</dimen>
+    <dimen name="item_tv_height">211dp</dimen>
+
     <dimen name="trailer_container_height">212dp</dimen>
     <dimen name="trailer_container_width">264dp</dimen>
 

@@ -15,4 +15,5 @@ public interface MovieDataSource {
     void loadMovieDetail(MovieVO movie);
     void loadGenreList();
     void loadMovieReviews(int movieId);
+    void loadPopularTVSeries(int pageNumber, boolean isForce);
 }

@@ -1,28 +1,20 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
-import net.aung.moviemaniac.adapters.MovieListAdapter;
+import net.aung.moviemaniac.adapters.TVSeriesListAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
-import net.aung.moviemaniac.data.persistence.MovieContract;
-import net.aung.moviemaniac.data.vos.GenreVO;
-import net.aung.moviemaniac.data.vos.MovieVO;
-import net.aung.moviemaniac.mvp.presenters.MovieListPresenter;
-import net.aung.moviemaniac.mvp.views.MovieListView;
+import net.aung.moviemaniac.data.vos.TVSeriesVO;
+import net.aung.moviemaniac.mvp.presenters.TVSeriesListPresenter;
+import net.aung.moviemaniac.mvp.views.TVSeriesListView;
 import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
@@ -37,16 +29,16 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MovieListFragment extends BaseFragment
-        implements MovieListView,
+public class TVSeriesListFragment extends BaseFragment
+        implements TVSeriesListView,
         SwipeRefreshLayout.OnRefreshListener,
-        SmartScrollListener.ControllerSmartScroll,
-        LoaderManager.LoaderCallbacks<Cursor> {
+        SmartScrollListener.ControllerSmartScroll/*,
+        LoaderManager.LoaderCallbacks<Cursor>*/ {
 
     private static final String BARG_CATEGORY = "BARG_CATEGORY";
 
-    @Bind(R.id.rv_movies)
-    AutofitRecyclerView rvMovies;
+    @Bind(R.id.rv_tv_series)
+    AutofitRecyclerView rvTVSeries;
 
     @Bind(R.id.vp_empty_favourite)
     View vEmptyFavourite;
@@ -56,38 +48,39 @@ public class MovieListFragment extends BaseFragment
 
     private View rootView;
 
-    private MovieListAdapter movieListAdapter;
-    private MovieListPresenter movieListPresenter;
+    private TVSeriesListAdapter tvSeriesListAdapter;
+    private TVSeriesListPresenter tvSeriesListPresenter;
+
     private SmartScrollListener smartScrollListener;
-    private MovieItemController controller;
+    //private MovieItemController controller;
 
     private int mCategory;
-    private List<MovieVO> mMovieList = new ArrayList<>();
+    //private List<TVSeriesVO> mTVSeriesList = new ArrayList<>();
 
-    public static MovieListFragment newInstance(int category) {
-        MovieListFragment fragment = new MovieListFragment();
+    public static TVSeriesListFragment newInstance(int category) {
+        TVSeriesListFragment fragment = new TVSeriesListFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(BARG_CATEGORY, category);
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    public MovieListFragment() {
+    public TVSeriesListFragment() {
 
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        controller = (MovieItemController) context;
+        //controller = (MovieItemController) context;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        movieListPresenter = new MovieListPresenter(this, mCategory);
-        movieListPresenter.onCreate();
+        tvSeriesListPresenter = new TVSeriesListPresenter(this, mCategory);
+        tvSeriesListPresenter.onCreate();
 
         smartScrollListener = new SmartScrollListener(this);
 
@@ -105,14 +98,15 @@ public class MovieListFragment extends BaseFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_movie_list, container, false);
+        rootView = inflater.inflate(R.layout.fragment_tv_series_list, container, false);
         ButterKnife.bind(this, rootView);
 
-        movieListAdapter = MovieListAdapter.newInstance(controller, mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES);
-        rvMovies.setAdapter(movieListAdapter);
-        rvMovies.setEmptyView(vEmptyFavourite);
+        tvSeriesListAdapter = TVSeriesListAdapter.newInstance(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES);
 
-        rvMovies.addOnScrollListener(smartScrollListener);
+        rvTVSeries.setGridColumnSpan(1);
+        rvTVSeries.setAdapter(tvSeriesListAdapter);
+        rvTVSeries.setEmptyView(vEmptyFavourite);
+        rvTVSeries.addOnScrollListener(smartScrollListener);
 
         swipeContainer.setOnRefreshListener(this);
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_dark,
@@ -120,16 +114,18 @@ public class MovieListFragment extends BaseFragment
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_red_dark);
 
+        /*
         if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
             swipeContainer.setEnabled(false);
         }
+        */
 
         return rootView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        getLoaderManager().initLoader(MovieManiacConstants.MOVIE_LIST_LOADER, null, this);
+        //getLoaderManager().initLoader(MovieManiacConstants.TV_SERIES_LIST_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -155,41 +151,41 @@ public class MovieListFragment extends BaseFragment
     @Override
     public void onStart() {
         super.onStart();
-        movieListPresenter.onStart();
+        tvSeriesListPresenter.onStart();
     }
 
     @Override
     protected void sendScreenHit() {
-        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_NAME_MOVIE_LIST);
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_NAME_TV_SERIES_LIST);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        movieListPresenter.onStop();
+        tvSeriesListPresenter.onStop();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        movieListPresenter.onDestroy();
+        tvSeriesListPresenter.onDestroy();
     }
 
     @Override
-    public boolean isMovieListEmpty() {
-        return movieListAdapter == null || movieListAdapter.getItemCount() == 0;
+    public boolean isTVSeriesListEmpty() {
+        return tvSeriesListAdapter == null || tvSeriesListAdapter.getItemCount() == 0;
     }
 
     @Override
-    public void displayMovieList(List<MovieVO> movieList, boolean isToAppend) {
+    public void displayTVSeriesList(List<TVSeriesVO> tvSeriesList, boolean isToAppend) {
         if (swipeContainer.isRefreshing()) {
             swipeContainer.setRefreshing(false);
         }
 
         if (isToAppend) {
-            movieListAdapter.appendMovieList(movieList);
+            tvSeriesListAdapter.appendMovieList(tvSeriesList);
         } else {
-            movieListAdapter.setMovieList(movieList);
+            tvSeriesListAdapter.setMovieList(tvSeriesList);
         }
     }
 
@@ -202,19 +198,22 @@ public class MovieListFragment extends BaseFragment
 
     @Override
     public void onRefresh() {
-        movieListPresenter.forceRefresh();
+        tvSeriesListPresenter.forceRefresh();
     }
 
     @Override
     public void onListEndReached() {
+        /*
         if (mCategory != MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
             Snackbar.make(rootView, getString(R.string.loading_more_movies), Snackbar.LENGTH_SHORT)
                     .setAction("Action", null).show();
 
-            movieListPresenter.loadMoreData();
+            tvSeriesListPresenter.loadMoreData();
         }
+        */
     }
 
+    /*
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
@@ -264,8 +263,8 @@ public class MovieListFragment extends BaseFragment
             } while (data.moveToNext());
         }
 
-        if(mMovieList.size() != movieList.size()) { //To prevent refreshing the recyclerView when coming back from detail screen.
-            mMovieList = movieList;
+        if(mTVSeriesList.size() != movieList.size()) { //To prevent refreshing the recyclerView when coming back from detail screen.
+            mTVSeriesList = movieList;
 
             Log.d(MovieManiacApp.TAG, "Displaying movies for category " + mCategory + " : " + movieList.size());
             displayMovieList(movieList, false);
@@ -276,7 +275,7 @@ public class MovieListFragment extends BaseFragment
         }
 
         if (movieList.size() == 0) {
-            movieListPresenter.loadMovieListFromNetwork();
+            tvSeriesListPresenter.loadMovieListFromNetwork();
         }
     }
 
@@ -285,4 +284,5 @@ public class MovieListFragment extends BaseFragment
         List<MovieVO> movieList = new ArrayList<>();
         displayMovieList(movieList, false);
     }
+    */
 }
