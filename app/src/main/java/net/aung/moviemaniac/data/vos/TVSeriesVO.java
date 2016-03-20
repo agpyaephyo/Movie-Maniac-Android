@@ -1,10 +1,14 @@
 package net.aung.moviemaniac.data.vos;
 
+import android.content.ContentValues;
+
 import com.google.gson.annotations.SerializedName;
 
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
+
+import java.util.ArrayList;
 
 /**
  * Created by aung on 3/19/16.
@@ -49,6 +53,35 @@ public class TVSeriesVO {
 
     @SerializedName("original_name")
     private String orignalName;
+
+    private int tvSeriesType;
+
+    @SerializedName("genres")
+    private ArrayList<GenreVO> genreList; //detail
+
+    @SerializedName("homepage")
+    private String homepage; //detail
+
+    @SerializedName("last_air_date")
+    private String lastAirDateText;
+
+    @SerializedName("networks")
+    private ArrayList<TVNetworkVO> networkList;
+
+    @SerializedName("number_of_episodes")
+    private int numberOfEpisodes;
+
+    @SerializedName("number_of_seasons")
+    private int numberOfSeasons;
+
+    @SerializedName("production_companies")
+    private ArrayList<ProductionCompanyVO> productionCompanyList; //detail
+
+    @SerializedName("seasons")
+    private ArrayList<TVSeasonVO> seasonList;
+
+    @SerializedName("status")
+    private String status;
 
     public String getPosterPath() {
         return MovieManiacConstants.IMAGE_BASE_PATH + MovieManiacConstants.IMAGE_SIZE_W500 + posterPath;
@@ -100,5 +133,64 @@ public class TVSeriesVO {
 
     public String getOrignalName() {
         return orignalName;
+    }
+
+    public int getTvSeriesType() {
+        return tvSeriesType;
+    }
+
+    public void setTvSeriesType(int tvSeriesType) {
+        this.tvSeriesType = tvSeriesType;
+    }
+
+    public ArrayList<GenreVO> getGenreList() {
+        return genreList;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public String getLastAirDateText() {
+        return lastAirDateText;
+    }
+
+    public ArrayList<TVNetworkVO> getNetworkList() {
+        return networkList;
+    }
+
+    public int getNumberOfEpisodes() {
+        return numberOfEpisodes;
+    }
+
+    public int getNumberOfSeasons() {
+        return numberOfSeasons;
+    }
+
+    public ArrayList<ProductionCompanyVO> getProductionCompanyList() {
+        return productionCompanyList;
+    }
+
+    public ArrayList<TVSeasonVO> getSeasonList() {
+        return seasonList;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public static void saveTVSeriesFromList(ArrayList<TVSeriesVO> loadedTVSeriesList, @MovieManiacConstants.TVSeriesType int tvSeriesType) {
+        ContentValues[] tvSeriesCVs = new ContentValues[loadedTVSeriesList.size()];
+        for (int index = 0; index < tvSeriesCVs.length; index++) {
+            TVSeriesVO tvSeries = loadedTVSeriesList.get(index);
+            tvSeries.setTvSeriesType(tvSeriesType);
+
+            tvSeriesCVs[index] = tvSeries.parseToContentValues();
+        }
+    }
+
+    private ContentValues parseToContentValues() {
+        ContentValues tvSeriesCV = new ContentValues();
+        return tvSeriesCV;
     }
 }

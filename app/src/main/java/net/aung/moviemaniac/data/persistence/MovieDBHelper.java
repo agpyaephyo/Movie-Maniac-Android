@@ -16,6 +16,12 @@ import net.aung.moviemaniac.data.persistence.MovieContract.ProductionCountryEntr
 import net.aung.moviemaniac.data.persistence.MovieContract.SpokenLanguageEntry;
 import net.aung.moviemaniac.data.persistence.MovieContract.TrailerEntry;
 import net.aung.moviemaniac.data.persistence.MovieContract.ReviewEntry;
+import net.aung.moviemaniac.data.persistence.MovieContract.TVSeriesEntry;
+import net.aung.moviemaniac.data.persistence.MovieContract.TVSeriesGenreEntry;
+import net.aung.moviemaniac.data.persistence.MovieContract.TVSeriesProductionCompanyEntry;
+import net.aung.moviemaniac.data.persistence.MovieContract.NetworkEntry;
+import net.aung.moviemaniac.data.persistence.MovieContract.TVSeriesNetworkEntry;
+import net.aung.moviemaniac.data.persistence.MovieContract.TVSeasonEntry;
 
 /**
  * Created by aung on 3/8/16.
@@ -203,6 +209,109 @@ public class MovieDBHelper extends SQLiteOpenHelper {
 
             " UNIQUE (" + MovieSpokenLanguageEntry.COLUMN_MOVIE_ID + ", " +
             MovieSpokenLanguageEntry.COLUMN_ISO_639_1 + ") ON CONFLICT REPLACE" +
+            " );";
+
+    private static final String SQL_CREATE_TV_SERIES_TABLE = "CREATE TABLE " + TVSeriesEntry.TABLE_NAME + " (" +
+            TVSeriesEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TVSeriesEntry.COLUMN_TV_SERIES_ID + " INTEGER NOT NULL, " +
+            TVSeriesEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
+            TVSeriesEntry.COLUMN_OVERVIEW + " TEXT NOT NULL, " +
+            TVSeriesEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL, " +
+            TVSeriesEntry.COLUMN_ORIGINAL_NAME + " TEXT NOT NULL, " +
+            TVSeriesEntry.COLUMN_ORIGINAL_LANGUAGE + " TEXT NOT NULL, " +
+            TVSeriesEntry.COLUMN_NAME + " TEXT NOT NULL, " +
+            TVSeriesEntry.COLUMN_BACKDROP_PATH + " TEXT, " +
+            TVSeriesEntry.COLUMN_POPULARITY + " REAL NOT NULL, " +
+            TVSeriesEntry.COLUMN_VOTE_COUNT + " INTEGER NOT NULL, " +
+            TVSeriesEntry.COLUMN_VOTE_AVERAGE + " REAL NOT NULL, " +
+
+            TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " INTEGER NOT NULL, " +
+            TVSeriesEntry.COLUMN_IS_DETAIL_LOADED + " INTEGER DEFAULT 0, " +
+            TVSeriesEntry.COLUMN_IS_STAR + " INTEGER DEFAULT 0, " +
+
+            TVSeriesEntry.COLUMN_HOMEPAGE + " TEXT, " +
+            TVSeriesEntry.COLUMN_LAST_AIR_DATE + " TEXT, " +
+            TVSeriesEntry.COLUMN_NUMBER_OF_EPISODES + " INTEGER, " +
+            TVSeriesEntry.COLUMN_NUMBER_OF_SEASON + " INTEGER, " +
+            TVSeriesEntry.COLUMN_STATUS + " TEXT," +
+
+            " UNIQUE (" + TVSeriesEntry.COLUMN_TV_SERIES_ID +", "+
+            TVSeriesEntry.COLUMN_TV_SERIES_TYPE+") ON CONFLICT REPLACE" +
+            " );";
+
+    private static final String SQL_CREATE_TV_SERIES_GENRE_TABLE = "CREATE TABLE " + TVSeriesGenreEntry.TABLE_NAME + " (" +
+            TVSeriesGenreEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TVSeriesGenreEntry.COLUMN_TV_SERIES_ID + " INTEGER NOT NULL, " +
+            TVSeriesGenreEntry.COLUMN_GENRE_ID + " INTEGER NOT NULL, " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + TVSeriesGenreEntry.COLUMN_TV_SERIES_ID + ") REFERENCES " +
+            TVSeriesEntry.TABLE_NAME + " (" + TVSeriesEntry.COLUMN_TV_SERIES_ID + "), " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + TVSeriesGenreEntry.COLUMN_GENRE_ID + ") REFERENCES " +
+            GenreEntry.TABLE_NAME + " (" + GenreEntry.COLUMN_GENRE_ID + "), " +
+
+            " UNIQUE (" + TVSeriesGenreEntry.COLUMN_TV_SERIES_ID + ", " +
+            TVSeriesGenreEntry.COLUMN_GENRE_ID + ") ON CONFLICT REPLACE" +
+            " );";
+
+    private static final String SQL_CREATE_TV_SERIES_PRODUCTION_COMPANY_TABLE = "CREATE TABLE " + TVSeriesProductionCompanyEntry.TABLE_NAME + " (" +
+            TVSeriesProductionCompanyEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TVSeriesProductionCompanyEntry.COLUMN_TV_SERIES_ID + " INTEGER NOT NULL, " +
+            TVSeriesProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + " INTEGER NOT NULL, " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + TVSeriesProductionCompanyEntry.COLUMN_TV_SERIES_ID + ") REFERENCES " +
+            TVSeriesEntry.TABLE_NAME + " (" + TVSeriesEntry.COLUMN_TV_SERIES_ID + "), " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + TVSeriesProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + ") REFERENCES " +
+            ProductionCompanyEntry.TABLE_NAME + " (" + ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + "), " +
+
+            " UNIQUE (" + TVSeriesProductionCompanyEntry.COLUMN_TV_SERIES_ID + ", " +
+            TVSeriesProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + ") ON CONFLICT REPLACE" +
+            " );";
+
+    private static final String SQL_CREATE_NETWORKS_TABLE = "CREATE TABLE " + NetworkEntry.TABLE_NAME + " (" +
+            NetworkEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            NetworkEntry.COLUMN_NETWORK_ID + " INTEGER NOT NULL, " +
+            NetworkEntry.COLUMN_NAME + " TEXT NOT NULL," +
+
+            " UNIQUE (" + NetworkEntry.COLUMN_NETWORK_ID +") ON CONFLICT REPLACE" +
+            " );";
+
+    private static final String SQL_CREATE_TV_SERIES_NETWORK_TABLE = "CREATE TABLE " + TVSeriesNetworkEntry.TABLE_NAME + " (" +
+            TVSeriesNetworkEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + " INTEGER NOT NULL, " +
+            TVSeriesNetworkEntry.COLUMN_NETWORK_ID + " INTEGER NOT NULL, " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + ") REFERENCES " +
+            TVSeriesEntry.TABLE_NAME + " (" + TVSeriesEntry.COLUMN_TV_SERIES_ID + "), " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + TVSeriesNetworkEntry.COLUMN_NETWORK_ID + ") REFERENCES " +
+            NetworkEntry.TABLE_NAME + " (" + NetworkEntry.COLUMN_NETWORK_ID + "), " +
+
+            " UNIQUE (" + TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + ", " +
+            TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + ") ON CONFLICT REPLACE" +
+            " );";
+
+    private static final String SQL_CREATE_TV_SEASONS_TABLE = "CREATE TABLE " + TVSeasonEntry.TABLE_NAME + " (" +
+            TVSeasonEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            TVSeasonEntry.COLUMN_TV_SEASON_ID + " TEXT NOT NULL, " +
+            TVSeasonEntry.COLUMN_AIR_DATE + " TEXT NOT NULL, " +
+            TVSeasonEntry.COLUMN_EPISODE_COUNT + " INTEGER NOT NULL, " +
+            TVSeasonEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
+            TVSeasonEntry.COLUMN_SEASON_NUMBER + " INTEGER NOT NULL, " +
+            TVSeasonEntry.COLUMN_TV_SERIES_ID + " INTEGER NOT NULL, " +
+
+            /* make reference for FK */
+            " FOREIGN KEY (" + TVSeasonEntry.COLUMN_TV_SERIES_ID + ") REFERENCES " +
+            TVSeriesEntry.TABLE_NAME + " (" + TVSeriesEntry.COLUMN_TV_SERIES_ID + "), " +
+
+            " UNIQUE (" + TVSeasonEntry.COLUMN_TV_SEASON_ID +") ON CONFLICT REPLACE" +
             " );";
 
     public MovieDBHelper(Context context) {

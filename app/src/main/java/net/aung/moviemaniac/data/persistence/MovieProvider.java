@@ -31,11 +31,20 @@ public class MovieProvider extends ContentProvider {
 
     public static final int REVIEW = 1200;
 
+    public static final int TV_SERIES = 1300;
+    public static final int TV_SERIES_GENRE = 1400;
+    public static final int TV_SERIES_PRODUCTION_COMPANY = 1500;
+    public static final int NETWORKS = 1600;
+    public static final int TV_SERIES_NETWORKS = 1700;
+    public static final int TV_SEASONS = 1800;
+
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private MovieDBHelper mMovieDBHelper;
 
     private static final SQLiteQueryBuilder sMovieCollectionIJ, sMovieGenre_GenreIJ,
-            sMovieProductionCompany_ProductionCompanyIJ, sMovieProductionCountry_ProductionCountryIJ, sMovieSpokenLanguage_SpokenLanguage;
+            sMovieProductionCompany_ProductionCompanyIJ, sMovieProductionCountry_ProductionCountryIJ,
+            sMovieSpokenLanguage_SpokenLanguage, sTVSeriesGenre_GenreIJ,
+            sTVSeriesProductionCompany_ProductionCompanyIJ, sTVSeriesNetworks_NetworksIJ;
 
     static {
         sMovieCollectionIJ = new SQLiteQueryBuilder();
@@ -77,20 +86,48 @@ public class MovieProvider extends ContentProvider {
                         MovieContract.SpokenLanguageEntry.TABLE_NAME + " ON " +
                         MovieContract.MovieSpokenLanguageEntry.TABLE_NAME + "." + MovieContract.MovieSpokenLanguageEntry.COLUMN_ISO_639_1 + " = " +
                         MovieContract.SpokenLanguageEntry.TABLE_NAME + "." + MovieContract.SpokenLanguageEntry.COLUMN_ISO_639_1);
+
+        sTVSeriesGenre_GenreIJ = new SQLiteQueryBuilder();
+        //tv_series_genre INNER JOIN genre ON tv_series_genre.genre_id = genre.genre_id
+        sTVSeriesGenre_GenreIJ.setTables(
+                MovieContract.TVSeriesGenreEntry.TABLE_NAME + " INNER JOIN " +
+                        MovieContract.GenreEntry.TABLE_NAME + " ON " +
+                        MovieContract.TVSeriesGenreEntry.TABLE_NAME + "." + MovieContract.TVSeriesGenreEntry.COLUMN_GENRE_ID + " = " +
+                        MovieContract.GenreEntry.TABLE_NAME + "." + MovieContract.GenreEntry.COLUMN_GENRE_ID);
+
+        sTVSeriesProductionCompany_ProductionCompanyIJ = new SQLiteQueryBuilder();
+        //tv_series_production_company INNER JOIN production_company ON tv_series_production_company.production_company_id = production_company.production_company_id
+        sTVSeriesProductionCompany_ProductionCompanyIJ.setTables(
+                MovieContract.TVSeriesProductionCompanyEntry.TABLE_NAME + " INNER JOIN " +
+                        MovieContract.ProductionCompanyEntry.TABLE_NAME + " ON " +
+                        MovieContract.TVSeriesProductionCompanyEntry.TABLE_NAME + "." + MovieContract.TVSeriesProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + " = " +
+                        MovieContract.ProductionCompanyEntry.TABLE_NAME + "." + MovieContract.ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID);
+
+        sTVSeriesNetworks_NetworksIJ = new SQLiteQueryBuilder();
+        //tv_series_networks INNER JOIN networks ON tv_series_networks.network_id = networks.network_id
+        sTVSeriesNetworks_NetworksIJ.setTables(
+                MovieContract.TVSeriesNetworkEntry.TABLE_NAME + " INNER JOIN " +
+                        MovieContract.NetworkEntry.TABLE_NAME + " ON " +
+                        MovieContract.TVSeriesNetworkEntry.TABLE_NAME + "." + MovieContract.TVSeriesNetworkEntry.COLUMN_NETWORK_ID + " = " +
+                        MovieContract.NetworkEntry.TABLE_NAME + "." + MovieContract.NetworkEntry.COLUMN_NETWORK_ID);
     }
 
     private static final String sMovieMovieIdSelection = MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ?";
+    private static final String sTVSeriesTVSeriesIdSelection = MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_ID + " = ?";
     private static final String sTrailerMovieIdSelection = MovieContract.TrailerEntry.COLUMN_MOVIE_ID + " = ?";
     private static final String sMovieGenreMovieIdSelection = MovieContract.MovieGenreEntry.COLUMN_MOVIE_ID + " = ?";
+    private static final String sTVSeriesGenreTVSeriesIdSelection = MovieContract.TVSeriesGenreEntry.COLUMN_TV_SERIES_ID + " = ?";
     private static final String sMovieProductionCompanyMovieIdSelection = MovieContract.MovieProductionCompanyEntry.COLUMN_MOVIE_ID + " = ?";
+    private static final String sTVSeriesProductionCompanyTVSeriesIdSelection = MovieContract.TVSeriesProductionCompanyEntry.COLUMN_TV_SERIES_ID + " = ?";
+    private static final String sTVSeriesNetworksTVSeriesIdSelection = MovieContract.TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + " = ?";
     private static final String sReviewMovieIdSelection = MovieContract.ReviewEntry.COLUMN_MOVIE_ID + " = ?";
+    private static final String sTVSeasonTVSeriesIdSelection = MovieContract.TVSeasonEntry.COLUMN_TV_SERIES_ID + " = ?";
 
     @Override
     public boolean onCreate() {
         mMovieDBHelper = new MovieDBHelper(getContext());
         return true;
     }
-
 
 
     @Nullable
@@ -227,6 +264,87 @@ public class MovieProvider extends ContentProvider {
                         sortOrder);
                 break;
             }
+            case TV_SERIES: {
+                long tvSeriesId = MovieContract.TVSeriesEntry.getTVSeriesIdFromParam(uri);
+                if (tvSeriesId > -1) {
+                    selection = sTVSeriesTVSeriesIdSelection;
+                    selectionArgs = new String[]{String.valueOf(tvSeriesId)};
+                }
+                queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.TVSeriesEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null, //group_by
+                        null, //having
+                        sortOrder);
+                break;
+            }
+            case TV_SERIES_GENRE: {
+                long tvSeriesId = MovieContract.TVSeriesGenreEntry.getTVSeriesIdFromParam(uri);
+                if (tvSeriesId > -1) {
+                    selection = sTVSeriesGenreTVSeriesIdSelection;
+                    selectionArgs = new String[]{String.valueOf(tvSeriesId)};
+                }
+
+                queryCursor = sTVSeriesGenre_GenreIJ.query(mMovieDBHelper.getReadableDatabase(),
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            }
+            case TV_SERIES_PRODUCTION_COMPANY: {
+                //retrieving production_companies for a tv_series id.
+                long tvSeriesId = MovieContract.TVSeriesProductionCompanyEntry.getTVSeriesIdFromParam(uri);
+                if (tvSeriesId > -1) {
+                    selection = sTVSeriesProductionCompanyTVSeriesIdSelection;
+                    selectionArgs = new String[]{String.valueOf(tvSeriesId)};
+                }
+
+                queryCursor = sMovieProductionCompany_ProductionCompanyIJ.query(mMovieDBHelper.getReadableDatabase(),
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            }
+            case TV_SERIES_NETWORKS: {
+                //retrieving production_companies for a tv_series id.
+                long tvSeriesId = MovieContract.TVSeriesNetworkEntry.getTVSeriesIdFromParam(uri);
+                if (tvSeriesId > -1) {
+                    selection = sTVSeriesNetworksTVSeriesIdSelection;
+                    selectionArgs = new String[]{String.valueOf(tvSeriesId)};
+                }
+
+                queryCursor = sTVSeriesNetworks_NetworksIJ.query(mMovieDBHelper.getReadableDatabase(),
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
+            }
+            case TV_SEASONS: {
+                //retrieving trailers for a movie id.
+                long tvSeriesId = MovieContract.TVSeasonEntry.getTVSeriesIdFromParam(uri);
+                if (tvSeriesId > -1) {
+                    selection = sTVSeasonTVSeriesIdSelection;
+                    selectionArgs = new String[]{String.valueOf(tvSeriesId)};
+                }
+                queryCursor = mMovieDBHelper.getReadableDatabase().query(MovieContract.TVSeasonEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null, //group_by
+                        null, //having
+                        sortOrder);
+                break;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -260,6 +378,24 @@ public class MovieProvider extends ContentProvider {
                 return MovieContract.MovieProductionCountryEntry.DIR_TYPE;
             case REVIEW:
                 return MovieContract.ReviewEntry.DIR_TYPE;
+            case TV_SERIES: {
+                return MovieContract.TVSeriesEntry.DIR_TYPE;
+            }
+            case TV_SERIES_GENRE: {
+                return MovieContract.TVSeriesGenreEntry.DIR_TYPE;
+            }
+            case TV_SERIES_PRODUCTION_COMPANY: {
+                return MovieContract.TVSeriesProductionCompanyEntry.DIR_TYPE;
+            }
+            case NETWORKS: {
+                return MovieContract.NetworkEntry.DIR_TYPE;
+            }
+            case TV_SERIES_NETWORKS: {
+                return MovieContract.TVSeriesNetworkEntry.DIR_TYPE;
+            }
+            case TV_SEASONS: {
+                return MovieContract.TVSeasonEntry.DIR_TYPE;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -381,6 +517,60 @@ public class MovieProvider extends ContentProvider {
                 }
                 break;
             }
+            case TV_SERIES: {
+                long _id = db.insert(MovieContract.TVSeriesEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    insertedUri = MovieContract.TVSeriesEntry.buildTVSeriesUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case TV_SERIES_GENRE: {
+                long _id = db.insert(MovieContract.TVSeriesGenreEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    insertedUri = MovieContract.TVSeriesGenreEntry.buildTVSeriesGenreUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case TV_SERIES_PRODUCTION_COMPANY: {
+                long _id = db.insert(MovieContract.TVSeriesProductionCompanyEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    insertedUri = MovieContract.TVSeriesProductionCompanyEntry.buildMovieProductionCompanyUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case NETWORKS: {
+                long _id = db.insert(MovieContract.NetworkEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    insertedUri = MovieContract.NetworkEntry.buildNetworkUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case TV_SERIES_NETWORKS: {
+                long _id = db.insert(MovieContract.TVSeriesNetworkEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    insertedUri = MovieContract.TVSeriesNetworkEntry.buildTVSeriesNetworkUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+            case TV_SEASONS: {
+                long _id = db.insert(MovieContract.TVSeasonEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    insertedUri = MovieContract.TVSeasonEntry.buildTVSeasonUri(_id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -467,6 +657,13 @@ public class MovieProvider extends ContentProvider {
         uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_MOVIE_GENRE, MOVIE_GENRE);
         uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_REVIEWS, REVIEW);
 
+        uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_TV_SERIES, TV_SERIES);
+        uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_TV_SERIES_GENRE, TV_SERIES_GENRE);
+        uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_TV_SERIES_PRODUCTION_COMPANY, TV_SERIES_PRODUCTION_COMPANY);
+        uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_NETWORKS, NETWORKS);
+        uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_TV_SERIES_NETWORKS, TV_SERIES_NETWORKS);
+        uriMatcher.addURI(MovieContract.CONTENT_AUTHORITY, MovieContract.PATH_TV_SEASONS, TV_SEASONS);
+
         return uriMatcher;
     }
 
@@ -509,6 +706,24 @@ public class MovieProvider extends ContentProvider {
 
             case REVIEW:
                 return MovieContract.ReviewEntry.TABLE_NAME;
+            case TV_SERIES: {
+                return MovieContract.TVSeriesEntry.TABLE_NAME;
+            }
+            case TV_SERIES_GENRE: {
+                return MovieContract.TVSeriesGenreEntry.TABLE_NAME;
+            }
+            case TV_SERIES_PRODUCTION_COMPANY: {
+                return MovieContract.TVSeriesProductionCompanyEntry.TABLE_NAME;
+            }
+            case NETWORKS: {
+                return MovieContract.NetworkEntry.TABLE_NAME;
+            }
+            case TV_SERIES_NETWORKS: {
+                return MovieContract.TVSeriesNetworkEntry.TABLE_NAME;
+            }
+            case TV_SEASONS: {
+                return MovieContract.TVSeasonEntry.TABLE_NAME;
+            }
 
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);

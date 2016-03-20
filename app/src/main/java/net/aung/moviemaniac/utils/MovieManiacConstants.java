@@ -42,6 +42,13 @@ public class MovieManiacConstants {
     public static final int MOVIE_TYPE_NOW_PLAYING = 300;
     public static final int MOVIE_TYPE_UPCOMING = 400;
 
+    //Movie Type
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({TV_SERIES_TYPE_MOST_POPULAR})
+    public @interface TVSeriesType {}
+
+    public static final int TV_SERIES_TYPE_MOST_POPULAR = 500;
+
     public static final String IS_GENRE_LIST_LOADED_KEY = "IS_GENRE_LIST_LOADED_KEY";
 
     public static final String IMAGE_BASE_PATH = "http://image.tmdb.org/t/p/";

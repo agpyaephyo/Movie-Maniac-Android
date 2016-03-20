@@ -172,7 +172,7 @@ public class MovieModel {
 
         ArrayList<TVSeriesVO> loadedTVSeriesList = response.getTvSeriesList();
         //Persistent into DB.
-        //MovieVO.saveMovieFromList(loadedTVSeriesList, MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR);
+        TVSeriesVO.saveTVSeriesFromList(loadedTVSeriesList, MovieManiacConstants.TV_SERIES_TYPE_MOST_POPULAR);
 
         DataEvent.ShowTVSeriesListEvent showDataEvent = new DataEvent.ShowPopularTVSeriesListEvent(loadedTVSeriesList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);

@@ -28,6 +28,13 @@ public class MovieContract {
     public static final String PATH_MOVIE_GENRE = "movie_genre";
     public static final String PATH_REVIEWS = "reviews";
 
+    public static final String PATH_TV_SERIES = "tv_series";
+    public static final String PATH_TV_SERIES_GENRE = "tv_series_genre";
+    public static final String PATH_TV_SERIES_PRODUCTION_COMPANY = "tv_series_production_company";
+    public static final String PATH_NETWORKS = "networks";
+    public static final String PATH_TV_SERIES_NETWORKS = "tv_series_networks";
+    public static final String PATH_TV_SEASONS = "tv_seasons";
+
     //public static final String PATH_USER = "user";
     //public static final String PATH_FAVOURITE = "favourite";
 
@@ -465,6 +472,261 @@ public class MovieContract {
 
         public static long getMovieIdFromParam(Uri uri) {
             String movieIdString = uri.getQueryParameter(COLUMN_MOVIE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static final class TVSeriesEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TV_SERIES).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES;
+
+        public static final String TABLE_NAME = "tv_series";
+
+        public static final String COLUMN_TV_SERIES_ID = "tv_series_id";
+        public static final String COLUMN_POSTER_PATH = "poster_path";
+        public static final String COLUMN_OVERVIEW = "overview";
+        public static final String COLUMN_RELEASE_DATE = "release_date";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_ORIGINAL_LANGUAGE = "original_language";
+        public static final String COLUMN_ORIGINAL_NAME = "original_name";
+        public static final String COLUMN_BACKDROP_PATH = "backdrop_path";
+        public static final String COLUMN_POPULARITY = "popularity";
+        public static final String COLUMN_VOTE_COUNT = "vote_count";
+        public static final String COLUMN_VOTE_AVERAGE = "vote_average";
+
+        public static final String COLUMN_TV_SERIES_TYPE = "tv_series_type";
+        public static final String COLUMN_IS_DETAIL_LOADED = "is_detail_loaded";
+        public static final String COLUMN_IS_STAR = "is_star";
+
+        public static final String COLUMN_HOMEPAGE = "homepage";
+        public static final String COLUMN_LAST_AIR_DATE = "last_air_date";
+        public static final String COLUMN_NUMBER_OF_EPISODES = "number_of_episodes";
+        public static final String COLUMN_NUMBER_OF_SEASON = "number_of_seasons";
+        public static final String COLUMN_STATUS = "status";
+
+        public static Uri buildTVSeriesUri(long id) {
+            //content://net.aung.moviemaniac/tv_series/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTVSeriesUriWithTVSeriesId(int tvSeriesId) {
+            //content://net.aung.moviemaniac/tv_series?tv_series_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TV_SERIES_ID, Integer.toString(tvSeriesId))
+                    .build();
+        }
+
+        public static long getTVSeriesIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_TV_SERIES_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static final class TVSeriesGenreEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TV_SERIES_GENRE).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES_GENRE;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES_GENRE;
+
+        public static final String TABLE_NAME = "tv_series_genre";
+
+        public static final String COLUMN_TV_SERIES_ID = "tv_series_id";
+        public static final String COLUMN_GENRE_ID = "genre_id";
+
+        public static Uri buildTVSeriesGenreUri(long id) {
+            //content://net.aung.moviemaniac/tv_series_genre/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTVSeriesGenreUriWithTVSeriesId(long tvSeriesId) {
+            //content://net.aung.moviemaniac/tv_series_genre?tv_series_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TV_SERIES_ID, Long.toString(tvSeriesId))
+                    .build();
+        }
+
+        public static Uri buildTVSeriesGenreUriWithGenreId(long genreId) {
+            //content://net.aung.moviemaniac/tv_series_genre?genre_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_GENRE_ID, Long.toString(genreId))
+                    .build();
+        }
+
+        public static long getTVSeriesIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_GENRE_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static final class TVSeriesProductionCompanyEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TV_SERIES_PRODUCTION_COMPANY).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES_PRODUCTION_COMPANY;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES_PRODUCTION_COMPANY;
+
+        public static final String TABLE_NAME = "tv_series_production_company";
+
+        public static final String COLUMN_TV_SERIES_ID = "tv_series_id";
+        public static final String COLUMN_PRODUCTION_COMPANY_ID = "production_company_id";
+
+        public static Uri buildMovieProductionCompanyUri(long id) {
+            //content://net.aung.moviemaniac/tv_series_production_company/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTVSeriesProductionCompanyUriWithTVSeriesId(long tvSeriesId) {
+            //content://net.aung.moviemaniac/tv_series_production_company?tv_series_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TV_SERIES_ID, Long.toString(tvSeriesId))
+                    .build();
+        }
+
+        public static Uri buildTVSeriesProductionCompanyUriWithCompanyId(long companyId) {
+            //content://net.aung.moviemaniac/tv_series_production_company?production_company_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_PRODUCTION_COMPANY_ID, Long.toString(companyId))
+                    .build();
+        }
+
+        public static long getTVSeriesIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_TV_SERIES_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static final class NetworkEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_NETWORKS).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NETWORKS;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NETWORKS;
+
+        public static final String TABLE_NAME = "networks";
+
+        public static final String COLUMN_NETWORK_ID = "network_id";
+        public static final String COLUMN_NAME = "name";
+
+        public static Uri buildNetworkUri(long id) {
+            //content://net.aung.moviemaniac/networks/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+    }
+
+    public static final class TVSeriesNetworkEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TV_SERIES_NETWORKS).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES_NETWORKS;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SERIES_NETWORKS;
+
+        public static final String TABLE_NAME = "tv_series_networks";
+
+        public static final String COLUMN_TV_SERIES_ID = "tv_series_id";
+        public static final String COLUMN_NETWORK_ID = "network_id";
+
+        public static Uri buildTVSeriesNetworkUri(long id) {
+            //content://net.aung.moviemaniac/tv_series_networks/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTVSeriesNetworkUriWithTVSeriesId(long tvSeriesId) {
+            //content://net.aung.moviemaniac/tv_series_networks?tv_series_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TV_SERIES_ID, Long.toString(tvSeriesId))
+                    .build();
+        }
+
+        public static Uri buildTVSeriesNetworkUriWithNetworkId(long networkId) {
+            //content://net.aung.moviemaniac/tv_series_networks?network_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_NETWORK_ID, Long.toString(networkId))
+                    .build();
+        }
+
+        public static long getTVSeriesIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_TV_SERIES_ID);
+            if(movieIdString != null && movieIdString.length() > 0) {
+                return Long.parseLong(movieIdString);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    public static final class TVSeasonEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_TV_SEASONS).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SEASONS;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TV_SEASONS;
+
+        public static final String TABLE_NAME = "tv_seasons";
+
+        public static final String COLUMN_TV_SEASON_ID = "tv_season_id";
+        public static final String COLUMN_AIR_DATE = "air_date";
+        public static final String COLUMN_EPISODE_COUNT = "episode_count";
+        public static final String COLUMN_POSTER_PATH = "poster_path";
+        public static final String COLUMN_SEASON_NUMBER = "season_number";
+        public static final String COLUMN_TV_SERIES_ID = "tv_series_id";
+
+        public static Uri buildTVSeasonUri(long id) {
+            //content://net.aung.moviemaniac/tv_seasons/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildTVSeasonUriWithTVSeriesId(long tvSeriesId) {
+            //content://net.aung.moviemaniac/tv_seasons?tv_series_id=24
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_TV_SERIES_ID, Long.toString(tvSeriesId))
+                    .build();
+        }
+
+        public static long getTVSeriesIdFromParam(Uri uri) {
+            String movieIdString = uri.getQueryParameter(COLUMN_TV_SERIES_ID);
             if(movieIdString != null && movieIdString.length() > 0) {
                 return Long.parseLong(movieIdString);
             } else {
