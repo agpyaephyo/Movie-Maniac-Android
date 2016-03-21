@@ -112,7 +112,6 @@ public class TVSeriesListFragment extends BaseFragment
 
         tvSeriesListAdapter = TVSeriesListAdapter.newInstance(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES, controller);
 
-        rvTVSeries.setGridColumnSpan(1);
         rvTVSeries.setAdapter(tvSeriesListAdapter);
         rvTVSeries.setEmptyView(vpEmptyFavourite);
         rvTVSeries.addOnScrollListener(smartScrollListener);

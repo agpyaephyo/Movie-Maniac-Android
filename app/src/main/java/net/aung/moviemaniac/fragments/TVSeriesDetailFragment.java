@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -118,6 +119,9 @@ public class TVSeriesDetailFragment extends BaseFragment
     @Bind(R.id.vc_loader)
     ViewComponentLoader vcLoader;
 
+    @Bind(R.id.tv_rating_detail)
+    TextView tvRating;
+
     public static TVSeriesDetailFragment newInstance(int tvSeriesId, int tvSeriesType) {
         TVSeriesDetailFragment fragment = new TVSeriesDetailFragment();
         Bundle bundle = new Bundle();
@@ -193,6 +197,7 @@ public class TVSeriesDetailFragment extends BaseFragment
         });
 
         vcLoader.displayLoader();
+        setRatingColor();
 
         return rootView;
     }
@@ -229,7 +234,7 @@ public class TVSeriesDetailFragment extends BaseFragment
     @Override
     public void displayTVSeriesDetail(TVSeriesVO tvSeries) {
         binding.setTvSeries(tvSeries);
-        vpContainerGenre.setGenreList(tvSeries.getGenreList());
+        vpContainerGenre.setGenreList(tvSeries.getGenreList(), MovieManiacApp.getContext().getResources().getColor(R.color.text_white));
         if (tvSeries.isDetailLoaded()) {
             vcLoader.dismissLoader();
             vpTVSeriesPopularity.drawPopularityIcons(tvSeries.getPopularity());
@@ -317,6 +322,17 @@ public class TVSeriesDetailFragment extends BaseFragment
         }
     }
 
+    private void setRatingColor() {
+        Context context = MovieManiacApp.getContext();
+        int color;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            color = context.getResources().getColor(R.color.accent, context.getTheme());
+        } else {
+            color = context.getResources().getColor(R.color.accent);
+        }
+        tvRating.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(),
@@ -387,7 +403,7 @@ public class TVSeriesDetailFragment extends BaseFragment
     @Override
     public void onTapFacebook() {
         GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_SHARE_FACEBOOK);
-        Toast.makeText(getContext(), "Nothing happen ! Facebook integration is not there yet.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Facebook Integration is coming soon.", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -49,7 +49,9 @@
         android:paddingTop="@dimen/margin_medium"
         android:text="@string/feedback"
         android:textColor="@color/primary_text"
-        android:textSize="@dimen/text_regular_2x" />
+        android:textSize="@dimen/text_regular_2x"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>
 

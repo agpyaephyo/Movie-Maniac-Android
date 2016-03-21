@@ -32,7 +32,7 @@ public class ViewPodMoviePopularity extends LinearLayout {
         super.onFinishInflate();
         for (int i = 0; i < MAX_POPULARITY_COUNT; i++) {
             ImageView iv = new ImageView(getContext());
-            iv.setImageResource(R.drawable.movie_popularity_icon);
+            iv.setImageResource(R.drawable.movie_popularity_icon_star);
             if (i != 0) {
                 iv.setPadding((int) getContext().getResources().getDimension(R.dimen.margin_small), 0, 0, 0);
             }
@@ -44,6 +44,7 @@ public class ViewPodMoviePopularity extends LinearLayout {
     public void drawPopularityIcons(float popularity) {
         hideAllViews();
         int popularityCount = (int) (popularity / 10);
+        popularityCount += 2; //by default, there will be 3 stars.
         if(popularityCount > 0) {
             setVisibility(View.VISIBLE);
         } else {

@@ -74,14 +74,14 @@
                                     tools:src="@drawable/movie_poster" />
 
                                 <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
-                                    android:id="@+id/tv_rating"
+                                    android:id="@+id/tv_rating_detail"
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
                                     android:layout_margin="@dimen/margin_small"
-                                    android:background="@drawable/movie_rating_bg"
+                                    android:background="@drawable/ic_favorite_white_24dp"
                                     android:gravity="center"
                                     android:text="@{tvSeries.voteAverage}"
-                                    android:textColor="@color/primary_text"
+                                    android:textColor="@color/text_white"
                                     android:textSize="@dimen/text_regular_3x"
                                     tools:text="6.2" />
 
@@ -167,7 +167,7 @@
                             android:fontFamily="sans-serif-condensed"
                             android:gravity="center_vertical"
                             android:lineSpacingExtra="1.2dp"
-                            android:maxLines="2"
+                            android:maxLines="1"
                             android:padding="@dimen/margin_medium_2"
                             android:text="@{tvSeries.name}"
                             android:textColor="@color/text_white"

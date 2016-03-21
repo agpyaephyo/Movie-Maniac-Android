@@ -18,31 +18,22 @@ public class SmallDashUnderlineTextView extends TextView {
     private Rect mRect;
     private Paint mPaint;
 
-    public SmallDashUnderlineTextView(Context context) {
+    public SmallDashUnderlineTextView(Context context, int textColor) {
         super(context);
-        init();
+        init(textColor);
     }
 
-    public SmallDashUnderlineTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
-    public SmallDashUnderlineTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    private void init() {
+    private void init(int textColor) {
         mRect = new Rect();
         mPaint = new Paint();
-        mPaint.setARGB(255, 255, 255, 255);
+        mPaint.setColor(textColor);
+        //mPaint.setARGB(255, 255, 255, 255);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(2);
         //mPaint.setPathEffect(new DashPathEffect(new float[]{50, 50}, 100));
 
         setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
-        setTextColor(getResources().getColor(android.R.color.white));
+        setTextColor(textColor);
         setTextSize(14);
         setPadding(0,0,0, (int) getResources().getDimension(R.dimen.margin_medium));
     }

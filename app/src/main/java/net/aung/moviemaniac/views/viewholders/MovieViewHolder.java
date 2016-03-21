@@ -1,9 +1,12 @@
 package net.aung.moviemaniac.views.viewholders;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
@@ -22,6 +25,7 @@ import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.databinding.ViewItemMovieFullWidthBinding;
 import net.aung.moviemaniac.utils.GAUtils;
+import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
 import java.util.List;
@@ -51,6 +55,9 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
     @Bind(R.id.iv_cancel_star)
     ImageView ivCancelStar;
 
+    @Bind(R.id.tv_rating)
+    TextView tvRating;
+
     private View itemView;
 
     public MovieViewHolder(View itemView, MovieItemController controller, boolean isFavouriteSection) {
@@ -63,6 +70,8 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
 
         ivPoster.setDrawingCacheEnabled(true);
         ivCancelStar.setVisibility(isFavouriteSection ? View.VISIBLE : View.GONE);
+
+        setRatingColor();
     }
 
     @Override
@@ -102,7 +111,6 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
             //stringBuilder.append("</font>");
             tvGenreList.setText(Html.fromHtml(stringBuilder.toString()));
         }
-
     }
 
     @Override
@@ -137,6 +145,17 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
             //setPaletteforTitle(colorDarkVaient, colorLightVarient);
             //setVibrantColor(vibrantSwatch);
         }
+    }
+
+    private void setRatingColor() {
+        Context context = MovieManiacApp.getContext();
+        int color;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            color = context.getResources().getColor(R.color.accent, context.getTheme());
+        } else {
+            color = context.getResources().getColor(R.color.accent);
+        }
+        tvRating.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
     }
 
     private void setPaletteForRootContainer(Palette.Swatch colorDarkVaient) {

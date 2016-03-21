@@ -32,13 +32,13 @@ public class ViewPodGenreListDetail extends LinearLayout {
         super.onFinishInflate();
     }
 
-    public void setGenreList(List<GenreVO> genreList) {
+    public void setGenreList(List<GenreVO> genreList, int textColor) {
         if (genreList == null || genreList.size() == 0)
             return;
 
         if (getChildCount() == 0) {
             for (int position = 0; position < genreList.size(); position++) {
-                TextView tv = new SmallDashUnderlineTextView(getContext());
+                TextView tv = new SmallDashUnderlineTextView(getContext(), textColor);
                 GenreVO genre = genreList.get(position);
                 if(genre != null) {
                     tv.setText(genre.getName());
@@ -47,7 +47,7 @@ public class ViewPodGenreListDetail extends LinearLayout {
                     if (position < genreList.size() - 1) {
                         TextView tvSeparator = new TextView(getContext());
                         tvSeparator.setTextSize(14);
-                        tvSeparator.setTextColor(getContext().getResources().getColor(android.R.color.white));
+                        tvSeparator.setTextColor(textColor);
                         tvSeparator.setText(" | ");
                         addView(tvSeparator);
                     }

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -45,6 +46,7 @@ import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.utils.YoutubeUtils;
+import net.aung.moviemaniac.views.components.ViewComponentLoader;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodFabs;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
@@ -107,6 +109,12 @@ public class MovieDetailFragment extends BaseFragment
 
     @Bind(R.id.vp_fabs)
     ViewPodFabs vpFabs;
+
+    @Bind(R.id.vc_loader)
+    ViewComponentLoader vcLoader;
+
+    @Bind(R.id.tv_rating_detail)
+    TextView tvRating;
 
     public static MovieDetailFragment newInstance(int movieId, int movieType) {
         MovieDetailFragment fragment = new MovieDetailFragment();
@@ -176,6 +184,9 @@ public class MovieDetailFragment extends BaseFragment
             }
         });
 
+        vcLoader.displayLoader();
+        setRatingColor();
+
         return rootView;
     }
 
@@ -211,8 +222,9 @@ public class MovieDetailFragment extends BaseFragment
     @Override
     public void displayMovieDetail(MovieVO movie) {
         binding.setMovie(movie);
-        vpContainerGenre.setGenreList(movie.getGenreList());
+        vpContainerGenre.setGenreList(movie.getGenreList(), MovieManiacApp.getContext().getResources().getColor(R.color.text_white));
         if (movie.isDetailLoaded()) {
+            vcLoader.dismissLoader();
             vpMoviePopularity.drawPopularityIcons(movie.getPopularity());
         }
 
@@ -292,6 +304,17 @@ public class MovieDetailFragment extends BaseFragment
         }
     }
 
+    private void setRatingColor() {
+        Context context = MovieManiacApp.getContext();
+        int color;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            color = context.getResources().getColor(R.color.accent, context.getTheme());
+        } else {
+            color = context.getResources().getColor(R.color.accent);
+        }
+        tvRating.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(),
@@ -366,7 +389,7 @@ public class MovieDetailFragment extends BaseFragment
     @Override
     public void onTapFacebook() {
         GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_SHARE_FACEBOOK);
-        Toast.makeText(getContext(), "Nothing happen ! Facebook integration is not there yet.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Facebook Integration is coming soon.", Toast.LENGTH_SHORT).show();
     }
 
     @Override

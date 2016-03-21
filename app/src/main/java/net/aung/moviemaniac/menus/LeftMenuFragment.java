@@ -21,6 +21,7 @@ import net.aung.moviemaniac.adapters.MenuListAdapter;
 import net.aung.moviemaniac.data.vos.MenuVO;
 import net.aung.moviemaniac.utils.CommonInstances;
 import net.aung.moviemaniac.utils.JsonUtils;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.items.ViewItemMenu;
 import net.aung.moviemaniac.views.pods.ViewPodUserInfo;
 
@@ -65,7 +66,7 @@ public class LeftMenuFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_left_menu, container, false);
         ButterKnife.bind(this, rootView);
 
-        tvAppVersion.setText(getString(R.string.app_name) + " v0.1");
+        tvAppVersion.setText(getString(R.string.app_name) + " v" + MovieManiacConstants.APP_VERSION + " - " + MovieManiacConstants.APP_VERSION_POST_FIX);
 
         try {
             String leftMenu = JsonUtils.getInstance().loadLeftMenuData();

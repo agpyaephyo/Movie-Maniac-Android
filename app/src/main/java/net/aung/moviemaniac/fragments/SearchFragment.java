@@ -125,6 +125,12 @@ public class SearchFragment extends BaseFragment implements SearchView {
                     swipeRefreshLayout.setEnabled(true);
                     swipeRefreshLayout.setRefreshing(true);
 
+                    if (mSearchType == SearchActivity.SEARCH_TYPE_MOVIE) {
+                        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_MOVIES, query);
+                    } else if (mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
+                        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_TV_SERIES, query);
+                    }
+
                     return true;
                 }
                 return false;

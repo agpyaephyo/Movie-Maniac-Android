@@ -28,7 +28,7 @@ import net.aung.moviemaniac.data.persistence.MovieContract.TVSeasonEntry;
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 20;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
@@ -36,7 +36,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             SpokenLanguageEntry.COLUMN_ISO_639_1 + " TEXT NOT NULL, " +
             SpokenLanguageEntry.COLUMN_NAME + " TEXT NOT NULL," +
 
-            " UNIQUE (" + SpokenLanguageEntry.COLUMN_ISO_639_1 +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + SpokenLanguageEntry.COLUMN_ISO_639_1 +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_PRODUCTION_COUNTRY_TABLE = "CREATE TABLE " + ProductionCountryEntry.TABLE_NAME + " (" +
@@ -44,7 +44,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             ProductionCountryEntry.COLUMN_ISO_3166_1 + " TEXT NOT NULL, " +
             ProductionCountryEntry.COLUMN_NAME + " TEXT NOT NULL," +
 
-            " UNIQUE (" + ProductionCountryEntry.COLUMN_ISO_3166_1 +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + ProductionCountryEntry.COLUMN_ISO_3166_1 +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_PRODUCTION_COMPANY_TABLE = "CREATE TABLE " + ProductionCompanyEntry.TABLE_NAME + " (" +
@@ -52,7 +52,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + " INTEGER NOT NULL, " +
             ProductionCompanyEntry.COLUMN_NAME + " TEXT NOT NULL," +
 
-            " UNIQUE (" + ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_COLLECTION_TABLE = "CREATE TABLE " + CollectionEntry.TABLE_NAME + " (" +
@@ -62,7 +62,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             CollectionEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
             CollectionEntry.COLUMN_BACKDROP_PATH + " TEXT NOT NULL," +
 
-            " UNIQUE (" + CollectionEntry.COLUMN_COLLECTION_ID +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + CollectionEntry.COLUMN_COLLECTION_ID +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_GENRE_TABLE = "CREATE TABLE " + GenreEntry.TABLE_NAME + " (" +
@@ -70,7 +70,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             GenreEntry.COLUMN_GENRE_ID + " INTEGER NOT NULL, " +
             GenreEntry.COLUMN_NAME + " TEXT NOT NULL," +
 
-            " UNIQUE (" + GenreEntry.COLUMN_GENRE_ID +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + GenreEntry.COLUMN_GENRE_ID +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + MovieEntry.TABLE_NAME + " (" +
@@ -107,7 +107,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             CollectionEntry.TABLE_NAME + " (" + CollectionEntry.COLUMN_COLLECTION_ID + ")," +
 
             " UNIQUE (" + MovieEntry.COLUMN_MOVIE_ID +", "+
-            MovieEntry.COLUMN_MOVIE_TYPE+") ON CONFLICT REPLACE" +
+            MovieEntry.COLUMN_MOVIE_TYPE+") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_TRAILER_TABLE = "CREATE TABLE " + TrailerEntry.TABLE_NAME + " (" +
@@ -126,7 +126,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             " FOREIGN KEY (" + TrailerEntry.COLUMN_MOVIE_ID + ") REFERENCES " +
             MovieEntry.TABLE_NAME + " (" + MovieEntry.COLUMN_MOVIE_ID + "), " +
 
-            " UNIQUE (" + TrailerEntry.COLUMN_TRAILER_ID +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + TrailerEntry.COLUMN_TRAILER_ID +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_REVIEW_TABLE = "CREATE TABLE " + ReviewEntry.TABLE_NAME + " (" +
@@ -141,7 +141,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             " FOREIGN KEY (" + ReviewEntry.COLUMN_MOVIE_ID + ") REFERENCES " +
             MovieEntry.TABLE_NAME + " (" + MovieEntry.COLUMN_MOVIE_ID + "), " +
 
-            " UNIQUE (" + ReviewEntry.COLUMN_REVIEW_ID +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + ReviewEntry.COLUMN_REVIEW_ID +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_MOVIE_GENRE_TABLE = "CREATE TABLE " + MovieGenreEntry.TABLE_NAME + " (" +
@@ -158,7 +158,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             GenreEntry.TABLE_NAME + " (" + GenreEntry.COLUMN_GENRE_ID + "), " +
 
             " UNIQUE (" + MovieGenreEntry.COLUMN_MOVIE_ID + ", " +
-            MovieGenreEntry.COLUMN_GENRE_ID + ") ON CONFLICT REPLACE" +
+            MovieGenreEntry.COLUMN_GENRE_ID + ") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_MOVIE_PRODUCTION_COMPANY_TABLE = "CREATE TABLE " + MovieProductionCompanyEntry.TABLE_NAME + " (" +
@@ -175,7 +175,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             ProductionCompanyEntry.TABLE_NAME + " (" + ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + "), " +
 
             " UNIQUE (" + MovieProductionCompanyEntry.COLUMN_MOVIE_ID + ", " +
-            MovieProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + ") ON CONFLICT REPLACE" +
+            MovieProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + ") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_MOVIE_PRODUCTION_COUNTRY_TABLE = "CREATE TABLE " + MovieProductionCountryEntry.TABLE_NAME + " (" +
@@ -192,7 +192,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             ProductionCountryEntry.TABLE_NAME + " (" + ProductionCountryEntry.COLUMN_ISO_3166_1 + "), " +
 
             " UNIQUE (" + MovieProductionCountryEntry.COLUMN_MOVIE_ID + ", " +
-            MovieProductionCountryEntry.COLUMN_ISO_3166_1 + ") ON CONFLICT REPLACE" +
+            MovieProductionCountryEntry.COLUMN_ISO_3166_1 + ") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_MOVIE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + MovieSpokenLanguageEntry.TABLE_NAME + " (" +
@@ -209,7 +209,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             SpokenLanguageEntry.TABLE_NAME + " (" + SpokenLanguageEntry.COLUMN_ISO_639_1 + "), " +
 
             " UNIQUE (" + MovieSpokenLanguageEntry.COLUMN_MOVIE_ID + ", " +
-            MovieSpokenLanguageEntry.COLUMN_ISO_639_1 + ") ON CONFLICT REPLACE" +
+            MovieSpokenLanguageEntry.COLUMN_ISO_639_1 + ") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_TV_SERIES_TABLE = "CREATE TABLE " + TVSeriesEntry.TABLE_NAME + " (" +
@@ -238,7 +238,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             TVSeriesEntry.COLUMN_EPISODE_RUNTIME + " INTEGER DEFAULT 0," +
 
             " UNIQUE (" + TVSeriesEntry.COLUMN_TV_SERIES_ID +", "+
-            TVSeriesEntry.COLUMN_TV_SERIES_TYPE+") ON CONFLICT REPLACE" +
+            TVSeriesEntry.COLUMN_TV_SERIES_TYPE+") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_TV_SERIES_GENRE_TABLE = "CREATE TABLE " + TVSeriesGenreEntry.TABLE_NAME + " (" +
@@ -255,7 +255,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             GenreEntry.TABLE_NAME + " (" + GenreEntry.COLUMN_GENRE_ID + "), " +
 
             " UNIQUE (" + TVSeriesGenreEntry.COLUMN_TV_SERIES_ID + ", " +
-            TVSeriesGenreEntry.COLUMN_GENRE_ID + ") ON CONFLICT REPLACE" +
+            TVSeriesGenreEntry.COLUMN_GENRE_ID + ") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_TV_SERIES_PRODUCTION_COMPANY_TABLE = "CREATE TABLE " + TVSeriesProductionCompanyEntry.TABLE_NAME + " (" +
@@ -272,7 +272,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             ProductionCompanyEntry.TABLE_NAME + " (" + ProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + "), " +
 
             " UNIQUE (" + TVSeriesProductionCompanyEntry.COLUMN_TV_SERIES_ID + ", " +
-            TVSeriesProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + ") ON CONFLICT REPLACE" +
+            TVSeriesProductionCompanyEntry.COLUMN_PRODUCTION_COMPANY_ID + ") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_NETWORKS_TABLE = "CREATE TABLE " + NetworkEntry.TABLE_NAME + " (" +
@@ -280,7 +280,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             NetworkEntry.COLUMN_NETWORK_ID + " INTEGER NOT NULL, " +
             NetworkEntry.COLUMN_NAME + " TEXT NOT NULL," +
 
-            " UNIQUE (" + NetworkEntry.COLUMN_NETWORK_ID +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + NetworkEntry.COLUMN_NETWORK_ID +") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_TV_SERIES_NETWORK_TABLE = "CREATE TABLE " + TVSeriesNetworkEntry.TABLE_NAME + " (" +
@@ -297,7 +297,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             NetworkEntry.TABLE_NAME + " (" + NetworkEntry.COLUMN_NETWORK_ID + "), " +
 
             " UNIQUE (" + TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + ", " +
-            TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + ") ON CONFLICT REPLACE" +
+            TVSeriesNetworkEntry.COLUMN_TV_SERIES_ID + ") ON CONFLICT IGNORE" +
             " );";
 
     private static final String SQL_CREATE_TV_SEASONS_TABLE = "CREATE TABLE " + TVSeasonEntry.TABLE_NAME + " (" +
@@ -313,7 +313,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             " FOREIGN KEY (" + TVSeasonEntry.COLUMN_TV_SERIES_ID + ") REFERENCES " +
             TVSeriesEntry.TABLE_NAME + " (" + TVSeriesEntry.COLUMN_TV_SERIES_ID + "), " +
 
-            " UNIQUE (" + TVSeasonEntry.COLUMN_TV_SEASON_ID +") ON CONFLICT REPLACE" +
+            " UNIQUE (" + TVSeasonEntry.COLUMN_TV_SEASON_ID +") ON CONFLICT IGNORE" +
             " );";
 
     public MovieDBHelper(Context context) {
