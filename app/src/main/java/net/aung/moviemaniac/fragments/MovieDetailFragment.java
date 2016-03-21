@@ -130,7 +130,9 @@ public class MovieDetailFragment extends BaseFragment
         presenter.onCreate();
 
         poster = MovieManiacApp.sPosterCache.get(0);
-        Palette.from(poster).generate(this);
+
+        if(poster != null)
+            Palette.from(poster).generate(this);
 
         trailerAdapter = TrailerListAdapter.newInstance(controller);
     }
@@ -321,6 +323,9 @@ public class MovieDetailFragment extends BaseFragment
 
             Log.d(MovieManiacApp.TAG, "Displaying movies detail for movie_id " + mMovieId);
             displayMovieDetail(mMovie);
+        } else {
+            //Load from network via movieId
+            presenter.loadMovieDetailFromNetwork(mMovieId);
         }
     }
 

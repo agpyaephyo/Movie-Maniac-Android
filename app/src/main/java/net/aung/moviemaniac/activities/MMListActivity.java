@@ -80,6 +80,8 @@ public class MMListActivity extends BaseActivity implements
                 String dailySpecial = GAUtils.getInstance().getDailySpecial();
                 Toast.makeText(getApplicationContext(), "Daily special : " + dailySpecial, Toast.LENGTH_SHORT).show();
                 */
+
+                launchSearch();
             }
         });
 
@@ -107,13 +109,13 @@ public class MMListActivity extends BaseActivity implements
         */
 
         if (savedInstanceState == null) {
-            /*
             showMovieShelf();
             mCurrentMenuIndex = MenuVO.MENU_INDEX_MOVIE_SHELF;
-            */
 
+            /*
             showTVSeriesShelf();
             mCurrentMenuIndex = MenuVO.MENU_INDEX_TV_SERIES_SHELF;
+            */
         }
     }
 
@@ -153,14 +155,6 @@ public class MMListActivity extends BaseActivity implements
             Intent intentToDetail = MMDetailActivity.createMovieIntent(movie.getId(), movie.getMovieType());
             startActivity(intentToDetail);
         }
-
-        /*
-        getSupportFragmentManager().beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(R.id.fl_container, MovieDetailFragment.newInstance(movie.getId()))
-                .addToBackStack(null)
-                .commit();
-                */
     }
 
     @Override
@@ -211,5 +205,17 @@ public class MMListActivity extends BaseActivity implements
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_pager, TVSeriesPagerFragment.newInstance())
                 .commit();
+    }
+
+    private void launchSearch() {
+        @SearchActivity.SearchType int searchType = -1;
+        if (mCurrentMenuIndex == MenuVO.MENU_INDEX_MOVIE_SHELF) {
+            searchType = SearchActivity.SEARCH_TYPE_MOVIE;
+        } else if(mCurrentMenuIndex == MenuVO.MENU_INDEX_TV_SERIES_SHELF) {
+            searchType = SearchActivity.SEARCH_TYPE_TV_SERIES;
+        }
+
+        Intent intentToSearch = SearchActivity.createNewIntent(searchType);
+        startActivity(intentToSearch);
     }
 }

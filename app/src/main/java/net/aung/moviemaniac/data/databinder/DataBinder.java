@@ -6,6 +6,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import net.aung.moviemaniac.R;
+
 /**
  * Created by aung on 12/12/15.
  */
@@ -20,6 +22,8 @@ public final class DataBinder {
         Context context = iv.getContext();
         Glide.with(context)
                 .load(imageUrl)
+                .placeholder(R.drawable.place_holder_movie_maniac)
+                .error(R.drawable.place_holder_movie_maniac)
                 .centerCrop()
                 .into(iv);
     }

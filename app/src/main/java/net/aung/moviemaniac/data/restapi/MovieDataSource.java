@@ -14,10 +14,14 @@ public interface MovieDataSource {
     void loadTopRatedMovies(int pageNumber, boolean isForce);
     void loadMovieTrailers(int movieId);
     void loadMovieDetail(MovieVO movie);
+    void loadMovieDetail(int movieId);
     void loadGenreList();
     void loadMovieReviews(int movieId);
     void loadPopularTVSeries(int pageNumber, boolean isForce);
     void loadTopRatedTVSeries(int pageNumber, boolean isForce);
     void loadTVSeriesDetail(TVSeriesVO tvSeries);
+    void loadTVSeriesDetail(int tvSeriesId);
     void loadTvSeriesTrailers(int tvSeriesId);
+    void searchOnMovie(String query);
+    void searchOnTVSeries(String query);
 }

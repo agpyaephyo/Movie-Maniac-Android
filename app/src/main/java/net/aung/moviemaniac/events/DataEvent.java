@@ -278,4 +278,40 @@ public class DataEvent {
             return tvSeriesId;
         }
     }
+
+    public static class SearchedMovieEvent {
+        private MovieListResponse response;
+        private String query;
+
+        public SearchedMovieEvent(MovieListResponse response, String query) {
+            this.response = response;
+            this.query = query;
+        }
+
+        public MovieListResponse getResponse() {
+            return response;
+        }
+
+        public String getQuery() {
+            return query;
+        }
+    }
+
+    public static class SearchedTVSeriesEvent {
+        private TVSeriesListResponse response;
+        private String query;
+
+        public SearchedTVSeriesEvent(TVSeriesListResponse response, String query) {
+            this.response = response;
+            this.query = query;
+        }
+
+        public TVSeriesListResponse getResponse() {
+            return response;
+        }
+
+        public String getQuery() {
+            return query;
+        }
+    }
 }

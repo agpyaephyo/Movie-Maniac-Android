@@ -386,7 +386,7 @@ public class MovieVO {
 
         Context context = MovieManiacApp.getContext();
         int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
-                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND "+ MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND " + MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
                 new String[]{String.valueOf(id), String.valueOf(movieType)});
 
         if (updateCount > 0) {
@@ -400,8 +400,13 @@ public class MovieVO {
         //Update movie.
         Context context = MovieManiacApp.getContext();
         int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
-                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND "+ MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND " + MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
                 new String[]{String.valueOf(id), String.valueOf(movieType)});
+
+        if (updateCount <= 0) {
+            //insert
+            Uri insertUri = context.getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, cv);
+        }
 
         if (collection != null) {
             ContentValues cvCollection = collection.parseToContentValues();

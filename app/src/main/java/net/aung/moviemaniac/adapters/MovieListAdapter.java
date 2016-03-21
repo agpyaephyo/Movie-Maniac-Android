@@ -40,7 +40,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View viMovie = inflater.inflate(R.layout.view_item_movie, parent, false);
+        View viMovie = inflater.inflate(R.layout.view_item_movie_full_width, parent, false);
         return new MovieViewHolder(viMovie, controller, isFavouriteSection);
     }
 

@@ -8,11 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.aung.moviemaniac.R;
-import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.controllers.TVSeriesItemController;
-import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
-import net.aung.moviemaniac.views.viewholders.MovieViewHolder;
 import net.aung.moviemaniac.views.viewholders.TVSeriesViewHolder;
 
 import java.util.ArrayList;
@@ -58,13 +55,13 @@ public class TVSeriesListAdapter extends RecyclerView.Adapter<TVSeriesViewHolder
         return tvSeriesList.size();
     }
 
-    public void appendMovieList(@NonNull List<TVSeriesVO> newTVSeriesList) {
+    public void appendTVSeriesList(@NonNull List<TVSeriesVO> newTVSeriesList) {
         tvSeriesList.addAll(newTVSeriesList);
         notifyDataSetChanged();
     }
 
-    public void setMovieList(List<TVSeriesVO> tvSeriesList) {
+    public void setTVSeriesList(List<TVSeriesVO> tvSeriesList) {
         this.tvSeriesList.clear();
-        appendMovieList(tvSeriesList);
+        appendTVSeriesList(tvSeriesList);
     }
 }

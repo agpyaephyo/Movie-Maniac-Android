@@ -37,7 +37,7 @@
         tools:text="ရုပ်ရှင် v0.1" />
 
     <TextView
-        android:id="@+id/tv_whats_new"
+        android:id="@+id/tv_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/tv_app_version"
@@ -47,7 +47,7 @@
         android:paddingBottom="@dimen/margin_medium"
         android:paddingRight="@dimen/margin_large"
         android:paddingTop="@dimen/margin_medium"
-        android:text="Q &amp; A"
+        android:text="@string/feedback"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/text_regular_2x" />
 

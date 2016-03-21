@@ -95,4 +95,16 @@ public interface TheMovieApi {
             @Path("tvSeriesId") int tvSeriesId,
             @Query("api_key") String apiKey
     );
+
+    @GET("search/movie")
+    Call<MovieListResponse> searchOnMovie(
+            @Query("query") String query,
+            @Query("api_key") String apiKey
+    );
+
+    @GET("search/tv")
+    Call<TVSeriesListResponse> searchOnTVSeries(
+            @Query("query") String query,
+            @Query("api_key") String apiKey
+    );
 }

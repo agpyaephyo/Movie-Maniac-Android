@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="@dimen/padding_login"
             android:layout_marginLeft="@dimen/margin_medium"
             android:orientation="vertical"
             android:padding="@dimen/margin_medium">
@@ -48,6 +47,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Login to the App and"
                 android:textColor="@color/text_white"
+                android:visibility="gone"
                 android:textSize="@dimen/text_regular_2x" />
 
             <TextView
@@ -55,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:fontFamily="sans-serif-light"
                 android:text="I will help you save your favourite movies / tv shows."
                 android:textColor="@color/text_white"
@@ -107,6 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/margin_medium_2"
             android:layout_marginRight="@dimen/margin_medium_2" />
 

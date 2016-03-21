@@ -38,6 +38,13 @@ public class MovieDetailPresenter extends BasePresenter {
         movieModel.loadMovieDetailByMovieId(movie);
     }
 
+    public void loadMovieDetailFromNetwork(int movieId) {
+        movieModel.loadTrailerListByMovieId(movieId);
+        movieModel.loadMovieReviewByMovieId(movieId);
+
+        movieModel.loadMovieDetailByMovieId(movieId);
+    }
+
     public void onEventMainThread(DataEvent.LoadedMovieTrailerEvent event) {
         //movieDetailView.displayTrailerList(event.getResponse().getTrailerList());
     }

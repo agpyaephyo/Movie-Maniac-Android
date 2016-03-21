@@ -24,7 +24,7 @@
 
     <string name="most_popular_movies">Most Popular</string>
     <string name="top_rated_movies">Top Rated</string>
-    <string name="my_favourites">My Favourites</string>
+    <string name="my_favourites">My Bookmarks</string>
     <string name="loading_more_movies">Loading more movies ...</string>
 
     <string name="star_data" translatable="false">
@@ -54,14 +54,15 @@
             C 255.048,238.561 254.706,187.75 248.302,183.489
             C 221.536,165.677 218.848,144.628 223.42,133.484 z
     </string>
-    <string name="star">Star !!!</string>
+    <string name="star">Bookmarked !!!</string>
 
     <string name="remove_movie_from_favourite_confirmation_msg">You are about to remove this tvSeries from your Favourite List. Is that what you want ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
     <string name="section_movie">Movie Shelf</string>
-    <string name="empty_favourite">You haven\'t pick any tvSeries as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
+    <string name="empty_favourite_movies">You haven\'t pick any movies as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
+    <string name="empty_favourite_tv_series">You haven\'t pick any tv series as your favourite. Tap the <b>Star</b> in detail screen and see what happen ! ;-)</string>
     <string name="send_to">Send this trailer to</string>
 
     <!-- Content Descriptions -->
@@ -99,4 +100,10 @@
     <string name="format_season_air_date">Air date : <xliff:g id="season_number">%1$s</xliff:g></string>
     <string name="format_episode_count">Total Episode : <xliff:g id="episode_count">%1$s</xliff:g></string>
     <string name="lbl_trailers">Trailers</string>
+
+    <string name="empty_search">Your search result will show up in here.</string>
+    <string name="search_hint_movies">Search Movies</string>
+    <string name="search_hint_tv_series">Search TV Series</string>
+
+    <string name="feedback">Give Feedback</string>
 </resources>

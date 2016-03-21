@@ -20,7 +20,7 @@ import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
-import net.aung.moviemaniac.databinding.ViewItemMovieBinding;
+import net.aung.moviemaniac.databinding.ViewItemMovieFullWidthBinding;
 import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
@@ -36,7 +36,7 @@ import butterknife.OnClick;
 public class MovieViewHolder extends BaseViewHolder<MovieVO>
         implements Palette.PaletteAsyncListener {
 
-    private ViewItemMovieBinding binding;
+    private ViewItemMovieFullWidthBinding binding;
     private MovieItemController controller;
 
     @Bind(R.id.vp_movie_popularity)
@@ -75,6 +75,8 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
                 .load(movie.getPosterPath())
                 .asBitmap()
                 .centerCrop()
+                .placeholder(R.drawable.place_holder_movie_maniac)
+                .error(R.drawable.place_holder_movie_maniac)
                 .into(new BitmapImageViewTarget(ivPoster) {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -107,7 +109,8 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
     public void onClick(View view) {
         GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_MOVIE_ITEM);
         BitmapDrawable bitmapDrawable = (BitmapDrawable) ivPoster.getDrawable();
-        MovieManiacApp.sPosterCache.put(0, bitmapDrawable.getBitmap());
+        if (bitmapDrawable != null)
+            MovieManiacApp.sPosterCache.put(0, bitmapDrawable.getBitmap());
 
         controller.onNavigateToDetail(binding.getMovie());
     }
@@ -154,7 +157,8 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
                         MovieVO movie = binding.getMovie();
                         movie.setStar(false);
                         movie.updateMovieStarStatus(); //TODO On Main Thread ?
-                    }})
+                    }
+                })
                 .setNegativeButton(R.string.no, null).show();
     }
 

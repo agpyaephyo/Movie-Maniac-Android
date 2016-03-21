@@ -1,0 +1,26 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SearchActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.SearchActivity"
+        tools:ignore="MergeRootFrame" />
+
+    <FrameLayout
+        android:id="@+id/fl_tablet_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_tablet_movie_detail_vertical"
+        android:layout_marginBottom="@dimen/margin_tablet_movie_detail_vertical"
+        android:layout_marginLeft="@dimen/margin_tablet_movie_detail_horizontal"
+        android:layout_gravity="end|center_vertical"
+        android:background="@color/accent"
+        />
+
+</android.support.v4.widget.DrawerLayout>

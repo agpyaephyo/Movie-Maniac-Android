@@ -289,6 +289,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <include
+            android:id="@+id/vc_loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/view_component_loader"
+            />
+
     </FrameLayout>
 
 </layout>

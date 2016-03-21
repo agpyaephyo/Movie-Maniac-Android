@@ -27,6 +27,7 @@ import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
 import net.aung.moviemaniac.views.components.recyclerview.SmartScrollListener;
+import net.aung.moviemaniac.views.pods.ViewPodEmpty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class TVSeriesListFragment extends BaseFragment
     AutofitRecyclerView rvTVSeries;
 
     @Bind(R.id.vp_empty_favourite)
-    View vEmptyFavourite;
+    ViewPodEmpty vpEmptyFavourite;
 
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout swipeContainer;
@@ -113,8 +114,12 @@ public class TVSeriesListFragment extends BaseFragment
 
         rvTVSeries.setGridColumnSpan(1);
         rvTVSeries.setAdapter(tvSeriesListAdapter);
-        rvTVSeries.setEmptyView(vEmptyFavourite);
+        rvTVSeries.setEmptyView(vpEmptyFavourite);
         rvTVSeries.addOnScrollListener(smartScrollListener);
+
+        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES) {
+            vpEmptyFavourite.setEmptyLabel(getString(R.string.empty_favourite_tv_series));
+        }
 
         swipeContainer.setOnRefreshListener(this);
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_dark,
@@ -189,9 +194,9 @@ public class TVSeriesListFragment extends BaseFragment
         }
 
         if (isToAppend) {
-            tvSeriesListAdapter.appendMovieList(tvSeriesList);
+            tvSeriesListAdapter.appendTVSeriesList(tvSeriesList);
         } else {
-            tvSeriesListAdapter.setMovieList(tvSeriesList);
+            tvSeriesListAdapter.setTVSeriesList(tvSeriesList);
         }
     }
 

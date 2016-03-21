@@ -28,7 +28,7 @@ import net.aung.moviemaniac.data.persistence.MovieContract.TVSeasonEntry;
  */
 public class MovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 19;
     public static final String DATABASE_NAME = "movie.db";
 
     private static final String SQL_CREATE_SPOKEN_LANGUAGE_TABLE = "CREATE TABLE " + SpokenLanguageEntry.TABLE_NAME + " (" +
@@ -305,7 +305,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
             TVSeasonEntry.COLUMN_TV_SEASON_ID + " TEXT NOT NULL, " +
             TVSeasonEntry.COLUMN_AIR_DATE + " TEXT NOT NULL, " +
             TVSeasonEntry.COLUMN_EPISODE_COUNT + " INTEGER NOT NULL, " +
-            TVSeasonEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
+            TVSeasonEntry.COLUMN_POSTER_PATH + " TEXT, " +
             TVSeasonEntry.COLUMN_SEASON_NUMBER + " INTEGER NOT NULL, " +
             TVSeasonEntry.COLUMN_TV_SERIES_ID + " INTEGER NOT NULL, " +
 

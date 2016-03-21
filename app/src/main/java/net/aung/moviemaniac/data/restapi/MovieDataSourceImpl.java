@@ -4,8 +4,8 @@ import net.aung.moviemaniac.BuildConfig;
 import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
-import net.aung.moviemaniac.data.restapi.responses.TrailerResponse;
 import net.aung.moviemaniac.data.restapi.responses.TVSeriesListResponse;
+import net.aung.moviemaniac.data.restapi.responses.TrailerResponse;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.events.DataEvent;
@@ -178,6 +178,22 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
+    public void loadMovieDetail(int movieId) {
+        Call<MovieVO> movieDetailCall = theMovieApi.getMovieDetailByMovieId(movieId, BuildConfig.THE_MOVIE_API_KEY);
+        movieDetailCall.enqueue(new MovieApiCallback<MovieVO>() {
+            @Override
+            public void onResponse(Response<MovieVO> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                MovieVO movieDetailResponse = response.body();
+                if (movieDetailResponse != null) {
+                    DataEvent.LoadedMovieDetailEvent event = new DataEvent.LoadedMovieDetailEvent(movieDetailResponse);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
     public void loadGenreList() {
         Call<GenreListResponse> genreListResponseCall = theMovieApi.getGenreList(BuildConfig.THE_MOVIE_API_KEY);
         genreListResponseCall.enqueue(new MovieApiCallback<GenreListResponse>() {
@@ -267,6 +283,22 @@ public class MovieDataSourceImpl implements MovieDataSource {
     }
 
     @Override
+    public void loadTVSeriesDetail(int tvSeriesId) {
+        Call<TVSeriesVO> tvSeriesDetailCall = theMovieApi.getTVSeriesDetailByTVSeriesId(tvSeriesId, BuildConfig.THE_MOVIE_API_KEY);
+        tvSeriesDetailCall.enqueue(new MovieApiCallback<TVSeriesVO>() {
+            @Override
+            public void onResponse(Response<TVSeriesVO> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                TVSeriesVO tvSeriesDetailResponse = response.body();
+                if (tvSeriesDetailResponse != null) {
+                    DataEvent.LoadedTVSeriesDetailEvent event = new DataEvent.LoadedTVSeriesDetailEvent(tvSeriesDetailResponse);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
     public void loadTvSeriesTrailers(final int tvSeriesId) {
         Call<TrailerResponse> movieTrailerResponseCall = theMovieApi.getTrailersByTVSeriesId(tvSeriesId, BuildConfig.THE_MOVIE_API_KEY);
 
@@ -277,6 +309,40 @@ public class MovieDataSourceImpl implements MovieDataSource {
                 TrailerResponse trailerResponse = response.body();
                 if (trailerResponse != null) {
                     DataEvent.LoadedTVSeriesTrailerEvent event = new DataEvent.LoadedTVSeriesTrailerEvent(trailerResponse, tvSeriesId);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void searchOnMovie(final String query) {
+        Call<MovieListResponse> movieSearchCall = theMovieApi.searchOnMovie(query, BuildConfig.THE_MOVIE_API_KEY);
+
+        movieSearchCall.enqueue(new MovieApiCallback<MovieListResponse>() {
+            @Override
+            public void onResponse(Response<MovieListResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                MovieListResponse movieListResponse = response.body();
+                if (movieListResponse != null) {
+                    DataEvent.SearchedMovieEvent event = new DataEvent.SearchedMovieEvent(movieListResponse, query);
+                    EventBus.getDefault().post(event);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void searchOnTVSeries(final String query) {
+        Call<TVSeriesListResponse> tvSeriesSearchCall = theMovieApi.searchOnTVSeries(query, BuildConfig.THE_MOVIE_API_KEY);
+
+        tvSeriesSearchCall.enqueue(new MovieApiCallback<TVSeriesListResponse>() {
+            @Override
+            public void onResponse(Response<TVSeriesListResponse> response, Retrofit retrofit) {
+                super.onResponse(response, retrofit);
+                TVSeriesListResponse tvSeriesListResponse = response.body();
+                if (tvSeriesListResponse != null) {
+                    DataEvent.SearchedTVSeriesEvent event = new DataEvent.SearchedTVSeriesEvent(tvSeriesListResponse, query);
                     EventBus.getDefault().post(event);
                 }
             }

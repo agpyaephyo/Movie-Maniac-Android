@@ -45,6 +45,7 @@ import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.utils.YoutubeUtils;
+import net.aung.moviemaniac.views.components.ViewComponentLoader;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
 import net.aung.moviemaniac.views.pods.ViewPodFabs;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
@@ -90,8 +91,14 @@ public class TVSeriesDetailFragment extends BaseFragment
     @Bind(R.id.sv_container_trailer)
     NestedScrollView svContainerTrailer;
 
+    @Bind(R.id.lbl_trailers)
+    TextView lblTrailers;
+
     @Bind(R.id.rv_trailers)
     RecyclerView rvTrailers;
+
+    @Bind(R.id.lbl_seasons)
+    TextView lblSeasons;
 
     @Bind(R.id.rv_seasons)
     RecyclerView rvSeasons;
@@ -107,6 +114,9 @@ public class TVSeriesDetailFragment extends BaseFragment
 
     @Bind(R.id.vp_fabs)
     ViewPodFabs vpFabs;
+
+    @Bind(R.id.vc_loader)
+    ViewComponentLoader vcLoader;
 
     public static TVSeriesDetailFragment newInstance(int tvSeriesId, int tvSeriesType) {
         TVSeriesDetailFragment fragment = new TVSeriesDetailFragment();
@@ -131,7 +141,9 @@ public class TVSeriesDetailFragment extends BaseFragment
         presenter.onCreate();
 
         poster = MovieManiacApp.sPosterCache.get(0);
-        Palette.from(poster).generate(this);
+
+        if(poster != null)
+            Palette.from(poster).generate(this);
 
         trailerAdapter = TrailerListAdapter.newInstance(trailerItemController);
         seasonAdapter = SeasonListAdapter.newInstance(seasonItemController);
@@ -180,6 +192,8 @@ public class TVSeriesDetailFragment extends BaseFragment
             }
         });
 
+        vcLoader.displayLoader();
+
         return rootView;
     }
 
@@ -197,7 +211,7 @@ public class TVSeriesDetailFragment extends BaseFragment
 
     @Override
     protected void sendScreenHit() {
-        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_NAME_MOVIE_DETAIL);
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_NAME_TV_SERIES_DETAIL);
     }
 
     @Override
@@ -217,15 +231,26 @@ public class TVSeriesDetailFragment extends BaseFragment
         binding.setTvSeries(tvSeries);
         vpContainerGenre.setGenreList(tvSeries.getGenreList());
         if (tvSeries.isDetailLoaded()) {
+            vcLoader.dismissLoader();
             vpTVSeriesPopularity.drawPopularityIcons(tvSeries.getPopularity());
         }
 
         if (tvSeries.getTrailerList() != null && tvSeries.getTrailerList().size() > 0) {
+            lblTrailers.setVisibility(View.VISIBLE);
+            rvTrailers.setVisibility(View.VISIBLE);
             displayTrailerList(tvSeries.getTrailerList());
+        } else {
+            lblTrailers.setVisibility(View.GONE);
+            rvTrailers.setVisibility(View.GONE);
         }
 
         if(tvSeries.getSeasonList() != null && tvSeries.getSeasonList().size() > 0) {
+            lblSeasons.setVisibility(View.VISIBLE);
+            rvSeasons.setVisibility(View.VISIBLE);
             displaySeasonList(tvSeries.getSeasonList());
+        } else {
+            lblSeasons.setVisibility(View.GONE);
+            rvSeasons.setVisibility(View.GONE);
         }
 
         vpFabs.updateStarStatus(tvSeries.isStar());
@@ -319,6 +344,9 @@ public class TVSeriesDetailFragment extends BaseFragment
 
             Log.d(MovieManiacApp.TAG, "Displaying tv series detail for tv series id " + mTVSeriesId);
             displayTVSeriesDetail(mTVSeries);
+        } else {
+            //Load from network via movieId
+            presenter.loadTVSeriesDetailFromNetwork(mTVSeriesId);
         }
     }
 

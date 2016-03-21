@@ -77,6 +77,11 @@ public class MovieModel {
         movieDataSource.loadMovieDetail(movie);
     }
 
+    public void loadMovieDetailByMovieId(int movieId) {
+        Log.d(MovieManiacApp.TAG, "Loading movie detail by movieId " + movieId);
+        movieDataSource.loadMovieDetail(movieId);
+    }
+
     public void loadTrailerListByMovieId(int movieId) {
         Log.d(MovieManiacApp.TAG, "loading trailer list for movieId " + movieId);
         movieDataSource.loadMovieTrailers(movieId);
@@ -102,9 +107,24 @@ public class MovieModel {
         movieDataSource.loadTVSeriesDetail(tvSeries);
     }
 
+    public void loadTVSeriesDetailByTVSeriesId(int tVSeriesId) {
+        Log.d(MovieManiacApp.TAG, "Loading tv series detail by tv series id " + tVSeriesId);
+        movieDataSource.loadTVSeriesDetail(tVSeriesId);
+    }
+
     public void loadTrailerListByTVSeriesId(int tvSeriesId) {
         Log.d(MovieManiacApp.TAG, "loading trailer list for tv series id " + tvSeriesId);
         movieDataSource.loadTvSeriesTrailers(tvSeriesId);
+    }
+
+    public void searchOnMovies(String query) {
+        Log.d(MovieManiacApp.TAG, "Search on movie with query " + query);
+        movieDataSource.searchOnMovie(query);
+    }
+
+    public void searchOnTVSeries(String query) {
+        Log.d(MovieManiacApp.TAG, "Search on tv series with query " + query);
+        movieDataSource.searchOnTVSeries(query);
     }
 
     public void onEventMainThread(DataEvent.LoadedMostPopularMovieListEvent event) {

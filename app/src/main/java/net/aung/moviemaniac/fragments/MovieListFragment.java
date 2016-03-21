@@ -27,6 +27,7 @@ import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
 import net.aung.moviemaniac.views.components.recyclerview.SmartScrollListener;
+import net.aung.moviemaniac.views.pods.ViewPodEmpty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class MovieListFragment extends BaseFragment
     AutofitRecyclerView rvMovies;
 
     @Bind(R.id.vp_empty_favourite)
-    View vEmptyFavourite;
+    ViewPodEmpty vpEmptyFavourite;
 
     @Bind(R.id.swipe_container)
     SwipeRefreshLayout swipeContainer;
@@ -110,7 +111,11 @@ public class MovieListFragment extends BaseFragment
 
         movieListAdapter = MovieListAdapter.newInstance(controller, mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES);
         rvMovies.setAdapter(movieListAdapter);
-        rvMovies.setEmptyView(vEmptyFavourite);
+        rvMovies.setEmptyView(vpEmptyFavourite);
+
+        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
+            vpEmptyFavourite.setEmptyLabel(getString(R.string.empty_favourite_movies));
+        }
 
         rvMovies.addOnScrollListener(smartScrollListener);
 

@@ -363,6 +363,10 @@ public class TVSeriesVO {
         int updateCount = context.getContentResolver().update(MovieContract.TVSeriesEntry.CONTENT_URI, tvSeriesCV,
                 MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_ID + " = ? AND " + MovieContract.TVSeriesEntry.COLUMN_TV_SERIES_TYPE + " = ?",
                 new String[]{String.valueOf(tvSerieId), String.valueOf(tvSeriesType)});
+
+        if(updateCount <= 0) {
+            Uri insertedUri = context.getContentResolver().insert(MovieContract.TVSeriesEntry.CONTENT_URI, tvSeriesCV);
+        }
     }
 
     public static TVSeriesVO parseFromDetailCursor(Cursor data) {

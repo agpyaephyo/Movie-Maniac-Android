@@ -29,11 +29,13 @@ public class TVSeriesDetailPresenter extends BasePresenter {
     }
 
     public void loadTVSeriesDetailFromNetwork(TVSeriesVO tvSeries) {
-        /*
-        movieModel.loadMovieReviewByMovieId(tvSeries.getId());
-        */
         movieModel.loadTrailerListByTVSeriesId(tvSeries.getTvSerieId());
         movieModel.loadTVSeriesDetailByTVSeriesId(tvSeries);
+    }
+
+    public void loadTVSeriesDetailFromNetwork(int tVSeriesId) {
+        movieModel.loadTrailerListByTVSeriesId(tVSeriesId);
+        movieModel.loadTVSeriesDetailByTVSeriesId(tVSeriesId);
     }
 
     public void onEventMainThread(DataEvent.LoadedTVSeriesDetailEvent event) {
