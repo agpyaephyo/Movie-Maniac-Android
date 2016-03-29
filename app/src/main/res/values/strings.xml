@@ -108,4 +108,5 @@
     <string name="feedback">Give Feedback</string>
     <string name="lbl_public_rating">Public Rating</string>
     <string name="movie_overview">Movie Overview</string>
+    <string name="msg_empty_overview">There is no overview for this movie. Sorry. :-(</string>
 </resources>

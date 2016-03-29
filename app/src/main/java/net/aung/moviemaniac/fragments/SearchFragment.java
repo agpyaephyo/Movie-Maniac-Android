@@ -1,18 +1,22 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.activities.SearchActivity;
@@ -20,15 +24,19 @@ import net.aung.moviemaniac.adapters.MovieListAdapter;
 import net.aung.moviemaniac.adapters.TVSeriesListAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.controllers.TVSeriesItemController;
+import net.aung.moviemaniac.data.persistence.MovieContract;
+import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.mvp.presenters.SearchPresenter;
 import net.aung.moviemaniac.mvp.views.SearchView;
 import net.aung.moviemaniac.utils.GAUtils;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
 import net.aung.moviemaniac.views.pods.ViewPodEmpty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -37,13 +45,15 @@ import butterknife.ButterKnife;
 /**
  * Created by aung on 3/21/16.
  */
-public class SearchFragment extends BaseFragment implements SearchView {
+public class SearchFragment extends BaseFragment implements
+        SearchView,
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     @Bind(R.id.vp_empty_search)
     ViewPodEmpty vpEmptySearch;
 
     @Bind(R.id.et_search)
-    EditText etSearch;
+    AutoCompleteTextView etSearch;
 
     @Bind(R.id.input_layout_search)
     TextInputLayout tilSearch;
@@ -148,6 +158,12 @@ public class SearchFragment extends BaseFragment implements SearchView {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        getLoaderManager().initLoader(MovieManiacConstants.SEARCH_LOADER, null, this);
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         mSearchPresenter.onStart();
@@ -212,5 +228,50 @@ public class SearchFragment extends BaseFragment implements SearchView {
 
         swipeRefreshLayout.setEnabled(false);
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        if (mSearchType == SearchActivity.SEARCH_TYPE_MOVIE) {
+            return new CursorLoader(getActivity(),
+                    MovieContract.MovieEntry.CONTENT_URI,
+                    new String[]{MovieContract.MovieEntry.COLUMN_TITLE},
+                    null,
+                    null,
+                    null
+            );
+        } else if (mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
+            return new CursorLoader(getActivity(),
+                    MovieContract.TVSeriesEntry.CONTENT_URI,
+                    new String[]{MovieContract.TVSeriesEntry.COLUMN_NAME},
+                    null,
+                    null,
+                    null
+            );
+        }
+
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        List<String> suggestionList = new ArrayList<>();
+        if (data != null && data.moveToFirst()) {
+            do {
+                if (mSearchType == SearchActivity.SEARCH_TYPE_MOVIE) {
+                    suggestionList.add(data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_TITLE)));
+                } else if(mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
+                    suggestionList.add(data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_NAME)));
+                }
+            } while (data.moveToNext());
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_expandable_list_item_1, suggestionList);
+            etSearch.setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }

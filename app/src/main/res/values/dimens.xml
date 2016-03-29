@@ -71,4 +71,5 @@
     <dimen name="dimen_20">5dp</dimen>
 
     <dimen name="pb_dimen">55dp</dimen>
+    <dimen name="search_auto_complete_height">200dp</dimen>
 </resources>

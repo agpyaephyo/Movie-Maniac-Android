@@ -34,6 +34,7 @@ public class MovieManiacConstants {
     public static final int MOVIE_DETAIL_LOADER = 1;
     public static final int TV_SERIES_LIST_LOADER = 2;
     public static final int TV_SERIES_DETAIL_LOADER = 3;
+    public static final int SEARCH_LOADER = 4;
 
     //Movie Type
     @Retention(RetentionPolicy.SOURCE)

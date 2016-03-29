@@ -11,6 +11,7 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -191,15 +192,21 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
     @OnClick(R.id.btn_movie_overview)
     public void onTapMovieOverview(View view) {
         MovieVO movie = binding.getMovie();
+        String overview = movie.getOverview();
+        if(TextUtils.isEmpty(overview)) {
+            overview = view.getContext().getResources().getString(R.string.msg_empty_overview);
+        }
+
         AlertDialog dialog = new AlertDialog.Builder(view.getContext())
                 .setTitle(movie.getTitle())
-                .setMessage(movie.getOverview())
+                .setMessage(overview)
                 .setIcon(R.drawable.ic_movie_maniac)
                 .setPositiveButton(android.R.string.ok, null).show();
 
         TextView tvMsg = (TextView) dialog.findViewById(android.R.id.message);
         tvMsg.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
         tvMsg.setLineSpacing(1.2f, 1.2f);
+
     }
 
     @OnClick(R.id.iv_expand_poster)

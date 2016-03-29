@@ -166,7 +166,7 @@
                                     android:fontFamily="sans-serif-condensed"
                                     android:text="@{movie.status}"
                                     android:textColor="@color/text_white"
-                                    android:textSize="@dimen/text_regular_3x"
+                                    android:textSize="@dimen/text_regular_2x"
                                     tools:text="Released" />
 
                                 <TextView
@@ -175,7 +175,7 @@
                                     android:fontFamily="sans-serif-condensed"
                                     android:text=" : "
                                     android:textColor="@color/text_white"
-                                    android:textSize="@dimen/text_regular_3x" />
+                                    android:textSize="@dimen/text_regular_2x" />
 
                                 <TextView
                                     android:id="@+id/tv_release_date"
@@ -184,7 +184,7 @@
                                     android:fontFamily="sans-serif-condensed"
                                     android:text="@{movie.releaseDateDisplay}"
                                     android:textColor="@color/text_white"
-                                    android:textSize="@dimen/text_regular_3x"
+                                    android:textSize="@dimen/text_regular_2x"
                                     tools:text="2015-07-31" />
 
                             </LinearLayout>
@@ -193,6 +193,7 @@
 
                         <TextView
                             android:id="@+id/tv_title"
+                            style="@style/TextWithShadow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/primary"
