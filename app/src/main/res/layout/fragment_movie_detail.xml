@@ -289,7 +289,7 @@
                         android:paddingLeft="@dimen/margin_medium_2"
                         android:text="@string/lbl_reviews"
                         android:textColor="@color/text_white"
-                        android:textSize="@dimen/text_regular_2x" />
+                        android:textSize="@dimen/text_regular_3x" />
 
                     <net.aung.moviemaniac.views.pods.ViewPodReviews
                         android:id="@+id/vp_reviews"

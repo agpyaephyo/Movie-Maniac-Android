@@ -18,28 +18,30 @@
 
         <TextView
             android:id="@+id/tv_review_author"
+            style="@style/TextWithShadow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/margin_medium_2"
             android:fontFamily="sans-serif"
-            android:lineSpacingExtra="1.2dp"
+            android:textStyle="italic"
+            android:lineSpacingExtra="1.4dp"
             android:textColor="@color/text_white"
-            android:textSize="@dimen/text_regular"
+            android:textSize="@dimen/text_regular_2x"
             android:text='@{String.format("%s wrote : ", review.author)}'
             tools:text="Aung Pyae Phyo wrote : "
             />
 
         <TextView
             android:id="@+id/tv_review_content"
+            style="@style/TextWithShadow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/margin_medium_2"
             android:paddingRight="@dimen/margin_medium_2"
-            android:fontFamily="sans-serif-light"
-            android:textStyle="italic"
-            android:lineSpacingExtra="1.2dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="1.4dp"
             android:textColor="@color/text_white"
-            android:textSize="@dimen/text_regular"
+            android:textSize="@dimen/text_regular_2x"
             android:text="@{review.content}"
             tools:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world." />
 
