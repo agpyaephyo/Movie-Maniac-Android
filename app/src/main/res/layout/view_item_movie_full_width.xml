@@ -39,29 +39,6 @@
                     android:contentDescription="@string/cd_iv_poster"
                     tools:src="@drawable/movie_poster" />
 
-                <net.aung.moviemaniac.views.pods.ViewPodMoviePopularity
-                    android:id="@+id/vp_movie_popularity"
-                    android:layout_width="@dimen/item_tv_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="@dimen/margin_medium"
-                    android:layout_marginLeft="@dimen/margin_small"
-                    android:layout_marginStart="@dimen/margin_small"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:orientation="horizontal"
-                    android:paddingEnd="@dimen/margin_medium"
-                    android:paddingRight="@dimen/margin_medium" />
-
-                <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
-                    android:id="@+id/tv_rating"
-                    style="@style/MoviePopularity"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="@dimen/margin_small"
-                    android:text="@{movie.voteAverage}"
-                    android:textColor="@color/text_white"
-                    tools:text="6.2" />
-
                 <ImageView
                     android:id="@+id/iv_cancel_star"
                     android:layout_width="wrap_content"
@@ -71,6 +48,15 @@
                     android:contentDescription="@string/cd_iv_cancel_star"
                     android:src="@drawable/ic_cancel_white_24dp"
                     android:visibility="gone" />
+
+                <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
+                    android:id="@+id/tv_rating"
+                    style="@style/MoviePopularity"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:text="@{movie.voteAverage}"
+                    android:textColor="@color/text_white"
+                    tools:text="6.2" />
 
             </FrameLayout>
 
@@ -97,6 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
+                    android:layout_marginTop="@dimen/margin_small"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_regular"
                     tools:text="Thiller, Action"
@@ -115,7 +102,26 @@
                     android:text="@{movie.overview}"
                     android:textColor="@color/primary_text"
                     android:textSize="@dimen/text_regular"
+                    android:visibility="gone"
                     tools:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats." />
+
+                <TextView
+                    android:id="@+id/lbl_current_popularity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/lbl_current_popularity"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_regular" />
+
+                <net.aung.moviemaniac.views.pods.ViewPodMoviePopularity
+                    android:id="@+id/vp_movie_popularity"
+                    android:layout_width="@dimen/item_tv_width"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/margin_medium"
+                    android:paddingRight="@dimen/margin_medium" />
 
             </LinearLayout>
 

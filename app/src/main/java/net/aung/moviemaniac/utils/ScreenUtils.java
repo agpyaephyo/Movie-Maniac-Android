@@ -3,6 +3,7 @@ package net.aung.moviemaniac.utils;
 import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Build;
@@ -13,6 +14,8 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import net.aung.moviemaniac.MovieManiacApp;
 
@@ -96,5 +99,30 @@ public class ScreenUtils {
         display.getSize(size);
 
         return size;
+    }
+
+    /**
+     * Show soft keyboard in some situation.
+     */
+    public static void showSoftKeyboard() {
+        Context context = MovieManiacApp.getContext();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Service.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+        }
+    }
+
+    /**
+     * Hide soft keyboard based on the EditText which the focus is in.
+     *
+     * @param et
+     */
+    public static void hideSoftKeyboard(EditText et) {
+        Context context = MovieManiacApp.getContext();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Service.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            //imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(et.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

@@ -95,7 +95,8 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
                 });
 
         List<GenreVO> genreList = movie.getGenreList();
-        if (genreList != null) {
+        if (genreList != null && genreList.size() > 0) {
+            tvGenreList.setVisibility(View.VISIBLE);
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("(");
             //stringBuilder.append("<font face='sans-serif-light'>");
@@ -113,6 +114,8 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
             stringBuilder.append(")");
             //stringBuilder.append("</font>");
             tvGenreList.setText(Html.fromHtml(stringBuilder.toString()));
+        } else {
+            tvGenreList.setVisibility(View.GONE);
         }
     }
 

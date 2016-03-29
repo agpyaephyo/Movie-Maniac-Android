@@ -7,7 +7,7 @@
     <string name="action_about">About</string>
     <string name="action_help">Help</string>
     <string name="action_search">Search</string>
-    <string name="lbl_popularity">Popularity</string>
+    <string name="lbl_current_popularity">Current Popularity</string>
     <string name="lbl_comment">Comment</string>
     <string name="lbl_like">Like</string>
     <string name="lbl_save">Save</string>
@@ -106,4 +106,5 @@
     <string name="search_hint_tv_series">Search TV Series</string>
 
     <string name="feedback">Give Feedback</string>
+    <string name="lbl_public_rating">Public Rating</string>
 </resources>

@@ -2,6 +2,7 @@ package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -24,6 +25,7 @@ import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.mvp.presenters.SearchPresenter;
 import net.aung.moviemaniac.mvp.views.SearchView;
 import net.aung.moviemaniac.utils.GAUtils;
+import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
 import net.aung.moviemaniac.views.pods.ViewPodEmpty;
 
@@ -116,8 +118,7 @@ public class SearchFragment extends BaseFragment implements SearchView {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
-                    InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    in.hideSoftInputFromWindow(etSearch.getApplicationWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    ScreenUtils.hideSoftKeyboard(etSearch);
 
                     String query = etSearch.getText().toString();
                     mSearchPresenter.search(query);
@@ -150,6 +151,17 @@ public class SearchFragment extends BaseFragment implements SearchView {
     public void onStart() {
         super.onStart();
         mSearchPresenter.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ScreenUtils.showSoftKeyboard();
+            }
+        }, 500);
     }
 
     @Override
