@@ -52,7 +52,6 @@ import net.aung.moviemaniac.views.pods.ViewPodFabs;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMovieStar;
-import net.aung.moviemaniac.views.pods.ViewPodReviews;
 
 import java.util.List;
 
@@ -382,7 +381,7 @@ public class TVSeriesDetailFragment extends BaseFragment
                         public void onClick(DialogInterface dialog, int whichButton) {
                             GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_REMOVE_STAR_DETAIL);
                             mTVSeries.setStar(false);
-                            mTVSeries.updateMovieStarStatus(); //TODO On Main Thread ?
+                            mTVSeries.updateStarStatus(); //TODO On Main Thread ?
                             vpFabs.updateStarStatus(false);
                         }
                     })
@@ -390,7 +389,7 @@ public class TVSeriesDetailFragment extends BaseFragment
         } else {
             GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_STAR);
             mTVSeries.setStar(true);
-            mTVSeries.updateMovieStarStatus(); //TODO On Main Thread ?
+            mTVSeries.updateStarStatus(); //TODO On Main Thread ?
             vpMovieStar.showMovieSaved(vpFabs, new ViewPodMovieStar.ControllerMovieSaved() {
                 @Override
                 public void onMovieSavedAnimationFinish() {

@@ -97,17 +97,20 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
         List<GenreVO> genreList = movie.getGenreList();
         if (genreList != null) {
             StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("(");
             //stringBuilder.append("<font face='sans-serif-light'>");
             int count = 0;
             for (GenreVO genre : genreList) {
                 if (genre != null) {
-                    stringBuilder.append("<b><u>" + genre.getName() + "</u></ b>");
+                    //stringBuilder.append("<b><u>" + genre.getName() + "</u></ b>");
+                    stringBuilder.append("<b>" + genre.getName() + "</ b>");
                     if (count < genreList.size() - 1) {
                         stringBuilder.append(" , ");
                     }
                     count++;
                 }
             }
+            stringBuilder.append(")");
             //stringBuilder.append("</font>");
             tvGenreList.setText(Html.fromHtml(stringBuilder.toString()));
         }

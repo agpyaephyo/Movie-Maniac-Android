@@ -396,7 +396,7 @@ public class TVSeriesVO {
         }
     }
 
-    public void updateMovieStarStatus() {
+    public void updateStarStatus() {
         ContentValues cv = new ContentValues();
         cv.put(MovieContract.TVSeriesEntry.COLUMN_IS_STAR, isStar ? 1 : 0);
 

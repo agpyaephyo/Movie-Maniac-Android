@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.views.components.textview.SmallDashUnderlineTextView;
 
@@ -38,7 +39,14 @@ public class ViewPodGenreListDetail extends LinearLayout {
 
         if (getChildCount() == 0) {
             for (int position = 0; position < genreList.size(); position++) {
-                TextView tv = new SmallDashUnderlineTextView(getContext(), textColor);
+                //TextView tv = new SmallDashUnderlineTextView(getContext(), textColor);
+                TextView tv = new TextView(getContext());
+                tv.setBackgroundResource(R.drawable.genre_bg);
+                tv.setTextColor(getContext().getResources().getColor(R.color.primary_text));
+
+                int padding = (int) getContext().getResources().getDimension(R.dimen.margin_medium);
+                tv.setPadding(padding, 0, padding, 0);
+
                 GenreVO genre = genreList.get(position);
                 if(genre != null) {
                     tv.setText(genre.getName());

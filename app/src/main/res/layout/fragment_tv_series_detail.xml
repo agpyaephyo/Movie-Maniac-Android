@@ -37,10 +37,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:contentDescription="@string/cd_iv_backdrop"
-                        android:foreground="@color/black_transparent_overlay"
-                        android:scaleType="centerCrop"
+                            android:scaleType="centerCrop"
                         app:imageUrl="@{tvSeries.backdropPath}"
                         tools:src="@drawable/movie_backdrop" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/black_transparent_overlay" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -97,6 +101,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_overview"
+                                    style="@style/TextWithShadow"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-condensed"
@@ -135,6 +140,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_status"
+                                    style="@style/TextWithShadow"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-condensed"
@@ -145,6 +151,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_release_date"
+                                    style="@style/TextWithShadow"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-light"
@@ -211,7 +218,8 @@
 
                         <HorizontalScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_medium">
 
                             <net.aung.moviemaniac.views.pods.ViewPodGenreListDetail
                                 android:id="@+id/vp_container_genre"

@@ -110,7 +110,7 @@ public class TVSeriesListFragment extends BaseFragment
         rootView = inflater.inflate(R.layout.fragment_tv_series_list, container, false);
         ButterKnife.bind(this, rootView);
 
-        tvSeriesListAdapter = TVSeriesListAdapter.newInstance(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES, controller);
+        tvSeriesListAdapter = TVSeriesListAdapter.newInstance(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES, controller);
 
         rvTVSeries.setAdapter(tvSeriesListAdapter);
         rvTVSeries.setEmptyView(vpEmptyFavourite);

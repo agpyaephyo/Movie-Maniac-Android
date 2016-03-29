@@ -109,11 +109,11 @@ public class MovieListFragment extends BaseFragment
         rootView = inflater.inflate(R.layout.fragment_movie_list, container, false);
         ButterKnife.bind(this, rootView);
 
-        movieListAdapter = MovieListAdapter.newInstance(controller, mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES);
+        movieListAdapter = MovieListAdapter.newInstance(controller, (mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES));
         rvMovies.setAdapter(movieListAdapter);
         rvMovies.setEmptyView(vpEmptyFavourite);
 
-        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
+        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES || mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES) {
             vpEmptyFavourite.setEmptyLabel(getString(R.string.empty_favourite_movies));
         }
 

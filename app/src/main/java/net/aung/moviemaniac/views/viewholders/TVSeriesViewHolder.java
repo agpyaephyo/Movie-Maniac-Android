@@ -1,8 +1,10 @@
 package net.aung.moviemaniac.views.viewholders;
 
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.view.View;
@@ -142,8 +144,6 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
 
     @OnClick(R.id.iv_cancel_star)
     public void onTapCancelStar(View view) {
-
-        /*
         new AlertDialog.Builder(view.getContext())
                 .setMessage(R.string.remove_movie_from_favourite_confirmation_msg)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -151,12 +151,11 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_TAP_REMOVE_STAR_LIST);
-                        MovieVO movie = binding.getTvSeries();
-                        movie.setStar(false);
-                        movie.updateMovieStarStatus(); //TODO On Main Thread ?
+                        TVSeriesVO tvSeries = binding.getTvSeries();
+                        tvSeries.setStar(false);
+                        tvSeries.updateStarStatus(); //TODO On Main Thread ?
                     }})
                 .setNegativeButton(R.string.no, null).show();
-                */
     }
 
     /*
