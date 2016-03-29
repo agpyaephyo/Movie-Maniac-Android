@@ -72,4 +72,6 @@
 
     <dimen name="pb_dimen">55dp</dimen>
     <dimen name="search_auto_complete_height">200dp</dimen>
+    <dimen name="overview_width">120dp</dimen>
+    <dimen name="overview_height">30dp</dimen>
 </resources>

@@ -140,8 +140,8 @@
 
                 <TextView
                     android:id="@+id/btn_movie_overview"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/overview_width"
+                    android:layout_height="@dimen/overview_height"
                     android:layout_gravity="bottom|end"
                     android:layout_margin="@dimen/margin_medium"
                     android:background="@drawable/genre_bg"

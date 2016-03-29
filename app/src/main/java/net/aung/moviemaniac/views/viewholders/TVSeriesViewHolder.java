@@ -1,12 +1,17 @@
 package net.aung.moviemaniac.views.viewholders;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,8 +24,10 @@ import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.TVSeriesItemController;
 import net.aung.moviemaniac.data.vos.GenreVO;
+import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.databinding.ViewItemTvSeriesBinding;
+import net.aung.moviemaniac.dialogs.ExpandedPosterDialog;
 import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
@@ -50,6 +57,9 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
     @Bind(R.id.iv_cancel_star)
     ImageView ivCancelStar;
 
+    @Bind(R.id.tv_rating)
+    TextView tvRating;
+
     private View itemView;
 
     private TVSeriesItemController controller;
@@ -64,6 +74,8 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
 
         ivPoster.setDrawingCacheEnabled(true);
         ivCancelStar.setVisibility(isFavouriteSection ? View.VISIBLE : View.GONE);
+
+        setRatingColor();
     }
 
     @Override
@@ -76,6 +88,7 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
                 .load(tvSeries.getPosterPath())
                 .asBitmap()
                 .centerCrop()
+                .placeholder(R.drawable.place_holder_movie_maniac)
                 .into(new BitmapImageViewTarget(ivPoster) {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -85,21 +98,25 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
                 });
 
         List<GenreVO> genreList = tvSeries.getGenreList();
-        if (genreList != null) {
+        if (genreList != null && genreList.size() > 0) {
             StringBuilder stringBuilder = new StringBuilder();
             //stringBuilder.append("<font face='sans-serif-light'>");
+            stringBuilder.append("(");
             int count = 0;
             for (GenreVO genre : genreList) {
                 if (genre != null) {
-                    stringBuilder.append("<b><u>" + genre.getName() + "</u></ b>");
+                    stringBuilder.append("<b>" + genre.getName() + "</ b>");
                     if (count < genreList.size() - 1) {
                         stringBuilder.append(" , ");
                     }
                     count++;
                 }
             }
+            stringBuilder.append(")");
             //stringBuilder.append("</font>");
             tvGenreList.setText(Html.fromHtml(stringBuilder.toString()));
+        } else {
+            tvGenreList.setVisibility(View.GONE);
         }
     }
 
@@ -142,6 +159,17 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
         }
     }
 
+    private void setRatingColor() {
+        Context context = MovieManiacApp.getContext();
+        int color;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            color = context.getResources().getColor(R.color.accent, context.getTheme());
+        } else {
+            color = context.getResources().getColor(R.color.accent);
+        }
+        tvRating.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+    }
+
     @OnClick(R.id.iv_cancel_star)
     public void onTapCancelStar(View view) {
         new AlertDialog.Builder(view.getContext())
@@ -156,6 +184,34 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
                         tvSeries.updateStarStatus(); //TODO On Main Thread ?
                     }})
                 .setNegativeButton(R.string.no, null).show();
+    }
+
+    @OnClick(R.id.iv_expand_poster)
+    public void onTapExpandMoviePoster(View view) {
+        TVSeriesVO tvSeries = binding.getTvSeries();
+        Context context = view.getContext();
+        ExpandedPosterDialog expandedPosterDialog = new ExpandedPosterDialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        expandedPosterDialog.show(tvSeries.getPosterPath());
+    }
+
+    @OnClick(R.id.btn_tv_series_overview)
+    public void onTapMovieOverview(View view) {
+        TVSeriesVO tvSeries = binding.getTvSeries();
+        String overview = tvSeries.getOverview();
+        if(TextUtils.isEmpty(overview)) {
+            overview = view.getContext().getResources().getString(R.string.msg_empty_overview);
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(view.getContext())
+                .setTitle(tvSeries.getName())
+                .setMessage(overview)
+                .setIcon(R.drawable.ic_movie_maniac)
+                .setPositiveButton(android.R.string.ok, null).show();
+
+        TextView tvMsg = (TextView) dialog.findViewById(android.R.id.message);
+        tvMsg.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+        tvMsg.setLineSpacing(1.2f, 1.2f);
+
     }
 
     /*
