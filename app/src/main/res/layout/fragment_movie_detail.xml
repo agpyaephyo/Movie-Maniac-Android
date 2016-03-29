@@ -42,6 +42,11 @@
                         app:imageUrl="@{movie.backdropPath}"
                         tools:src="@drawable/movie_backdrop" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/black_transparent_overlay" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -70,9 +75,8 @@
                                     android:layout_height="@dimen/item_movie_height"
                                     android:layout_marginLeft="@dimen/margin_medium_2"
                                     android:layout_marginTop="@dimen/margin_medium_2"
-                                    tools:src="@drawable/movie_poster"
                                     android:contentDescription="@string/cd_iv_poster"
-                                    />
+                                    tools:src="@drawable/movie_poster" />
 
                                 <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
                                     android:id="@+id/tv_rating_detail"
@@ -95,6 +99,7 @@
 
                                 <TextView
                                     android:id="@+id/tv_tag_line"
+                                    style="@style/TextWithShadow"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/margin_medium"
@@ -115,6 +120,7 @@
 
                                     <TextView
                                         android:id="@+id/tv_overview"
+                                        style="@style/TextWithShadow"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="sans-serif-condensed"
@@ -302,9 +308,8 @@
                         android:text="@{movie.collection.name}"
                         android:textColor="@color/text_white"
                         android:textSize="@dimen/text_regular_3x"
-                        tools:text="The Super-hero Collection"
                         android:visibility="gone"
-                        />
+                        tools:text="The Super-hero Collection" />
 
                 </LinearLayout>
 
@@ -320,10 +325,9 @@
 
         <include
             android:id="@+id/vc_loader"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             layout="@layout/view_component_loader"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 
