@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -24,8 +25,8 @@ import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.databinding.ViewItemMovieFullWidthBinding;
+import net.aung.moviemaniac.dialogs.ExpandedPosterDialog;
 import net.aung.moviemaniac.utils.GAUtils;
-import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
 import java.util.List;
@@ -156,7 +157,7 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
     private void setRatingColor() {
         Context context = MovieManiacApp.getContext();
         int color;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             color = context.getResources().getColor(R.color.accent, context.getTheme());
         } else {
             color = context.getResources().getColor(R.color.accent);
@@ -185,6 +186,28 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
                     }
                 })
                 .setNegativeButton(R.string.no, null).show();
+    }
+
+    @OnClick(R.id.btn_movie_overview)
+    public void onTapMovieOverview(View view) {
+        MovieVO movie = binding.getMovie();
+        AlertDialog dialog = new AlertDialog.Builder(view.getContext())
+                .setTitle(movie.getTitle())
+                .setMessage(movie.getOverview())
+                .setIcon(R.drawable.ic_movie_maniac)
+                .setPositiveButton(android.R.string.ok, null).show();
+
+        TextView tvMsg = (TextView) dialog.findViewById(android.R.id.message);
+        tvMsg.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+        tvMsg.setLineSpacing(1.2f, 1.2f);
+    }
+
+    @OnClick(R.id.iv_expand_poster)
+    public void onTapExpandMoviePoster(View view) {
+        MovieVO movie = binding.getMovie();
+        Context context = view.getContext();
+        ExpandedPosterDialog expandedPosterDialog = new ExpandedPosterDialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        expandedPosterDialog.show(movie.getPosterPath());
     }
 
     /*

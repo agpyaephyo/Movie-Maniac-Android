@@ -44,10 +44,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_margin="@dimen/margin_medium"
+                    android:padding="@dimen/margin_medium"
                     android:contentDescription="@string/cd_iv_cancel_star"
                     android:src="@drawable/ic_cancel_white_24dp"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <net.aung.moviemaniac.views.components.textview.LobsterRegularTextView
                     android:id="@+id/tv_rating"
@@ -58,72 +58,101 @@
                     android:textColor="@color/text_white"
                     tools:text="6.2" />
 
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="@dimen/item_tv_height"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/margin_medium">
-
-                <TextView
-                    android:id="@+id/tv_title"
+                <ImageView
+                    android:id="@+id/iv_expand_poster"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:lineSpacingExtra="1.2dp"
-                    android:text="@{movie.title}"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_regular_2x"
-                    tools:text="Walking Dead" />
-
-                <TextView
-                    android:id="@+id/tv_genre_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_regular"
-                    tools:text="Thiller, Action"
-                    android:text="Thiller, Action"
+                    android:src="@drawable/ic_fullscreen_white_36dp"
+                    android:layout_gravity="end|bottom"
+                    android:background="@color/black_transparent_overlay"
+                    android:foreground="@drawable/selector_action_bg"
                     />
 
-                <TextView
-                    android:id="@+id/tv_overview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:fontFamily="sans-serif-light"
-                    android:lineSpacingExtra="1.2dp"
-                    android:maxLines="7"
-                    android:text="@{movie.overview}"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_regular"
-                    android:visibility="gone"
-                    tools:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats." />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/item_tv_height"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_medium">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="1.2dp"
+                        android:text="@{movie.title}"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_regular_2x"
+                        tools:text="Walking Dead" />
+
+                    <TextView
+                        android:id="@+id/tv_genre_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="Thiller, Action"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_regular"
+                        tools:text="Thiller, Action" />
+
+                    <TextView
+                        android:id="@+id/tv_overview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-light"
+                        android:lineSpacingExtra="1.2dp"
+                        android:maxLines="7"
+                        android:text="@{movie.overview}"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_regular"
+                        android:visibility="gone"
+                        tools:text="Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats." />
+
+                    <TextView
+                        android:id="@+id/lbl_current_popularity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/lbl_current_popularity"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/text_regular" />
+
+                    <net.aung.moviemaniac.views.pods.ViewPodMoviePopularity
+                        android:id="@+id/vp_movie_popularity"
+                        android:layout_width="@dimen/item_tv_width"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingEnd="@dimen/margin_medium"
+                        android:paddingRight="@dimen/margin_medium" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/lbl_current_popularity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:text="@string/lbl_current_popularity"
-                    android:textColor="@color/primary_text"
-                    android:textSize="@dimen/text_regular" />
+                    android:id="@+id/btn_movie_overview"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/margin_medium"
+                    android:background="@drawable/genre_bg"
+                    android:foreground="@drawable/selector_action_bg"
+                    android:gravity="center"
+                    android:text="@string/movie_overview"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/text_small" />
 
-                <net.aung.moviemaniac.views.pods.ViewPodMoviePopularity
-                    android:id="@+id/vp_movie_popularity"
-                    android:layout_width="@dimen/item_tv_width"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingEnd="@dimen/margin_medium"
-                    android:paddingRight="@dimen/margin_medium" />
+            </FrameLayout>
 
-            </LinearLayout>
 
         </LinearLayout>
 
