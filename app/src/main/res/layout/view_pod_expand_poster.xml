@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.aung.moviemaniac.views.pods.ViewPodExpandPoster xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/iv_expand_poster"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/black_transparent_overlay"
+    android:foreground="@drawable/selector_action_bg"
+    android:src="@drawable/ic_fullscreen_white_36dp" />

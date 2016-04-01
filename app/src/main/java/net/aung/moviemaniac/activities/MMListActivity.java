@@ -109,13 +109,13 @@ public class MMListActivity extends BaseActivity implements
         */
 
         if (savedInstanceState == null) {
-            /*
             showMovieShelf();
             mCurrentMenuIndex = MenuVO.MENU_INDEX_MOVIE_SHELF;
-            */
 
+            /*
             showTVSeriesShelf();
             mCurrentMenuIndex = MenuVO.MENU_INDEX_TV_SERIES_SHELF;
+            */
         }
     }
 

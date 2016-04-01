@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_tablet_movie_detail_vertical">0dp</dimen>
+
+    <dimen name="user_info_height">200dp</dimen>
+    <dimen name="margin_top_menu_list">@dimen/margin_large</dimen>
+    <dimen name="margin_bottom_app_version">@dimen/margin_large</dimen>
+    <dimen name="padding_menu_item">@dimen/margin_medium_2</dimen>
 </resources>

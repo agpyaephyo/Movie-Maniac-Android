@@ -38,8 +38,11 @@ public class GAUtils {
     public static final String EVENT_ACTION_PLAY_TRAILER = "Play Trailer on Detail Screen";
     public static final String EVENT_ACTION_SCROLL_FOR_REVIEWS = "Scroll for reviews on Detail Screen";
     public static final String EVENT_ACTION_TAP_REMOVE_STAR_DETAIL = "Tap remove star on Detail Screen";
+
     public static final String EVENT_ACTION_SEARCH_MOVIES = "Search Movies";
     public static final String EVENT_ACTION_SEARCH_TV_SERIES = "Search TV Series";
+    public static final String EVENT_ACTION_MOVIE_OVERVIEW = "Movie Overview";
+    public static final String EVENT_ACTION_POSTER_EXPAND = "Poster Expand";
 
     //Event Actions - List
     public static final String EVENT_ACTION_TAP_REMOVE_STAR_LIST = "Tap remove star on List Screen";

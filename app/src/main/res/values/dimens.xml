@@ -74,4 +74,8 @@
     <dimen name="search_auto_complete_height">200dp</dimen>
     <dimen name="overview_width">120dp</dimen>
     <dimen name="overview_height">30dp</dimen>
+
+    <dimen name="margin_top_menu_list">@dimen/margin_large</dimen>
+    <dimen name="margin_bottom_app_version">@dimen/margin_large</dimen>
+    <dimen name="padding_menu_item">@dimen/margin_medium_2</dimen>
 </resources>

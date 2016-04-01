@@ -76,15 +76,12 @@
                         android:src="@drawable/ic_cancel_white_24dp"
                         android:visibility="gone" />
 
-                    <ImageView
-                        android:id="@+id/iv_expand_poster"
+                    <include
+                        android:id="@+id/vp_expand_poster"
+                        layout="@layout/view_pod_expand_poster"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_fullscreen_white_36dp"
-                        android:layout_gravity="end|bottom"
-                        android:background="@color/black_transparent_overlay"
-                        android:foreground="@drawable/selector_action_bg"
-                        />
+                        android:layout_gravity="end|bottom" />
 
                 </FrameLayout>
 

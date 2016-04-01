@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/vp_user_info"
-        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_top_menu_list"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp" />
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_bottom_app_version"
         android:background="@drawable/app_version_bg"
         android:gravity="right"
         android:paddingBottom="@dimen/margin_medium"
@@ -36,6 +36,7 @@
         android:textSize="@dimen/text_regular_2x"
         tools:text="ရုပ်ရှင် v0.1" />
 
+    <!--
     <TextView
         android:id="@+id/tv_feedback"
         android:layout_width="match_parent"
@@ -52,6 +53,7 @@
         android:textSize="@dimen/text_regular_2x"
         android:visibility="gone"
         />
+        -->
 
 </RelativeLayout>
 

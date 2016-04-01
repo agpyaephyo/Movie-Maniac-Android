@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- <dimen name="pager_padding">@dimen/margin_xlarge</dimen> -->
+    <dimen name="pager_padding">60dp</dimen>
+    <dimen name="user_info_height">150dp</dimen>
+
+    <dimen name="margin_top_menu_list">@dimen/margin_medium</dimen>
+    <dimen name="margin_bottom_app_version">@dimen/margin_medium</dimen>
+    <dimen name="padding_menu_item">@dimen/margin_small</dimen>
 </resources>

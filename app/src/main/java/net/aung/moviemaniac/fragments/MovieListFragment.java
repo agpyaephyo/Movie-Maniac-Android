@@ -113,7 +113,7 @@ public class MovieListFragment extends BaseFragment
         rvMovies.setAdapter(movieListAdapter);
         rvMovies.setEmptyView(vpEmptyFavourite);
 
-        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES || mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_TV_SERIES) {
+        if(mCategory == MovieManiacConstants.CATEGORY_MY_FAVOURITES_MOVIES) {
             vpEmptyFavourite.setEmptyLabel(getString(R.string.empty_favourite_movies));
         }
 

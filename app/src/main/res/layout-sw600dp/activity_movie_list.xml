@@ -91,5 +91,15 @@
         android:layout_gravity="start"
         tools:layout="@layout/fragment_left_menu" />
 
+    <FrameLayout
+        android:id="@+id/fl_tablet_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_tablet_movie_detail_vertical"
+        android:layout_marginBottom="@dimen/margin_tablet_movie_detail_vertical"
+        android:layout_marginLeft="@dimen/margin_tablet_movie_detail_horizontal"
+        android:layout_gravity="end|center_vertical"
+        />
+
 </android.support.v4.widget.DrawerLayout>
 

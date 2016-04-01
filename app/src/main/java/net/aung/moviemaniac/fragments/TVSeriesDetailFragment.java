@@ -48,6 +48,7 @@ import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.utils.YoutubeUtils;
 import net.aung.moviemaniac.views.components.ViewComponentLoader;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
+import net.aung.moviemaniac.views.pods.ViewPodExpandPoster;
 import net.aung.moviemaniac.views.pods.ViewPodFabs;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
@@ -120,6 +121,9 @@ public class TVSeriesDetailFragment extends BaseFragment
 
     @Bind(R.id.tv_rating_detail)
     TextView tvRating;
+
+    @Bind(R.id.vp_expand_poster)
+    ViewPodExpandPoster vpExpandPoster;
 
     public static TVSeriesDetailFragment newInstance(int tvSeriesId, int tvSeriesType) {
         TVSeriesDetailFragment fragment = new TVSeriesDetailFragment();
@@ -258,6 +262,7 @@ public class TVSeriesDetailFragment extends BaseFragment
         }
 
         vpFabs.updateStarStatus(tvSeries.isStar());
+        vpExpandPoster.setImageUrl(tvSeries.getPosterPath());
     }
 
     @Override

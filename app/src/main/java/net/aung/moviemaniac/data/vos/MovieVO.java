@@ -183,8 +183,12 @@ public class MovieVO {
         return isVideo;
     }
 
-    public String getVoteAverage() {
+    public String getVoteAverageText() {
         return String.format("%.1f", voteAverage);
+    }
+
+    public float getVoteAverage() {
+        return voteAverage;
     }
 
     public CollectionVO getCollection() {

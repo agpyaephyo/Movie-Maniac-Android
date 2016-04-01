@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.facebook.CallbackManager;
 import com.google.gson.reflect.TypeToken;
 
+import net.aung.moviemaniac.BuildConfig;
+import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MenuListAdapter;
 import net.aung.moviemaniac.data.vos.MenuVO;
@@ -65,8 +67,8 @@ public class LeftMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_left_menu, container, false);
         ButterKnife.bind(this, rootView);
-
-        tvAppVersion.setText(getString(R.string.app_name) + " v" + MovieManiacConstants.APP_VERSION + " - " + MovieManiacConstants.APP_VERSION_POST_FIX);
+        String appName = getString(R.string.app_name);
+        tvAppVersion.setText(getString(R.string.format_app_name, appName, BuildConfig.VERSION_NAME));
 
         try {
             String leftMenu = JsonUtils.getInstance().loadLeftMenuData();

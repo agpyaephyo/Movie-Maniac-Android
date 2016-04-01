@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
-        android:padding="@dimen/margin_medium_2"
+        android:padding="@dimen/padding_menu_item"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/text_regular_2x"
         />

@@ -159,7 +159,7 @@ public class SearchFragment extends BaseFragment implements
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        getLoaderManager().initLoader(MovieManiacConstants.SEARCH_LOADER, null, this);
+        //getLoaderManager().initLoader(MovieManiacConstants.SEARCH_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 

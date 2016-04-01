@@ -48,6 +48,7 @@ import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.utils.YoutubeUtils;
 import net.aung.moviemaniac.views.components.ViewComponentLoader;
 import net.aung.moviemaniac.views.components.recyclerview.TrailerItemDecoration;
+import net.aung.moviemaniac.views.pods.ViewPodExpandPoster;
 import net.aung.moviemaniac.views.pods.ViewPodFabs;
 import net.aung.moviemaniac.views.pods.ViewPodGenreListDetail;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularityDetail;
@@ -116,6 +117,12 @@ public class MovieDetailFragment extends BaseFragment
     @Bind(R.id.tv_rating_detail)
     TextView tvRating;
 
+    @Bind(R.id.tv_tag_line)
+    TextView tvTagLine;
+
+    @Bind(R.id.vp_expand_poster)
+    ViewPodExpandPoster vpExpandPoster;
+
     public static MovieDetailFragment newInstance(int movieId, int movieType) {
         MovieDetailFragment fragment = new MovieDetailFragment();
         Bundle bundle = new Bundle();
@@ -139,7 +146,7 @@ public class MovieDetailFragment extends BaseFragment
 
         poster = MovieManiacApp.sPosterCache.get(0);
 
-        if(poster != null)
+        if (poster != null)
             Palette.from(poster).generate(this);
 
         trailerAdapter = TrailerListAdapter.newInstance(controller);
@@ -239,8 +246,17 @@ public class MovieDetailFragment extends BaseFragment
             lblReviews.setVisibility(View.GONE);
         }
 
+        String tagLine = movie.getTagline();
+        if (tagLine != null && tagLine.length() > 0) {
+            tvTagLine.setVisibility(View.VISIBLE);
+            tvTagLine.setText(movie.getTagline());
+        } else {
+            tvTagLine.setVisibility(View.GONE);
+        }
+
         //ibMovieStar.setImageResource(movie.isStar() ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_fab_star);
         vpFabs.updateStarStatus(movie.isStar());
+        vpExpandPoster.setImageUrl(movie.getPosterPath());
     }
 
     @Override
@@ -307,7 +323,7 @@ public class MovieDetailFragment extends BaseFragment
     private void setRatingColor() {
         Context context = MovieManiacApp.getContext();
         int color;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             color = context.getResources().getColor(R.color.accent, context.getTheme());
         } else {
             color = context.getResources().getColor(R.color.accent);
@@ -320,7 +336,7 @@ public class MovieDetailFragment extends BaseFragment
         return new CursorLoader(getActivity(),
                 MovieContract.MovieEntry.CONTENT_URI,
                 null,
-                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND "+ MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND " + MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
                 new String[]{String.valueOf(mMovieId), String.valueOf(mMovieType)},
                 null);
     }

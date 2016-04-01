@@ -89,6 +89,15 @@
                                     android:textSize="@dimen/text_regular_3x"
                                     tools:text="6.2" />
 
+                                <include
+                                    android:id="@+id/vp_expand_poster"
+                                    layout="@layout/view_pod_expand_poster"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@id/iv_poster"
+                                    android:layout_alignRight="@id/iv_poster"
+                                    android:layout_marginBottom="@dimen/margin_medium_3" />
+
                             </RelativeLayout>
 
                             <android.support.v4.widget.NestedScrollView

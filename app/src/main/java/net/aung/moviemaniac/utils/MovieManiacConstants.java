@@ -60,6 +60,4 @@ public class MovieManiacConstants {
     public static final String IMAGE_SIZE_W185 = "w185";
     public static final String IMAGE_SIZE_W500 = "w500";
 
-    public static final String APP_VERSION = "1.0";
-    public static final String APP_VERSION_POST_FIX = "Alpha";
 }

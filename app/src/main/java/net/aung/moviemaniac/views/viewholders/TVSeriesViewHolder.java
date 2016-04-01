@@ -29,6 +29,7 @@ import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.databinding.ViewItemTvSeriesBinding;
 import net.aung.moviemaniac.dialogs.ExpandedPosterDialog;
 import net.aung.moviemaniac.utils.GAUtils;
+import net.aung.moviemaniac.views.pods.ViewPodExpandPoster;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
 import java.util.List;
@@ -59,6 +60,9 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
 
     @Bind(R.id.tv_rating)
     TextView tvRating;
+
+    @Bind(R.id.vp_expand_poster)
+    ViewPodExpandPoster vpExpandPoster;
 
     private View itemView;
 
@@ -118,6 +122,8 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
         } else {
             tvGenreList.setVisibility(View.GONE);
         }
+
+        vpExpandPoster.setImageUrl(tvSeries.getPosterPath());
     }
 
     @Override
@@ -173,7 +179,7 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
     @OnClick(R.id.iv_cancel_star)
     public void onTapCancelStar(View view) {
         new AlertDialog.Builder(view.getContext())
-                .setMessage(R.string.remove_movie_from_favourite_confirmation_msg)
+                .setMessage(R.string.remove_tv_series_from_favourite_confirmation_msg)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -186,16 +192,9 @@ public class TVSeriesViewHolder extends BaseViewHolder<TVSeriesVO>
                 .setNegativeButton(R.string.no, null).show();
     }
 
-    @OnClick(R.id.iv_expand_poster)
-    public void onTapExpandMoviePoster(View view) {
-        TVSeriesVO tvSeries = binding.getTvSeries();
-        Context context = view.getContext();
-        ExpandedPosterDialog expandedPosterDialog = new ExpandedPosterDialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-        expandedPosterDialog.show(tvSeries.getPosterPath());
-    }
-
     @OnClick(R.id.btn_tv_series_overview)
     public void onTapMovieOverview(View view) {
+        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_MOVIE_OVERVIEW);
         TVSeriesVO tvSeries = binding.getTvSeries();
         String overview = tvSeries.getOverview();
         if(TextUtils.isEmpty(overview)) {

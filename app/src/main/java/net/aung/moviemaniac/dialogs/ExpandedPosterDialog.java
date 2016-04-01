@@ -38,6 +38,7 @@ public class ExpandedPosterDialog extends Dialog {
     public void show(String posterUrl) {
         Glide.with(ivExpandedPoster.getContext())
                 .load(posterUrl)
+                .dontAnimate()
                 .placeholder(R.drawable.place_holder_movie_maniac)
                 .error(R.drawable.place_holder_movie_maniac)
                 .into(ivExpandedPoster);

@@ -224,15 +224,15 @@ public class ViewPodFabs extends FrameLayout implements ViewController {
     public void updateStarStatus(boolean isStar) {
         ibFavourite.setImageResource(isStar ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp);
 
+        int waitTime = isStar ? 2000 : 100;
         if(isOpen) {
             isOpen = false;
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     closeAnim();
-
                 }
-            }, 2000);
+            }, waitTime);
         }
     }
 

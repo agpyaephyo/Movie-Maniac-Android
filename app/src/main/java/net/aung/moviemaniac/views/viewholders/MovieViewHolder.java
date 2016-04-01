@@ -26,8 +26,8 @@ import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.databinding.ViewItemMovieFullWidthBinding;
-import net.aung.moviemaniac.dialogs.ExpandedPosterDialog;
 import net.aung.moviemaniac.utils.GAUtils;
+import net.aung.moviemaniac.views.pods.ViewPodExpandPoster;
 import net.aung.moviemaniac.views.pods.ViewPodMoviePopularity;
 
 import java.util.List;
@@ -59,6 +59,9 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
 
     @Bind(R.id.tv_rating)
     TextView tvRating;
+
+    @Bind(R.id.vp_expand_poster)
+    ViewPodExpandPoster vpExpandPoster;
 
     private View itemView;
 
@@ -119,6 +122,16 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
         } else {
             tvGenreList.setVisibility(View.GONE);
         }
+
+        vpExpandPoster.setImageUrl(movie.getPosterPath());
+
+        float voteAverage = movie.getVoteAverage();
+        if(voteAverage > 0) {
+            tvRating.setVisibility(View.VISIBLE);
+            tvRating.setText(String.format("%.1f", voteAverage));
+        } else {
+            tvRating.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -174,6 +187,7 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
 
     @OnClick(R.id.iv_cancel_star)
     public void onTapCancelStar(View view) {
+
         new AlertDialog.Builder(view.getContext())
                 .setMessage(R.string.remove_movie_from_favourite_confirmation_msg)
                 .setIcon(android.R.drawable.ic_dialog_alert)
@@ -191,6 +205,7 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
 
     @OnClick(R.id.btn_movie_overview)
     public void onTapMovieOverview(View view) {
+        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_MOVIE_OVERVIEW);
         MovieVO movie = binding.getMovie();
         String overview = movie.getOverview();
         if(TextUtils.isEmpty(overview)) {
@@ -207,14 +222,6 @@ public class MovieViewHolder extends BaseViewHolder<MovieVO>
         tvMsg.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
         tvMsg.setLineSpacing(1.2f, 1.2f);
 
-    }
-
-    @OnClick(R.id.iv_expand_poster)
-    public void onTapExpandMoviePoster(View view) {
-        MovieVO movie = binding.getMovie();
-        Context context = view.getContext();
-        ExpandedPosterDialog expandedPosterDialog = new ExpandedPosterDialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-        expandedPosterDialog.show(movie.getPosterPath());
     }
 
     /*

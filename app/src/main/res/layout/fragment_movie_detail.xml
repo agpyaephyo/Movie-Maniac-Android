@@ -85,10 +85,19 @@
                                     android:layout_margin="@dimen/margin_small"
                                     android:background="@drawable/ic_favorite_white_24dp"
                                     android:gravity="center"
-                                    android:text="@{movie.voteAverage}"
+                                    android:text="@{movie.voteAverageText}"
                                     android:textColor="@color/text_white"
                                     android:textSize="@dimen/text_regular_3x"
                                     tools:text="6.2" />
+
+                                <include
+                                    android:id="@+id/vp_expand_poster"
+                                    layout="@layout/view_pod_expand_poster"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@id/iv_poster"
+                                    android:layout_alignRight="@id/iv_poster"
+                                    android:layout_marginBottom="@dimen/margin_medium_3" />
 
                             </RelativeLayout>
 
@@ -105,7 +114,6 @@
                                     android:layout_marginLeft="@dimen/margin_medium"
                                     android:layout_marginTop="@dimen/margin_large"
                                     android:fontFamily="sans-serif-condensed"
-                                    android:text="@{movie.tagline}"
                                     android:textColor="@color/text_white"
                                     android:textSize="@dimen/text_regular_3x"
                                     tools:text="Ant-Man" />
@@ -114,9 +122,11 @@
                                     android:id="@+id/sv_overview"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:layout_alignLeft="@id/tv_tag_line"
                                     android:layout_below="@id/tv_tag_line"
-                                    android:layout_marginTop="@dimen/margin_medium">
+                                    android:layout_marginLeft="@dimen/margin_medium"
+                                    android:layout_marginTop="@dimen/margin_medium"
+                                    android:scrollbars="vertical"
+                                    android:fadeScrollbars="false">
 
                                     <TextView
                                         android:id="@+id/tv_overview"

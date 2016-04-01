@@ -10,6 +10,26 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'org.moallemi.advanced-build-version'
+
+advancedVersioning {
+
+    nameOptions {
+        versionMajor 1
+        versionMinor 2
+        versionPatch 0
+    }
+
+    codeOptions {
+        versionCodeType org.moallemi.gradle.internal.VersionCodeType.AUTO_INCREMENT_ONE_STEP
+        dependsOnTasks 'release'
+    }
+
+    outputOptions {
+        renameOutput true
+        nameFormat '${appName}-v${versionName}'
+    }
+}
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -19,16 +39,19 @@ apply plugin: 'com.android.databinding'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 
+def appVersionName = advancedVersioning.versionName
+def appVersionCode = advancedVersioning.versionCode
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "net.aung.popularmovies"
+        applicationId "net.aung.moviemaniac"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 2
-        versionName "1.1"
+        versionCode appVersionCode
+        versionName appVersionName
 
         buildConfigField 'String', 'THE_MOVIE_API_KEY', "\"${theMovieApiKey}\""
 
