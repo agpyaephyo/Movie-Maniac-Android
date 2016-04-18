@@ -1,6 +1,7 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +27,6 @@ import net.aung.moviemaniac.adapters.TVSeriesListAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
 import net.aung.moviemaniac.controllers.TVSeriesItemController;
 import net.aung.moviemaniac.data.persistence.MovieContract;
-import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.mvp.presenters.SearchPresenter;
@@ -131,15 +132,23 @@ public class SearchFragment extends BaseFragment implements
                     ScreenUtils.hideSoftKeyboard(etSearch);
 
                     String query = etSearch.getText().toString();
-                    mSearchPresenter.search(query);
+                    if (query.matches(MovieManiacConstants.REG_VALID_SEARCH_QUERY_RANGE)) {
+                        mSearchPresenter.search(query);
 
-                    swipeRefreshLayout.setEnabled(true);
-                    swipeRefreshLayout.setRefreshing(true);
+                        swipeRefreshLayout.setEnabled(true);
+                        swipeRefreshLayout.setRefreshing(true);
 
-                    if (mSearchType == SearchActivity.SEARCH_TYPE_MOVIE) {
-                        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_MOVIES, query);
-                    } else if (mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
-                        GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_TV_SERIES, query);
+                        if (mSearchType == SearchActivity.SEARCH_TYPE_MOVIE) {
+                            GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_MOVIES, query);
+                        } else if (mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
+                            GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_TV_SERIES, query);
+                        }
+                    } else {
+                        new AlertDialog.Builder(getActivity())
+                                .setMessage(R.string.contain_special_char_in_query_msg)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setPositiveButton(R.string.ok, null)
+                                .show();
                     }
 
                     return true;
@@ -260,7 +269,7 @@ public class SearchFragment extends BaseFragment implements
             do {
                 if (mSearchType == SearchActivity.SEARCH_TYPE_MOVIE) {
                     suggestionList.add(data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_TITLE)));
-                } else if(mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
+                } else if (mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
                     suggestionList.add(data.getString(data.getColumnIndex(MovieContract.TVSeriesEntry.COLUMN_NAME)));
                 }
             } while (data.moveToNext());

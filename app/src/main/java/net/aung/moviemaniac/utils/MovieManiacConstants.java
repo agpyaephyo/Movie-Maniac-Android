@@ -60,4 +60,6 @@ public class MovieManiacConstants {
     public static final String IMAGE_SIZE_W185 = "w185";
     public static final String IMAGE_SIZE_W500 = "w500";
 
+    public static final String REG_VALID_SEARCH_QUERY_RANGE = "[a-zA-Z. 0-9]*";
+
 }

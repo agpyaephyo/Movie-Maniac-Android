@@ -587,7 +587,7 @@ public class MovieProvider extends ContentProvider {
         if (context != null) {
             context.getContentResolver().notifyChange(uri, null); //notify any registered observers.
         }
-        db.close();
+        //db.close(); => https://fabric.io/aungs-projects/android/apps/net.aung.moviemaniac/issues/57007776ffcdc042505fb61b
 
         return insertedUri;
     }
@@ -603,7 +603,7 @@ public class MovieProvider extends ContentProvider {
         if (context != null && rowDeleted > 0) {
             context.getContentResolver().notifyChange(uri, null);
         }
-        db.close();
+        //db.close();  => https://fabric.io/aungs-projects/android/apps/net.aung.moviemaniac/issues/57007776ffcdc042505fb61b
         return rowDeleted;
     }
 
@@ -618,7 +618,7 @@ public class MovieProvider extends ContentProvider {
         if (context != null && rowUpdated > 0) {
             context.getContentResolver().notifyChange(uri, null);
         }
-        db.close();
+        //db.close();  => https://fabric.io/aungs-projects/android/apps/net.aung.moviemaniac/issues/57007776ffcdc042505fb61b
         return rowUpdated;
     }
 

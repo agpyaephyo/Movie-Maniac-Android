@@ -111,4 +111,8 @@
     <string name="lbl_public_rating">Public Rating</string>
     <string name="movie_overview">Movie Overview</string>
     <string name="msg_empty_overview">There is no overview for this movie. Sorry. :-(</string>
+
+    <string name="contain_special_char_in_query_msg">There are special characters in your search query. Please remove them and try again.</string>
+    <string name="ok">OK</string>
+
 </resources>
