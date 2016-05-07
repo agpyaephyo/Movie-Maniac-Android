@@ -97,6 +97,8 @@
                         android:text="Thiller, Action"
                         android:textColor="@color/primary_text"
                         android:textSize="@dimen/text_regular"
+                        android:maxLines="3"
+                        android:ellipsize="end"
                         tools:text="Thiller, Action" />
 
                     <TextView

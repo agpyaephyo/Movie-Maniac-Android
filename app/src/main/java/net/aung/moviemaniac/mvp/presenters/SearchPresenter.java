@@ -4,6 +4,9 @@ import net.aung.moviemaniac.activities.SearchActivity;
 import net.aung.moviemaniac.data.model.MovieModel;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.mvp.views.SearchView;
+import net.aung.moviemaniac.utils.GAUtils;
+import net.aung.moviemaniac.utils.MovieManiacConstants;
+import net.aung.moviemaniac.utils.NetworkUtils;
 
 /**
  * Created by aung on 3/21/16.
@@ -29,20 +32,37 @@ public class SearchPresenter extends BasePresenter {
     }
 
     public void search(String query) {
-        if (mSearchCategory == SearchActivity.SEARCH_TYPE_MOVIE) {
-            //search movies
-            MovieModel.getInstance().searchOnMovies(query);
-        } else if (mSearchCategory == SearchActivity.SEARCH_TYPE_TV_SERIES) {
-            //search tv series
-            MovieModel.getInstance().searchOnTVSeries(query);
+        if (NetworkUtils.getInstance().isOnline()) {
+            if (query.matches(MovieManiacConstants.REG_VALID_SEARCH_QUERY_RANGE)) {
+                mSearchView.showLoading();
+                if (mSearchCategory == SearchActivity.SEARCH_TYPE_MOVIE) {
+                    //search movies
+                    GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_MOVIES, query);
+                    MovieModel.getInstance().searchOnMovies(query);
+                } else if (mSearchCategory == SearchActivity.SEARCH_TYPE_TV_SERIES) {
+                    //search tv series
+                    GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_TV_SERIES, query);
+                    MovieModel.getInstance().searchOnTVSeries(query);
+                } else {
+
+                }
+            } else {
+                mSearchView.showMsgSpecialCharacterDetected();
+            }
+        } else {
+            mSearchView.showMsgNoNetwork();
         }
     }
 
     public void onEventMainThread(DataEvent.SearchedMovieEvent event) {
-        mSearchView.displaySearchResultMovie(event.getResponse().getResults());
+        mSearchView.showSearchResultMovie(event.getResponse().getResults());
     }
 
     public void onEventMainThread(DataEvent.SearchedTVSeriesEvent event) {
-        mSearchView.displaySearchResultTVSeries(event.getResponse().getTvSeriesList());
+        mSearchView.showSearchResultTVSeries(event.getResponse().getTvSeriesList());
+    }
+
+    public void onEventMainThread(DataEvent.FailedToLoadDataEvent event) {
+        mSearchView.showMsgFailInSearch(event.getMessage());
     }
 }

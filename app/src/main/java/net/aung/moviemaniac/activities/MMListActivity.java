@@ -34,6 +34,8 @@ public class MMListActivity extends BaseActivity implements
         TVSeriesItemController,
         ViewItemMenu.MenuItemController {
 
+    private static final String OUT_STAGE_MENU_INDEX = "OUT_STAGE_MENU_INDEX";
+
     private LeftMenuFragment mLeftMenu;
 
     @Bind(R.id.drawer_layout)
@@ -116,6 +118,27 @@ public class MMListActivity extends BaseActivity implements
             showTVSeriesShelf();
             mCurrentMenuIndex = MenuVO.MENU_INDEX_TV_SERIES_SHELF;
             */
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(OUT_STAGE_MENU_INDEX, mCurrentMenuIndex);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mCurrentMenuIndex = savedInstanceState.getInt(OUT_STAGE_MENU_INDEX);
+
+        switch (mCurrentMenuIndex) {
+            case MenuVO.MENU_INDEX_MOVIE_SHELF:
+                tvScreenTitle.setText(R.string.section_movie);
+                break;
+            case MenuVO.MENU_INDEX_TV_SERIES_SHELF:
+                tvScreenTitle.setText(R.string.section_tv_series);
+                break;
         }
     }
 

@@ -114,5 +114,6 @@
 
     <string name="contain_special_char_in_query_msg">There are special characters in your search query. Please remove them and try again.</string>
     <string name="ok">OK</string>
+    <string name="no_network_msg">There is no internet connectivity detected. Please check if you have turned off the internet.</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package net.aung.moviemaniac.views.pods;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -17,6 +18,7 @@ import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.BaseController;
 import net.aung.moviemaniac.controllers.ViewController;
+import net.aung.moviemaniac.listeners.AnimatorAdapter;
 import net.aung.moviemaniac.utils.GAUtils;
 
 
@@ -58,6 +60,13 @@ public class ViewPodFabs extends FrameLayout implements ViewController {
         objAnimRotation.setDuration(600);
         objAnimRotation.setInterpolator(new AccelerateInterpolator());
         objAnimRotation.start();
+        objAnimRotation.addListener(new AnimatorAdapter(){
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                ibPlus.setEnabled(true);
+            }
+        });
 
         ObjectAnimator objAnimCallFW = ObjectAnimator.ofFloat(ibFavourite, "y", ibFavourite.getY(), ibFavourite.getY() - F310);
         objAnimCallFW.setDuration(500);
@@ -114,6 +123,13 @@ public class ViewPodFabs extends FrameLayout implements ViewController {
         objAnimRotation.setDuration(600);
         objAnimRotation.setInterpolator(new AccelerateInterpolator());
         objAnimRotation.start();
+        objAnimRotation.addListener(new AnimatorAdapter(){
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                ibPlus.setEnabled(true);
+            }
+        });
 
         ObjectAnimator objAnimCallFW = ObjectAnimator.ofFloat(ibFavourite, "y", ibFavourite.getY(), ibFavourite.getY() - F30);
         objAnimCallFW.setDuration(100);
@@ -173,6 +189,7 @@ public class ViewPodFabs extends FrameLayout implements ViewController {
         ibPlus.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                ibPlus.setEnabled(false);
                 if (!isOpen) {
                     openAnim();
                     isOpen = true;
@@ -226,6 +243,7 @@ public class ViewPodFabs extends FrameLayout implements ViewController {
 
         int waitTime = isStar ? 2000 : 100;
         if(isOpen) {
+            ibPlus.setEnabled(false);
             isOpen = false;
             new Handler().postDelayed(new Runnable() {
                 @Override

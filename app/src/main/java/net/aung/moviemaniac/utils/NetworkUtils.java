@@ -32,11 +32,12 @@ public class NetworkUtils {
 
     /**
      * Check if the device has connected to an active network. (Wifi / 3G)
+     *
      * @return true if connected. false if not connected.
      */
-    public boolean isOnline(){
+    public boolean isOnline() {
         networkInfo = connectivityManager.getActiveNetworkInfo();
-        if(networkInfo != null && networkInfo.isConnected()){
+        if (networkInfo != null && networkInfo.isConnected()) {
             return true;
         }
         return false;

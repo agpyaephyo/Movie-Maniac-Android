@@ -10,9 +10,15 @@ import java.util.List;
  */
 public interface SearchView {
 
-    void displaySearchResultMovie(List<MovieVO> movieSearchResult);
+    void showSearchResultMovie(List<MovieVO> movieSearchResult);
 
-    void displaySearchResultTVSeries(List<TVSeriesVO> tvSeriesSearchResult);
+    void showSearchResultTVSeries(List<TVSeriesVO> tvSeriesSearchResult);
 
-    void displayFailInSearch(String message);
+    void showMsgFailInSearch(String message);
+
+    void showLoading();
+
+    void showMsgSpecialCharacterDetected();
+
+    void showMsgNoNetwork();
 }

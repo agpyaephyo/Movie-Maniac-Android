@@ -1,7 +1,6 @@
 package net.aung.moviemaniac.fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,7 +31,6 @@ import net.aung.moviemaniac.data.vos.TVSeriesVO;
 import net.aung.moviemaniac.mvp.presenters.SearchPresenter;
 import net.aung.moviemaniac.mvp.views.SearchView;
 import net.aung.moviemaniac.utils.GAUtils;
-import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.views.components.recyclerview.AutofitRecyclerView;
 import net.aung.moviemaniac.views.pods.ViewPodEmpty;
@@ -132,24 +130,7 @@ public class SearchFragment extends BaseFragment implements
                     ScreenUtils.hideSoftKeyboard(etSearch);
 
                     String query = etSearch.getText().toString();
-                    if (query.matches(MovieManiacConstants.REG_VALID_SEARCH_QUERY_RANGE)) {
-                        mSearchPresenter.search(query);
-
-                        swipeRefreshLayout.setEnabled(true);
-                        swipeRefreshLayout.setRefreshing(true);
-
-                        if (mSearchType == SearchActivity.SEARCH_TYPE_MOVIE) {
-                            GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_MOVIES, query);
-                        } else if (mSearchType == SearchActivity.SEARCH_TYPE_TV_SERIES) {
-                            GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_SEARCH_TV_SERIES, query);
-                        }
-                    } else {
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage(R.string.contain_special_char_in_query_msg)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .setPositiveButton(R.string.ok, null)
-                                .show();
-                    }
+                    mSearchPresenter.search(query);
 
                     return true;
                 }
@@ -211,7 +192,7 @@ public class SearchFragment extends BaseFragment implements
     }
 
     @Override
-    public void displaySearchResultMovie(List<MovieVO> movieSearchResult) {
+    public void showSearchResultMovie(List<MovieVO> movieSearchResult) {
         rvSearchResults.setGridColumnSpan(getResources().getInteger(R.integer.movieListGrid));
         mMovieListAdapter.setMovieList(movieSearchResult);
         rvSearchResults.setAdapter(mMovieListAdapter);
@@ -221,7 +202,7 @@ public class SearchFragment extends BaseFragment implements
     }
 
     @Override
-    public void displaySearchResultTVSeries(List<TVSeriesVO> tvSeriesSearchResult) {
+    public void showSearchResultTVSeries(List<TVSeriesVO> tvSeriesSearchResult) {
         rvSearchResults.setGridColumnSpan(1);
         mTvSeriesListAdapter.setTVSeriesList(tvSeriesSearchResult);
         rvSearchResults.setAdapter(mTvSeriesListAdapter);
@@ -231,12 +212,36 @@ public class SearchFragment extends BaseFragment implements
     }
 
     @Override
-    public void displayFailInSearch(String message) {
+    public void showMsgFailInSearch(String message) {
         Snackbar.make(mRootView, message, Snackbar.LENGTH_INDEFINITE)
                 .setAction("Action", null).show();
 
         swipeRefreshLayout.setEnabled(false);
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showLoading() {
+        swipeRefreshLayout.setEnabled(true);
+        swipeRefreshLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void showMsgSpecialCharacterDetected() {
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.contain_special_char_in_query_msg)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    }
+
+    @Override
+    public void showMsgNoNetwork() {
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.no_network_msg)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.ok, null)
+                .show();
     }
 
     @Override
