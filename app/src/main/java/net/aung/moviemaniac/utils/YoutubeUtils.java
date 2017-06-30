@@ -24,7 +24,7 @@ public class YoutubeUtils {
         return objInstance;
     }
 
-    public void playYoutbueVideo(Activity activity, String videoId) {
+    public void playYoutubeVideo(Activity activity, String videoId) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videoId));
             intent.putExtra("force_fullscreen", true);

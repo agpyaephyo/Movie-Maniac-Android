@@ -59,7 +59,7 @@ public class BaseActivity extends AppCompatActivity implements
     @Override
     public void onShowTrailer(TrailerVO trailer) {
         GAUtils.getInstance().sendUserEventHit(GAUtils.EVENT_ACTION_PLAY_TRAILER);
-        YoutubeUtils.getObjInstance().playYoutbueVideo(this, trailer.getKey());
+        YoutubeUtils.getObjInstance().playYoutubeVideo(this, trailer.getKey());
     }
 
     @Override
