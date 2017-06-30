@@ -16,7 +16,7 @@ advancedVersioning {
 
     nameOptions {
         versionMajor 1
-        versionMinor 3
+        versionMinor 4
         versionPatch 0
     }
 
@@ -35,8 +35,6 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-apply plugin: 'com.android.databinding'
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 
 def appVersionName = advancedVersioning.versionName
@@ -44,7 +42,7 @@ def appVersionCode = advancedVersioning.versionCode
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "net.aung.moviemaniac"
@@ -90,8 +88,10 @@ dependencies {
 
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
 
-    compile 'com.google.android.gms:play-services-analytics:8.3.0'
+    compile 'com.google.android.gms:play-services-analytics:9.2.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }
 }
+
+apply plugin: 'com.google.gms.google-services'
