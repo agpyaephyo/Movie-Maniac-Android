@@ -9,6 +9,8 @@
     <list default="true" id="31057043-0d3b-4fed-ae4b-b93ea598a166" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieListPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieListPresenter.java" />
     </list>
     <ignored path="Movie-Maniac-Android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,114 +42,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <file leaf-file-name="MovieVO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1333">
-              <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MovieManiacConstants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NetworkUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/NetworkUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="YoutubeUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/YoutubeUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MovieReviewResponse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/MovieReviewResponse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TVSeriesListResponse.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/TVSeriesListResponse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MovieListResponse.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/MovieListResponse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="806">
-              <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="facebook.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/facebook.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="2310">
+              <caret line="130" column="84" selection-start-line="130" selection-start-column="84" selection-end-line="130" selection-end-column="84" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -537,6 +449,11 @@
                 <option name="name" value="compileReleaseAidl" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test:runner:0.5" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportTestRunner05Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.android.gms:play-services-analytics-impl:9.2.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComGoogleAndroidGmsPlayServicesAnalyticsImpl921Library" />
@@ -727,6 +644,11 @@
                 <option name="name" value="mergeDebugShaders" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-idling-resource:2.2.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoIdlingResource222Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="compileReleaseRenderscript" />
               </ExternalTaskPojo>
@@ -734,6 +656,11 @@
                 <option name="description" value="Assembles all Debug builds." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="assembleDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test:rules:0.5" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportTestRules05Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -943,6 +870,11 @@
                 <option name="name" value="generateReleaseBuildConfig" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test:exposed-instrumentation-api-publish:0.5" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportTestExposedInstrumentationApiPublish05Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dataBindingProcessLayoutsDebug" />
               </ExternalTaskPojo>
@@ -981,6 +913,11 @@
                 <option name="description" value="Prepare com.android.support:design:23.1.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComAndroidSupportDesign2311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-core:2.2.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoCore222Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
@@ -1024,39 +961,12 @@
                 <option name="name" value="prepareComGoogleFirebaseFirebaseAnalytics921Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.crashlytics.sdk.android:crashlytics-core:2.3.8" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComCrashlyticsSdkAndroidCrashlyticsCore238Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.google.android.gms:play-services-base:9.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesBase921Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="validateSigningDebugAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="assembleReleaseUnitTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareDebugDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="processReleaseJavaRes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateReleaseAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs lint on the Debug build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="lintDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1068,27 +978,8 @@
                 <option name="name" value="mockableAndroidJar" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of project ':app'. [incubating]" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="model" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from project ':app'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="tasks" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="compileDebugSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.google.android.gms:play-services-basement:9.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesBasement921Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="incrementalDebugJavaCompilationSafeguard" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Runs all device checks using Device Providers and Test Servers." />
@@ -1102,15 +993,6 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="dataBindingExportBuildInfoDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in project ':app'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="dependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="processDebugResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
@@ -1120,20 +1002,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="packageDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="compileReleaseNdk" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateDebugResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.google.firebase:firebase-core:9.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComGoogleFirebaseFirebaseCore921Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1144,11 +1013,6 @@
                 <option name="name" value="compileDebugJavaWithJavac" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project and all projects it depends on." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="buildNeeded" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="generateDebugAndroidTestBuildConfig" />
               </ExternalTaskPojo>
@@ -1156,15 +1020,6 @@
                 <option name="description" value="Prepare com.android.support:support-v4:23.1.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareComAndroidSupportSupportV42311Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="processDebugUnitTestJavaRes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Run unit tests for the release build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="testReleaseUnitTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Deletes the build cache directory." />
@@ -1177,25 +1032,12 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="mergeDebugShaders" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="compileDebugAndroidTestJavaWithJavac" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the components produced by project ':app'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="components" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="compileReleaseRenderscript" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles all Debug builds." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="assembleDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1226,10 +1068,6 @@
                 <option name="name" value="processReleaseUnitTestJavaRes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="javaPreCompileDebugAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Uninstalls the Release build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="uninstallRelease" />
@@ -1244,15 +1082,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateDebugAndroidTestSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareDebugAndroidTestDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="incrementalDebugAndroidTestJavaCompilationSafeguard" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1261,6 +1091,429 @@
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="javaPreCompileDebugUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="mergeReleaseJniLibFolders" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="processReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs and runs instrumentation tests using all Device Providers." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="deviceAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="mergeDebugAndroidTestAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Injects the build id used by the Fabric SDK." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="fabricGenerateResourcesRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="processReleaseManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Uninstalls the android (on device) tests for the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="uninstallDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="incrementalReleaseUnitTestJavaCompilationSafeguard" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all variants of all applications and secondary packages." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="compileReleaseUnitTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs the android (on device) tests for the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="installDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all device checks on currently connected devices." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="connectedCheck" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs and runs the tests for debug on connected devices." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="connectedDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all the Test applications." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="assembleAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="processDebugAndroidTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="validateSigningDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="mergeDebugResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="preDebugUnitTestBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="compileLint" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="transformNativeLibsWithMergeJniLibsForDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="mergeReleaseShaders" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Injects the build id used by the Fabric SDK." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="fabricGenerateResourcesDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="compileDebugAndroidTestNdk" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="transformNativeLibsWithMergeJniLibsForRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="mergeDebugAndroidTestJniLibFolders" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="extractProguardFiles" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="transformClassesWithDexForDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="assembleDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.firebase:firebase-common:9.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleFirebaseFirebaseCommon921Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateDebugAndroidTestAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:recyclerview-v7:23.1.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportRecyclerviewV72311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="transformResourcesWithMergeJavaResForDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.crashlytics.sdk.android:answers:1.3.6" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComCrashlyticsSdkAndroidAnswers136Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareReleaseUnitTestDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Run unit tests for all variants." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.databinding:adapters:1.3.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidDatabindingAdapters131Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="mergeDebugAndroidTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.firebase:firebase-iid:9.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleFirebaseFirebaseIid921Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="preReleaseUnitTestBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateDebugResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Run unit tests for the debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="testDebugUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="jarDebugClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Installs the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="installDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="preBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="compileReleaseAidl" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test:runner:0.5" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportTestRunner05Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-analytics-impl:9.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesAnalyticsImpl921Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on the Release build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="lintRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateDebugAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the dependent components of components in project ':app'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="dependentComponents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all buildscript dependencies declared in project ':app'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="buildEnvironment" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="checkDebugManifest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.databinding:library:1.3.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidDatabindingLibrary131Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prints out all the source sets defined in this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="sourceSets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="transformResourcesWithMergeJavaResForDebugUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="compileDebugRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareDebugUnitTestDependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="dataBindingExportBuildInfoRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateReleaseResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on just the fatal issues in the release build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="lintVitalRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Uninstalls the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="uninstallDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="preDebugBuild" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateDebugBuildConfig" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Uploads an APK to Crashlytics for distribution." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="crashlyticsUploadDistributionRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all Release builds." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="assembleRelease" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support:palette-v7:23.1.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportPaletteV72311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="transformClassesAndDataBindingWithDataBindingMergeArtifactsForDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateReleaseResValues" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.crashlytics.sdk.android:crashlytics-core:2.3.8" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComCrashlyticsSdkAndroidCrashlyticsCore238Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-base:9.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesBase921Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="assembleReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="processReleaseJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateReleaseAssets" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs lint on the Debug build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="lintDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of project ':app'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="model" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from project ':app'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="tasks" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.android.gms:play-services-basement:9.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesBasement921Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="incrementalDebugJavaCompilationSafeguard" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="dataBindingExportBuildInfoDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in project ':app'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="packageDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateDebugResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.firebase:firebase-core:9.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleFirebaseFirebaseCore921Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="processDebugUnitTestJavaRes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Run unit tests for the release build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="testReleaseUnitTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="mergeDebugShaders" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-idling-resource:2.2.2" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoIdlingResource222Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="compileReleaseRenderscript" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles all Debug builds." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="assembleDebug" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test:rules:0.5" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportTestRules05Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="javaPreCompileDebugAndroidTest" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="generateDebugAndroidTestSources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="incrementalDebugAndroidTestJavaCompilationSafeguard" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1292,38 +1545,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="mergeReleaseJniLibFolders" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareReleaseDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="processReleaseResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Installs and runs instrumentation tests using all Device Providers." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="deviceAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="mergeDebugAndroidTestAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Injects the build id used by the Fabric SDK." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="fabricGenerateResourcesRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="processReleaseManifest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Uninstalls the android (on device) tests for the Debug build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="uninstallDebugAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the insight into a specific dependency in project ':app'." />
@@ -1336,16 +1558,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="incrementalReleaseUnitTestJavaCompilationSafeguard" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="preReleaseBuild" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles all variants of all applications and secondary packages." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="assemble" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1359,15 +1572,6 @@
                 <option name="description" value="Displays a help message." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="help" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="compileReleaseUnitTestSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Installs the android (on device) tests for the Debug build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="installDebugAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1387,16 +1591,6 @@
                 <option name="name" value="javaPreCompileRelease" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Runs all device checks on currently connected devices." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="connectedCheck" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Installs and runs the tests for debug on connected devices." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="connectedDebugAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Uninstall all applications." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="uninstallAll" />
@@ -1406,21 +1600,8 @@
                 <option name="name" value="transformNativeLibsWithMergeJniLibsForDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Assembles all the Test applications." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="assembleAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="processDebugAndroidTestResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="packageRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="validateSigningDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1428,32 +1609,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="mergeDebugResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="preDebugUnitTestBuild" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="compileLint" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="generateDebugAndroidTestResValues" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="transformNativeLibsWithMergeJniLibsForDebugAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="mergeReleaseShaders" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Injects the build id used by the Fabric SDK." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="fabricGenerateResourcesDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the Android dependencies of the project." />
@@ -1462,35 +1618,11 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="compileDebugAndroidTestNdk" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="compileDebugUnitTestSources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="transformNativeLibsWithMergeJniLibsForRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="generateDebugSources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="mergeDebugAndroidTestJniLibFolders" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="extractProguardFiles" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="transformClassesWithDexForDebugAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="assembleDebugAndroidTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.firebase:firebase-analytics-impl:9.2.1" />
@@ -1498,22 +1630,8 @@
                 <option name="name" value="prepareComGoogleFirebaseFirebaseAnalyticsImpl921Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.google.firebase:firebase-common:9.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComGoogleFirebaseFirebaseCommon921Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="processDebugJavaRes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateDebugAndroidTestAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:recyclerview-v7:23.1.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComAndroidSupportRecyclerviewV72311Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1525,48 +1643,12 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="transformResourcesWithMergeJavaResForDebugAndroidTest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.crashlytics.sdk.android:answers:1.3.6" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComCrashlyticsSdkAndroidAnswers136Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareReleaseUnitTestDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Run unit tests for all variants." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="test" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="compileDebugNdk" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.databinding:adapters:1.3.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComAndroidDatabindingAdapters131Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="mergeDebugAndroidTestResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.google.firebase:firebase-iid:9.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComGoogleFirebaseFirebaseIid921Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Uploads an APK to Crashlytics for distribution." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="crashlyticsUploadDistributionDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="preReleaseUnitTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support:cardview-v7:23.1.1" />
@@ -1575,21 +1657,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateDebugResValues" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs all checks." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="check" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="javaPreCompileDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Run unit tests for the debug build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="testDebugUnitTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Installs and runs instrumentation tests for all flavors on connected devices." />
@@ -1598,20 +1666,7 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="jarDebugClasses" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="transformClassesWithDexForRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Installs the Debug build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="installDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="preBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1634,59 +1689,13 @@
                 <option name="name" value="transformResourcesWithMergeJavaResForDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="compileReleaseAidl" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.google.android.gms:play-services-analytics-impl:9.2.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComGoogleAndroidGmsPlayServicesAnalyticsImpl921Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs lint on the Release build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="lintRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Assembles and tests this project and all projects that depend on it." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="buildDependents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateDebugAssets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in project ':app'. [incubating]" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="dependentComponents" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in project ':app'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="buildEnvironment" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="checkDebugManifest" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="mergeDebugJniLibFolders" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.databinding:library:1.3.1" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComAndroidDatabindingLibrary131Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Prints out all the source sets defined in this project." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="sourceSets" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="transformResourcesWithMergeJavaResForDebugUnitTest" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1694,32 +1703,16 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="compileDebugRenderscript" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="generateReleaseBuildConfig" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test:exposed-instrumentation-api-publish:0.5" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareDebugUnitTestDependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="dataBindingExportBuildInfoRelease" />
+                <option name="name" value="prepareComAndroidSupportTestExposedInstrumentationApiPublish05Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="dataBindingProcessLayoutsDebug" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateReleaseResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs lint on just the fatal issues in the release build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="lintVitalRelease" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1729,11 +1722,6 @@
                 <option name="description" value="Prepare com.google.android.gms:play-services-tasks:9.2.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareComGoogleAndroidGmsPlayServicesTasks921Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Uninstalls the Debug build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="uninstallDebug" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Displays the signing info for each variant." />
@@ -1754,27 +1742,9 @@
                 <option name="name" value="clean" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="preDebugBuild" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateDebugBuildConfig" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Uploads an APK to Crashlytics for distribution." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="crashlyticsUploadDistributionRelease" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Assembles and tests this project." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="build" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles all Release builds." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="assembleRelease" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support:design:23.1.1" />
@@ -1782,13 +1752,9 @@
                 <option name="name" value="prepareComAndroidSupportDesign2311Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:palette-v7:23.1.1" />
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-core:2.2.2" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComAndroidSupportPaletteV72311Library" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="transformClassesAndDataBindingWithDataBindingMergeArtifactsForDebug" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoCore222Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
@@ -1808,10 +1774,6 @@
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="generateReleaseResValues" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="processReleaseGoogleServices" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
@@ -1826,7 +1788,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4447387721000" />
+        <entry key="$PROJECT_DIR$" value="4449482855000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2022,7 +1984,7 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/com-intellij/uast/162.2228.14/uast-162.2228.14.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.fabric.tools/gradle/1.22.2/e24eda2a9d288247a9e2a19d8bfa2fb8f757d457/gradle-1.22.2.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.fabric.tools/gradle/1.23.0/883c9cbb118ae00ff73c3f7d3bc0447e9f06b23d/gradle-1.23.0.jar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/app" />
@@ -2187,14 +2149,20 @@
       <list>
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/YoutubeUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/BasePresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieListPresenter.java" />
+        <option value="$PROJECT_DIR$/the_movie_api.properties" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/androidTest/java/net/aung/moviemaniac/activities/MMOverviewTest.java" />
+        <option value="$PROJECT_DIR$/app/src/androidTest/java/net/aung/moviemaniac/activities/MMListActivityTest2.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="4" />
     <option name="y" value="22" />
-    <option name="width" value="1916" />
-    <option name="height" value="1058" />
+    <option name="width" value="1276" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -2203,7 +2171,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -2221,12 +2189,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane />
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2362,6 +2328,10 @@
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2443,17 +2413,197 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Movie-Maniac-Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Movie-Maniac-Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviemaniac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="persistence" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Movie-Maniac-Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Movie-Maniac-Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviemaniac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Movie-Maniac-Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Movie-Maniac-Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="androidTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviemaniac" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="Nexus_6P_API_N" />
+    <property name="device.picker.selection" value="Pixel_XL_API_25" />
+    <property name="SearchEverywhereHistoryKey" value="DBH&#9;PSI&#9;JAVA://net.aung.moviemaniac.data.persistence.MovieDBHelper" />
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android Instrumented Tests.MMListActivityTest2">
+    <configuration default="false" name="mMOverviewTest()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="TESTING_TYPE" value="3" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="android.support.test.runner.AndroidJUnitRunner" />
+      <option name="METHOD_NAME" value="mMOverviewTest" />
+      <option name="CLASS_NAME" value="net.aung.moviemaniac.activities.MMOverviewTest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="false" name="TestDB" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="TESTING_TYPE" value="2" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="android.support.test.runner.AndroidJUnitRunner" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="net.aung.moviemaniac.TestDB" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="false" name="MMListActivityTest2" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="TESTING_TYPE" value="2" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="android.support.test.runner.AndroidJUnitRunner" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="net.aung.moviemaniac.activities.MMListActivityTest2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -2504,12 +2654,74 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -2555,6 +2767,34 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
     <configuration default="false" name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
@@ -2581,9 +2821,19 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Android App.app" />
+      <item index="1" class="java.lang.String" itemvalue="Android Instrumented Tests.mMOverviewTest()" />
+      <item index="2" class="java.lang.String" itemvalue="Android Instrumented Tests.TestDB" />
+      <item index="3" class="java.lang.String" itemvalue="Android Instrumented Tests.MMListActivityTest2" />
     </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Android Instrumented Tests.MMListActivityTest2" />
+        <item index="1" class="java.lang.String" itemvalue="Android Instrumented Tests.TestDB" />
+        <item index="2" class="java.lang.String" itemvalue="Android Instrumented Tests.mMOverviewTest()" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -2616,9 +2866,17 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="MMListActivityTest2 - 2017.07.23 at 18h 28m 42s.xml">
+      <configuration name="MMListActivityTest2" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="mMOverviewTest() - 2017.07.21 at 17h 53m 58s.xml">
+      <configuration name="mMOverviewTest()" configurationId="AndroidTestRunConfigurationType" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1916" height="1058" extended-state="6" />
-    <editor active="true" />
+    <frame x="4" y="22" width="1276" height="778" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943678" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2627,19 +2885,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.72496027" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16452992" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.55275977" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3990461" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2666,74 +2924,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1333">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/NetworkUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/YoutubeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/the_movie_api.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="806">
@@ -2746,7 +2936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2769,7 +2958,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2787,25 +2975,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483">
-          <caret line="60" column="49" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/model/MovieModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1692">
           <caret line="201" column="41" selection-start-line="201" selection-start-column="22" selection-end-line="201" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieListPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="43" column="71" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -2827,15 +3000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/the_movie_api.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2843,22 +3007,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2866,19 +3014,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/fabric.properties">
@@ -2888,62 +3024,281 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1333">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/MovieManiacConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
+        <state relative-caret-position="161">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/NetworkUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
+        <state relative-caret-position="161">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/YoutubeUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
+        <state relative-caret-position="253">
           <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/MovieReviewResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
+        <state relative-caret-position="161">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/TVSeriesListResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
+        <state relative-caret-position="161">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/adapters/MovieListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/views/viewholders/MovieViewHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="143" column="37" selection-start-line="143" selection-start-column="19" selection-end-line="143" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/activities/MMListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="169" column="34" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/views/MovieListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/fragments/MovieListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="263" column="16" selection-start-line="263" selection-start-column="16" selection-end-line="263" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/MovieDataSourceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/the_movie_api.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="52" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1113">
+          <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/MovieListPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/ScreenUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="51" column="44" selection-start-line="51" selection-start-column="44" selection-end-line="51" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/utils/SettingsUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="22" column="83" selection-start-line="22" selection-start-column="83" selection-end-line="22" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/net/aung/moviemaniac/ExampleUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/net/aung/moviemaniac/activities/MMOverviewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-189">
+          <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/net/aung/moviemaniac/ApplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/net/aung/moviemaniac/TestDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1827">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/net/aung/moviemaniac/activities/MMListActivityTest2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/mvp/presenters/BasePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieDBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="34" column="77" selection-start-line="34" selection-start-column="77" selection-end-line="34" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/persistence/MovieContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/restapi/responses/MovieListResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+        <state relative-caret-position="231">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/CollectionVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-21">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/GenreVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCompanyVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/ProductionCountryVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/SpokenLanguageVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/TrailerVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieReviewVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/aung/moviemaniac/data/vos/MovieVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="130" column="84" selection-start-line="130" selection-start-column="84" selection-end-line="130" selection-end-column="84" />
           <folding />
         </state>
       </provider>

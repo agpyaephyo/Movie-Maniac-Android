@@ -53,6 +53,7 @@ android {
 
         buildConfigField 'String', 'THE_MOVIE_API_KEY', "\"${theMovieApiKey}\""
 
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -91,6 +92,9 @@ dependencies {
     compile 'com.google.android.gms:play-services-analytics:9.2.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
+    }
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
 }
 

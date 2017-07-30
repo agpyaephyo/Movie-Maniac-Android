@@ -26,7 +26,7 @@ public class MovieListPresenter extends BasePresenter {
 
     @Override
     public void onStart() {
-
+        //
     }
 
     @Override
