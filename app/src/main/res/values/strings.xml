@@ -1,6 +1,6 @@
 <resources xmlns:xliff="http://schemas.android.com/tools">
     <string name="app_name">Chill Session</string>
-    <string name="format_app_name"><xliff:g id="app_name">%1$s</xliff:g> v<xliff:g id="version_number">%2$s</xliff:g></string>
+    <string name="format_app_name"><xliff:g movieId="app_name">%1$s</xliff:g> v<xliff:g movieId="version_number">%2$s</xliff:g></string>
     <string name="title_yote_shin"></string>
 
     <string name="facebook_app_id">419900364866993</string>
@@ -91,16 +91,16 @@
     <string name="most_popular_tv_series">Most Popular</string>
     <string name="top_rated_tv_series">Top Rated</string>
 
-    <string name="format_first_air_date">First air date : <xliff:g id="first_air_date">%1$s</xliff:g></string>
+    <string name="format_first_air_date">First air date : <xliff:g movieId="first_air_date">%1$s</xliff:g></string>
     <string name="loading_more_tv_series">Loading more TV Series ...</string>
     <string name="section_tv_series">TV Series Shelf</string>
 
-    <string name="format_episode_runtime">Episode runtime : <xliff:g id="episode_run_time">%1$s</xliff:g> min</string>
+    <string name="format_episode_runtime">Episode runtime : <xliff:g movieId="episode_run_time">%1$s</xliff:g> min</string>
     <string name="lbl_seasons">Seasons</string>
 
-    <string name="format_season_number">Season <xliff:g id="season_number">%1$s</xliff:g></string>
-    <string name="format_season_air_date">Air date : <xliff:g id="season_number">%1$s</xliff:g></string>
-    <string name="format_episode_count">Total Episode : <xliff:g id="episode_count">%1$s</xliff:g></string>
+    <string name="format_season_number">Season <xliff:g movieId="season_number">%1$s</xliff:g></string>
+    <string name="format_season_air_date">Air date : <xliff:g movieId="season_number">%1$s</xliff:g></string>
+    <string name="format_episode_count">Total Episode : <xliff:g movieId="episode_count">%1$s</xliff:g></string>
     <string name="lbl_trailers">Trailers</string>
 
     <string name="empty_search">Your search result will show up in here.</string>

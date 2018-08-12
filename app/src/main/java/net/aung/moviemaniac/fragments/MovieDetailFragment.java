@@ -43,7 +43,6 @@ import net.aung.moviemaniac.databinding.FragmentMovieDetailBinding;
 import net.aung.moviemaniac.mvp.presenters.MovieDetailPresenter;
 import net.aung.moviemaniac.mvp.views.MovieDetailView;
 import net.aung.moviemaniac.utils.GAUtils;
-import net.aung.moviemaniac.utils.MovieManiacConstants;
 import net.aung.moviemaniac.utils.ScreenUtils;
 import net.aung.moviemaniac.utils.YoutubeUtils;
 import net.aung.moviemaniac.views.components.ViewComponentLoader;
@@ -199,7 +198,7 @@ public class MovieDetailFragment extends BaseFragment
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        getLoaderManager().initLoader(MovieManiacConstants.MOVIE_DETAIL_LOADER, null, this);
+        //getLoaderManager().initLoader(MovieManiacConstants.MOVIE_DETAIL_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -349,15 +348,15 @@ public class MovieDetailFragment extends BaseFragment
             if (!mMovie.isDetailLoaded()) {
                 presenter.loadMovieDetailFromNetwork(mMovie);
             } else {
-                mMovie.setGenreList(GenreVO.loadGenreListByMovieId(mMovie.getId()));
+                mMovie.setGenreList(GenreVO.loadGenreListByMovieId(mMovie.getMovieId()));
                 if (mMovie.getCollectionId() != 0) {
                     mMovie.setCollection(CollectionVO.loadCollectionById(mMovie.getCollectionId()));
                 }
-                mMovie.setProductionCompanyList(ProductionCompanyVO.loadProductionCompanyListByMovieId(mMovie.getId()));
-                mMovie.setProductionCountryList(ProductionCountryVO.loadProductionCountryListByMovieId(mMovie.getId()));
-                mMovie.setSpokenLanguageList(SpokenLanguageVO.loadSpokenLanguageListByMovieId(mMovie.getId()));
-                mMovie.setTrailerList(TrailerVO.loadTrailerListByMovieId(mMovie.getId()));
-                mMovie.setReviewList(MovieReviewVO.loadReviewListByMovieId(mMovie.getId()));
+                mMovie.setProductionCompanyList(ProductionCompanyVO.loadProductionCompanyListByMovieId(mMovie.getMovieId()));
+                mMovie.setProductionCountryList(ProductionCountryVO.loadProductionCountryListByMovieId(mMovie.getMovieId()));
+                mMovie.setSpokenLanguageList(SpokenLanguageVO.loadSpokenLanguageListByMovieId(mMovie.getMovieId()));
+                mMovie.setTrailerList(TrailerVO.loadTrailerListByMovieId(mMovie.getMovieId()));
+                mMovie.setReviewList(MovieReviewVO.loadReviewListByMovieId(mMovie.getMovieId()));
             }
 
             Log.d(MovieManiacApp.TAG, "Displaying movies detail for movie_id " + mMovieId);

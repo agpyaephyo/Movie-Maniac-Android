@@ -1,5 +1,11 @@
 package net.aung.moviemaniac.data.vos;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,6 +17,7 @@ import com.google.gson.annotations.SerializedName;
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 import net.aung.moviemaniac.utils.DateFormatUtils;
+import net.aung.moviemaniac.utils.GenreIdTypeConverter;
 import net.aung.moviemaniac.utils.MovieManiacConstants;
 
 import java.text.ParseException;
@@ -22,14 +29,19 @@ import java.util.List;
  * Immutable.
  * Created by aung on 12/12/15.
  */
+@Entity(tableName = "movie")
+@TypeConverters(GenreIdTypeConverter.class)
 public class MovieVO {
 
     private static final String RUNTIME_FORMAT = "%1$d hrs %2$d mins";
 
     @SerializedName("id")
-    private int id; //list - d
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    private int movieId; //list - d
 
     @SerializedName("poster_path")
+    @ColumnInfo(name = "poster_path")
     private String posterPath; //list - d
 
     @SerializedName("overview")
@@ -51,6 +63,7 @@ public class MovieVO {
     private String title; //list - d
 
     @SerializedName("backdrop_path")
+    @ColumnInfo(name = "backdrop_path")
     private String backdropPath; //list - d
 
     @SerializedName("popularity")
@@ -69,12 +82,14 @@ public class MovieVO {
     private boolean isVideo; //list
 
     @SerializedName("belongs_to_collection")
+    @Embedded
     private CollectionVO collection; //detail
 
     @SerializedName("budget")
     private long budget; //detail
 
     @SerializedName("genres")
+    @Ignore
     private ArrayList<GenreVO> genreList; //detail
 
     @SerializedName("homepage")
@@ -84,9 +99,11 @@ public class MovieVO {
     private String imdbId; //detail
 
     @SerializedName("production_companies")
+    @Ignore
     private ArrayList<ProductionCompanyVO> productionCompanyList; //detail
 
     @SerializedName("production_countries")
+    @Ignore
     private ArrayList<ProductionCountryVO> productionCountryList; //detail
 
     @SerializedName("revenue")
@@ -96,6 +113,7 @@ public class MovieVO {
     private int runtime; //detail
 
     @SerializedName("spoken_languages")
+    @Ignore
     private ArrayList<SpokenLanguageVO> spokenLanguageList; //detail
 
     @SerializedName("status")
@@ -104,17 +122,27 @@ public class MovieVO {
     @SerializedName("tagline")
     private String tagline; //detail
 
+    @Ignore
     private List<TrailerVO> trailerList;
+
+    @Ignore
     private boolean isDetailLoaded;
+
+    @Ignore
     private Date releaseDate;
+
+    @Ignore
     private int collectionId;
     private int movieType;
+
+    @Ignore
     private boolean isStar;
 
+    @Ignore
     private List<MovieReviewVO> reviewList;
 
-    public int getId() {
-        return id;
+    public int getMovieId() {
+        return movieId;
     }
 
     public String getPosterPath() {
@@ -311,7 +339,7 @@ public class MovieVO {
 
     public ContentValues parseToContentValues() {
         ContentValues cv = new ContentValues();
-        cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, id);
+        cv.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID, movieId);
         cv.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH, posterPath);
         cv.put(MovieContract.MovieEntry.COLUMN_OVERVIEW, overview);
         cv.put(MovieContract.MovieEntry.COLUMN_RELEASE_DATE, releaseDateText);
@@ -350,7 +378,7 @@ public class MovieVO {
             cv.put(MovieContract.MovieEntry.COLUMN_TAGLINE, tagline);
 
         if (collection != null)
-            cv.put(MovieContract.MovieEntry.COLUMN_COLLECTION_ID, collection.getId());
+            cv.put(MovieContract.MovieEntry.COLUMN_COLLECTION_ID, collection.getCollectionId());
 
         return cv;
     }
@@ -367,7 +395,7 @@ public class MovieVO {
                 for (int index_two = 0; index_two < movieGenreListCVs.length; index_two++) {
                     ContentValues movieGenreCV = new ContentValues();
                     movieGenreCV.put(MovieContract.MovieGenreEntry.COLUMN_GENRE_ID, movie.genreIds[index_two]);
-                    movieGenreCV.put(MovieContract.MovieGenreEntry.COLUMN_MOVIE_ID, movie.getId());
+                    movieGenreCV.put(MovieContract.MovieGenreEntry.COLUMN_MOVIE_ID, movie.getMovieId());
                     movieGenreListCVs[index_two] = movieGenreCV;
                 }
 
@@ -391,7 +419,7 @@ public class MovieVO {
         Context context = MovieManiacApp.getContext();
         int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
                 MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND " + MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
-                new String[]{String.valueOf(id), String.valueOf(movieType)});
+                new String[]{String.valueOf(movieId), String.valueOf(movieType)});
 
         if (updateCount > 0) {
             Log.d(MovieManiacApp.TAG, "The star status for movie " + title + " has updated to " + isStar);
@@ -405,7 +433,7 @@ public class MovieVO {
         Context context = MovieManiacApp.getContext();
         int updateCount = context.getContentResolver().update(MovieContract.MovieEntry.CONTENT_URI, cv,
                 MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = ? AND " + MovieContract.MovieEntry.COLUMN_MOVIE_TYPE + " = ?",
-                new String[]{String.valueOf(id), String.valueOf(movieType)});
+                new String[]{String.valueOf(movieId), String.valueOf(movieType)});
 
         if (updateCount <= 0) {
             //insert
@@ -425,7 +453,7 @@ public class MovieVO {
             int insertedGenreCount = context.getContentResolver().bulkInsert(MovieContract.GenreEntry.CONTENT_URI, genreListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into genre table : " + insertedGenreCount);
 
-            ContentValues[] movieGenreListCVs = GenreVO.parseToContentValueArray(genreList, id);
+            ContentValues[] movieGenreListCVs = GenreVO.parseToContentValueArray(genreList, movieId);
             //Bulk insert to MovieGenreEntry.
             int insertedMovieGenreCount = context.getContentResolver().bulkInsert(MovieContract.MovieGenreEntry.CONTENT_URI, movieGenreListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_genre table : " + insertedMovieGenreCount);
@@ -437,7 +465,7 @@ public class MovieVO {
             int insertedProductionCompanyCount = context.getContentResolver().bulkInsert(MovieContract.ProductionCompanyEntry.CONTENT_URI, productionCompanyListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into production_company table : " + insertedProductionCompanyCount);
 
-            ContentValues[] movieProductionCompanyListCVs = ProductionCompanyVO.parseToContentValueArray(productionCompanyList, id);
+            ContentValues[] movieProductionCompanyListCVs = ProductionCompanyVO.parseToContentValueArray(productionCompanyList, movieId);
             //Bulk insert to MovieProductionCompanyEntry.
             int insertedMovieProductionCompanyCount = context.getContentResolver().bulkInsert(MovieContract.MovieProductionCompanyEntry.CONTENT_URI, movieProductionCompanyListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_production_company table : " + insertedMovieProductionCompanyCount);
@@ -449,7 +477,7 @@ public class MovieVO {
             int insertedProductionCountryCount = context.getContentResolver().bulkInsert(MovieContract.ProductionCountryEntry.CONTENT_URI, productionCountryListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into production_country table : " + insertedProductionCountryCount);
 
-            ContentValues[] movieProductionCountryListCVs = ProductionCountryVO.parseToContentValueArray(productionCountryList, id);
+            ContentValues[] movieProductionCountryListCVs = ProductionCountryVO.parseToContentValueArray(productionCountryList, movieId);
             //Bulk insert to MovieProductionCountryEntry.
             int insertedMovieProductionCountryCount = context.getContentResolver().bulkInsert(MovieContract.MovieProductionCountryEntry.CONTENT_URI, movieProductionCountryListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_production_country table : " + insertedMovieProductionCountryCount);
@@ -461,7 +489,7 @@ public class MovieVO {
             int insertedSpokenLanguageCount = context.getContentResolver().bulkInsert(MovieContract.SpokenLanguageEntry.CONTENT_URI, spokenLanguageListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into spoken_language table : " + insertedSpokenLanguageCount);
 
-            ContentValues[] movieSpokenLanguageListCVs = SpokenLanguageVO.parseToContentValueArray(spokenLanguageList, id);
+            ContentValues[] movieSpokenLanguageListCVs = SpokenLanguageVO.parseToContentValueArray(spokenLanguageList, movieId);
             //Bulk insert to MovieSpokenLanguageEntry.
             int insertedMovieSpokenLanguageCount = context.getContentResolver().bulkInsert(MovieContract.MovieSpokenLanguageEntry.CONTENT_URI, movieSpokenLanguageListCVs);
             Log.d(MovieManiacApp.TAG, "Bulk inserted into movie_spoken_language table : " + insertedMovieSpokenLanguageCount);
@@ -484,7 +512,7 @@ public class MovieVO {
     public static MovieVO parseFromListCursor(Cursor data) {
         MovieVO movie = new MovieVO();
 
-        movie.id = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_ID));
+        movie.movieId = data.getInt(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_MOVIE_ID));
         movie.posterPath = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_POSTER_PATH));
         movie.overview = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_OVERVIEW));
         movie.releaseDateText = data.getString(data.getColumnIndex(MovieContract.MovieEntry.COLUMN_RELEASE_DATE));
@@ -522,5 +550,105 @@ public class MovieVO {
     public void merge(MovieVO movie) {
         movieType = movie.movieType;
         isStar = movie.isStar;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getReleaseDateText() {
+        return releaseDateText;
+    }
+
+    public void setReleaseDateText(String releaseDateText) {
+        this.releaseDateText = releaseDateText;
+    }
+
+    public void setGenreIds(int[] genreIds) {
+        this.genreIds = genreIds;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
+
+    public void setPopularity(float popularity) {
+        this.popularity = popularity;
+    }
+
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
+    }
+
+    public void setVoteAverage(float voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public void setAdult(boolean adult) {
+        isAdult = adult;
+    }
+
+    public void setVideo(boolean video) {
+        isVideo = video;
+    }
+
+    public void setBudget(long budget) {
+        this.budget = budget;
+    }
+
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
+    public void setRevenue(long revenue) {
+        this.revenue = revenue;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
+    }
+
+    public void setDetailLoaded(boolean detailLoaded) {
+        isDetailLoaded = detailLoaded;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setCollectionId(int collectionId) {
+        this.collectionId = collectionId;
     }
 }

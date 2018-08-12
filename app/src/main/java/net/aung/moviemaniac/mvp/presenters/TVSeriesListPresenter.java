@@ -21,7 +21,7 @@ public class TVSeriesListPresenter extends BasePresenter {
     public TVSeriesListPresenter(@NonNull TVSeriesListView tvSeriesListView, int tvSeriesCategory) {
         this.tvSeriesListView = tvSeriesListView;
         this.tvSeriesCategory = tvSeriesCategory;
-        pageNumber = SettingsUtils.retrieveTVSeriesPageNumber(tvSeriesCategory);
+        pageNumber = SettingsUtils.retrieveTVSeriesPageNumber(tvSeriesListView.getContext(), tvSeriesCategory);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class TVSeriesListPresenter extends BasePresenter {
     public void onEventMainThread(DataEvent.ShowPopularTVSeriesListEvent event) {
         if (tvSeriesCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_TV_SERIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveTVSeriesPageNumber(tvSeriesCategory, pageNumber);
+            SettingsUtils.saveTVSeriesPageNumber(tvSeriesListView.getContext(), tvSeriesCategory, pageNumber);
 
             //tvSeriesListView.displayTVSeriesList(event.getTvSeriesList(), false);
         }
@@ -50,7 +50,7 @@ public class TVSeriesListPresenter extends BasePresenter {
     public void onEventMainThread(DataEvent.ShowTopRatedTVSeriesListEvent event) {
         if (tvSeriesCategory == MovieManiacConstants.CATEGORY_TOP_RATED_TV_SERIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveTVSeriesPageNumber(tvSeriesCategory, pageNumber);
+            SettingsUtils.saveTVSeriesPageNumber(tvSeriesListView.getContext(), tvSeriesCategory, pageNumber);
 
             //tvSeriesListView.displayTVSeriesList(event.getTvSeriesList(), false);
         }
@@ -70,7 +70,7 @@ public class TVSeriesListPresenter extends BasePresenter {
 
     public void forceRefresh() {
         pageNumber = MovieModel.INITIAL_PAGE_NUMBER;
-        SettingsUtils.resetPageNumber(tvSeriesCategory);
+        SettingsUtils.resetPageNumber(tvSeriesListView.getContext(), tvSeriesCategory);
         loadNewMovieList(true);
     }
 

@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.controllers.MovieItemController;
@@ -23,7 +22,6 @@ import net.aung.moviemaniac.fragments.TVSeriesDetailFragment;
 import net.aung.moviemaniac.fragments.pagers.MoviePagerFragment;
 import net.aung.moviemaniac.fragments.pagers.TVSeriesPagerFragment;
 import net.aung.moviemaniac.menus.LeftMenuFragment;
-import net.aung.moviemaniac.utils.GAUtils;
 import net.aung.moviemaniac.views.items.ViewItemMenu;
 
 import butterknife.Bind;
@@ -170,12 +168,12 @@ public class MMListActivity extends BaseActivity implements
     public void onNavigateToDetail(MovieVO movie) {
         if (getResources().getBoolean(R.bool.isTablet)) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_tablet_detail, MovieDetailFragment.newInstance(movie.getId(), movie.getMovieType()))
+                    .replace(R.id.fl_tablet_detail, MovieDetailFragment.newInstance(movie.getMovieId(), movie.getMovieType()))
                     .commit();
 
             mDrawerLayout.openDrawer(Gravity.RIGHT);
         } else {
-            Intent intentToDetail = MMDetailActivity.createMovieIntent(movie.getId(), movie.getMovieType());
+            Intent intentToDetail = MMDetailActivity.createMovieIntent(movie.getMovieId(), movie.getMovieType());
             startActivity(intentToDetail);
         }
     }

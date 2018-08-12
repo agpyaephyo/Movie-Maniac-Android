@@ -66,12 +66,12 @@ public class SearchActivity extends BaseActivity implements
     public void onNavigateToDetail(MovieVO movie) {
         if (getResources().getBoolean(R.bool.isTablet)) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_tablet_detail, MovieDetailFragment.newInstance(movie.getId(), movie.getMovieType()))
+                    .replace(R.id.fl_tablet_detail, MovieDetailFragment.newInstance(movie.getMovieId(), movie.getMovieType()))
                     .commit();
 
             mDrawerLayout.openDrawer(Gravity.RIGHT);
         } else {
-            Intent intentToDetail = MMDetailActivity.createMovieIntent(movie.getId(), movie.getMovieType());
+            Intent intentToDetail = MMDetailActivity.createMovieIntent(movie.getMovieId(), movie.getMovieType());
             startActivity(intentToDetail);
         }
     }

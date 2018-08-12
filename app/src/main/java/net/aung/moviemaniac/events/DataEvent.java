@@ -1,5 +1,7 @@
 package net.aung.moviemaniac.events;
 
+import android.content.Context;
+
 import net.aung.moviemaniac.data.restapi.responses.GenreListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
 import net.aung.moviemaniac.data.restapi.responses.MovieReviewResponse;
@@ -188,14 +190,20 @@ public class DataEvent {
     }
 
     public static class LoadedGenreListEvent {
+        private Context context;
         private GenreListResponse response;
 
-        public LoadedGenreListEvent(GenreListResponse response) {
+        public LoadedGenreListEvent(Context context, GenreListResponse response) {
             this.response = response;
+            this.context = context;
         }
 
         public GenreListResponse getResponse() {
             return response;
+        }
+
+        public Context getContext() {
+            return context;
         }
     }
 

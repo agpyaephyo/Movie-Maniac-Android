@@ -1,5 +1,7 @@
 package net.aung.moviemaniac.mvp.views;
 
+import android.content.Context;
+
 import net.aung.moviemaniac.data.vos.MovieVO;
 
 import java.util.List;
@@ -12,4 +14,5 @@ public interface MovieListView {
     boolean isMovieListEmpty();
     void displayMovieList(List<MovieVO> movieList, boolean isToAppend);
     void displayFailToLoadData(String message);
+    Context getContext();
 }

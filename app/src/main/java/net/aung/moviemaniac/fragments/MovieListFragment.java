@@ -1,5 +1,7 @@
 package net.aung.moviemaniac.fragments;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.R;
 import net.aung.moviemaniac.adapters.MovieListAdapter;
 import net.aung.moviemaniac.controllers.MovieItemController;
+import net.aung.moviemaniac.data.model.MovieModel;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 import net.aung.moviemaniac.data.vos.GenreVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
@@ -65,6 +68,8 @@ public class MovieListFragment extends BaseFragment
     private int mCategory;
     private List<MovieVO> mMovieList = new ArrayList<>();
 
+    private MovieModel mMovieModel;
+
     public static MovieListFragment newInstance(int category) {
         MovieListFragment fragment = new MovieListFragment();
         Bundle bundle = new Bundle();
@@ -87,8 +92,12 @@ public class MovieListFragment extends BaseFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mMovieModel = ViewModelProviders.of(this).get(MovieModel.class);
+        mMovieModel.initMovieDB(getContext());
+
         movieListPresenter = new MovieListPresenter(this, mCategory);
         movieListPresenter.onCreate();
+        movieListPresenter.loadMovieListFromNetwork();
 
         smartScrollListener = new SmartScrollListener(this);
 
@@ -129,12 +138,42 @@ public class MovieListFragment extends BaseFragment
             swipeContainer.setEnabled(false);
         }
 
+        if (mCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
+            mMovieModel.getmMostPopularMovies().observe(this, new Observer<List<MovieVO>>() {
+                @Override
+                public void onChanged(@Nullable List<MovieVO> movieVOs) {
+                    displayMovieList(movieVOs, false);
+                }
+            });
+        } else if (mCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
+            mMovieModel.getmTopRatedMovies().observe(this, new Observer<List<MovieVO>>() {
+                @Override
+                public void onChanged(@Nullable List<MovieVO> movieVOs) {
+                    displayMovieList(movieVOs, false);
+                }
+            });
+        } else if (mCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES) {
+            mMovieModel.getmNowPlayingMovies().observe(this, new Observer<List<MovieVO>>() {
+                @Override
+                public void onChanged(@Nullable List<MovieVO> movieVOs) {
+                    displayMovieList(movieVOs, false);
+                }
+            });
+        } else if (mCategory == MovieManiacConstants.CATEGORY_UPCOMING_MOVIES) {
+            mMovieModel.getmUpcomingMovies().observe(this, new Observer<List<MovieVO>>() {
+                @Override
+                public void onChanged(@Nullable List<MovieVO> movieVOs) {
+                    displayMovieList(movieVOs, false);
+                }
+            });
+        }
+
         return rootView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        getLoaderManager().initLoader(MovieManiacConstants.MOVIE_LIST_LOADER, null, this);
+        //getLoaderManager().initLoader(MovieManiacConstants.MOVIE_LIST_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -263,7 +302,7 @@ public class MovieListFragment extends BaseFragment
         if (data != null && data.moveToFirst()) {
             do {
                 MovieVO movie = MovieVO.parseFromListCursor(data);
-                movie.setGenreList(GenreVO.loadGenreListByMovieId(movie.getId()));
+                movie.setGenreList(GenreVO.loadGenreListByMovieId(movie.getMovieId()));
                 movieList.add(movie);
 
             } while (data.moveToNext());

@@ -1,5 +1,8 @@
 package net.aung.moviemaniac.data.vos;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,16 +12,21 @@ import com.google.gson.annotations.SerializedName;
 import net.aung.moviemaniac.MovieManiacApp;
 import net.aung.moviemaniac.data.persistence.MovieContract;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
  * Created by aung on 12/16/15.
  */
+@Entity(foreignKeys = {
+        @ForeignKey(entity = MovieVO.class, parentColumns = "id", childColumns = "movieId"),
+}, tableName = "production_company")
 public class ProductionCompanyVO {
 
     @SerializedName("id")
+    @PrimaryKey
     private int id;
+
+    private int movieId;
 
     @SerializedName("name")
     private String name;
@@ -56,6 +64,7 @@ public class ProductionCompanyVO {
 
     /**
      * For movie_production_company table.
+     *
      * @param productionCompanyList
      * @param movieId
      * @return

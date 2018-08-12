@@ -1,8 +1,13 @@
 package net.aung.moviemaniac.data.model;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
+import android.content.Context;
 import android.util.Log;
 
 import net.aung.moviemaniac.MovieManiacApp;
+import net.aung.moviemaniac.data.db.MovieManiacDB;
 import net.aung.moviemaniac.data.restapi.MovieDataSource;
 import net.aung.moviemaniac.data.restapi.MovieDataSourceImpl;
 import net.aung.moviemaniac.data.restapi.responses.MovieListResponse;
@@ -23,23 +28,34 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by aung on 12/12/15.
  */
-public class MovieModel {
+public class MovieModel extends ViewModel {
 
     public static final int INITIAL_PAGE_NUMBER = 1;
 
     private static MovieModel objInstance = getInstance(); //active initiating.
 
     private MovieDataSource movieDataSource;
+    private MovieManiacDB movieDB;
+
+    //private MutableLiveData<List<MovieVO>> mMostPopularMovies;
+    private MutableLiveData<List<MovieVO>> mUpcomingMovies;
+    private MutableLiveData<List<MovieVO>> mTopRatedMovies;
+    private MutableLiveData<List<MovieVO>> mNowPlayingMovies;
 
     public static MovieModel getInstance() {
-        if (objInstance == null) {
-            objInstance = new MovieModel();
-        }
-
         return objInstance;
     }
 
-    private MovieModel() {
+    public static void initMovieModel(Context context) {
+        objInstance = new MovieModel(context);
+    }
+
+    public MovieModel(Context context) {
+        //mMostPopularMovies = new MutableLiveData<>();
+        mUpcomingMovies = new MutableLiveData<>();
+        mTopRatedMovies = new MutableLiveData<>();
+        mNowPlayingMovies = new MutableLiveData<>();
+
         movieDataSource = MovieDataSourceImpl.getInstance();
 
         EventBus eventBus = EventBus.getDefault();
@@ -47,9 +63,13 @@ public class MovieModel {
             eventBus.register(this);
         }
 
-        if (!SettingsUtils.isGenreListLoaded()) {
-            movieDataSource.loadGenreList();
+        if (!SettingsUtils.isGenreListLoaded(context)) {
+            movieDataSource.loadGenreList(context);
         }
+    }
+
+    public void initMovieDB(Context context) {
+        movieDB = MovieManiacDB.getMovieManiacDatabase(context);
     }
 
     public void loadMostPopularMovieList(int pageNumber, boolean isForce) {
@@ -73,7 +93,7 @@ public class MovieModel {
     }
 
     public void loadMovieDetailByMovieId(MovieVO movie) {
-        Log.d(MovieManiacApp.TAG, "Loading movie detail by movieId " + movie.getId());
+        Log.d(MovieManiacApp.TAG, "Loading movie detail by movieId " + movie.getMovieId());
         movieDataSource.loadMovieDetail(movie);
     }
 
@@ -130,45 +150,59 @@ public class MovieModel {
     public void onEventMainThread(DataEvent.LoadedMostPopularMovieListEvent event) {
         MovieListResponse response = event.getResponse();
 
+        //mMostPopularMovies.setValue(response.getResults());
+        movieDB.movieDao().insertMovies(response.getResults().toArray(new MovieVO[1]));
+
+        /*
         ArrayList<MovieVO> loadedMovieList = response.getResults();
         //Persistent into DB.
         MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_MOST_POPULAR);
 
         DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowMostPopularMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
+        */
     }
 
     public void onEventMainThread(DataEvent.LoadedUpcomingMovieListEvent event) {
         MovieListResponse response = event.getResponse();
 
+        mUpcomingMovies.setValue(response.getResults());
+        /*
         ArrayList<MovieVO> loadedMovieList = response.getResults();
         //Persistent into DB.
         MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_UPCOMING);
 
         DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowUpcomingMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
+        */
     }
 
     public void onEventMainThread(DataEvent.LoadedTopRatedMovieListEvent event) {
         MovieListResponse response = event.getResponse();
 
+        mTopRatedMovies.setValue(response.getResults());
+        /*
         ArrayList<MovieVO> loadedMovieList = response.getResults();
         //Persistent into DB.
         MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_TOP_RATED);
 
         DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowTopRatedMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
+        */
     }
 
     public void onEventMainThread(DataEvent.LoadedNowPlayingMovieListEvent event) {
         MovieListResponse response = event.getResponse();
 
+        mNowPlayingMovies.setValue(response.getResults());
+        /*
         ArrayList<MovieVO> loadedMovieList = response.getResults();
         //Persistent into DB.
         MovieVO.saveMovieFromList(loadedMovieList, MovieManiacConstants.MOVIE_TYPE_NOW_PLAYING);
 
         DataEvent.ShowMovieListEvent showDataEvent = new DataEvent.ShowNowPlayingMovieListEvent(loadedMovieList, event.isForce(), event.getResponse().getPage());
         EventBus.getDefault().post(showDataEvent);
+        */
     }
 
     public void onEventMainThread(DataEvent.LoadedMovieTrailerEvent event) {
@@ -191,7 +225,7 @@ public class MovieModel {
         GenreVO.saveGenreFromList(genreList);
 
         //Update on Setting Flag.
-        SettingsUtils.setGenreListLoaded(true);
+        SettingsUtils.setGenreListLoaded(event.getContext(), true);
     }
 
     public void onEventMainThread(DataEvent.LoadedMovieReviewEvent event) {
@@ -235,5 +269,21 @@ public class MovieModel {
     public void onEventMainThread(DataEvent.LoadedTVSeriesTrailerEvent event) {
         //Persistent into DB.
         TVSeriesVO.saveTrailerList(event.getTvSeriesId(), event.getResponse().getTrailerList());
+    }
+
+    public LiveData<List<MovieVO>> getmMostPopularMovies() {
+        return movieDB.movieDao().getAllMovies();
+    }
+
+    public LiveData<List<MovieVO>> getmUpcomingMovies() {
+        return mUpcomingMovies;
+    }
+
+    public LiveData<List<MovieVO>> getmTopRatedMovies() {
+        return mTopRatedMovies;
+    }
+
+    public LiveData<List<MovieVO>> getmNowPlayingMovies() {
+        return mNowPlayingMovies;
     }
 }

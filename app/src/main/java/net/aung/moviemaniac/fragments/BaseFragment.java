@@ -1,5 +1,6 @@
 package net.aung.moviemaniac.fragments;
 
+import android.arch.lifecycle.LifecycleFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -11,7 +12,7 @@ import net.aung.moviemaniac.utils.GAUtils;
 /**
  * Created by aung on 12/15/15.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends LifecycleFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

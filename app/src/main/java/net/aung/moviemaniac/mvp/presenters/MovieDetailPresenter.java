@@ -1,12 +1,9 @@
 package net.aung.moviemaniac.mvp.presenters;
 
 import net.aung.moviemaniac.data.model.MovieModel;
-import net.aung.moviemaniac.data.vos.MovieReviewVO;
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.events.DataEvent;
 import net.aung.moviemaniac.mvp.views.MovieDetailView;
-
-import java.util.List;
 
 /**
  * Created by aung on 12/15/15.
@@ -32,8 +29,8 @@ public class MovieDetailPresenter extends BasePresenter {
     }
 
     public void loadMovieDetailFromNetwork(MovieVO movie) {
-        movieModel.loadTrailerListByMovieId(movie.getId());
-        movieModel.loadMovieReviewByMovieId(movie.getId());
+        movieModel.loadTrailerListByMovieId(movie.getMovieId());
+        movieModel.loadMovieReviewByMovieId(movie.getMovieId());
 
         movieModel.loadMovieDetailByMovieId(movie);
     }

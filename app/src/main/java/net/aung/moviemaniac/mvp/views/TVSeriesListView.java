@@ -1,5 +1,7 @@
 package net.aung.moviemaniac.mvp.views;
 
+import android.content.Context;
+
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 
 import java.util.List;
@@ -14,4 +16,6 @@ public interface TVSeriesListView {
     void displayTVSeriesList(List<TVSeriesVO> tvSeriesList, boolean isToAppend);
 
     void displayFailToLoadData(String message);
+
+    Context getContext();
 }

@@ -34,7 +34,7 @@ public class SortMovieDialog extends Dialog {
         setContentView(R.layout.dialog_sort_movie);
         ButterKnife.bind(this, this);
 
-        @MovieManiacConstants.SortOrder int sortOrder = SettingsUtils.getSortOrder();
+        @MovieManiacConstants.SortOrder int sortOrder = SettingsUtils.getSortOrder(getContext());
         rdoMostPopular.setChecked(sortOrder == MovieManiacConstants.SORT_ORDER_MOST_POPULAR);
         rdoHighestRated.setChecked(sortOrder == MovieManiacConstants.SORT_ORDER_TOP_RATED);
 
@@ -42,7 +42,7 @@ public class SortMovieDialog extends Dialog {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    SettingsUtils.saveSortOrder(MovieManiacConstants.SORT_ORDER_MOST_POPULAR);
+                    SettingsUtils.saveSortOrder(getContext(), MovieManiacConstants.SORT_ORDER_MOST_POPULAR);
                     Toast.makeText(getContext(), "Sort by most popular", Toast.LENGTH_SHORT).show();
                     dismiss();
                 }
@@ -53,7 +53,7 @@ public class SortMovieDialog extends Dialog {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    SettingsUtils.saveSortOrder(MovieManiacConstants.SORT_ORDER_TOP_RATED);
+                    SettingsUtils.saveSortOrder(getContext(), MovieManiacConstants.SORT_ORDER_TOP_RATED);
                     Toast.makeText(getContext(), "Sort by highest rating", Toast.LENGTH_SHORT).show();
                     dismiss();
                 }

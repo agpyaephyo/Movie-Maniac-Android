@@ -1,5 +1,7 @@
 package net.aung.moviemaniac.data.restapi;
 
+import android.content.Context;
+
 import net.aung.moviemaniac.data.vos.MovieVO;
 import net.aung.moviemaniac.data.vos.TVSeriesVO;
 
@@ -15,7 +17,7 @@ public interface MovieDataSource {
     void loadMovieTrailers(int movieId);
     void loadMovieDetail(MovieVO movie);
     void loadMovieDetail(int movieId);
-    void loadGenreList();
+    void loadGenreList(Context context);
     void loadMovieReviews(int movieId);
     void loadPopularTVSeries(int pageNumber, boolean isForce);
     void loadTopRatedTVSeries(int pageNumber, boolean isForce);

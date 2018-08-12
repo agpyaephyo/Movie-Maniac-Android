@@ -21,7 +21,7 @@ public class MovieListPresenter extends BasePresenter {
     public MovieListPresenter(@NonNull MovieListView movieListView, int movieCategory) {
         this.movieListView = movieListView;
         this.movieCategory = movieCategory;
-        pageNumber = SettingsUtils.retrieveMoviePageNumber(movieCategory);
+        pageNumber = SettingsUtils.retrieveMoviePageNumber(movieListView.getContext(), movieCategory);
     }
 
     @Override
@@ -41,28 +41,28 @@ public class MovieListPresenter extends BasePresenter {
     public void onEventMainThread(DataEvent.ShowMostPopularMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_MOST_POPULAR_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieListView.getContext(), movieCategory, pageNumber);
         }
     }
 
     public void onEventMainThread(DataEvent.ShowTopRatedMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_TOP_RATED_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieListView.getContext(), movieCategory, pageNumber);
         }
     }
 
     public void onEventMainThread(DataEvent.ShowNowPlayingMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_NOW_PLAYING_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieListView.getContext(), movieCategory, pageNumber);
         }
     }
 
     public void onEventMainThread(DataEvent.ShowUpcomingMovieListEvent event) {
         if (movieCategory == MovieManiacConstants.CATEGORY_UPCOMING_MOVIES) {
             pageNumber = event.getPageNumber() + 1;
-            SettingsUtils.saveMoviePageNumber(movieCategory, pageNumber);
+            SettingsUtils.saveMoviePageNumber(movieListView.getContext(), movieCategory, pageNumber);
         }
     }
 
@@ -84,7 +84,7 @@ public class MovieListPresenter extends BasePresenter {
 
     public void forceRefresh() {
         pageNumber = MovieModel.INITIAL_PAGE_NUMBER;
-        SettingsUtils.resetPageNumber(movieCategory);
+        SettingsUtils.resetPageNumber(movieListView.getContext(), movieCategory);
         loadNewMovieList(true);
     }
 

@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.util.SparseArray;
 
 import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Logger;
-import com.google.android.gms.analytics.Tracker;
+import com.facebook.stetho.Stetho;
+import com.squareup.leakcanary.LeakCanary;
+
+import net.aung.moviemaniac.data.model.MovieModel;
+
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -26,9 +28,20 @@ public class MovieManiacApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Stetho.initializeWithDefaults(this);
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+        // Normal app init code...
+
         Fabric.with(this, new Crashlytics());
         sContext = getApplicationContext();
         INSTANCE = this;
+
+        MovieModel.initMovieModel(getApplicationContext());
     }
 
     @Override

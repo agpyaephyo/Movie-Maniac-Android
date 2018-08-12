@@ -135,7 +135,7 @@ public class TVSeriesListFragment extends BaseFragment
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        getLoaderManager().initLoader(MovieManiacConstants.TV_SERIES_LIST_LOADER, null, this);
+        //getLoaderManager().initLoader(MovieManiacConstants.TV_SERIES_LIST_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
     }
 
